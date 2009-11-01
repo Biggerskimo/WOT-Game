@@ -93,28 +93,26 @@ class FleetEditor extends AbstractDecorator {
 		FleetLog::create($fleet);
 		
 		// add ovents
-		if(WCF::getUser()->userID == 1) {
-			$ownerFields = array('userID' => $ownerID, 'planetID' => $startPlanetID);
-			$ofiaraFields = array('userID' => $ofiaraID, 'planetID' => $endPlanetID);
-			$data = array('ownerID' => $ownerID, 'ofiaraID' => $ofiaraID, 'startPlanetID' => $startPlanetID,
-				'targetPlanetID' => $endPlanetID, 'resources' => array('metal' => $metal, 'crystal' => $crystal, 'deuterium' => $deuterium),
-				'startCoords' => array($startPlanet->galaxy, $startPlanet->system, $startPlanet->planet, $startPlanet->planetKind),
-				'targetCoords' => array($targetPlanet->galaxy, $targetPlanet->system, $targetPlanet->planet, $targetPlanet->planetKind),
-				'spec' => $ships, 'cssClass' => $fleet->getClassName(true), 'missionID' => $missionID,
-				'startPlanetName' => $startPlanet->name, 'targetPlanetName' => $targetPlanet->name, 'fleetID' => $fleet->fleetID
-			);
-			
+		$ownerFields = array('userID' => $ownerID, 'planetID' => $startPlanetID);
+		$ofiaraFields = array('userID' => $ofiaraID, 'planetID' => $endPlanetID);
+		$data = array('ownerID' => $ownerID, 'ofiaraID' => $ofiaraID, 'startPlanetID' => $startPlanetID,
+			'targetPlanetID' => $endPlanetID, 'resources' => array('metal' => $metal, 'crystal' => $crystal, 'deuterium' => $deuterium),
+			'startCoords' => array($startPlanet->galaxy, $startPlanet->system, $startPlanet->planet, $startPlanet->planetKind),
+			'targetCoords' => array($targetPlanet->galaxy, $targetPlanet->system, $targetPlanet->planet, $targetPlanet->planetKind),
+			'spec' => $ships, 'cssClass' => $fleet->getClassName(true), 'missionID' => $missionID,
+			'startPlanetName' => $startPlanet->name, 'targetPlanetName' => $targetPlanet->name, 'fleetID' => $fleet->fleetID
+		);
+		
+		$data['passage'] = 'flight';
+		OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ownerFields, 0, $data);
+		
+		$data['passage'] = 'return';			
+		OventEditor::create(1, $returnTime, $returnEvent->eventID, $fleetID, $ownerFields, 0, $data);
+		
+		if($ownerID != $ofiaraID && $ofiaraID > 0) {
+			$data['cssClass'] = $fleet->getClassName(false);
 			$data['passage'] = 'flight';
-			OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ownerFields, 0, $data);
-			
-			$data['passage'] = 'return';			
-			OventEditor::create(1, $returnTime, $returnEvent->eventID, $fleetID, $ownerFields, 0, $data);
-			
-			if($ownerID != $ofiaraID && $ofiaraID > 0) {
-				$data['cssClass'] = $fleet->getClassName(false);
-				$data['passage'] = 'flight';
-				OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ofiaraFields, 0, $data);
-			}
+			OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ofiaraFields, 0, $data);
 		}
 		
 		return $fleetEditor;
