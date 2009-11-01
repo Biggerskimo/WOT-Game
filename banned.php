@@ -15,6 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with WOT Game.  If not, see <http://www.gnu.org/licenses/>.
 */
+  //mboss
 
 define('INSIDE', true);
 $ugamela_root_path = './';
@@ -44,7 +45,7 @@ echo '<h2>Pranger</h2>
     </tr>';
 
 $count = 0;
-$banned = doquery("SELECT * FROM {{table}} ORDER BY `id` DESC LIMIT $i,50","banned");
+$banned = doquery("SELECT * FROM {{table}} ORDER BY `time` DESC LIMIT $i,50","banned");
 while($b = mysql_fetch_array($banned)){
 	echo "<tr height=20>";
 	echo "<th>".$b["who"]."</th>";
