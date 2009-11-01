@@ -1,0 +1,81 @@
+.allianceImage {
+	margin: 0px auto;
+}
+
+.allianceImage img {
+	margin: 0px auto;
+	max-height: 581px;
+	max-width: 775px;
+	margin: 1em 20%;
+	margin: 0px auto;
+}
+.allianceImage img {
+	margin: 0px auto;
+	max-height: 581px;
+	max-width: 775px;
+}
+
+.allianceAdministrationActions li {
+	display: block;
+	text-align: center;
+	padding: 3px 0;	
+}
+
+.allianceAdministrationTexts textarea {
+	width: 100%;
+}
+
+.allianceAdministrationTextsInteralText, .allianceAdministrationTextsApplicationTemplate {
+	display: none;
+}
+
+.allianceAdministrationTextsButtons ul {
+	list-style: none;
+	height: 20px;
+}
+
+.allianceAdministrationTextsButtons li {
+	position: absolute;
+	left: 0;
+	width: 33%;
+}
+
+.allianceAdministrationTextsButtons li + li {
+	left: 33%;
+	width: 34%;
+}
+.allianceAdministrationTextsButtons li + li + li {
+	left: 67%;
+	width: 33%;
+}
+
+.allianceAdministrationSettings .formElement:first-child {
+	padding-top: 5px;
+}
+
+.allianceAdministrationTextsButtons a {
+	display: block;
+	text-align: center;
+}
+
+.allianceInterrelationApplicationText {
+	display: none;
+}
+
+.allianceCircularCreateFormField, .allianceInterrelationApplyFormField {
+	text-align: left;
+	padding: 0;
+}
+
+.allianceInterrelationApplyFormField ul {
+	list-style: none;
+}
+
+.allianceInterrelationApplyFormField label {
+	display: inline;	
+}
+
+.allianceRank {
+	margin-left: 20px;
+	display: none;
+}

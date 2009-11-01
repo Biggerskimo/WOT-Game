@@ -1,0 +1,131 @@
+<?php
+$lang['alliance'] = 'Allianz';
+$lang['your_alliance'] = 'Ihre Allianz';
+$lang['make_alliance_owner'] = 'Eigene Allianz gr&uuml;nden';
+$lang['search_alliance'] = 'Allianzen suchen';
+$lang['make_alliance'] = 'Eigene Allianz gr&uuml;nden';
+$lang['Search'] = 'Suche';
+
+$lang['max'] = 'max';
+$lang['searched_alliance_availables'] = 'Folgende Allianzen wurden gefunden:';
+$lang['alliance_has_been_maked'] = 'Allianz %s wurde gegr&uuml;ndet!';
+$lang['have_not_tag'] = 'Allianz ohne Tag';
+$lang['have_not_name'] = 'Allianz ohne Namen';
+$lang['always_exist'] = '%s existiert bereits';
+$lang['ally_maked'] = '%s gegr&uuml;ndet';
+$lang['ally_notexist'] = 'Die Allianz wurde aufgel&ouml;st.';
+$lang['Have_not_a_alliance'] = 'Nie masz sojuszu';
+$lang['Send_circular_mail'] = 'Rundmail versenden';
+$lang['Text_mail'] = 'Mailtext';
+$lang['Members_list'] = 'Mitgliederliste';
+$lang['Alliance_admin'] = 'Allianz verwalten';
+$lang['Range'] = 'Ihr Rang';
+$lang['Members'] = 'Mitglieder';
+$lang['Name'] = 'Name';
+$lang['Tag'] = 'Tag';
+$lang['Circular_message'] = 'Rundmail';
+$lang['Inner_section'] = 'Interner Bereich';
+$lang['Main_Page'] = 'Homepage';
+$lang['Alliance_logo'] = 'Allianz-Logo';
+
+$lang['alliance_tag'] = 'Allianz Tag';
+$lang['allyance_name'] = 'Allianz Name';
+$lang['members'] = 'Mitgliederliste';
+$lang['member'] = 'Mitglied';
+$lang['Novate'] = 'Neuling';
+$lang['Change_the_ally_tag'] = 'Allianz Tag &auml;ndern';
+$lang['Change_the_ally_name'] = 'Allianz Namen &auml;ndern';
+$lang['Reset'] = 'Zur&uuml;cksetzen';
+$lang['Founder'] = 'Gr&uuml;nder';
+$lang['Circular_sended'] = 'Folgende Spieler erhielten Ihre Rundmail';
+//Solicitud
+$lang['it_is_not_posible_to_apply'] = "Niemo¿liwe zrobienie tego w ten sposób";
+$lang['write_apply'] = "Napisz podanie do sojuszu";
+$lang['your_apply'] = 'Ihre Bewerbung';
+$lang['apply_registered'] = 'Ihre Bewerbung wurde gespeichert. Sie erhalten eine Nachricht wenn Ihre Bewerbung angenommen / abgelehnt wurde.<br><br><a href=alliance.php>Ok</a>';
+$lang['apply_cantbeadded'] = 'Ihre Bewerbung wurde abgelehnt.';
+$lang['Request_responde'] = 'Odpowied¼ na podanie';
+$lang['Motive_optional'] = 'Powody (opcja)';
+$lang['Exit_of_this_alliance'] = "Allianz aufl&ouml;sen";
+$lang['Continue'] = "Weiter";
+$lang['All_players'] = 'Alle Spieler';
+$lang['Send_Apply'] = 'Annehmen';
+$lang['Delete_apply'] = 'Zur&uuml;ckziehen';
+$lang['Send'] = 'Senden';
+$lang['Ok'] = 'Ok';
+$lang['Repel'] = 'Ablehnen';
+$lang['Reload'] = 'Muster';
+$lang['Clear'] = 'Zur&uuml;cksetzen';
+$lang['Back'] = 'Zur&uuml;ck';
+$lang['Help'] = 'Hilfe';
+$lang['Message'] = 'Nachricht';
+$lang['characters'] = 'Zeichen';
+$lang['Destiny'] = 'Empf&auml;nger';
+$lang['Write_to_alliance'] = 'Bewerbung an die Allianz [%s] schreiben';
+$lang['There_is_no_a_text_apply'] = 'Die Allianzf&uuml;hrung hat kein Muster hinterlegt';
+$lang['Waiting_a_request_text'] = 'Sie haben sich bereits bei der Allianz [%s] beworben. Bitte warten Sie bis Sie eine Antwort erhalten, oder ziehen Sie Ihre Bewerbung zur&uuml;ck.';
+$lang['Canceled_a_request_text'] = 'Ihre Bewerbung bei der Allianz [%s] wurde gel&ouml;scht. Nun k&ouml;nnen Sie sich neu bewerben oder selbst eine Allianz gr&uuml;nden.';
+$lang['Candidate'] = 'Kandidat';
+$lang['Date_of_the_request'] = 'Datum der Erstellung';
+$lang['Apply_ally_overview'] = 'Memberliste';
+//Lista de miembros
+$lang['Options'] = 'Einstellungen';
+$lang['Alliance_logo'] = 'Allianz Logo';
+$lang['Requests'] = 'Bewerbung';
+$lang['Founder_name'] = 'Gr&uuml;ndername';
+$lang['Allow_request'] = 'Sind m&ouml;glich (Allianz offen)';
+$lang['No_allow_request'] = 'Sind nicht m&ouml;glich (Allianz geschlossen)';
+$lang['Inactive'] = 'Inaktiv';
+$lang['Function'] = 'Funktion';
+$lang['Online'] = 'Online';
+$lang['Ammount'] = 'Anzahl';
+$lang['Name'] = 'Name';
+$lang['Number'] = 'Nr.';
+$lang['Position'] = 'Status';
+$lang['Points'] = 'Punkte';
+$lang['Coordinated'] = 'Koordinaten';
+$lang['Member_from'] = 'Beitritt';
+$lang['Write_a_message'] = 'Nachricht schreiben';
+$lang['On'] = 'On';
+$lang['5_min'] = '15 min';
+$lang['Off'] = 'Off';
+//Admin
+$lang['Transfer_alliance'] = 'Diese Allianz abtreten/&uuml;bernehmen';
+$lang['Texts'] = 'Textverwaltung';
+$lang['External_text'] = 'Externer Text';
+$lang['Internal_text'] = 'Interner Text';
+$lang['Request_text'] = 'Bewerbungstext';
+$lang['Show_of_request_text'] = 'Externer Allianztext';
+$lang['Law_settings'] = 'Allianz verwalten';
+$lang['Members_administrate'] = 'Mitglieder verwalten';
+//Administrar rangos
+$lang['Return_to_overview'] = 'Zur&uuml;ck zur &Uuml;bersicht';
+$lang['Configure_laws'] = 'Rechte einstellen';
+$lang['Range_name'] = 'Rangname';
+$lang['Range_make'] = 'Anlegen';
+$lang['Delete_range'] = 'Rang entfernen';
+$lang['Make'] = 'erstellen';
+$lang['Law_leyends'] = 'Legende der Rechte';
+$lang['Alliance_dissolve'] = 'Allianz aufl&ouml;sen';
+$lang['Expel_users'] = 'User kicken';
+$lang['See_the_requests'] = 'Bewerbungen einsehen';
+$lang['See_the_list_members'] = 'Memberliste sehen';
+$lang['Check_the_requests'] = 'Bewerbungen bearbeiten';
+$lang['See_the_online_list_member'] = 'Onlinestatus in der Memberliste sehen';
+$lang['Make_a_circular_message'] = 'Rundschreiben verfassen';
+$lang['Left_hand_text'] = "'Rechte Hand' (n&ouml;tig zum &Uuml;bertragen des Gr&uuml;nderstatus)";
+$lang['Save'] = 'Speichern';
+$lang['There_is_not_range'] = '¯adna pozycja nie jest stworzona';
+$lang['s'] = 'Disollianza';
+$lang['s'] = 'Disollianza';
+$lang['s'] = 'Disollianza';
+$lang['s'] = 'Disollianza';
+$lang['s'] = 'Disollianza';
+$lang['s'] = 'Disollianza';
+$lang['Denied_access'] = 'Zugriff verweigert!';
+$lang['points'] = 'Punkte';
+
+// Created by Perberos. All rights reversed (C) 2006 
+// Translated by karol66. All rights reversed (C) 2007 
+?>
+

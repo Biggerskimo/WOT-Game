@@ -1,0 +1,46 @@
+#header_top {
+	left: 50%;
+	margin-left: -350px;
+	position: absolute;
+	top: 0px;
+	width: 700px;
+}
+
+#topnav {
+	left: 75px;
+	position: absolute;
+	width: 600px;
+}
+
+.planetDropDown {
+	float: left;
+}
+
+.planetDropDown img {
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+.planetDropDown select {
+	margin: 2px;	
+}
+
+.resources {
+	float: right;
+}
+
+.resources img {
+	height: 21px;
+	width: 38px;
+}
+
+.resources td {
+	text-align: center;
+	width: 85px;
+}
+
+.metalDescription, .crystalDescription, .deuteriumDescription, .energyDescription {
+	font-style: italic;
+	font-weight: bold;
+}

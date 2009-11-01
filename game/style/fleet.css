@@ -1,0 +1,48 @@
+.fleetDetails ul {
+	width: 100%;
+	list-style: none;
+	padding: 0;
+}
+.fleetDetails ul li {
+	display: inline;
+	margin: 10%;
+}
+
+.fleetDetails table {
+	float: left;
+	width: 45%;
+}
+.fleetDetails table + table {
+	float: none;
+	width: 55%;
+	left: 45%;
+}
+.fleetStartCoordinates .formFieldLabel, .fleetStartResourcesContainer .formFieldLabel {
+	padding-right: 8px;	
+}
+.fleetStartCoordinates .formField, .fleetStartResourcesContainer .formField {
+	padding-left: 8px;	
+}
+
+.formSubmit {
+	margin-top: 10px;
+}
+
+.popupMenu {
+	position: absolute;
+	white-space: nowrap;
+	font-size: 0.85em;
+	text-align: left;
+	width: auto;
+}
+.popupMenu ul {
+	display: block !important;
+	width: auto;
+	padding: 3px 6px;
+}
+.popupMenu ul li {
+	display: block !important;
+	float: none;
+	width: auto;
+	margin: 3px 0;
+}

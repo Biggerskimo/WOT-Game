@@ -1,0 +1,76 @@
+.statChangeUp {
+	color: limegreen;
+}
+.statChangeUp:before {
+	content: '\2191';
+}
+.statChangeDown {
+	color: red;
+}
+.statChangeDown:before {
+	content: '\2193';
+}
+.statChangeNone {
+	color: #87CEEB;
+}
+.statChangeNone:before {
+	content: '\2192';
+}
+.statChangeUp, .statChangeNone, .statChangeDown {
+	font-weight: bold;
+}
+.statChangeUp:before, .statChangeDown:before, .statChangeNone:before {
+	font-size: larger;
+}
+
+.self {
+	color: limegreen;	
+}
+.mate {
+	color: #77BEDB;	
+}
+.buddy {
+	color: #FFFF99;
+}
+.search {
+	font-style: italic;	
+}
+.self, .mate, .buddy, .search {
+	font-weight: bold;	
+}
+
+form > div > a {
+	font-weight: bolder;
+}
+.rankSelect {
+	padding: 2px 5px;
+	display: inline-block;	
+}
+.rankSelect > li {
+	display: inline-block;
+	list-style: none;
+	padding: 0;
+}
+.rankSelect > li > a {
+	display: inline;
+}
+.rankSelect li ul {
+	position: absolute;
+	left: -999em;
+	padding: 0;
+	display: block;
+}
+.rankSelect li li {
+	display: block;
+	margin: 3px;
+	padding: 3px;
+}
+.rankSelect li:hover ul {
+	left: auto;
+}
+.rankSelect li li input {
+	width: 50px !important;	
+}
+thead {
+	font-weight: bold;
+}

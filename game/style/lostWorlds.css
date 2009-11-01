@@ -1,0 +1,369 @@
+/**
+ * Global
+ */
+/* page */
+body {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main {
+	bottom: 0;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: auto;
+	position: absolute;
+	scrollbars: none;
+	text-align: center;
+	top: 63px;
+	left: 0;
+	right: 0;
+}
+
+/* resources */
+.metal, .metalDescription {
+	color: #ADAEAD;
+}
+
+.crystal, .crystalDescription {
+	color: #EF51EF;
+}
+
+.deuterium, .deuteriumDescription {
+	color: #F77542;
+}
+
+.energy, .energyDescription {
+	color: #9C71C6;
+}
+
+/* container */
+.lwcontainer-1, .lwcontainer-2 {
+	margin: 0 1px 1px 0;
+}
+	
+.informationName {
+	padding: 8px;
+	width: 380px;
+	float: left;
+	text-align: right;
+}
+.informationValue {
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	margin: 0 0 0 396px;
+	padding: 8px;
+	text-align: left;
+}
+
+/* forms */
+.formElement {
+	margin: 5px 0 3px 0;
+	min-height: 0;
+}
+
+.formElement .formField {
+	margin-left: 216px;
+}
+
+.formFieldLabel {
+	float: left;
+	font-size: 11px;
+	text-align: right;
+	width: 200px;
+}
+
+fieldset .formElement .formField {
+	margin-left: 202px;
+}
+
+.formField input, .formField select, .formField textarea {
+	margin: 2px 0;
+}
+
+.formField label {
+	font-size: 1em;
+	display: block;
+}
+
+.formField label.allianceNameLabel {
+	display: inline;	
+}
+
+input[type='text'], input[type='text']:hover {
+	width: 99%;
+	text-align: left;
+}
+
+.fleetStartCoordinates input[type='text'], .fleetStartCoordinates input[type='text']:hover {
+	width: auto;
+	display: inline;
+	text-align: center;
+}
+
+.formSubmit {
+	text-align: center;
+}
+
+/* other */
+.online, .onlineTime, .offline {
+	font-weight: bold;
+}
+.online {
+	color: limegreen;
+}
+
+.onlineTime {
+	color: yellow;
+}
+
+.offline {
+	color: red;
+}
+
+.tooManyChars {
+	color: #FF0000;
+}
+
+/* resources */
+.metal, .metalDescription {
+	color: #ADAEAD;
+}
+
+.crystal, .crystalDescription {
+	color: #EF51EF;
+}
+
+.deuterium, .deuteriumDescription {
+	color: #F77542;
+}
+
+.energy, .energyDescription {
+	color: #9C71C6;
+}
+
+/* container */
+.lwcontainer-1, .lwcontainer-2 {
+	margin: 0 1px 1px 0;
+}
+	
+.informationName {
+	padding: 8px;
+	width: 380px;
+	float: left;
+	text-align: right;
+}
+.informationValue {
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	margin: 0 0 0 396px;
+	padding: 8px;
+}
+
+.main table {
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+	max-width: 99%;
+}
+
+/* forms */
+.formElement {
+	margin: 5px 0 3px 0;
+	min-height: 20px;
+}
+
+.formElement .formField {
+	margin-left: 216px;
+}
+
+.formFieldLabel {
+	float: left;
+	font-size: 11px;
+	text-align: right;
+	width: 200px;
+}
+
+fieldset .formElement .formField {
+	margin-left: 202px;
+}
+
+.formField input, .formField select, .formField textarea {
+	margin: 2px 0;
+}
+
+.formField label {
+	font-size: 1em;
+	display: block;
+}
+
+input[type='text'], input[type='text']:hover {
+	width: 99%;
+	text-align: left;
+}
+
+.formSubmit {
+	text-align: center;
+}
+
+.formField {
+	text-align: left;
+}
+
+/* other */
+.online, .onlineTime, .offline {
+	font-weight: bold;
+}
+.online {
+	color: limegreen;
+}
+
+.onlineTime {
+	color: yellow;
+}
+
+.offline {
+	color: red;
+}
+/**
+ * Topnav
+ */
+#header_top {
+	left: 50%;
+	margin-left: -325px;
+	position: absolute;
+	top: 0px;
+	min-width: 500px !important;
+	max-width: 800px !important;
+	height: 63px !important;
+}
+
+#topnav {
+	left: 25px;
+	position: absolute;
+	min-width: 450px;
+	max-width: 750px;
+}
+
+.planetDropDown {
+	float: left;
+}
+
+.planetDropDown img {
+	height: 50px;
+	width: 50px;
+	float: left;
+}
+
+.planetDropDown select {
+	margin: 2px;	
+}
+
+.resources {
+	float: right;
+}
+
+.resources img {
+	height: 21px;
+	width: 38px;
+}
+
+.resources td {
+	text-align: center;
+	width: 105px;
+}
+
+.metalDescription, .crystalDescription, .deuteriumDescription, .energyDescription {
+	font-style: italic;
+	font-weight: bold;
+}
+/**
+ * Alliance
+ */
+.allianceImage {
+	margin: 0px auto;
+}
+
+.allianceImage img {
+	margin: 0px auto;
+	max-height: 581px;
+	max-width: 775px;
+	margin: 1em 20%;
+	margin: 0px auto;
+}
+.allianceImage img {
+	margin: 0px auto;
+	max-height: 581px;
+	max-width: 775px;
+}
+
+.allianceData {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 800px;
+}
+
+.allianceAdministrationActions li {
+	display: block;
+	text-align: center;
+	padding: 3px 0;	
+}
+
+.allianceAdministrationTexts textarea {
+	width: 96%;
+}
+
+.allianceAdministrationTextsInteralText, .allianceAdministrationTextsApplicationTemplate {
+	display: none;
+}
+
+.allianceAdministrationTextsButtons ul {
+	list-style: none;
+	height: 20px;
+}
+
+.allianceAdministrationTextsButtons li {
+	position: absolute;
+	left: 0;
+	width: 33%;
+}
+
+.allianceAdministrationTextsButtons li + li {
+	left: 33%;
+	width: 34%;
+}
+.allianceAdministrationTextsButtons li + li + li {
+	left: 67%;
+	width: 33%;
+}
+
+.allianceAdministrationSettings .formElement:first-child {
+	padding-top: 5px;
+}
+
+.allianceAdministrationTextsButtons a {
+	display: block;
+	text-align: center;
+}
+
+.allianceInterrelationApplicationText {
+	display: none;
+}
+
+.allianceCircularCreateFormField, .allianceInterrelationApplyFormField {
+	text-align: left;
+	padding: 0;
+}
+
+.allianceInterrelationApplyFormField ul {
+	list-style: none;
+}
+
+.allianceInterrelationApplyFormField label {
+	display: inline;	
+}
+
+.allianceRank {
+	margin-left: 20px;
+	display: none;
+}

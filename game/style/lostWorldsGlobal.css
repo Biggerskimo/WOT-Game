@@ -1,0 +1,217 @@
+/* page */
+body {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main {
+	max-width: 80%;
+	min-width: 760px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	text-align: center;
+}
+
+/* resources */
+.metal, .metalDescription {
+	color: #ADAEAD;
+}
+
+.crystal, .crystalDescription {
+	color: #EF51EF;
+}
+
+.deuterium, .deuteriumDescription {
+	color: #F77542;
+}
+
+.energy, .energyDescription {
+	color: #9C71C6;
+}
+
+/* container */
+.lwcontainer-1, .lwcontainer-2 {
+	margin: 0 1px 1px 0;
+}
+	
+.informationName {
+	padding: 8px;
+	width: 380px;
+	float: left;
+	text-align: right;
+}
+.informationValue {
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	margin: 0 0 0 396px;
+	padding: 8px;
+	text-align: left;
+}
+
+/* forms */
+.formElement {
+	margin: 5px 0 3px 0;
+	min-height: 0;
+}
+
+.formElement .formField {
+	margin-left: 216px;
+}
+
+.formFieldLabel {
+	float: left;
+	font-size: 11px;
+	text-align: right;
+	width: 200px;
+}
+
+fieldset .formElement .formField {
+	margin-left: 202px;
+}
+
+.formField input, .formField select, .formField textarea {
+	margin: 2px 0;
+}
+
+.formField label {
+	font-size: 1em;
+	display: block;
+}
+
+.formField label.allianceNameLabel {
+	display: inline;	
+}
+
+input[type='text'], input[type='text']:hover {
+	width: 99%;
+	text-align: left;
+}
+
+.formSubmit {
+	text-align: center;
+}
+
+/* other */
+.online, .onlineTime, .offline {
+	font-weight: bold;
+}
+.online {
+	color: limegreen;
+}
+
+.onlineTime {
+	color: yellow;
+}
+
+.offline {
+	color: red;
+}
+
+.tooManyChars {
+	color: #FF0000;
+}
+
+/* resources */
+.metal, .metalDescription {
+	color: #ADAEAD;
+}
+
+.crystal, .crystalDescription {
+	color: #EF51EF;
+}
+
+.deuterium, .deuteriumDescription {
+	color: #F77542;
+}
+
+.energy, .energyDescription {
+	color: #9C71C6;
+}
+
+/* container */
+.lwcontainer-1, .lwcontainer-2 {
+	margin: 0 1px 1px 0;
+}
+	
+.informationName {
+	padding: 8px;
+	width: 380px;
+	float: left;
+	text-align: right;
+}
+.informationValue {
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	margin: 0 0 0 396px;
+	padding: 8px;
+}
+
+.main table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* forms */
+.formElement {
+	margin: 5px 0 3px 0;
+	min-height: 0;
+}
+
+.formElement .formField {
+	margin-left: 216px;
+}
+
+.formFieldLabel {
+	float: left;
+	font-size: 11px;
+	text-align: right;
+	width: 200px;
+}
+
+fieldset .formElement .formField {
+	margin-left: 202px;
+}
+
+.formField input, .formField select, .formField textarea {
+	margin: 2px 0;
+}
+
+.formField label {
+	font-size: 1em;
+	display: block;
+}
+
+input[type='text'], input[type='text']:hover {
+	width: 99%;
+	text-align: left;
+}
+
+.formSubmit {
+	text-align: center;
+}
+
+.formField {
+	text-align: left;	
+}
+
+/* other */
+.online, .onlineTime, .offline {
+	font-weight: bold;
+}
+.online {
+	color: limegreen;
+}
+
+.onlineTime {
+	color: yellow;
+}
+
+.offline {
+	color: red;
+}
+
+/* shipyard */
+div#content > center > center tr > td.l + td.l + td.k > input {
+	min-width: 40px;
+}

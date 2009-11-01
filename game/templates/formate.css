@@ -1,0 +1,1067 @@
+/* COPYRIGHT BEGIN
+
+   ____  _____   __             ______                    
+  / __ \/__  /  / /_  __  __   / ____/_______  ____  ____ 
+ / / / /  / /  / __ \/ / / /  / __/ / ___/ _ \/ __ \/ __ \
+/ /_/ /  / /  / /_/ / /_/ /  / /___(__  )  __/ / / / /_/ /
+\___\_\ /_/  /_.___/\__, /  /_____/____/\___/_/ /_/\____/ 
+                   /____/                                 
+                                          
+										  
+Copyright 2008 by Eseno
+Version: Test Version
+Last Update: 21.01.2007
+
+mail: eseno@hotmail.de
+
+COPYRIGHT END */
+
+#jslayer {
+	color:#FFFFFF !important;
+	background-color:#2d2d2d;
+	border: 1px solid #66ccff;
+	padding:3px;
+	font-weight:bold;
+}
+
+body { /* BODY PROPERTIES */
+	background-attachment: fixed;
+	background-image: url(images/stars.jpg);
+	background-position: center top;
+	background-color: #04050a;
+	background-repeat: repeat;
+	color: #FFFFFF;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px !important;
+	overflow: hidden;
+	SCROLLBAR-BASE-COLOR      : #2a2f36;
+    SCROLLBAR-ARROW-COLOR     : #3390e6;
+    scrollbar-track-color     : #2a2f36;
+    scrollbar-face-color      : #3d444e;
+    scrollbar-highlight-color : #3d444e;
+    scrollbar-3dlight-color   : #3d444e;
+    scrollbar-darkshadow-color: #3d444e;
+    scrollbar-shadow-color    : #3d444e;
+	margin-top: 0 !important;
+}
+
+body.combatReport  {
+	overflow: scroll !important;
+}
+
+.style {
+	background-position: 0px 0px;
+	/*background-image: url(images/menu_bg.jpg);*/
+}
+
+h1 {
+font-size:14px;
+}
+
+img {
+	border: none;
+}
+
+a, font, table, th, td, /* FONT DEFINTION */ body center table form table tr td /* --> FONT DEFINITION FOR SPAYING REPORTS */{
+	font-family: Tahoma, Arial, Helvetica, sans-serif !important;
+	font-size: 11px !important;
+	font-style: normal;
+}
+
+a {
+  color: #bfc4ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+th { /* MOON POPUP REPORTING AND OTHER TH TAGS */
+	background-color: transparent;
+	background-image: url(images/bg_table.png);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	border: 0px;
+}
+
+body table tr td { /* BACKGROUND COLOR FOR WAR REPORTING TABLE */
+	/*background-color: #000000;*/
+}
+/* ----- HEADER ----- */
+
+
+
+#header_top { /* ID LAYER FOR HEADER */
+	z-index: 20;
+	height: 62px;
+	margin-top: 0px;
+	/*background-color: red;*/
+	background-image: url(images/res_bg.png);
+	/*background-position: bottom;*/
+	background-repeat: repeat-x;
+	position: static !important;
+	max-width: 2000px !important;
+	margin-left: 0 !important;
+	width: 100% !important;
+	/*border-bottom: 1px solid grey;*/
+}
+
+#topnav {
+	margin-right: auto;
+	margin-left: auto;
+	position: static;
+	width: auto;
+	max-width: 600px;
+	height: 63px;
+	background-image: url(images/bg_header_bottom.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+.resources td {
+	min-width: 85px;
+	max-width: 125px;
+	width: auto;
+}
+
+#header_top > table {
+	/*background-color: red;*/
+	background-image: url(images/bg_header_bottom.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+	height: 100%;
+}
+
+.leftmenutop {
+	background-image: url(images/res_bg.png);
+	background-repeat: repeat-x;
+	display: block !important;
+	height: 62px;
+	position: absolute;
+	width: 100%;
+}
+
+.header { /* INLINE TABLE IN ID LEAYER (HEADER) */
+	font-size: 11px;
+	/*background-color: #993300 !important;*/
+}
+
+/* ----- LEFTMENU ----- */
+
+html>body #leftmenu { /* Fx Style: ID LAYER FOR LEFT MENU */
+	border: 0px #FFFF00 solid;
+	position: absolute;
+	line-height: 100%;
+	height: 100%;
+	z-index: 10;
+	background-image: url(images/bg_menuleft.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+#leftmenu { /* IE Style: ID LAYER FOR LEFT MENU */
+	position: absolute;
+	height: 100%;
+	line-height: 100%;
+	width: 221px;
+	z-index: 10;
+	background-image: url(images/bg_menuleft.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;	
+	/*background-color: green;*/
+}
+
+html>body #leftmenu center p nobr { /* UNIVERSUM & VERSION TEXT FORMAT */
+	font-size: 10px;
+	margin-left: 15px;
+	color: #666666;
+	
+}
+
+#leftmenu center p nobr, #leftmenu center p nobr a { /* UNIVERSUM & VERSION TEXT FORMAT */
+	font-size: 11px !important;
+	margin-left: 0px;
+	font-weight: normal;
+	color: #666666;
+}
+
+#leftmenu center table { /* LEFTMENU TABLE */
+	width: 159px;
+
+}
+
+#leftmenu center table td{ /* LEFTMENU ROW */
+	background-color: transparent;
+	
+}
+
+html>body #menu { /* Fx Style: MENU TABLE */
+	/* margin-top: 25px; POLISH OGAME STYLE */
+	margin-top: 45px;  /* GERMAN OGAME STYLE */
+	padding-bottom: 15px;
+	background-image: url(images/bg_menu.png);
+	background-repeat: no-repeat;
+	background-position: 20px bottom;
+	/*background-color: red;*/
+}
+
+#menu { /* IE Style: MENU TABLE */
+	/* margin-top: 25px; POLISH OGAME STYLE */
+	margin-top: 50px;  /* GERMAN OGAME STYLE */
+	padding-bottom: 15px;
+	background-image: url(images/bg_menu.png);
+	background-repeat: no-repeat;
+	background-position: 20px bottom;
+}
+
+#leftmenu center table tr div, #menu a{ /* FORMAT MENU */
+	text-align: left;
+	color: #FFFFFF;
+	margin-left: 10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	font-size: 11px;
+	/*background-color: orange;*/
+}
+#leftmenu center table tr div a font { /* HÄNDLER LINK */
+	color: #FFFFFF;
+	font-size: 11px;
+ }
+ 
+html>body #leftmenu center table tr td a b{ /* Fx Style: KANTINE URL */
+	text-align: left;
+	color: #FFFFFF;
+	margin-left: -46px;
+	font-size: 11px;
+}
+
+#leftmenu center table tr td a b{ /* IE Style: KANTINE URL */
+	text-align: left;
+	color: #FFFFFF;
+	font-size: 11px;
+}
+	
+#menu img { /* MENU IMAGES ATTRIBUTES */
+	height: 20px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 0px;
+}
+
+#galaxy_top {
+	width:30%;
+}
+
+#galaxy_top .c {
+	background-image: url(images/bg_content_td.gif);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	border: 0px;
+	font-size: 11px;
+	height: 20px;
+}
+
+#notes {
+	position:relative;
+}
+
+/* ----- CONTENT ----- */
+
+
+#content { /* ID LAYER CONTENT */
+	height: 87.9%;
+	overflow: auto;
+	position: absolute;
+	width: 95%;
+}
+#content, .content {	
+	background-image: url(images/planet.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+}
+
+#content center table { /* CONTENT TABLE */
+	margin: 0px;
+	padding: 0px;
+	background-color: transparent !important;
+}
+
+#content td { /* CONTENT TABLE TD (die Content Table ist innerhalb des TD-Tags deklariert) */ 
+	background-color: transparent !important;
+}
+
+#content center table tr td table { /* SECOND CONTENT TABLE INLINE OF CONTENT TABLE */
+	width: 100%;
+}
+
+#content center table, #content center table tr th { /* CONTENT TABLE ROWS & COLS */
+	background-image: url(images/bg_table.png);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	background-color: transparent;
+	border: 0px;
+	font-size: 11px;
+}
+
+#content > *:first-child, .content > *:first-child  {
+	margin-top: 10px;
+}
+
+.main {
+	max-width: 745px;
+}
+
+.main tr {
+	height: 20px;
+}
+
+.main th p {
+	margin: 0;
+}
+
+.main table {
+	width: 100%;
+}
+
+.fleetStartCoordinatesShortcutsPlanets ul {
+	list-style: none;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+.fleetStartCoordinatesShortcutsPlanets li {
+	width: 33%;
+	left: 0;
+	position: relative;
+	height: 25px;
+	float: left;
+}
+
+.fleetStartCoordinatesShortcutsPlanets li.mod3_col_1 {
+}
+
+.fleetStartCoordinatesShortcutsPlanets li.mod3_col_2 {
+}
+
+.fleetStartCoordinatesShortcutsPlanets li.mod3_row_1 {
+}
+
+#content center table tr td.c, .main th { /* CONTENT TABLE TITLE */
+	background-image: url(images/bg_content_td.gif);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	border: 0px;
+	font-size: 11px;
+	height: 20px !important;
+}
+#content center table tr td.b { /* CONTENT TABLE SPB */
+	background-color: transparent;
+	border: 0px;
+	font-size: 11px;
+	height: 20px;
+}
+
+/* Kampfsimulator */
+fieldset {
+	background-image: url(images/bg_table.png);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	background-color: transparent;
+	border-color:#192a3a;
+}
+
+legend {
+	color:white;
+	padding:2px;
+	font-weight:bold;
+}
+
+th.s { /* Fx Style: PLANET SELECTION TABLE HOLDER */
+	background-color: transparent;
+}
+
+th.s table { /* Fx Style: PLANET SELECTION TABLE */
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+td.l, td.c, td.k { /* ROWS/COLS PROPERTIES */
+	background-image: url(images/bg_table.png);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	background-color: transparent;
+	border: 0px;
+	font-size: 11px;
+}
+
+.k {
+	text-align:center;
+}
+
+select { /* SELECT ATRIBUTE */
+	background-color: #000000;
+	font-size: 11px;
+	color: #FFFFFF;
+	border: 1px solid #999999;
+}
+select:hover{ /* SELECT ATRIBUTE HOVER */
+	background-color: #000000;
+	font-size: 11px;
+	color: #FFFFFF;
+	border: 1px solid #999999;
+}
+
+input[type=text] { /* INPUT ATRIBUTE */
+	background-color:#000000;
+	font-size: 11px;
+	color: #ffffff;
+	font-weight:bold;
+	padding: 1px;
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #43596f;
+	background-image:url(pic/input_bg.png);
+}
+
+
+input[type=text]:hover{ /* INPUT ATRIBUTE HOVER */
+	background-color:transparent;
+	font-size: 11px;
+	padding: 1px;
+	text-align: center;
+	border: 1px solid #6080a1;
+}
+textarea { /* SEND MESSAGE BOX */
+	background-color: #070707;
+	color: #FFFFFF;
+	border: solid 1px #43596f;
+	font-size: 11px;
+	padding: 5px;
+	width: 450px;
+}
+
+/* ----- INFO TEXT COLOR ----- */
+
+/* Grösse von Monden anzeigen */
+a[title~="Mond"]:after {
+  content:" ("attr(title)")";
+  color: #CCCCCC;
+}
+
+/* Schiffe der Flotten in der Phalanx anzeigen */
+body center center table tr th font a[title]:after {
+  content:" ("attr(title)")";
+  color: #CCCCCC;
+}
+
+/* Schiffe der Flotten in Übersicht anzeigen */
+body center table tr th span a[title]:after {
+  content:" ("attr(title)")";
+  color: #CCCCCC;
+  font-weight: normal;
+}
+/*Grösse der Trümmerfelder anzeigen */
+a[title~="Trümmerfeld"]:after {  /*Trümmerfeld*/
+  content:" ("attr(title)")";  
+  color:grey;
+}
+/* Geschwindigkeiten der Schiffe beim Flottenversenden anzeigen */
+a[title~="Geschwindigkeit:"]:after {
+content:" ("attr(title)")"; 
+color:lime;
+}
+/* Stationieren Hinflug */
+tr.flight span.owndeploy {
+color: #99FF00;
+}
+/* Stationieren Hinflug */
+tr.holding span.owndeploy {
+color: #CC3399;
+}
+tr.flight span.owndeploy a {
+color:#FFFFFF;
+}
+/* Transport Hinflug */
+tr.flight span.owntransport {
+color: #00FF99;
+}
+tr.flight span.owntransport a {
+color:#FFFFFF;
+}
+/* Eigener Angriff Hinflug */
+tr.flight span.ownattack {
+color:#00FF00;
+}
+tr.flight span.ownattack a {
+color:#FFFFFF;
+}
+/* Eigene Spionage Hinflug */
+tr.flight th span.ownespionage {
+color:#FF6600;
+}
+tr.flight span.ownespionage a {
+color:#FFFFFF;
+}
+/* Recyclen Hinflug */
+tr.flight span.ownharvest {
+color:#FFFF00;
+}
+tr.flight span.ownharvest a {
+color:#FFFFFF;
+}
+/* Kolonisieren Hinflug */
+tr.flight span.owncolony {
+color:#0033FF;
+}
+tr.flight span.owncolony a {
+color:#FFFFFF;
+}
+/* Verbandsangriff Hinflug */
+tr span.ownfederation {
+color:#00FF00;
+}
+tr span.ownfederation a {
+color:#FFFFFF;
+}
+tr.flight span.ownattack {
+color: #66CCFF;
+}
+tr.flight span.ownattack a {
+color:#FFFFFF;
+}
+/* Interplanetarraketen Angriff */
+tr span.ownmissile {
+color:#CC9900;
+}
+tr span.ownmissile a {
+color:#FFFFFF;
+}
+/* Mondzerstörung Hinflug */
+tr span.owndestroy {
+color:#009900;
+}
+tr span.owndestroy a {
+color:#FFFFFF;
+}
+/* Eigenes Halten Hinflug */
+tr.flight span.ownhold {
+color:#9933CC;
+}
+tr.flight span.ownhold a {
+color:#FFFFFF;
+}
+/* Feindlicher Angriff Hinflug */
+tr.flight span.attack {
+color:#FF0000;
+}
+tr.flight span.attack a {
+color:#FFFFFF;
+}
+/* Feindliche Spionage Hinflug */
+tr.flight span.espionage {
+color:#FF0000;
+}
+tr.flight span.espionage a {
+color:#FFFFFF;
+}
+/* Feindlicher Interplanetarraketen Angriff */
+tr span.missile {
+color:#FF0000;
+}
+tr span.missile a {
+color:#FFFFFF;
+}
+/* Feindliche Mondzerstörung */
+tr span.destroy {
+color:#FF0000;
+}
+tr span.destroy a {
+color:#FFFFFF;
+}
+/* Feindlicher Verbandsangriff */
+tr span.federation {
+color:#FF0000;
+}
+tr span.federation a {
+color:#FFFFFF;
+}
+/* Rückflug */
+/* Stationieren Rückflug */
+tr.return span.owndeploy {
+color:#9933FF;
+}
+tr.return span.owndeploy a {
+color:#9933FF;
+}
+/* Transport Rückflug */
+tr.return span.owntransport {
+color:#FFFFFF;
+}
+tr.return span.owntransport a {
+color:#FFFFFF;
+}
+/* Eigener Angriff Rückflug */
+tr.return span.ownattack {
+color:#FFFFFF;
+}
+tr.return span.ownattack a {
+color:#FFFFFF;
+}
+/* Eigene Spionage Rückflug */
+tr.return span.ownespionage {
+color:#FF6600;
+}
+tr.return span.ownespionage a {
+color:#FF6600;
+}
+/* Recyclen Rückflug */
+tr.return span.ownharvest {
+color:#FFFFFF;
+}
+tr.return span.ownharvest a {
+color:#FFFFFF;
+}
+/* Kolonisieren Rückflug */
+tr.return span.owncolony {
+color:#0033FF;
+}
+tr.return span.owncolony a {
+color:#0033FF;
+}
+/* Zerstören Rückflug */
+tr.return span.owndestroy {
+color:#009900;
+}
+tr.return span.owndestroy a {
+color:#009900;
+}
+/* Verbandsangriff Rückflug */
+tr.return span.ownfederation {
+color:#00FF00;
+}
+tr.return span.ownfederation a {
+color:#00FF00;
+}
+/* Halten Rückflug */
+tr.return span.ownhold {
+color:#9933CC;
+}
+tr.return span.ownhold a {
+color:#9933CC;
+}
+/* Halten */
+tr.holding th span.ownhold {
+color:#990099;
+}
+tr.holding span.ownhold a {
+color:#990099;
+}
+/* Kb */
+.ownattack {
+color:#FF0000;
+}
+
+/* LW-Galaxy fix by Biggerskimo */
+.planetNo {
+	width: 26px;
+}
+.planetImg {
+	width: 44px;
+}
+.planetName {
+	width: 140px;
+}
+.moonImg {
+	width: 38px;
+}
+.debrisImg {
+	width: 38px;
+}
+.playerName {
+	width: 170px;
+}
+.allianceName {
+	width: 75px;
+}
+.actionLinks {
+	width: 60px;
+}
+
+/* Status colors */
+.noob { 
+	color: #a0ffa0;
+}
+
+.strong { 
+	color: #ffa0a0;
+}
+
+.vacation { 
+	color: skyblue;
+}
+
+.inactive { 
+	color: CCCCCC;
+}
+
+.longinactive { 
+	color: 999999;
+}
+
+.confederation {
+	color: limegreen;
+}
+
+.confederation:before {
+	content: '* ';
+}
+
+.confederation:after {
+	content: ' *';
+}
+
+.flag .confederation:before {
+	content: '';
+}
+
+.flag .confederation:after  {
+	content: '';
+}
+
+.enemy {
+	color: red;
+}
+
+.enemy:before {
+	content: '† ';
+}
+
+.enemy:after {
+	content: ' †';
+}
+
+.flag .enemy:before {
+	content: '';
+}
+
+.flag .enemy:after  {
+	content: '';
+}
+
+.banned {
+	text-decoration: line-through;
+}
+
+.admin {
+	color: orange;
+}
+
+/* Uebersichtsanzeige */
+
+.allymember { color: lime; }
+
+.ownattack { color: #66CC33; }
+
+.owncolony { color: #c1c1c1; }
+
+.owndeploy { color: #666666; }
+
+.owndestroy { color: #FFFF99; }
+
+.ownespionage { color: #FFCC66; }
+
+.ownfederation { color: #CC6666; }
+
+.ownharvest { color: #CEFF68; }
+
+.ownhold { color: #80a0C0; }
+
+.ownmissile { color: #FFCC66; }
+
+.owntransport { color: #a0ffa0; }
+
+.attack { color: red; }
+
+.colony { color: lime; }
+
+.deploy { color: lime; }
+
+.destroy { color: gold; }
+
+.espionage { color: #FF6600; }
+
+.federation { color: red; }
+
+.harvest { color: lime; }
+
+.hold { color: #3399CC; }
+
+.missile { color: #FF6600; }
+
+.transport { color: lime; }
+
+.success { color: lime; }
+
+.error { color: red; }
+
+.warning { color: orange; }
+
+.notice { color: yellow; }
+
+.return { color: #444444; }
+
+/* container */
+.lwcontainer-1 {
+	background-image: url(images/bg_table.png);
+}
+
+.lwcontainer-2 {
+	background-image: url(images/bg_table.png);
+}
+
+.informationValue {
+	border-color: #2E2D26;
+}
+
+.allianceExternalText h3, .allianceInternalText h3 {
+	padding-top: 12px;
+}
+
+.success, .warning, .error, .info {
+	background-position: 10px center;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	padding: 7px 10px 7px 45px;
+}
+
+.warning {
+	color: #660;
+	background-color: #ffd;
+	background-image: url("http://xen251.linea7.net/game/wcf/icon/warningM.png");
+	border-color: #660;
+}
+.error {
+	color: #c00;
+	background-color: #fee;
+	background-image: url("http://xen251.linea7.net/game/wcf/icon/errorM.png");
+	border-color: #660;
+	border-width: 1px;
+}
+
+.warning a, .warning a:hover {
+	color: #333;
+}
+/**
+ * #### GLOBAL ####
+ */
+.absoluteTime {
+	color: limegreen;
+}
+
+.double .doublePart1 {
+	float: left;
+	width: 33%;
+}
+.double .doublePart2 {
+	margin-left: 34%;
+	width: 66%;
+}
+ 
+.tooltip {
+	background-color: #001;
+	/**/
+	border: 1px solid #ddd;
+	display: none;
+	list-style: none;
+	list-style-position: outside;
+	margin: 10px 0 0 10px;
+	padding: 3px;
+}
+
+.tooltip li {
+	color: #ddd;
+	display: block;
+	text-align: left;
+}
+
+.tooltip li:after {
+	content: ',';
+}
+
+.tooltip li:last-child:after {
+	content: '';
+}
+
+.disabled, .disabled * {
+	color: grey !important;
+}
+
+/**
+ * #### TOPNAV ####
+ */
+.additionalTopnavContent {
+	margin-top: 5px;
+}
+
+.serverTimeDesc span {
+	font-weight: bold;
+}
+
+/**
+ * #### FLEET MENU ####
+ */
+.fleetStartMission {
+	width: 49%;
+	float: left;
+	height: 108px;
+}
+
+.fleetStartMission  .formElement {
+	height: 100px;
+	top: 5px;
+}
+
+.fleetStartResources {
+	width: 50%;
+	margin-left: 50%;
+	height: 127px;
+}
+
+.fleetStartResources .formElement {
+	height: 19px;
+}
+
+.fleetStartResources input[type="text"] {
+	width: auto !important;
+}
+
+.fleetStartResourcesContainer .formElement:first-child {
+	margin-top: 0;
+}
+
+.combatReport_attacker_attacker {
+	color: #00B000;
+}
+.combatReport_attacker_draw {
+	color: #C0C000;
+}
+.combatReport_attacker_defender {
+	color: #C00000;
+}
+.combatReport_defender_attacker  {
+	color: red;
+}
+.combatReport_defender_draw {
+	color: yellow;
+}
+.combatReport_defender_defender {
+	color: limegreen;
+}
+.insufficientSlots {
+	color: red;
+	font-weight: bold;
+}
+
+/**
+ * #### OVERVIEW ####
+ */
+.overview table {
+	border-left: 1px solid #555;
+	border-spacing: 0;
+	border-top: 1px solid #555;
+	width: 617px;
+}
+
+.overview tr {
+	margin: 0;
+	padding: 0;
+}
+.overview th, .overview td {
+	border-bottom: 1px solid #555;
+	border-right: 1px solid #555;
+	margin: 0;
+	padding: 0;
+}
+
+.planetTooltip {
+	padding: 0;
+	width: 250px;
+}
+
+.planetTooltip .planetDesc {
+	border-bottom: 1px solid #555;
+	padding: 1px 3px 1px 3px;
+	font-weight: bold;
+}
+
+.planetTooltip .double .doublePart1 {
+	border-bottom: 1px solid #555;
+	border-right: 1px solid #555;
+	padding: 1px 2px 1px 3px;
+	width: 84px;
+}
+
+.planetTooltip .double .doublePart2 {
+	padding: 1px 3px 1px 2px;
+	border-bottom: 1px solid #555;
+	margin-left: 90px;
+	width: 155px;
+}
+
+.planetTooltip .double:last-child .doublePart1, .planetTooltip .double:last-child .doublePart2 {
+	border-bottom: none;
+	padding-bottom: 3px;
+}
+
+.hostileActivity {
+	color: red;
+	font-weight: bold;
+}
+
+.planetThumbnails {
+	margin: 10px auto 0 auto;
+	width: 618px;
+}
+
+.planetThumbnails .colonies {
+	background-image: url("images/bg_table.png");
+	float: right;
+	padding: 10px 5px 10px 10px;
+	float: right;
+	width: 236px;
+}
+
+.planetThumbnails .colonies .colony {
+	border: 1px solid #555;
+	float: left;
+	margin: 0 5px 5px 0;
+	padding: 10px;
+	width: 91px;
+}
+
+.planetThumbnails .current {
+	height: 222px;
+	width: 222px;
+}
+.planetThumbnails .current .planet {
+	background-image: url("images/bg_table.png");
+	border: 1px solid #555;
+	margin-left: 139px;
+	padding: 10px;
+	width: 200px;
+}
+
+.planetThumbnails .current .correspond {
+	background-image: url("images/bg_table.png");
+	border: 1px solid #555;
+	float: left;
+	margin: 45px 3px auto 0;
+	padding: 10px;
+	width: 111px;
+}
+
+.resourcesOverview {
+	margin-top: 10px;
+}
+
+.resourcesOverview tbody tr:first-child {
+	font-weight: bold;
+}
