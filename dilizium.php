@@ -187,8 +187,8 @@ $page .= '<td class="l"><span id="galaxyScansD">'.GALAXY_SCANS.'</span></td>';
 $page .= '<td class="l"><input id="galaxyScansV" name="galaxyScans" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'galaxyScans\');" /></td>';
 $page .= '<td class="l"><span id="galaxyScansC">0</span></td>';
 $page .= '</tr>';
-$page .= '<tr>';
 /*
+$page .= '<tr>';
 if($features['noAds'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['noAds'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Werbefreiheit</span></td>';
 else $page .= '<td class="l"><span title="Nicht aktiviert">Werbefreiheit</span></td>';
 $page .= '<td class="l"><span id="noAdsD">'.NO_ADS.'</span></td>';
