@@ -146,11 +146,10 @@ $page .= '<tr>';
 $page .= '<td class="l" colspan="2">Aktueller Dilizium-Vorrat:</td>';
 $page .= '<td class="l" colspan="2"><span id="dilizium">'.$user['dilizium'].'</span></td>';
 $page .= '</tr>';
-/*
 $page .= '<tr>';
 $page .= '<td class="l" colspan="2">Dein Werbe-Link:</td>';
-$page .= '<td class="l" colspan="2"><input name="linktext" type="text" style="width: 96%;" value="http://neu.lost-worlds.de/home.php?s='.$user['id'].'" onClick="this.form.linktext.select(); this.form.linktext.focus();" /></td>';
-$page .= '</tr>';*/
+$page .= '<td class="l" colspan="2"><input name="linktext" type="text" style="width: 96%;" value="http://lost-worlds.net/ref.php?u='.WCF::getUser()->userID.'" onClick="this.form.linktext.select(); this.form.linktext.focus();" /></td>';
+$page .= '</tr>';
 $page .= '<tr>';
 $page .= '<td class="c" colspan="4">Verwenden</td>';
 $page .= '</tr>';
@@ -188,15 +187,14 @@ $page .= '<td class="l"><span id="galaxyScansD">'.GALAXY_SCANS.'</span></td>';
 $page .= '<td class="l"><input id="galaxyScansV" name="galaxyScans" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'galaxyScans\');" /></td>';
 $page .= '<td class="l"><span id="galaxyScansC">0</span></td>';
 $page .= '</tr>';
-if(time() > 1230137700) {
-	$page .= '<tr>';
-	if($features['noAds'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['noAds'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Werbefreiheit</span></td>';
-	else $page .= '<td class="l"><span title="Nicht aktiviert">Werbefreiheit</span></td>';
-	$page .= '<td class="l"><span id="noAdsD">'.NO_ADS.'</span></td>';
-	$page .= '<td class="l"><input id="noAdsV" name="noAds" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'noAds\');" /></td>';
-	$page .= '<td class="l"><span id="noAdsC">0</span></td>';
-	$page .= '</tr>';
-}
+$page .= '<tr>';
+/*
+if($features['noAds'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['noAds'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Werbefreiheit</span></td>';
+else $page .= '<td class="l"><span title="Nicht aktiviert">Werbefreiheit</span></td>';
+$page .= '<td class="l"><span id="noAdsD">'.NO_ADS.'</span></td>';
+$page .= '<td class="l"><input id="noAdsV" name="noAds" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'noAds\');" /></td>';
+$page .= '<td class="l"><span id="noAdsC">0</span></td>';
+$page .= '</tr>';*/
 $page .= '<tr>';
 $page .= '<td class="l" colspan="3">Gesamt</td>';
 $page .= '<td class="l"><span id="costs">0</span></td>';
