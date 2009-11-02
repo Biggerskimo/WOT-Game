@@ -25,7 +25,7 @@ require_once(LW_DIR.'lib/util/SerializeUtil.class.php');
  */
 abstract class Ovent extends DatabaseObject {
 	protected static $cache = array();
-	protected $shardData = array();
+	protected $poolData = array();
 	
 	/**
 	 * Creates a new Ovent object.
@@ -48,10 +48,10 @@ abstract class Ovent extends DatabaseObject {
 		$parent = parent::__get($name);
 		
 		if($parent === null) {
-			$this->extractShard();
+			$this->extractPool();
 			
-			if(isset($this->shardData[$name])) {
-				return $this->shardData[$name];
+			if(isset($this->poolData[$name])) {
+				return $this->poolData[$name];
 			}
 		}
 		
@@ -59,11 +59,11 @@ abstract class Ovent extends DatabaseObject {
 	}
 	
 	/**
-	 * Unserializes the sharded data.
+	 * Unserializes the pool data.
 	 */
-	private function extractShard() {
-		if(!count($this->shardData)) {
-			$this->shardData = SerializeUtil::unserialize($this->data['data']);
+	private function extractPool() {
+		if(!count($this->poolData)) {
+			$this->poolData = SerializeUtil::unserialize($this->data['data']);
 		}
 	}
 	
