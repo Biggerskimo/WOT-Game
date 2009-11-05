@@ -136,7 +136,7 @@ class UserPointsStatGenerator extends AbstractStatGenerator {
 				SET points = ((".$planet.") + (".$user.") + (".$fleet.")) / 1000
 				WHERE ugml_stat_entry.relationalID = checkUser.id
 					AND ugml_stat_entry.statTypeID = 1
-					AND checkUser.banned = 0
+					AND checkUser.banned != 1
 					AND checkUser.authlevel = 0";
 		//echo $sql;
 		// lets go!
