@@ -54,6 +54,8 @@ foreach($config as $row) {
 	$game_config[$row['config_name']] = $row['config_value'];
 }
 
+if(!defined('OLD_LOG_TIME')) define('OLD_LOG_TIME', TIME_NOW - 60 * 60 * 24 * 7 * 35);
+
 // hanging fleets
 $sql = "SELECT fleetID 
 		FROM ugml_fleet
@@ -76,9 +78,11 @@ $sql = "SELECT GROUP_CONCAT(ugml_event.eventID)
 		WHERE ugml_fleet.fleetID IS NULL";
 $row = WCF::getDB()->getFirstRow($sql);
 
-$sql = "DELETE FROM ugml_event
-		WHERE eventID IN (".$row['eventIDs'].")";
-WCF::getDB()->sendQuery($sql);
+if(!empty($row['eventIDs'])) {
+	$sql = "DELETE FROM ugml_event
+			WHERE eventID IN (".$row['eventIDs'].")";
+	WCF::getDB()->sendQuery($sql);
+}
 
 
 // delete debrises
@@ -129,8 +133,8 @@ $sql = "UPDATE ugml_alliance_to_alliances
 WCF::getDB()->sendQuery($sql, "");
 
 // delete old log data
-$sql = "DELETE FROM ugml_archive_fleets
-		WHERE fleet_end_time < ".OLD_LOG_TIME."
+$sql = "DELETE FROM ugml_archive_fleet
+		WHERE returnTime < ".OLD_LOG_TIME."
 		LIMIT 10000";
 WCF::getDB()->sendQuery($sql, "");
 
