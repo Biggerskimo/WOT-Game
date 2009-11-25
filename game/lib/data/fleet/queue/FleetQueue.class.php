@@ -73,7 +73,16 @@ class FleetQueue extends DatabaseObject {
 				WHERE userID = ".WCF::getUser()->userID."
 				GROUP BY fleetQueueID";
 		$row = WCF::getDB()->getFirstRow($sql);
+		
 		parent::__construct($row);
+		
+		// check page
+		if($this->state && $this->state + 1 != $pageNo) {
+			$this->deleteFleetQueue();
+			
+			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
+			throw new NamedUserException(WCF::getLanguage()->get('wot.fleet.start.error'));
+		}
 		
 		$this->loadShips();
 	}
