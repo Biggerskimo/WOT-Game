@@ -86,7 +86,10 @@ LockUtil::setLock('wotapipserver', END_TIME + 5);
 require_once(LW_DIR.'lib/system/io/socket/WOTAPIServer.class.php');
 require_once(LW_DIR.'lib/system/io/socket/WOTAPIServerClient.class.php');
 require_once(WCF_DIR.'lib/system/io/socket/SocketDaemon.class.php');
-define('WOTAPI_PORT', 57154);
+
+if(!defined('WOTAPI_PORT')) define('WOTAPI_PORT', 57154);
+if(!defined('CRYPTER_KEY')) define('CRYPTER_KEY', base64_decode('SAG ICH NICHT'));
+
 
 // fire
 $server = SocketDaemon::createServer('WOTAPIServer', 'WOTAPIServerClient', 0, WOTAPI_PORT);
