@@ -18,7 +18,6 @@
 
 // wcf imports
 require_once(WCF_DIR.'lib/system/session/UserSession.class.php');
-require_once(WCF_DIR.'lib/data/user/UserProfile.class.php');
 
 require_once(LW_DIR.'lib/data/user/WOTUserConfig.class.php');
 
@@ -29,7 +28,7 @@ require_once(LW_DIR.'lib/data/user/WOTUserConfig.class.php');
  * @author		David Waegner
  * @copyright	2006-2008 Lost Worlds
  */
-class LWUser extends UserProfile {
+class LWUser extends UserSession {
 	protected $avatar = null;
 
 	const STAT_TYPE_ID = 1;

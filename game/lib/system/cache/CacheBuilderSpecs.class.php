@@ -53,7 +53,6 @@ class CacheBuilderSpecs implements CacheBuilder {
 			if(!isset($spec['requirement'])) $this->data[$specID]['requirement'] = array();
 		}
 		
-		echo "SPEC";
 		flush();
 		EventHandler::fireAction($this, 'getData');
 		// sort

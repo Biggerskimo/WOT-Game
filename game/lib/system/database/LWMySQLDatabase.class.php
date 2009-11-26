@@ -62,9 +62,9 @@ class LWMySQLDatabase extends MySQLDatabase {
 	/**
 	 * @see MySQLDatabase::sendQuery()
 	 */
-	public function sendQuery($query) {
+	public function sendQuery($query, $limit = 0, $offset = 0) {
 		$startTime = microtime(true);
-		$result = parent::sendQuery($query);
+		$result = parent::sendQuery($query . ($limit > 0 ? " LIMIT " . $limit . " OFFSET " . $offset : ""));
 		$endTime = microtime(true);
 		
 		$this->time += $endTime - $startTime;

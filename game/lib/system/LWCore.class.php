@@ -22,17 +22,13 @@ require_once(LW_DIR.'lib/util/SerializeUtil.class.php');
 require_once(LW_DIR.'lib/data/planet/Planet.class.php');
 require_once(LW_DIR.'lib/system/spec/Spec.class.php');
 
-// wcf imports
-require_once(WCF_DIR.'lib/page/util/menu/HeaderMenuContainer.class.php');
-require_once(WCF_DIR.'lib/page/util/menu/UserCPMenuContainer.class.php');
-
 /**
  * This class extends the main WCF class by game specific functions.
  *
  * @package	game.wot.core
  * @author	David Waegner
  */
-class LWCore extends WCF implements HeaderMenuContainer, UserCPMenuContainer {
+class LWCore extends WCF {
 	protected static $headerMenuObj = null;
 	protected static $userCPMenuObj = null;
 	protected static $styleObj;
@@ -91,12 +87,7 @@ class LWCore extends WCF implements HeaderMenuContainer, UserCPMenuContainer {
 		if($this->getUser()->userID == 0) return;
 		$args = array_merge($_GET, $_POST);
 
-		// log request
-		$sql = "INSERT INTO ugml_request
-					(userID, time, site, args, ip, userAgent)
-				VALUES(".$this->getUser()->userID.", ".TIME_NOW.", '".LWUtil::getFileName()."', '".escapeString(LWUtil::serialize($args))."', '".$_SERVER['REMOTE_ADDR']."', '".escapeString($_SERVER['HTTP_USER_AGENT'])."')";
-		//WCF::getDB()->sendQuery($sql);
-		
+		// log request		
 		$sql = "INSERT INTO ugml_request
 				(userID, `time`, ip,
 				 data)
@@ -176,48 +167,13 @@ class LWCore extends WCF implements HeaderMenuContainer, UserCPMenuContainer {
 	 * @see WCF::initTPL()
 	 */
 	protected function initTPL() {
-		$this->initStyle();
 		parent::initTPL();
 		
 		self::$tplObj->setTemplatePaths(array(LW_DIR.'templates/', WCF_DIR.'templates/'));
 		
-		/*// init style to get template pack id
-		$this->initStyle();
-
-		//require_once(WCF_DIR.'lib/system/template/StructuredTemplate.class.php');
-		self::$tplObj = new StructuredTemplate(self::getStyle()->templatePackID, self::getLanguage()->getLanguageID(), array(LW_DIR.'templates/', WCF_DIR.'templates/'));
-		$this->assignDefaultTemplateVariables();
 
 		// init cronjobs
 		//$this->initCronjobs();
-
-		// check offline mode
-		if (defined('OFFLINE') && OFFLINE && !self::getUser()->getPermission('user.board.canViewBoardOffline')) {
-			$showOfflineError = true;
-			foreach (self::$availablePagesDuringOfflineMode as $type => $names) {
-				if (isset($_REQUEST[$type])) {
-					foreach ($names as $name) {
-						if ($_REQUEST[$type] == $name) {
-							$showOfflineError = false;
-							break 2;
-						}
-					}
-
-					break;
-				}
-			}
-
-			if ($showOfflineError) {
-				self::getTPL()->display('offline');
-				exit;
-			}
-		}
-
-		// user ban
-		if (self::getUser()->banned && (!isset($_REQUEST['page']) || $_REQUEST['page'] != 'LegalNotice')) {
-			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
-			throw new PermissionDeniedException();
-		}*/
 	}
 
 	/**
@@ -268,17 +224,6 @@ class LWCore extends WCF implements HeaderMenuContainer, UserCPMenuContainer {
 	 */
 	protected function getOptionsFilename() {
 		return LW_DIR.'options.inc.php';
-	}
-
-	/**
-	 * Initialises the style system.
-	 */
-	protected function initStyle() {
-		if (isset($_GET['styleID'])) {
-			self::getSession()->setStyleID(intval($_GET['styleID']));
-		}
-
-		$this->changeStyle(self::getSession()->getStyleID());
 	}
 
 	/**
