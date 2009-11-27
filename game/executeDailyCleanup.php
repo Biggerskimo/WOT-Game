@@ -60,4 +60,9 @@ if(!defined('DAILY_DILIZIUM')) define('DAILY_DILIZIUM', 50);
 $sql = "UPDATE ugml_users
 		SET dilizium = dilizium + 50";
 WCF::getDB()->sendQuery($sql);
+
+// sim
+$sql = "UPDATE ugml_users
+          SET sim_uses = 0";
+WCF::getDB()->sendQuery($sql);
 ?>
