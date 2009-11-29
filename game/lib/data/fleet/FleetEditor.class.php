@@ -19,7 +19,6 @@
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
 require_once(LW_DIR.'lib/data/fleet/log/FleetLog.class.php');
 require_once(LW_DIR.'lib/data/fleet/queue/FleetQueue.class.php');
-require_once(LW_DIR.'lib/data/ovent/OventEditor.class.php');
 require_once(LW_DIR.'lib/data/AbstractDecorator.class.php');
 require_once(LW_DIR.'lib/system/event/WOTEventEditor.class.php');
 
@@ -91,30 +90,7 @@ class FleetEditor extends AbstractDecorator {
 		// add to log
 		$fleet = Fleet::getInstance($fleetID);
 		FleetLog::create($fleet);
-		
-		// add ovents
-		$ownerFields = array('userID' => $ownerID, 'planetID' => $startPlanetID);
-		$ofiaraFields = array('userID' => $ofiaraID, 'planetID' => $endPlanetID);
-		$data = array('ownerID' => $ownerID, 'ofiaraID' => $ofiaraID, 'startPlanetID' => $startPlanetID,
-			'targetPlanetID' => $endPlanetID, 'resources' => array('metal' => $metal, 'crystal' => $crystal, 'deuterium' => $deuterium),
-			'startCoords' => array($startPlanet->galaxy, $startPlanet->system, $startPlanet->planet, $startPlanet->planetKind),
-			'targetCoords' => array($targetPlanet->galaxy, $targetPlanet->system, $targetPlanet->planet, $targetPlanet->planetKind),
-			'spec' => $ships, 'cssClass' => $fleet->getClassName(true), 'missionID' => $missionID,
-			'startPlanetName' => $startPlanet->name, 'targetPlanetName' => $targetPlanet->name, 'fleetID' => $fleet->fleetID
-		);
-		
-		$data['passage'] = 'flight';
-		OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ownerFields, 0, $data);
-		
-		$data['passage'] = 'return';			
-		OventEditor::create(1, $returnTime, $returnEvent->eventID, $fleetID, $ownerFields, 0, $data);
-		
-		if($ownerID != $ofiaraID && $ofiaraID > 0) {
-			$data['cssClass'] = $fleet->getClassName(false);
-			$data['passage'] = 'flight';
-			OventEditor::create(1, $impactTime, $impactEvent->eventID, $fleetID, $ofiaraFields, 0, $data);
-		}
-		
+				
 		return $fleetEditor;
 	}
 

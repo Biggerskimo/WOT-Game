@@ -101,20 +101,21 @@ class SimulatorForm extends AbstractForm {
 	 * @see Form::validate()
 	 */
 	public function validate() {
-            if(WCF::getUser()->sim_uses < 100) {
-                $sql = "UPDATE ugml_users
-                            SET sim_uses = sim_uses +1
-                            WHERE id = ".WCF::getUser()->userID."";
-                WCF::getDB()->sendQuery($sql);
-                WCF::getUser()->sim_uses += 1;
-                WCF::getSession()->resetUserData();
-		parent::validate();
+		if(WCF::getUser()->sim_uses < 100) {
+			$sql = "UPDATE ugml_users
+					SET sim_uses = sim_uses +1
+					WHERE id = ".WCF::getUser()->userID."";
+			WCF::getDB()->sendQuery($sql);
+			WCF::getUser()->sim_uses += 1;
+			WCF::getSession()->resetUserData();
+			
+			parent::validate();
 		
-		//$this->validateCaptcha();
-            } else {
-		require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
-                throw new NamedUserException("Du hast die erlaubte Simulationsanzahl überschritten.");
-            }
+		}
+		else {
+			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
+			throw new NamedUserException("Du hast die erlaubte Simulationsanzahl überschritten.");
+		}
 	}
 	
 	/**

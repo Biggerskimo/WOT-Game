@@ -19,13 +19,14 @@
 require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
 require_once(WCF_DIR.'lib/system/event/EventHandler.class.php');
 require_once(LW_DIR.'lib/data/fleet/FleetEditor.class.php');
+require_once(LW_DIR.'lib/data/ovent/FleetOvent.class.php');
 require_once(LW_DIR.'lib/util/LockUtil.class.php');
 
 /**
  * Provides funtions for checking the start of a fleet.
  * 
  * @author		Biggerskimo
- * @copyright	2008 Lost Worlds
+ * @copyright	2008 - 2009 Lost Worlds
  */
 class FleetQueue extends DatabaseObject {
 	public static $cache = array();
@@ -191,6 +192,9 @@ class FleetQueue extends DatabaseObject {
 		
 			$this->fleetEditor->update(array('wakeUpEventID' => $wakeUpEvent->eventID, 'wakeUpTime' => $wakeUpTime));
 		}
+		
+		if(WCF::getUser()->userID ==1)
+		FleetOvent::create($this->fleetEditor, false, true);
 		
 		EventHandler::fireAction($this, 'didFire');
 		
