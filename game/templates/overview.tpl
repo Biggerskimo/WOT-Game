@@ -131,75 +131,77 @@
 			</fieldset>
 			
 			{* resource overview *}
-			{assign var='resources' value=$fleetOverview->getOverall()}
-			{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
-			{if $fleetOverview->getOverallCount() && $totalResources > 0}
-				<div class="resourcesOverview">
-					<table>
-						<thead>
-							<tr>
-								<th>
-									{lang}wot.overview.resourcesOverview{/lang}
-								</th>
-								<th>
-									{lang}wot.overview.resourcesOverview.fleetCount{/lang}
-								</th>
-								<th>
-									{lang}wot.global.metal{/lang}
-								</th>
-								<th>
-									{lang}wot.global.crystal{/lang}
-								</th>
-								<th>
-									{lang}wot.global.deuterium{/lang}
-								</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-							<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
-								<td>
-									{lang}wot.overview.resourcesOverview.total{/lang}
-								</td>
-								<td>
-									{#$fleetOverview->getOverallCount()}
-								</td>
-								<td>
-									{#$resources.metal}
-								</td>
-								<td>
-									{#$resources.crystal}
-								</td>
-								<td>
-									{#$resources.deuterium}
-								</td>							
-							</tr>
+			{if $fleetOverview !== null}
+				{assign var='resources' value=$fleetOverview->getOverall()}
+				{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
+				{if $fleetOverview->getOverallCount() && $totalResources > 0}
+					<div class="resourcesOverview">
+						<table>
+							<thead>
+								<tr>
+									<th>
+										{lang}wot.overview.resourcesOverview{/lang}
+									</th>
+									<th>
+										{lang}wot.overview.resourcesOverview.fleetCount{/lang}
+									</th>
+									<th>
+										{lang}wot.global.metal{/lang}
+									</th>
+									<th>
+										{lang}wot.global.crystal{/lang}
+									</th>
+									<th>
+										{lang}wot.global.deuterium{/lang}
+									</th>
+								</tr>
+							</thead>
 							
-							{foreach from=$fleetOverview->getMissions() key='missionID' item='resources'}
-								{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
-								{if $totalResources}
-									<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
-										<td>
-											{lang}wot.mission.mission{@$missionID}{/lang}
-										</td>
-										<td>
-											{#$fleetOverview->getMissionCount($missionID)}
-										</td>
-										<td>
-											{#$resources.metal}
-										</td>
-										<td>
-											{#$resources.crystal}
-										</td>
-										<td>
-											{#$resources.deuterium}
-										</td>							
-									</tr>
-								{/if}
-							{/foreach}							
-						</tbody>
-					</table>
-				</div>
+							<tbody>
+								<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+									<td>
+										{lang}wot.overview.resourcesOverview.total{/lang}
+									</td>
+									<td>
+										{#$fleetOverview->getOverallCount()}
+									</td>
+									<td>
+										{#$resources.metal}
+									</td>
+									<td>
+										{#$resources.crystal}
+									</td>
+									<td>
+										{#$resources.deuterium}
+									</td>							
+								</tr>
+								
+								{foreach from=$fleetOverview->getMissions() key='missionID' item='resources'}
+									{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
+									{if $totalResources}
+										<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+											<td>
+												{lang}wot.mission.mission{@$missionID}{/lang}
+											</td>
+											<td>
+												{#$fleetOverview->getMissionCount($missionID)}
+											</td>
+											<td>
+												{#$resources.metal}
+											</td>
+											<td>
+												{#$resources.crystal}
+											</td>
+											<td>
+												{#$resources.deuterium}
+											</td>							
+										</tr>
+									{/if}
+								{/foreach}							
+							</tbody>
+						</table>
+					</div>
+				{/if}
 			{/if}
 		</div>
 	</body>

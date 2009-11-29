@@ -173,6 +173,7 @@ class FleetEditor extends AbstractDecorator {
 				if(!empty($updates)) {
 					$updates .= ", ";
 				}
+				$this->{$eventName."Time"} = $time;
 				$updates .= $eventName."Time = ".$time;
 			}
 		}
