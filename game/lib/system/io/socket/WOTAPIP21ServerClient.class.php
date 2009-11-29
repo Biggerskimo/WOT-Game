@@ -63,7 +63,7 @@ class WOTAPIP21ServerClient implements WOTAPIPServerClient {
 					continue;
 				}
 				// initialization vector
-				//$iv = base64_decode($line);
+				$iv = base64_decode($line);
 				$this->crypter = new Mcrypt();
 				$this->crypter->init(CRYPTER_KEY, $iv);				
 				
