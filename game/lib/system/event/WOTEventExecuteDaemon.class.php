@@ -7,7 +7,7 @@
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    WOT Game is distributed in the hope that it will be useful, in the hope that it will be useful,
+    WOT Game is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Affero General Public License for more details.
@@ -25,7 +25,7 @@ require_once(LW_DIR.'lib/util/LockUtil.class.php');
  * The lifetime _must_ be greater than 20, should be greater than 30;
  *  if lesser/equal to 20, the lifetime will be set to 21
  * 
- * @author		David Waegner
+ * @author		Biggerskimo
  * @copyright	2007 - 2008 Lost Worlds
  */
 class WOTEventExecuteDaemon {

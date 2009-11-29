@@ -131,7 +131,9 @@
 			</fieldset>
 			
 			{* resource overview *}
-			{if $fleetOverview->getOverallCount()}
+			{assign var='resources' value=$fleetOverview->getOverall()}
+			{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
+			{if $fleetOverview->getOverallCount() && $totalResources > 0}
 				<div class="resourcesOverview">
 					<table>
 						<thead>
@@ -162,7 +164,6 @@
 								<td>
 									{#$fleetOverview->getOverallCount()}
 								</td>
-								{assign var='resources' value=$fleetOverview->getOverall()}
 								<td>
 									{#$resources.metal}
 								</td>
@@ -175,23 +176,26 @@
 							</tr>
 							
 							{foreach from=$fleetOverview->getMissions() key='missionID' item='resources'}
-								<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
-									<td>
-										{lang}wot.mission.mission{@$missionID}{/lang}
-									</td>
-									<td>
-										{#$fleetOverview->getMissionCount($missionID)}
-									</td>
-									<td>
-										{#$resources.metal}
-									</td>
-									<td>
-										{#$resources.crystal}
-									</td>
-									<td>
-										{#$resources.deuterium}
-									</td>							
-								</tr>							
+								{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
+								{if $totalResources}
+									<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+										<td>
+											{lang}wot.mission.mission{@$missionID}{/lang}
+										</td>
+										<td>
+											{#$fleetOverview->getMissionCount($missionID)}
+										</td>
+										<td>
+											{#$resources.metal}
+										</td>
+										<td>
+											{#$resources.crystal}
+										</td>
+										<td>
+											{#$resources.deuterium}
+										</td>							
+									</tr>
+								{/if}
 							{/foreach}							
 						</tbody>
 					</table>

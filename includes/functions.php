@@ -7,7 +7,7 @@
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    WOT Game is distributed in the hope that it will be useful, in the hope that it will be useful,
+    WOT Game is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Affero General Public License for more details.
@@ -83,8 +83,8 @@ function checkcookies(){
 		// {ID} {USERNAME} {PASSWORDHASH} {REMEMBERME}
 		$theuser = explode(" ",$_COOKIE[$game_config['COOKIE_NAME']]);
 		$query = doquery("SELECT * FROM {{table}} LEFT JOIN ugml_stat ON id = userID WHERE id='".WCF::getUser()->userID."'", "users");
-		$sql = "SELECT activityPoints FROM wcf".WCF_N."_user WHERE userID = '".WCF::getUser()->userID."'";
-		$boardQry = WCF::getDB()->getFirstRow($sql);
+		//$sql = "SELECT activityPoints FROM wcf".WCF_N."_user WHERE userID = '".WCF::getUser()->userID."'";
+		//$boardQry = WCF::getDB()->getFirstRow($sql);
 		if (mysql_num_rows($query) != 1)
 		{
 			message($lang['cookies']['Error1']);
@@ -112,7 +112,7 @@ function checkcookies(){
 	// correct rank & points
 	$row['rank'] = $row['rankPoints'];
 	$row['points_points'] = $row['points'] * 1000;
-	$row['dilizium'] += $boardQry['activityPoints'];
+	$row['dilizium'] += WCF::getUser()->additionalDilizium;
 	$row['dilizium'] -= $row['lostDilizium'];
 	return $row;
 }

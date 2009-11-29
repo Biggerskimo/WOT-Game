@@ -7,7 +7,7 @@
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    WOT Game is distributed in the hope that it will be useful, in the hope that it will be useful,
+    WOT Game is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Affero General Public License for more details.
@@ -25,7 +25,7 @@ require_once(LW_DIR.'lib/data/fleet/NavalFormation.class.php');
  * Shows the form for selecting a planet; it will be saved by the
  *  FleetStartResourcesForm
  * 
- * @author		David Wägner
+ * @author		Biggerskimo
  * @copyright	2008 Lost Worlds
  */
 class FleetStartCoordinatesForm extends AbstractForm {
