@@ -355,19 +355,10 @@ class FleetEditor extends AbstractDecorator {
 	 * @param	array	associative array
 	 */
 	public function updateShips($ships) {
-		//$this->fleet = $this->getObject()->fleet = Spec::merge($this->fleet, $ships);
 		$changedShips = Spec::diff($this->fleet, $ships);
-		
-		/*$this->data['spec'] = Spec::arrayToStr($changedShips);
-		
-		$sql = "UPDATE ugml_fleet
-				SET spec = '".$this->data['spec']."'
-				WHERE fleetID = ".$this->fleetID;
-		WCF::getDB()->sendQuery($sql);*/
-		
+				
 		$inserts = "";
 		$deletes = "";
-		$fleet = array();
 		foreach($changedShips as $specID => $shipCount) {
 			// add/change
 			if(!empty($specID)) {
@@ -385,9 +376,14 @@ class FleetEditor extends AbstractDecorator {
 					$deletes .= "(".$this->fleetID.", ".$specID.")";
 				}
 			}
-			$fleet[$specID] = $shipCount;
+			
+			if(!$shipCount)	{
+				unset($this->fleet[$specID]);
+			}
+			else {
+				$this->fleet[$specID] = $shipCount;
+			}
 		}
-		$this->fleet = $fleet;
 		
 		if(!empty($inserts)) {
 			$sql = "REPLACE INTO ugml_fleet_spec

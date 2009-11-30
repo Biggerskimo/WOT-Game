@@ -21,8 +21,8 @@ require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
 /**
  * Holds basic functions to administrate the specifications.
  * 
- * @author		David W�gner
- * @copyright	2008 Lost Worlds
+ * @author		Biggerskimo
+ * @copyright	2008 - 2009 Lost Worlds
  */
 class Spec extends DatabaseObject {
 	protected static $cache = array();
