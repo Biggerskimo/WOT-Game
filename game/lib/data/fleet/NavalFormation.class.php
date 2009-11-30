@@ -297,9 +297,7 @@ class NavalFormation extends DatabaseObject {
 			$sql = "SELECT fleetID
 					FROM ugml_fleet
 					WHERE formationID = ".$this->formationID."
-					ORDER BY fleetID ASC
-					LIMIT 1
-					OFFSET 1";
+					ORDER BY fleetID ASC";
 			$row = WCF::getDB()->getFirstRow($sql);
 			
 			$this->getEditor()->setLeaderFleetID($row['fleetID']);
