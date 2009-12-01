@@ -25,20 +25,16 @@ $userID = intval($_GET['u']);
 if($userID != 0 && !isset($_COOKIE['dili_link_used'.$userID])) {	
 	// log
 	$sql = "INSERT INTO ugml_dilizium_link
-			(userID, `time`, ipAddress,
-			 userAgent, cookieData)
+			(userID, registered, `time`,
+			 ipAddress, userAgent, cookieData)
 			VALUES
-			(".$userID.", ".time().", ".ip2long($_SERVER['REMOTE_ADDR']).",
-			 '".escapeString($_SERVER['HTTP_USER_AGENT'])."', '".escapeString(LWUtil::serialize($_COOKIE))."')";
+			(".$userID.", 0, ".time().",
+			 INET_ATON('".escapeString($_SERVER['REMOTE_ADDR'])."'), '".escapeString($_SERVER['HTTP_USER_AGENT'])."', '".escapeString(LWUtil::serialize($_COOKIE))."')";
 	WCF::getDB()->sendQuery($sql);
-	
-	// add
-	$sql = "UPDATE ugml_users
-			SET dilizium = dilizium + 500
-			WHERE id = ".$userID;
-	WCF::getDB()->sendQuery($sql);
-	
+	$diliLinkID = WCF::getDB()->getInsertID();
+		
 	setcookie('dili_link_used'.$userID, time(), time() + 60 * 60 * 24 * 365);
+	setcookie('dili_link_clicked', $diliLinkID, time() + 60 * 60 * 24 * 365);
 }
 
 header("Location: index.htm");
