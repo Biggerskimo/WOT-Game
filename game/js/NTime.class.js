@@ -23,12 +23,13 @@ function NTime(targetNode, date, tick, format) {
 	this.date = (typeof date == "undefined") ? new Date() : date;
 	this.tick = (typeof tick == "undefined") ? 1 : tick;
 	this.format = (typeof format == "undefined") ? "%c" : format;
+	this.interval = null;
 	
 	this.init = function() {
 		if(this.tick != 0) {
 			var instance = this;
 			
-			window.setInterval(function() { instance.doTick(); }, 1000);
+			this.interval = window.setInterval(function() { instance.doTick(); }, 1000);
 		}
 		
 		this.print();
@@ -37,7 +38,14 @@ function NTime(targetNode, date, tick, format) {
 	this.doTick = function() {
 		this.date.setSeconds(this.date.getSeconds() + this.tick);
 		
-		this.print();
+		if(this.date.getSeconds() <= 0) {
+			this.date.setSeconds(0);
+			window.clearInterval(this.interval);
+			targetNode.data = "---";
+		}
+		else {
+			this.print();
+		}
 	}
 	
 	this.print = function() {
