@@ -86,6 +86,10 @@ class LWCore extends WCF {
 		// game-frontend only
 		if($this->getUser()->userID == 0) return;
 		$args = array_merge($_GET, $_POST);
+		
+		if(isset($args['password'])) {
+			unset($args['password']);
+		}
 
 		// log request		
 		$sql = "INSERT INTO ugml_request
