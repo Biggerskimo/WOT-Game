@@ -162,7 +162,7 @@ WCF::getDB()->sendQuery($sql, "");
 
 // delete espionage reports
 $sql = "DELETE FROM ugml_espionage_report
-		WHERE `time` > UNIX_TIMESTAMP() - 60 * 60 * 24 * 7
+		WHERE `time` < UNIX_TIMESTAMP() - 60 * 60 * 24 * 7
 		LIMIT 10000";
 WCF::getDB()->sendQuery($sql, "");
 ?>

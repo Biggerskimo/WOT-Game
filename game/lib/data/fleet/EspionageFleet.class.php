@@ -361,7 +361,7 @@ class EspionageFleet extends NavalFormationAttackFleet {
 				(userID, planetID,
 				 `time`, report)
 				VALUES
-				(".$this->getOwner()->userID.", ".$this->targetPlanetID.",
+				(".$this->ownerID.", ".$this->targetPlanetID.",
 				 ".time().", '".escapeString($this->ereport)."')";
 		WCF::getDB()->sendQuery($sql);
 	}
