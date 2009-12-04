@@ -1,0 +1,88 @@
+== 1. Systemvorraussetzungen ==
+Server: Da zuverlässig Cronjobs ausgeführt werden müssen, ist ein richtiger
+	Root- oder vServer (aktuell) unabdingbar. 
+Webserver: Httpd ist egal, aber PHP5 wird benötigt. Vielleicht sogar PHP 5.1
+	oder 5.2, das solltet ihr dann probieren ;) Außerdem wird mcrypt benötigt.
+Datenbank: Hier wird MySQL 5.0 mit InnoDB vorrausgesetzt.
+
+== 2. Kurzer Überblick ==
+Das Spiel hat einen etwas abstrakteren Aufbau: Es bringt keine normale Frontend-
+	Registrierung mit, sondern wird von einem Controller "bedient". Das heißt es
+	zerfällt in 2 Teile: Einmal das Spiel selbst und einer separaten Installa-
+	tion, die mehrere Spiele verwalten kann. In diesem Controller sind auch die
+	Benutzer registriert. Diese können auch auf verschiedenen Servern liegen und
+	kommunizieren über ein spezielles (verschlüsseltes) Protokoll, WOTAPIP 2.1
+	(das aber mal eine Überarbeitung notwendig hat).
+	
+== 3. Installation (allgemein) ==
+Wie oben erwähnt, braucht ihr zwei verschiedene "Stationen". Beide bauen in mei-
+	ner Implementation auf das WCF auf (der Controller könnte aber auch unab-
+	hängig davon realisiert werden). D.h. ihr braucht zwei separate WCF-Installa-
+	tionen. Die Standalone-Version könnt ihr unter [1] herunterladen. Bei der In-
+	stallation für das Game bitte in ein wcf/-Verzeichnis installieren, in dessen
+	übergeordneten Verzeichnis ihr dann das Game reinpacken könnt (siehe unten).
+	Bei der Installation für den Controller solltet ihr das WBB Lite von [4]
+	isntallieren, da es noch weitere Pakete mitbringt, die benötigt werden.
+	
+== 4. Installation (Controller) ==
+Um den Controller ins WCF zu installieren, müsst ihr das Plugin von [2] herunter-
+	laden und installieren (über das WCF-Paketsystem). Danach könnt ihr unter den
+	Benutzergruppenrechten einstellen, wer (zu verwaltende) Server erstellen usw.
+	kann. Zur Einrichtung weiter unten.
+	
+== 5. Installation (Game) ==
+Ladet euch dazu einfach das Tarball herunter und entpackt es so, dass das
+	(Ugamela-)Hauptverzeichnis eine Stufe überhalb des wcf/-Verzeichnisses befin-
+	det. Danach muss das aktuelle SQL-Dump von [2] in die Datenbank importiert
+	werden. Schaut euch danach die game/execute*.php-Dateien an, denn in denen
+	müssen von Hand die Pfade und ein paar Einstellungen verändert werden. Außer-
+	dem müssen die Socket- und Verschlüsselungs-Pakete von [2] installiert wer-
+	den.
+	
+== 6. Einrichtung ==
+Zunächst einmal müssen die Cronjobs so wie in A. beschrieben eingerichtet werden.
+	Insbesondere ohne executeServer.php kann der Controller keine Verbindung zum
+	Game herstellen! Sobald der läuft, kann die Verbindung eingerichtet werden.
+	Dafür braucht ihr einen Schlüssel, den euch tools/keygen.php generiert. Der
+	muss in game/executeServer.php (Z. 91) eingetragen werden. Im Controller
+	könnt ihr im WCF-ACP unter Inhalte > Spiel > Server hinzufügen die Verbin-
+	dungsdaten wie Host, Port und Schlüssel eingeben. Ihr könnt die Verbindung
+	testen, indem ihr euch z.B. über das ACP (Benutzer bearbeiten) registriert.
+	
+== 7. Registrierungsvorgang ==
+Die Registrierung kann über eine Endanwendung im Controller passieren, bei der
+	eine Serverwahl angezeigt wird. Die von uns genutzte Version läuft aber über
+	eine externe Registrierungsseite, die die Daten an den Controller übergeben
+	kann, sodass die Spieler im Optimalfall von dem Gewusel garnichts mitbekom-
+	men. Schaut euch dazu am besten [3] an. Der Controller nimmt aber nur Re-
+	gistrierungen an, die von erlaubten Seiten stammen, die im ACP unter
+	Optionen > Spiel > Registrierung eingestellt werden kann (dort muss das ganze
+	auch erstmal aktiviert werden).
+	
+== 8. Startseite ==
+Wegen ein paar Copyrightproblemen ist (noch) keine Startseite dabei. Der Login
+	funktioniert wie bei Ugamela 0.2c (auf dem das ganze basiert) über die
+	login.php. Die Registrierung ist wie unter 7. gezeigt etwas komplizierter.
+
+
+== A. Crontab ==
+game/executeDailyCleanup.php: Führt kleinere Arbeiten durch, sollte, wie der Name
+	schon sagt, einmal täglich ausgeführt werden.
+game/executeMinutlyCleanup.php: Führt Arbeiten durch, die kontiniuerlich gemacht
+	werden sollten (z.B. TFs und Logs löschen). Daher sollte er, wie der Name
+	schon sagt, minütlich oder zumindest alle paar Minuten ausgeführt werden.
+game/executeServer.php: Nimmt die Verbindungsanfragen vom Controller an und muss
+	daher durchgehend aktiv sein. Eine Instanz läuft fünf Minten, daher MUSS es
+	alle fünf Minuten zuverlässig gestartet werden!
+game/executeStatRefresh.php: Führt die Aktualisierungen durch. Kann nach belieben
+	ausgeführt werden.
+game/executeWOTEED.php: =WOT Event Execute Daemon, oder kurz der Eventhandler. Er
+	sollte wie game/executeServer.php durchgehend laufen. Eine Instanz läuft hier
+	standardmäßg eine Minute, deswegen MUSS es jede Minute zuverlässig gestartet
+	werden!
+
+
+[1] http://community.woltlab.com/db/index.php?page=Project&projectID=780
+[2] http://github.com/Biggerskimo/WOT-Game/downloads
+[3] http://lost-worlds.net/register.htm
+[4] http://www.woltlab.com/products/burning_board_lite/index.php
