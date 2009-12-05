@@ -43,11 +43,12 @@ Ladet euch dazu einfach das Tarball herunter und entpackt es so, dass das
 Zunaechst einmal muessen die Cronjobs so wie in A. beschrieben eingerichtet werden.
 	Insbesondere ohne executeServer.php kann der Controller keine Verbindung zum
 	Game herstellen! Sobald der laeuft, kann die Verbindung eingerichtet werden.
-	Dafuer braucht ihr einen Schluessel, den euch tools/keygen.php generiert. Der
-	muss in game/executeServer.php (Z. 91) eingetragen werden. Im Controller
-	koennt ihr im WCF-ACP unter Inhalte > Spiel > Server hinzufuegen die Verbin-
-	dungsdaten wie Host, Port und Schluessel eingeben. Ihr koennt die Verbindung
-	testen, indem ihr euch z.B. ueber das ACP (Benutzer bearbeiten) registriert.
+	Dafuer braucht ihr einen Schluessel, den euch tools/keygen.php (im darauf zuzu-
+	greifen muesst ihr 9. beachten) generiert. Der muss in game/executeServer.php
+	(Z. 91) eingetragen werden. Im Controller koennt ihr im WCF-ACP unter Inhalte >
+	Spiel > Server hinzufuegen die Verbindungsdaten wie Host, Port und Schluessel
+	eingeben. Ihr koennt die Verbindung testen, indem ihr euch z.B. ueber das ACP
+	(Benutzer bearbeiten) registriert.
 	
 == 7. Registrierungsvorgang ==
 Die Registrierung kann ueber eine Endanwendung im Controller passieren, bei der
@@ -63,6 +64,17 @@ Die Registrierung kann ueber eine Endanwendung im Controller passieren, bei der
 Wegen ein paar Copyrightproblemen ist (noch) keine Startseite dabei. Der Login
 	funktioniert wie bei Ugamela 0.2c (auf dem das ganze basiert) ueber die
 	login.php. Die Registrierung ist wie unter 7. gezeigt etwas komplizierter.
+	
+== 9. Zugriffsschutz ==
+Dateien wie die game/execute*.php- oder die /tools/*-Dateien sollten vor fremden
+	Zugriff natuerlich geschuetzt werden. Standardmaessig gibts (wenn .htaccess
+	erlaubt ist) einen 500er-Fehler, wenn jemand darauf zugreift. Wenn ihr darauf
+	aber Zugriff haben wollt, muesst ihr eine .htpasswd einrichten (generierbar
+	über den htpasswd-Befehl oder z.B. unter [5]) und die Pfade in den Dateien
+	.htaccess und tools/.htaccess anpassen.
+Um weitere Verzeichnisse zu schuetzen, koennt ihr tools/_htaccess nach Anpassung
+	des Pfades in die betreffenden Verzeichnisse unter dem Namen .htaccess ko-
+	pieren.	
 
 
 == A. Crontab ==
@@ -76,7 +88,7 @@ game/executeServer.php: Nimmt die Verbindungsanfragen vom Controller an und muss
 	alle fuenf Minuten zuverlaessig gestartet werden!
 game/executeStatRefresh.php: Fuehrt die Aktualisierungen durch. Kann nach belieben
 	ausgefuehrt werden.
-game/executeWOTEED.php: =WOT Event Execute Daemon, oder kurz der Eventhandler. Er
+game/executeWOTEED.php: = WOT Event Execute Daemon, oder kurz der Eventhandler. Er
 	sollte wie game/executeServer.php durchgehend laufen. Eine Instanz laeuft hier
 	standardmaessig eine Minute, deswegen MUSS es jede Minute zuverlaessig gestartet
 	werden!

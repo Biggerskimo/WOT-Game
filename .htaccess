@@ -1,0 +1,6 @@
+<FilesMatch "execute.+\.php">
+	AuthType Basic 
+	AuthName "Restricted File" 
+	AuthUserFile /srv/www/htdocs/.htpasswd 
+	require valid-user
+</FilesMatch>
