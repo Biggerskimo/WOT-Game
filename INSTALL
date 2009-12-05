@@ -70,7 +70,7 @@ Dateien wie die game/execute*.php- oder die /tools/*-Dateien sollten vor fremden
 	Zugriff natuerlich geschuetzt werden. Standardmaessig gibts (wenn .htaccess
 	erlaubt ist) einen 500er-Fehler, wenn jemand darauf zugreift. Wenn ihr darauf
 	aber Zugriff haben wollt, muesst ihr eine .htpasswd einrichten (generierbar
-	über den htpasswd-Befehl oder z.B. unter [5]) und die Pfade in den Dateien
+	ueber den htpasswd-Befehl oder z.B. unter [5]) und die Pfade in den Dateien
 	.htaccess und tools/.htaccess anpassen.
 Um weitere Verzeichnisse zu schuetzen, koennt ihr tools/_htaccess nach Anpassung
 	des Pfades in die betreffenden Verzeichnisse unter dem Namen .htaccess ko-

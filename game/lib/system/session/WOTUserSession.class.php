@@ -16,19 +16,36 @@
     along with WOT Game.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// wot imports
-require_once(LW_DIR.'lib/system/session/WOTACPSession.class.php');
-
-// wcf imports
-require_once(WCF_DIR.'lib/system/session/SessionFactory.class.php');
-
 /**
- * LWACPSessionFactory extends the SessionFactory class with game specific functions.
- *
+ * Provides isGO() method.
+ * 
  * @author	Biggerskimo
- * @copyright	2008 - 2009 Lost Worlds
+ * @copyright	2009 Lost Worlds
  */
-class LWACPSessionFactory extends SessionFactory {
-	protected $sessionClassName = 'WOTACPSession';
+class WOTUserSession extends UserSession {
+	/**
+	 * @see UserSession::__construct()
+	 */
+	public function __construct($userID = null, $row = null, $username = null) {
+		// user data		
+		$this->sqlSelects .= " lw_user.*, ";
+		$this->sqlJoins .= " LEFT JOIN ugml".LW_N."_users
+								AS lw_user
+								ON lw_user.id = user.userID ";
+		
+		// other selects
+		$this->sqlSelects .= " lw_user.id AS lwUserID, ";
+		
+		parent::__construct($userID, $row, $username);
+	}
+	
+	/**
+	 * Checks if this user has game operator rights.
+	 * 
+	 * @return	boolean
+	 */
+	public function isGO() {
+		return ($this->authlevel > 0);
+	}
 }
 ?>

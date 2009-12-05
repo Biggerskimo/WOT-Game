@@ -16,19 +16,19 @@
     along with WOT Game.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// wot imports
-require_once(LW_DIR.'lib/system/session/WOTACPSession.class.php');
-
 // wcf imports
-require_once(WCF_DIR.'lib/system/session/SessionFactory.class.php');
+require_once(WCF_DIR.'lib/system/session/Session.class.php');
+
+require_once(LW_DIR.'lib/system/session/WOTUserSession.class.php');
 
 /**
- * LWACPSessionFactory extends the SessionFactory class with game specific functions.
+ * Represents a user session in the admin panel.
  *
- * @author	Biggerskimo
- * @copyright	2008 - 2009 Lost Worlds
+ * @author		Biggerskimo
+ * @copyright	2006-2009 Lost Worlds
  */
-class LWACPSessionFactory extends SessionFactory {
-	protected $sessionClassName = 'WOTACPSession';
+class WOTACPSession extends Session {
+	protected $userSessionClassName = 'WOTUserSession';
+	protected $guestSessionClassName = 'WOTUserSession';
 }
 ?>

@@ -17,6 +17,7 @@
 */
 
 require_once(WCF_DIR.'lib/system/WCFACP.class.php');
+require_once(WCF_DIR.'lib/util/HeaderUtil.class.php');
 
 require_once(LW_DIR.'lib/util/LWUtil.class.php');
 
@@ -30,14 +31,6 @@ class LWACP extends WCFACP {
 	public static $ressourceTypes = array('metal', 'crystal', 'deuterium');
 	public static $missionTypes = array(1 => 'Angreifen', 3 => 'Transport', 4 => 'Stationieren', 5 => 'Zerstören', 6 => 'Spionieren', 8 => 'Abbau', 9 => 'Kolonisieren');
 	
-	public function __construct() {
-		try {
-			parent::__construct();
-		}
-		catch(PermissionDeniedException $e) {
-			// ..
-		}
-	}
 	
 	/**
 	 * @see WCF::getOptionsFilename()
@@ -75,9 +68,15 @@ class LWACP extends WCFACP {
 	 * Does the user authentication.
 	 */
 	protected function initAuth() {
-		//echo '.';
-		parent::initAuth();
-		//echo ':';
+		/*echo '.';
+		try {
+			parent::initAuth();
+		}
+		catch(Exception $e) {
+			var_dump($e);
+			debug_print_backtrace();
+		}
+		echo ':';*/
 
 		// user ban
 		if (self::getUser()->banned) {
@@ -85,10 +84,25 @@ class LWACP extends WCFACP {
 			throw new PermissionDeniedException();
 		}
 		
-		/*if(self::getUser()->userID && !self::getUser()->isGO()) {
-			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
-			throw new PermissionDeniedException();			
-		}*/
+		/*var_dump(self::getSession());
+		var_dump(self::getUser());
+		//var_dump(self::getSession()->isGO());
+		var_dump(self::getUser()->isGO());
+		var_dump(self::getUser()->userID);
+		var_dump(self::getSession()->userID);
+		var_dump(self::getUser()->userID && !self::getUser()->isGO());*/
+		if ((!isset($_REQUEST['page']) || ($_REQUEST['page'] != 'Logout' && $_REQUEST['page'] != 'ACPCaptcha')) && (isset($_REQUEST['page']) || !isset($_REQUEST['form']) || $_REQUEST['form'] != 'Login')) {
+			if (WCF::getUser()->userID == 0) {
+				header('Location: index.php?form=Login&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED);
+				exit;
+			}
+			else {			
+				if(!self::getUser()->isGO()) {
+					require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
+					throw new PermissionDeniedException();			
+				}
+			}
+		}
 	}
 
 	/**
