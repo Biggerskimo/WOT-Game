@@ -68,29 +68,12 @@ class LWACP extends WCFACP {
 	 * Does the user authentication.
 	 */
 	protected function initAuth() {
-		/*echo '.';
-		try {
-			parent::initAuth();
-		}
-		catch(Exception $e) {
-			var_dump($e);
-			debug_print_backtrace();
-		}
-		echo ':';*/
-
 		// user ban
 		if (self::getUser()->banned) {
 			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
 			throw new PermissionDeniedException();
 		}
 		
-		/*var_dump(self::getSession());
-		var_dump(self::getUser());
-		//var_dump(self::getSession()->isGO());
-		var_dump(self::getUser()->isGO());
-		var_dump(self::getUser()->userID);
-		var_dump(self::getSession()->userID);
-		var_dump(self::getUser()->userID && !self::getUser()->isGO());*/
 		if ((!isset($_REQUEST['page']) || ($_REQUEST['page'] != 'Logout' && $_REQUEST['page'] != 'ACPCaptcha')) && (isset($_REQUEST['page']) || !isset($_REQUEST['form']) || $_REQUEST['form'] != 'Login')) {
 			if (WCF::getUser()->userID == 0) {
 				header('Location: index.php?form=Login&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED);
@@ -113,7 +96,6 @@ class LWACP extends WCFACP {
 
 		self::getTPL()->assign(array(
 			// add jump to board link
-			//'additionalHeaderButtons' => '<li><a href="'.RELATIVE_WOT_DIR.'"><img src="../icon/indexS.png" alt="" /> <span>'.WCF::getLanguage()->get('wot.acp.jumpToCMS').'</span></a></li>',
 			// individual page title
 			'pageTitle' => 'Lost Worlds'
 		));
@@ -126,8 +108,6 @@ class LWACP extends WCFACP {
 		parent::loadDefaultCacheResources();
 		self::getCache()->addResource('bbcodes', WCF_DIR.'cache/cache.bbcodes.php', WCF_DIR.'lib/system/cache/CacheBuilderBBCodes.class.php');
 		self::getCache()->addResource('smilies', WCF_DIR.'cache/cache.smilies.php', WCF_DIR.'lib/system/cache/CacheBuilderSmilies.class.php');
-		//self::getCache()->addResource('LinkUs', CMS_DIR.'cache/cache.LinkUs.php', CMS_DIR.'lib/system/cache/CacheBuilderLinkUs.class.php');
 	}
-
 }
 ?>
