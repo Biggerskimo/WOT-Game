@@ -115,6 +115,14 @@ class LWCore extends WCF {
 			}
 		}
 		
+		// TODO dirty banned-fix	
+		if($this->getUser()->wotBanned) {
+			$row = WCF::getDB()->getFirstRow("SELECT * FROM ugml_banned WHERE who = '".WCF::getUser()->username."' ORDER BY id DESC");
+			
+			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
+			throw new NamedUserException('Du bist bis '.date("d.m.Y G:i:s", $row['longer']).' von <a href="mailto:'.$row['email'].'?subject=banned:'.$row['who'].'">'.$row['author'].'</a> gesperrt. Grund:<br><br>'.$row['theme'], 'Gebannt');
+		}
+		
 		$this->initPlanet();
 		
 		// detect bots

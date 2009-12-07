@@ -67,7 +67,7 @@ class LWUserSession extends UserSession {
 								ON wot_buddy2.owner = user.userID";
 		
 		// other selects
-		$this->sqlSelects .= " lw_user.id AS lwUserID, lw_user.current_planet AS actualPlanet, ";
+		$this->sqlSelects .= " lw_user.id AS lwUserID, lw_user.current_planet AS actualPlanet, lw_user.banned AS wotBanned, ";
 		
 		parent::__construct($userID, $row, $username);
 		
