@@ -252,7 +252,7 @@ class FleetQueue extends DatabaseObject {
 				throw new NamedUserException(WCF::getLanguage()->get('wot.fleet.start.noobProtection'));
 			}
 			
-			if($this->getTargetPlanet()->getOwner()->authlevel && !WCF::getUser()->authlevel) {
+			if($this->getTargetPlanet()->getOwner()->authlevel && !WCF::getUser()->authlevel && !($this->getTargetPlanet()->getOwner()->authlevel == 4 && $this->missionID == 3)) {
 				require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
 				throw new NamedUserException(WCF::getLanguage()->get('wot.fleet.start.protectedOfiara'));
 			}
