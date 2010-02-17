@@ -22,7 +22,7 @@ require_once(LW_DIR.'lib/data/stat/generator/AbstractStatGenerator.class.php');
  * This class creates the stats of the points of the users.
  * 
  * @author		Biggerskimo
- * @copyright	2008 Lost Worlds
+ * @copyright	2008 - 2010 Lost Worlds
  */
 class UserPointsStatGenerator extends AbstractStatGenerator {
 	public $template = 'userPointsStatBit';
@@ -65,82 +65,98 @@ class UserPointsStatGenerator extends AbstractStatGenerator {
 	/**
 	 * @see AbstractStatGenerator::generateEntries()
 	 */
-	protected function generateEntries() {
-		$this->generateDummies();
+	protected function generateEntries($tryAgainOnError = true) {	
+		WCF::getDB()->sendQuery("SET AUTOCOMMIT = 0");		
+		WCF::getDB()->sendQuery("START TRANSACTION");
 		
-		// planet subselect
-		$specs = Spec::getByFlag(0x39, true);
-		$generated = "";
-		
-		foreach($specs as $specID => $specObj) {
-			if(!empty($generated)) {
-				$generated .= " + ";
-			}
-			$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
+		try {
+			$this->generateDummies();
 			
-			if($specObj->costsFactor != 1) {
-				$generated .= "(".$costs." * (1 - POW(".$specObj->costsFactor.", `".$specObj->colName."`)) / -(".$specObj->costsFactor." - 1))";
-			}
-			else {
-				$generated .= "(".$costs." * `".$specObj->colName."`)";
-			}
-		}
-		
-		$planet = "SELECT SUM(".$generated.")
-				FROM ugml_planets
-				WHERE ugml_planets.id_owner = ugml_stat_entry.relationalID";
-		
-		// user subselect
-		$specs = Spec::getByFlag(0x02, true);
-		//var_dump($specs);
-		$generated = "";
-		
-		foreach($specs as $specID => $specObj) {
-			if(!empty($generated)) {
-				$generated .= " + ";
-			}
-			$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
+			// planet subselect
+			$specs = Spec::getByFlag(0x39, true);
+			$generated = "";
 			
-			if($specObj->costsFactor != 1) {
-				$generated .= "(".$costs." * (1 - POW(".$specObj->costsFactor.", `".$specObj->colName."`)) / -(".$specObj->costsFactor." - 1))";
+			foreach($specs as $specID => $specObj) {
+				if(!empty($generated)) {
+					$generated .= " + ";
+				}
+				$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
+				
+				if($specObj->costsFactor != 1) {
+					$generated .= "(".$costs." * (1 - POW(".$specObj->costsFactor.", `".$specObj->colName."`)) / -(".$specObj->costsFactor." - 1))";
+				}
+				else {
+					$generated .= "(".$costs." * `".$specObj->colName."`)";
+				}
 			}
-			else {
-				$generated .= "(".$costs." * `".$specObj->colName."`)";
-			}
-		}
-		
-		$user = "SELECT ".$generated."
-				FROM ugml_users
-				WHERE ugml_users.id = ugml_stat_entry.relationalID";
-		
-		// fleet subselect
-		$specs = Spec::getByFlag(0x48, true);
-		$generated = "";
-		
-		foreach($specs as $specID => $specObj) {
-			$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
 			
-			$generated .= " WHEN ".$specID." THEN ".$costs;
+			$planet = "SELECT SUM(".$generated.")
+					FROM ugml_planets
+					WHERE ugml_planets.id_owner = ugml_stat_entry.relationalID";
+			
+			// user subselect
+			$specs = Spec::getByFlag(0x02, true);
+			//var_dump($specs);
+			$generated = "";
+			
+			foreach($specs as $specID => $specObj) {
+				if(!empty($generated)) {
+					$generated .= " + ";
+				}
+				$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
+				
+				if($specObj->costsFactor != 1) {
+					$generated .= "(".$costs." * (1 - POW(".$specObj->costsFactor.", `".$specObj->colName."`)) / -(".$specObj->costsFactor." - 1))";
+				}
+				else {
+					$generated .= "(".$costs." * `".$specObj->colName."`)";
+				}
+			}
+			
+			$user = "SELECT ".$generated."
+					FROM ugml_users
+					WHERE ugml_users.id = ugml_stat_entry.relationalID";
+			
+			// fleet subselect
+			$specs = Spec::getByFlag(0x48, true);
+			$generated = "";
+			
+			foreach($specs as $specID => $specObj) {
+				$costs = ($specObj->costsMetal + $specObj->costsCrystal + $specObj->costsDeuterium);
+				
+				$generated .= " WHEN ".$specID." THEN ".$costs;
 
+			}
+			
+			$fleet = "SELECT COALESCE(SUM(CASE ugml_fleet_spec.specID".$generated." ELSE 0 END * shipCount), 0)
+					FROM ugml_fleet
+					LEFT JOIN ugml_fleet_spec
+						ON ugml_fleet.fleetID = ugml_fleet_spec.fleetID
+					WHERE ugml_fleet.ownerID = ugml_stat_entry.relationalID";
+			
+			$sql = "UPDATE ugml_stat_entry,
+						ugml_users
+							AS checkUser
+					SET points = ((".$planet.") + (".$user.") + (".$fleet.")) / 1000
+					WHERE ugml_stat_entry.relationalID = checkUser.id
+						AND ugml_stat_entry.statTypeID = 1
+						AND checkUser.banned != 1
+						AND checkUser.authlevel = 0";
+			//echo $sql;
+			// lets go!
+			WCF::getDB()->sendQuery($sql);
+			
+			WCF::getDB()->sendQuery("COMMIT");
+			WCF::getDB()->sendQuery("SET AUTOCOMMIT = 1");
 		}
-		
-		$fleet = "SELECT COALESCE(SUM(CASE ugml_fleet_spec.specID".$generated." ELSE 0 END * shipCount), 0)
-				FROM ugml_fleet
-				LEFT JOIN ugml_fleet_spec
-					ON ugml_fleet.fleetID = ugml_fleet_spec.fleetID
-				WHERE ugml_fleet.ownerID = ugml_stat_entry.relationalID";
-		
-		$sql = "UPDATE ugml_stat_entry,
-					ugml_users
-						AS checkUser
-				SET points = ((".$planet.") + (".$user.") + (".$fleet.")) / 1000
-				WHERE ugml_stat_entry.relationalID = checkUser.id
-					AND ugml_stat_entry.statTypeID = 1
-					AND checkUser.banned != 1
-					AND checkUser.authlevel = 0";
-		//echo $sql;
-		// lets go!
-		WCF::getDB()->sendQuery($sql);
+		catch(DatabaseException $e) {
+			WCF::getDB()->sendQuery("ROLLBACK");
+			WCF::getDB()->sendQuery("SET AUTOCOMMIT = 1");
+			
+			if($tryAgainOnError) {
+				generateEntries(false);
+			}
+		}		
 	}
 	
 	/**
