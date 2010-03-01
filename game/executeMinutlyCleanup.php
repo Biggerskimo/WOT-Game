@@ -165,4 +165,9 @@ $sql = "DELETE FROM ugml_espionage_report
 		WHERE `time` < UNIX_TIMESTAMP() - 60 * 60 * 24 * 7
 		LIMIT 10000";
 WCF::getDB()->sendQuery($sql, "");
+
+// delete orphaned fleet queue spec data
+$sql = "DELETE FROM ugml_fleet_queue_fleet
+		WHERE (SELECT fleetQueueID FROM ugml_fleet_queue WHERE ugml_fleet_queue.fleetQueueID = ugml_fleet_queue_fleet.fleetQueueID) IS NULL";
+WCF::getDB()->sendQuery($sql);
 ?>

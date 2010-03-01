@@ -134,14 +134,12 @@ class FleetQueue extends DatabaseObject {
 	 * Deletes the actual fleet queue.
 	 */
 	protected function deleteFleetQueue() {
-		$sql = "DELETE ugml_fleet_queue, ugml_fleet_queue_fleet
-				FROM ugml_fleet_queue, ugml_fleet_queue_fleet
-				WHERE ugml_fleet_queue.fleetQueueID = ugml_fleet_queue_fleet.fleetQueueID
-					AND	userID = ".WCF::getUser()->userID;
-		WCF::getDB()->sendQuery($sql);
-		
 		$sql = "DELETE FROM ugml_fleet_queue
 				WHERE userID = ".WCF::getUser()->userID;
+		WCF::getDB()->sendQuery($sql);
+		
+		$sql = "DELETE FROM ugml_fleet_queue_fleet
+				WHERE fleetQueueID = ".intval($this->fleetQueueID);
 		WCF::getDB()->sendQuery($sql);
 	}
 	
