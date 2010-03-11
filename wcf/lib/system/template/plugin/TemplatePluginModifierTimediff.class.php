@@ -13,7 +13,7 @@ if (!defined('NO_IMPORTS')) {
  * $timestamp|timediff
  * 70000|timediff:'hours'
  *
- * @author 		David Wägner
+ * @author	Biggerskimo 
  * @copyright	2008 Lost Worlds
  */
 class TemplatePluginModifierTimediff implements TemplatePluginModifier {

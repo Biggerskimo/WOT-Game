@@ -42,11 +42,6 @@ class PlanetProductionHandler extends AbstractDecorator {
 		$this->planetID = $planetID;
 	}
 	
-	public function __destruct() {
-		$this->produce();
-		$this->save();
-	}
-	
 	/**
 	 * @see AbstractDecorator::getObject()
 	 */

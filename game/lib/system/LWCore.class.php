@@ -19,14 +19,15 @@
 // lw imports
 require_once(LW_DIR.'lib/util/LWUtil.class.php');
 require_once(LW_DIR.'lib/util/SerializeUtil.class.php');
+require_once(LW_DIR.'lib/util/WOTUtil.class.php');
 require_once(LW_DIR.'lib/data/planet/Planet.class.php');
 require_once(LW_DIR.'lib/system/spec/Spec.class.php');
 
 /**
  * This class extends the main WCF class by game specific functions.
  *
- * @package	game.wot.core
- * @author	Biggerskimo
+ * @author		Biggerskimo
+ * @copyright	2010 Lost Worlds
  */
 class LWCore extends WCF {
 	protected static $headerMenuObj = null;
@@ -37,7 +38,7 @@ class LWCore extends WCF {
 		'form' => array('UserLogin'),
 		'action' => array());
 	public static $ressourceTypes = array('metal', 'crystal', 'deuterium');
-	public static $missionTypes = array(1 => 'Angreifen', 3 => 'Transport', 4 => 'Stationieren', 5 => 'Zerstören', 6 => 'Spionieren', 8 => 'Abbau', 9 => 'Kolonisieren', 11 => 'Verbandsangriff', 12 => 'Halten', 20 => 'Interplanetarraketen-Angriff');
+	public static $missionTypes = array(1 => 'Angreifen', 3 => 'Transport', 4 => 'Stationieren', 5 => 'Zerstoeren', 6 => 'Spionieren', 8 => 'Abbau', 9 => 'Kolonisieren', 11 => 'Verbandsangriff', 12 => 'Halten', 20 => 'Interplanetarraketen-Angriff');
 	protected static $planetObj = null;
 	public static $startTime = 0;
 	public static $requestID = 0;

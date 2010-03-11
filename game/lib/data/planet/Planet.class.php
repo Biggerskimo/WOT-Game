@@ -28,7 +28,7 @@ require_once(LW_DIR.'lib/data/user/LWUser.class.php');
  * Holds all planet-specific functions
  * 
  * @author		Biggerskimo
- * @copyright	2007 - 2008 Lost Worlds
+ * @copyright	2007 - 2010 Lost Worlds
  * @package		game.wot.planet
  */
 class Planet extends DatabaseObject {
@@ -59,16 +59,21 @@ class Planet extends DatabaseObject {
 		else if(isset(self::$planets[$row['id']])) {
 			$planet = self::$planets[$row['id']];
 		}
-		else if($planetID === null) {			
+		else if($planetID === null) {
 			WCF::getDB()->sendQuery("START TRANSACTION");
 			$opened = true;
 			
 			$planetID = $row['id'];
+			$sql = "SELECT *
+					FROM ugml".LW_N."_planets
+					WHERE id = ".$planetID." FOR UPDATE";			
+			$row = WCF::getDB()->getFirstRow($sql);
+			
 			$className = $row['className'];
 			if(!$row) $className = self::STANDARD_CLASS;
-
+			
 			require_once(LW_DIR.'lib/data/planet/'.$className.'.class.php');
-
+			
 			$planet = new $className($planetID, $row);
 		} else {
 			WCF::getDB()->sendQuery("START TRANSACTION");
@@ -76,7 +81,7 @@ class Planet extends DatabaseObject {
 		
 			$sql = "SELECT *
 		    		FROM ugml".LW_N."_planets
-		    		WHERE id = ".$planetID;
+		    		WHERE id = ".$planetID." FOR UPDATE";
 		    $row = WCF::getDB()->getFirstRow($sql);
 
 		    $className = $row['className'];
@@ -91,19 +96,20 @@ class Planet extends DatabaseObject {
 		self::$planets[$planetID] = $planet;
 		
 		// update resources and activity
-		if(class_exists('WOTEventExecuteDaemon') && $updateLastActivity) {
-			if($planet->last_update != time()) {
-				$planet->calculateResources(time());
-				//if($updateLastActivity) $planet->updateLastActivity();
+		if($updateLastActivity) {
+			if(class_exists('WOTEventExecuteDaemon')) {
+				if($planet->last_update != time()) {
+					$planet->calculateResources(time());
+				}
+			} else {
+				WOTUtil::callAfterInit(array($planet, 'initDoneCallback'));
 			}
-		} else if($updateLastActivity) {
-			//$planet->calculateResources(TIME_NOW);
 		}
 		
 		if($opened) {
 			WCF::getDB()->sendQuery("COMMIT");
 		}
-
+		
 		return $planet;
 	}
 	
@@ -138,7 +144,7 @@ class Planet extends DatabaseObject {
 	 */
 	public function updateLastActivity() {
 		if(!class_exists('LWEventHandler') || !is_numeric($this->planetID)) return;
-
+		
 		$sql = "UPDATE ugml_planets
 				SET last_update = ".LWEventHandler::getTime()."
 				WHERE id = ".$this->planetID;
@@ -162,7 +168,7 @@ class Planet extends DatabaseObject {
 	public function checkFields() {
 		$fields = $this->getMaxFields();
 		$usedFields = $this->getUsedFields();
-
+		
 		if($usedFields < $fields) return true;
 		else return false;
 	}
@@ -174,32 +180,56 @@ class Planet extends DatabaseObject {
 	 */
 	public function getMaxFields() {
 		$fields = floor(pow(($this->diameter / 1000), 2));
-
+		
 		$fields += ($this->terraformer * 5);
-
+		
 		return $fields;
 	}
-
+	
 	/**
 	 * Returns the used fields
 	 */
 	public function getUsedFields() {
 		global $resource;
-
+		
 		$buildableBuildings = $this->getBuildableBuildings();
-
+		
 		$usedFields = 0;
 		foreach($buildableBuildings as $buildingID) $usedFields += $this->{$resource[$buildingID]};
-
+		
 		return $usedFields;
 	}
-
-
+	
+	
 	/**
 	 * Calculates the produced ressources since the last update
 	 */
-	public function calculateResources($time = null) {		
+	public function calculateResources($time = null) {
 		$this->getProductionHandler()->produce();
+	}
+	
+	/**
+	 * Callback which is called after the initialization.
+	 *
+	 * @param	boolean		initialization already done
+	 */
+	public function initDoneCallback($initAlreadyDone) {
+		if(!$initAlreadyDone) {
+			WCF::getDB()->sendQuery("START TRANSACTION");
+			
+			$sql = "SELECT *
+					FROM ugml_planets
+					WHERE id = ".intval($this->planetID)." FOR UPDATE";
+			$row = WCF::getDB()->getFirstRow($sql);
+			
+			$this->handleData($row);
+			
+			$this->calculateResources();
+			
+			WCF::getDB()->sendQuery("COMMIT");
+		} else {
+			$this->calculateResources();
+		}
 	}
 
 	public function __toString() {
