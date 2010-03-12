@@ -75,7 +75,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			new NTime(document.getElementById("hangar{@$id}"), new Date({@$planet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
+			new NTime(document.getElementById("hangar{@$id}").childNodes[0], new Date({@$planet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
 		</script>
 	{/if}
 </div>
