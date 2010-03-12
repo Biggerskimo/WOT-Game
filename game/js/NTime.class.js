@@ -22,7 +22,7 @@ function NTime(targetNode, date, tick, format) {
 	this.node = targetNode;
 	this.date = (typeof date == "undefined") ? new Date() : date;
 	this.tick = (typeof tick == "undefined") ? 1 : tick;
-	this.format = (typeof format == "undefined") ? "%c" : format;
+	this.format = (typeof format == "undefined") ? "%T" : format;
 	this.interval = null;
 	
 	this.init = function() {
