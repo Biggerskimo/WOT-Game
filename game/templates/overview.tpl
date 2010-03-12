@@ -68,7 +68,7 @@
 			{/if}
 			
 			{* planets *}
-			<fieldset>
+			<fieldset class="planetsFieldset">
 				<legend>
 					{lang}wot.overview.planets{/lang}
 				</legend>
