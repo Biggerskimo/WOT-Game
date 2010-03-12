@@ -66,7 +66,7 @@ class Planet extends DatabaseObject {
 			$planetID = $row['id'];
 			$sql = "SELECT *
 					FROM ugml".LW_N."_planets
-					WHERE id = ".$planetID." FOR UPDATE";			
+					WHERE id = ".intval($planetID)." FOR UPDATE";			
 			$row = WCF::getDB()->getFirstRow($sql);
 			
 			$className = $row['className'];
@@ -81,7 +81,7 @@ class Planet extends DatabaseObject {
 		
 			$sql = "SELECT *
 		    		FROM ugml".LW_N."_planets
-		    		WHERE id = ".$planetID." FOR UPDATE";
+		    		WHERE id = ".intval($planetID)." FOR UPDATE";
 		    $row = WCF::getDB()->getFirstRow($sql);
 
 		    $className = $row['className'];
