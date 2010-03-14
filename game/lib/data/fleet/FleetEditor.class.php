@@ -355,7 +355,9 @@ class FleetEditor extends AbstractDecorator {
 	 * @param	array	associative array
 	 */
 	public function updateShips($ships) {
-		$changedShips = Spec::diff($this->fleet, $ships);
+		$fleet = $this->fleet;
+		
+		$changedShips = Spec::diff($fleet, $ships);
 				
 		$inserts = "";
 		$deletes = "";
@@ -364,7 +366,7 @@ class FleetEditor extends AbstractDecorator {
 			if(!empty($specID)) {
 				if($shipCount > 0) {
 					if(!empty($inserts)) {
-						$inserts .= ",";			
+						$inserts .= ",";
 					}
 					$inserts .= "(".$this->fleetID.", ".$specID.", ".$shipCount.")";
 				}
@@ -378,12 +380,13 @@ class FleetEditor extends AbstractDecorator {
 			}
 			
 			if(!$shipCount)	{
-				unset($this->fleet[$specID]);
+				unset($fleet[$specID]);
 			}
 			else {
-				$this->fleet[$specID] = $shipCount;
+				$fleet[$specID] = $shipCount;
 			}
 		}
+		$this->fleet = $fleet;
 		
 		if(!empty($inserts)) {
 			$sql = "REPLACE INTO ugml_fleet_spec
