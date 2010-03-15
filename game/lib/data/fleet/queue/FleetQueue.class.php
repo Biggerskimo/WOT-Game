@@ -191,7 +191,7 @@ class FleetQueue extends DatabaseObject {
 			$this->fleetEditor->update(array('wakeUpEventID' => $wakeUpEvent->eventID, 'wakeUpTime' => $wakeUpTime));
 		}
 		
-		if(WCF::getUser()->userID ==1)
+		//if(WCF::getUser()->userID ==1)
 		FleetOvent::create($this->fleetEditor, false, true);
 		
 		EventHandler::fireAction($this, 'didFire');

@@ -68,6 +68,17 @@ abstract class Ovent extends DatabaseObject {
 	}
 	
 	/**
+	 * Returns the pool data.
+	 *
+	 * @return	array	data
+	 */
+	public function getPoolData() {
+		$this->extractPool();
+		
+		return $this->poolData;
+	}
+	
+	/**
 	 * Returns the template which should process this ovent.
 	 * 
 	 * @return	string	template name
@@ -134,6 +145,15 @@ abstract class Ovent extends DatabaseObject {
 			WCF::getCache()->addResource('oventTypes-'.PACKAGE_ID, WCF_DIR.'cache/cache.oventTypes-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderOventTypes.class.php');
 			self::$cache = WCF::getCache()->get('oventTypes-'.PACKAGE_ID);
 		}
+	}
+	
+	/**
+	 * Returns the editor for this ovent.
+	 *
+	 * @return	OventEditor
+	 */
+	public function getEditor() {
+		return new OventEditor($this->oventID);
 	}
 }
 ?>

@@ -26,7 +26,7 @@
 		<div class="main content overview">
 			{* ovents *}
 			{if $ovents|count}
-				<table>
+				<table class="ovents">
 					<thead>
 						<tr>
 							<th>
@@ -55,7 +55,7 @@
 										new NTime(document.getElementById("absoluteTime{@$c}").childNodes[0], new Date({$ovent->time - TIME_NOW} * 1000), 0, -2);
 									</script>
 								</td>
-								<td>
+								<td class="{$ovent->getTemplateName()}">
 									{include file=$ovent->getTemplateName()}
 								</td>
 								<td>

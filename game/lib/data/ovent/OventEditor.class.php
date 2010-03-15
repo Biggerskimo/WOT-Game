@@ -25,7 +25,18 @@ require_once(LW_DIR.'lib/util/SerializeUtil.class.php');
  * @author		Biggerskimo
  * @copyright	2009 Lost Worlds
  */
-class OventEditor {
+class OventEditor extends AbstractDecorator {
+	protected $oventID = 0;
+		
+	/**
+	 * Creates a new OventEditor object.
+	 * 
+	 * @param	int		ovent id
+	 */
+	public function __construct($oventID) {
+		$this->oventID = $oventID;
+	}
+	
 	/**
 	 * Creates a new overview event.
 	 * 
@@ -70,6 +81,22 @@ class OventEditor {
 		WCF::getDB()->sendQuery($sql);
 		
 		return WCF::getDB()->getInsertID();
+	}
+	
+	/**
+	 * Deletes this ovent.
+	 */
+	public function delete() {
+		$sql = "DELETE FROM ugml_ovent
+				WHERE oventID = ".$this->oventID;
+		WCF::getDB()->sendQuery($sql);
+	}
+	
+	/**
+	 * @see AbstractDecorator::getObject()
+	 */
+	protected function getObject() {
+		return Fleet::getInstance($this->fleetID);
 	}
 }
 ?>
