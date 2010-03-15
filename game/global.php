@@ -30,4 +30,6 @@ require_once(RELATIVE_WCF_DIR.'global.php');
 // starting wot core
 require_once(LW_DIR.'lib/system/LWCore.class.php');
 new LWCore();
+
+WOTUtil::initDone();
 ?>
