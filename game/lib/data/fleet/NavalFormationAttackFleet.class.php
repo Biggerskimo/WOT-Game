@@ -1272,7 +1272,7 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		$existingDebris = $system->getPlanet($this->planet, 2);
 		
 		if($existingDebris === null) {
-			PlanetEditor::create($this->galaxy, $this->system, $this->planet, 'debris', self::DEBRIS_OWNER, $this->debris['metal'], $this->debris['crystal'], 0, self::DEBRIS_PLANET_TYPE_ID, $this->impactTime, 0, -100);
+			PlanetEditor::create($this->galaxy, $this->system, $this->planet, '', self::DEBRIS_OWNER, $this->debris['metal'], $this->debris['crystal'], 0, self::DEBRIS_PLANET_TYPE_ID, $this->impactTime, 0, -100);
 		}
 		else {
 			$existingDebris->getEditor()->changeResources($this->debris['metal'], $this->debris['crystal']);

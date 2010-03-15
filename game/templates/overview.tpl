@@ -87,12 +87,12 @@
 						{foreach from=$planets key='planetID' item='planet'}
 							{if $planetID != $this->planet->planetID && $planet->planetKind == 1 && $planetID != $correspondID}
 								<div class="colony{if $planet->hostileActivity} attackedPlanet{/if}">
-									<span class="planetName">{include file='planetLink' plPlanet=$planet}</span>
+									<span class="planetName">{include file='planetLink' plPlanet=$planet noPrefix=1}</span>
 									<a href="index.php?page=Overview&amp;cp={@$planetID}">
 										<img id="colony{@$planetID}" src="{$dpath}planeten/small/s_{$planet->image}.jpg" alt="" />
 									</a>
-									{include file='overviewPlanetTooltip' planet=$planet id='colony'|concat:$planetID}							
-								</div>							
+									{include file='overviewPlanetTooltip' planet=$planet id='colony'|concat:$planetID}
+								</div>
 							{/if}
 						{/foreach}
 					</div>
@@ -101,7 +101,7 @@
 						{if $this->planet->planetTypeID == 1 && $this->planet->getMoon() !== null}
 							<!-- moon -->
 							<div class="correspond{if $this->planet->getMoon()->hostileActivity} attackedPlanet{/if}">
-								<span class="planetName">{include file='planetLink' plPlanet=$this->planet->getMoon()}</span>
+								<span class="planetName">{include file='planetLink' plPlanet=$this->planet->getMoon() noPrefix=1}</span>
 								<a href="index.php?page=Overview&amp;cp={@$this->planet->getMoon()->planetID}">
 									<img id="correspondImg" src="{$dpath}planeten/small/s_{$this->planet->getMoon()->image}.jpg" alt="" />
 								</a>
@@ -112,7 +112,7 @@
 						{if $this->planet->planetTypeID == 3 && $this->planet->getPlanet() !== null}
 							<!-- planet -->
 							<div class="correspond{if $this->planet->getPlanet()->hostileActivity} attackedPlanet{/if}">
-								<span class="planetName">{include file='planetLink' plPlanet=$this->planet->getPlanet()}</span>
+								<span class="planetName">{include file='planetLink' plPlanet=$this->planet->getPlanet() noPrefix=1}</span>
 								<a href="index.php?page=Overview&amp;cp={@$this->planet->getPlanet()->planetID}">
 									<img id="correspondImg" src="{$dpath}planeten/small/s_{$this->planet->getPlanet()->image}.jpg" alt="" />
 								</a>

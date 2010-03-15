@@ -149,7 +149,7 @@ class FleetOvent extends Ovent {
 		$data = array('ownerID' => $fleet->ownerID, 'ofiaraID' => $fleet->ofiaraID, 'startPlanetID' => $fleet->startPlanetID,
 			'targetPlanetID' => $fleet->targetPlanetID, 'resources' => array('metal' => $fleet->metal, 'crystal' => $fleet->crystal, 'deuterium' => $fleet->deuterium),
 			'startCoords' => array($fleet->getStartPlanet()->galaxy, $fleet->getStartPlanet()->system, $fleet->getStartPlanet()->planet, $fleet->getStartPlanet()->planetKind),
-			'targetCoords' => array($fleet->getTargetPlanet()->galaxy, $fleet->getTargetPlanet()->system, $fleet->getTargetPlanet()->planet, $fleet->getTargetPlanet()->planetKind),
+			'targetCoords' => array($fleet->galaxy, $fleet->system, $fleet->planet, $fleet->getTargetPlanet()->planetKind),
 			'spec' => $fleet->fleet, 'cssClass' => $fleet->getClassName(true), 'missionID' => $fleet->missionID,
 			'startPlanetName' => $fleet->getStartPlanet()->name, 'targetPlanetName' => $fleet->getTargetPlanet()->name, 'fleetID' => $fleet->fleetID
 		);
