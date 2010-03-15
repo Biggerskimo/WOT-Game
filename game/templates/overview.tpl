@@ -24,6 +24,17 @@
 		{/capture}
 		{include file="topnav"}
 		<div class="main content overview">
+			{* messages *}
+			{if $this->user->new_message}
+			<p class="newMessage lwcontainer-1">
+				{if $this->user->new_message == 1}
+					<a href="../messages.php">{lang}wot.overview.newMessage{/lang}</a>
+				{else}
+					<a href="../messages.php">{lang}wot.overview.newMessages{/lang}</a>
+				{/if}
+			</p>
+			{/if}
+			
 			{* ovents *}
 			{if $ovents|count}
 				<table class="ovents">

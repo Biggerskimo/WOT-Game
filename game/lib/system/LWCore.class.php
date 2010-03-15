@@ -293,8 +293,6 @@ class LWCore extends WCF {
 		$factory = new LWSessionFactory();
 		self::$sessionObj = $factory->get();
 		self::$userObj = self::getSession()->getUser();
-		//echo get_class(self::$sessionObj);
-		//echo get_class(self::$userObj);
 		self::$userObj->setUserVar();
 	}
 
