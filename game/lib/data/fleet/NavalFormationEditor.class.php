@@ -143,11 +143,7 @@ class NavalFormationEditor extends AbstractDecorator {
 			$fleet->getEditor()->changeTime($addition);
 		}
 		
-		$sql = "UPDATE ugml_fleet
-				SET missionID = 11,
-					formationID = ".$this->formationID."
-				WHERE fleetID = ".$fleetID;
-		WCF::getDB()->sendQuery($sql);
+		$fleet->getEditor()->update(array('missionID' => 11, 'formationID' => $this->formationID));
 	}
 	
 	/**
