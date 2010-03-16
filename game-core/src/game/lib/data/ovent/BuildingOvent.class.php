@@ -49,7 +49,6 @@ class BuildingOvent extends Ovent {
 			}
 			
 			// create new
-			Spec::storeData($planet);
 			$data = self::getData($planet);
 			$fields = array('userID' => $planet->id_owner, 'planetID' => $planetID);
 			OventEditor::create(self::OVENT_TYPE_ID, $planet->b_building, null, $planetID, $fields, 0, $data);
@@ -68,7 +67,9 @@ class BuildingOvent extends Ovent {
 	 * @param	Planet	planet
 	 */
 	protected static function getData(Planet $planet) {
-		$data = array('specID' => $planet->b_building_id, 'level' => Spec::getSpecObj($planet->b_building_id)->level,
+		Spec::storeData($planet);
+		
+		$data = array('specID' => $planet->b_building_id, 'level' => Spec::getSpecObj($planet->b_building_id)->level + 1,
 				'planetID' => $planet->planetID, 'planetName' => $planet->name,
 				'coords' => array($planet->galaxy, $planet->system, $planet->planet, $planet->planetKind));
 		
