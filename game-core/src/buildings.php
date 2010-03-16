@@ -49,6 +49,7 @@ includeLang('buildings');
 
 $features = unserialize($user['diliziumFeatures']);
 
+require_once(LW_DIR.'lib/data/ovent/BuildingOvent.class.php');
 
 //Funciones
 function echo_buildinglist(){
@@ -558,7 +559,7 @@ case 'research':{//---------------------------------------------------------
 						$buildinglist .= "<font color=#FF0000>Forschen</font>";
 					}else{
 						$nplus = $user[$resource[$i]] + 1;
-						$buildinglist .= "<font color=#FF0000>Forschen<br> auf Stufe $nplus nicht möglich </font>";
+						$buildinglist .= "<font color=#FF0000>Forschen<br> auf Stufe $nplus nicht mï¿½glich </font>";
 					}
 				}
 				else{
@@ -808,7 +809,7 @@ case 'defense':{//----------------------------------------------------------
 					    	{
 						 $tabindex++;
 					    	 $is_buyeable = false;
-						 $buildinglist .= "Nur eine Schildkuppel möglich";
+						 $buildinglist .= "Nur eine Schildkuppel mï¿½glich";
 					    	}
 						else{
 						$tabindex++;
@@ -911,6 +912,11 @@ if(in_array($_GET["bau"],$reslist['build']) && $user['urlaubs_modus'] == 0){
 		doquery("UPDATE {{table}} SET
 			points_builds='{$user['points_builds']}'
 			WHERE `id`=".$user["id"].";","users");
+			
+		LWCore::getPlanet()->b_building = $planetrow["b_building"];
+		LWCore::getPlanet()->b_building_id = $planetrow["b_building_id"];
+		
+		BuildingOvent::check(LWCore::getPlanet()->planetID); 
 
 	} else if($planetrow["b_building_id"] && $features['buildList'] > time() && is_tech_available($user,$planetrow,$_GET["bau"])/* && is_buyable($user,$planetrow,@$_GET["bau"])*/) {
 		$moreBuildings = unserialize($planetrow['moreBuildings']);
@@ -976,6 +982,11 @@ elseif(in_array($_GET["unbau"],$reslist['build'])&&$planetrow['b_building_id'] =
 		doquery("UPDATE {{table}} SET
 		points_builds='{$user['points_builds']}'
 		WHERE `id`=".$user["id"].";","users");
+	
+	LWCore::getPlanet()->b_building = $planetrow["b_building"];
+	LWCore::getPlanet()->b_building_id = $planetrow["b_building_id"];
+	
+	BuildingOvent::check(LWCore::getPlanet()->planetID); 
 
 	$moreBuildings = unserialize($planetrow['moreBuildings']);
 	if(@isset($moreBuildings[0])) {
@@ -1035,6 +1046,11 @@ elseif(in_array($_GET["unbau"],$reslist['build'])&&$planetrow['b_building_id'] =
 					WHERE id = '".$planetrow['id']."'";
 			WCF::getDB()->sendQuery($sql);
 			$building = true;
+			
+			LWCore::getPlanet()->b_building = $planetrow["b_building"];
+			LWCore::getPlanet()->b_building_id = $planetrow["b_building_id"];
+			
+			BuildingOvent::check(LWCore::getPlanet()->planetID); 
 		} else {
 			$planetrow['moreBuildings'] = serialize(array());
 			$sql = "UPDATE ugml".LW_N."_planets SET
@@ -1119,6 +1135,12 @@ if($planetrow["b_building_id"] != 0){
 			`{$resource[$planetrow["b_building_id"]]}`='{$planetrow[$resource[$planetrow["b_building_id"]]]}',
 			b_building_id=0
 			WHERE id='{$planetrow["id"]}'",'planets');
+			
+			
+		LWCore::getPlanet()->b_building = $planetrow["b_building"];
+		LWCore::getPlanet()->b_building_id = $planetrow["b_building_id"];
+	
+		BuildingOvent::check(LWCore::getPlanet()->planetID); 
 
 		$moreBuildings = unserialize($planetrow['moreBuildings']);
 		while(@isset($moreBuildings[0])) {
@@ -1185,6 +1207,12 @@ if($planetrow["b_building_id"] != 0){
 							WHERE id='{$planetrow["id"]}'",'planets');
 					}*/
 					$building = true;
+					
+					
+					LWCore::getPlanet()->b_building = $planetrow["b_building"];
+					LWCore::getPlanet()->b_building_id = $planetrow["b_building_id"];
+	
+					BuildingOvent::check(LWCore::getPlanet()->planetID); 
 				}
 			} else {
 				$planetrow['moreBuildings'] = serialize(array());

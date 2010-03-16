@@ -24,7 +24,7 @@ require_once(LW_DIR.'lib/data/ovent/OventEditor.class.php');
  * @author		Biggerskimo
  * @copyright	2010 Lost Worlds <http://lost-worlds.net>
  */
-class FleetOvent extends Ovent {
+class BuildingOvent extends Ovent {
 	// TODO
 	const OVENT_TYPE_ID = 2;
 	
@@ -47,10 +47,10 @@ class FleetOvent extends Ovent {
 				// delete old ovent
 				$ovents[0]->getEditor()->delete();
 			}
-		
+			
 			// create new
 			Spec::storeData($planet);
-			$data = array('specID' => $planet->b_building_id, 'level' => Spec::getSpecObj($planet->b_building_id)->level);
+			$data = self::getData($planet);
 			$fields = array('userID' => $planet->id_owner, 'planetID' => $planetID);
 			OventEditor::create(self::OVENT_TYPE_ID, $planet->b_building, null, $planetID, $fields, 0, $data);
 		}
@@ -62,6 +62,18 @@ class FleetOvent extends Ovent {
 		}
 	}
 	
+	/**
+	 * Builds the data array.
+	 *
+	 * @param	Planet	planet
+	 */
+	protected static function getData(Planet $planet) {
+		$data = array('specID' => $planet->b_building_id, 'level' => Spec::getSpecObj($planet->b_building_id)->level,
+				'planetID' => $planet->planetID, 'planetName' => $planet->name,
+				'coords' => array($planet->galaxy, $planet->system, $planet->planet, $planet->planetKind));
+		
+		return $data;
+	}
 	
 	/**
 	 * @see Ovent::getTemplateName()

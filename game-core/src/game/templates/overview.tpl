@@ -54,25 +54,27 @@
 					<tbody>
 						{counter assign='c' print=false}
 						{foreach from=$ovents item='ovent'}
-							{counter print=false}
-							<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
-								<td>
-									<div>
-										<div id="relativeTime{@$c}" class="relativeTime">&nbsp;</div>
-										<div id="absoluteTime{@$c}" class="absoluteTime">&nbsp;</div>
-									</div>
-									<script type="text/javascript">
-										new NTime(document.getElementById("relativeTime{@$c}").childNodes[0], new Date({$ovent->time - TIME_NOW} * 1000), -1, -1);
-										new NTime(document.getElementById("absoluteTime{@$c}").childNodes[0], new Date({$ovent->time - TIME_NOW} * 1000), 0, -2);
-									</script>
-								</td>
-								<td class="{$ovent->getTemplateName()}">
-									{include file=$ovent->getTemplateName()}
-								</td>
-								<td>
-									<input type="checkbox"{if $ovent->checked} checked="checked"{/if} />
-								</td>
-							</tr>
+							{if $ovent->time >= TIME_NOW}
+								{counter print=false}
+								<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+									<td>
+										<div>
+											<div id="relativeTime{@$c}" class="relativeTime">&nbsp;</div>
+											<div id="absoluteTime{@$c}" class="absoluteTime">&nbsp;</div>
+										</div>
+										<script type="text/javascript">
+											new NTime(document.getElementById("relativeTime{@$c}").childNodes[0], new Date({$ovent->time - TIME_NOW} * 1000), -1, -1);
+											new NTime(document.getElementById("absoluteTime{@$c}").childNodes[0], new Date({$ovent->time - TIME_NOW} * 1000), 0, -2);
+										</script>
+									</td>
+									<td class="{$ovent->getTemplateName()}">
+										{include file=$ovent->getTemplateName()}
+									</td>
+									<td>
+										<input type="checkbox"{if $ovent->checked} checked="checked"{/if} />
+									</td>
+								</tr>
+							{/if}
 						{/foreach}
 					</tbody>
 				</table>

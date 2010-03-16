@@ -75,7 +75,7 @@ class OventEditor extends AbstractDecorator {
 				 relationalID, checked, data,
 				 ".implode(',', array_keys($additionalFields)).")
 				VALUES
-				(".$oventTypeID.", ".$time.", ".$eventID.",
+				(".$oventTypeID.", ".$time.", ".($eventID === null ? "null" : $eventID).",
 				 ".$relationalID.", ".intval($checked).", '".SerializeUtil::serialize($data)."',
 				 ".implode(',', $additionalFields).")";
 		WCF::getDB()->sendQuery($sql);
