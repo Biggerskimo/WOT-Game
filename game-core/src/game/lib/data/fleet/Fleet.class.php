@@ -28,10 +28,9 @@ require_once(LW_DIR.'lib/system/event/WOTEventSingleton.class.php');
  * Holds all fleet-specific functions.
  * 
  * @author		Biggerskimo
- * @copyright	2007 - 2008 Lost Worlds <http://lost-worlds.net>
- * @package		game.wot.fleet
+ * @copyright	2007 - 2009 Lost Worlds <http://lost-worlds.net>
  */
-class Fleet extends DatabaseObject implements /*FleetOventFleet, */LoggableFleet, WOTEventSingleton {
+class Fleet extends DatabaseObject implements LoggableFleet, WOTEventSingleton {
 	public static $fleets = array();
 	const STANDARD_CLASS = 'Fleet';
 

@@ -17,7 +17,6 @@
 */
 
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
-require_once(LW_DIR.'lib/data/ovent/FleetOventFleet.class.php');
 require_once(LW_DIR.'lib/data/ovent/FleetOverview.class.php');
 require_once(LW_DIR.'lib/data/ovent/OventEditor.class.php');
 
