@@ -89,7 +89,7 @@ class FleetOvent extends Ovent {
 				$impactOwnerOvent->getEditor()->delete();
 				$impactOfiaraOvent->getEditor()->delete();
 				
-				$ovents = Ovent::getByConditions(array('relationalID' => $leaderFleetID));
+				$ovents = Ovent::getByConditions(array('relationalID' => $leaderFleetID, 'oventTypeID' => self::OVENT_TYPE_ID));
 				foreach($ovents as $ovent) {
 					$oventData = $ovent->getPoolData();
 					if($oventData[0]['passage'] == 'flight') {
