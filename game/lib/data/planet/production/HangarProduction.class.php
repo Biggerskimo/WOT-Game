@@ -22,7 +22,7 @@ require_once(LW_DIR.'lib/system/spec/ProductionSpec.class.php');
 /**
  * This class is able the calculate and cache the ship-production of the hanger.
  * 
- * @copyright	2007-2009 Lost Worlds
+ * @copyright	2007-2010 Lost Worlds
  * @author		Biggerskimo
  */
 class HangarProduction implements PlanetProduction {	
@@ -62,6 +62,8 @@ class HangarProduction implements PlanetProduction {
 	 * @return	int	seconds
 	 */
 	public function getOverallTime() {
+		global $game_config;
+		
 		$time = 0;
 		
 		$jobs = explode(';', substr($this->getPlanet()->b_hangar_id, 0, -1));

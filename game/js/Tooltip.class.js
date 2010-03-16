@@ -38,14 +38,14 @@ function Tooltip(source, destination, fixed) {
 		this.destination.tooltipInstance = this;
 		this.destination.onmouseover = function(e) { this.tooltipInstance.show(e); };
 		this.destination.onmouseout = function() { this.tooltipInstance.hide(); };
-		this.destination.onkeydown = function(e) { this.tooltipInstance.onkeydown(e); };
+		window.onkeydown = function(e) { for(var no in tooltips) tooltips[no].onkeydown(e); };
 		
 		this.source.parentNode.removeChild(this.source);
 		document.getElementsByTagName("body")[0].appendChild(this.source);
 		
 		this.source.tooltipInstance = this;
 		this.source.onmouseover = function() { this.tooltipInstance.show(); };
-		this.source.onmouseout = function() { this.tooltipInstance.hide(); };	
+		this.source.onmouseout = function() { this.tooltipInstance.hide(); };
 		
 		if(!this.fixed) {
 			this.destination.onmousemove = function(e) { this.tooltipInstance.reposition(e); };	
@@ -66,7 +66,8 @@ function Tooltip(source, destination, fixed) {
 	 */
 	this.show = function(e) {
 		this.overCount++;
-		this.source.style.display = "run-in";
+		// run-in doesnt work with most browsers ...
+		this.source.style.display = "block";
 		
 		if(typeof e == 'object') {
 			this.reposition(e);
@@ -104,8 +105,8 @@ function Tooltip(source, destination, fixed) {
 	 */
 	this.reposition = function(e) {
 		if(!this.tFixed) {
-			this.source.style.left = e.clientX;
-			this.source.style.top = e.clientY;
+			this.source.style.left = e.clientX + "px";
+			this.source.style.top = e.clientY + "px";
 		}
 	}
 	
@@ -120,7 +121,7 @@ function Tooltip(source, destination, fixed) {
 	 * Fixes when the Ctrl-Button is pressed.
 	 */
 	this.onkeydown = function(e) {
-		if(e.keyCode == 17) {
+		if(this.overCount && e.keyCode == 17) {
 			this.fix();
 		}
 	}

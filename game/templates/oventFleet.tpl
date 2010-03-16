@@ -37,11 +37,12 @@
 		
 		{* resources tooltip*}
 		{assign var='showResources' value=0}
-		{if $this->user->userID == $ovent.userID}
+		{assign var='resources' value=$ovent.resources}
+		{if $this->user->userID == $ovents->userID}
 			<ul class="tooltip resourcesList" id="resourcesList{@$c}">
-				{if $ovent.resources.metal > 0}{assign var='showResources' value=1}<li>{lang}wot.global.metal{/lang}: {#$ovent.resources.metal}</li>{/if}
-				{if $ovent.resources.crystal > 0}{assign var='showResources' value=1}<li>{lang}wot.global.crystal{/lang}: {#$ovent.resources.crystal}</li>{/if}
-				{if $ovent.resources.deuterium > 0}{assign var='showResources' value=1}<li>{lang}wot.global.deuterium{/lang}: {#$ovent.resources.deuterium}</li>{/if}
+				{if $resources.metal > 0}{assign var='showResources' value=1}<li>{lang}wot.global.metal{/lang}: {#$resources.metal}</li>{/if}
+				{if $resources.crystal > 0}{assign var='showResources' value=1}<li>{lang}wot.global.crystal{/lang}: {#$resources.crystal}</li>{/if}
+				{if $resources.deuterium > 0}{assign var='showResources' value=1}<li>{lang}wot.global.deuterium{/lang}: {#$resources.deuterium}</li>{/if}
 			</ul>
 		{/if}
 		

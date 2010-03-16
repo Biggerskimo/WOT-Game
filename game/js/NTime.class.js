@@ -16,13 +16,13 @@
 */
 /**
  * @author		Biggerskimo
- * @copyright	2009 Lost Worlds
+ * @copyright	2009 - 2010 Lost Worlds
  */
 function NTime(targetNode, date, tick, format) {
 	this.node = targetNode;
 	this.date = (typeof date == "undefined") ? new Date() : date;
 	this.tick = (typeof tick == "undefined") ? 1 : tick;
-	this.format = (typeof format == "undefined") ? "%c" : format;
+	this.format = (typeof format == "undefined") ? "%T" : format;
 	this.interval = null;
 	
 	this.init = function() {
@@ -38,7 +38,7 @@ function NTime(targetNode, date, tick, format) {
 	this.doTick = function() {
 		this.date.setSeconds(this.date.getSeconds() + this.tick);
 		
-		if(this.date.getSeconds() <= 0) {
+		if(this.date.getTime() <= 0) {
 			this.date.setSeconds(0);
 			window.clearInterval(this.interval);
 			targetNode.data = "---";
