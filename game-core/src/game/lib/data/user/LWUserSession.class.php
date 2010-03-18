@@ -101,7 +101,12 @@ class LWUserSession extends UserSession {
 	 * @return	value
 	 */
 	public function getSetting($identifier) {
-		return unserialize($this->settings[sha1($identifier)]);
+		$hash = sha1($identifier);
+		
+		if(isset($this->settings[$hash]) {		
+			return unserialize($this->settings[$hash]);
+		}
+		return null;
 	}
 	
 	/**
