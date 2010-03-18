@@ -33,6 +33,8 @@ class LWUserSession extends UserSession {
 	protected $firstRessources = array();
 	public $actualProduction = array();
 	
+	protected $settings = array();
+	
 	const STAT_TYPE_ID = 1;
 
 	/**
@@ -66,6 +68,12 @@ class LWUserSession extends UserSession {
 								AS wot_buddy2
 								ON wot_buddy2.owner = user.userID";
 		
+		// settings
+		$this->sqlSelects .= " GROUP_CONCAT(CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR ';') AS settingsStr,";
+		$this->sqlJoins .= " LEFT JOIN ugml_user_setting
+								AS wot_setting
+								ON user.userID = wot_setting.userID";
+		
 		// other selects
 		$this->sqlSelects .= " lw_user.id AS lwUserID, lw_user.current_planet AS actualPlanet, lw_user.banned AS wotBanned, ";
 		
@@ -74,8 +82,49 @@ class LWUserSession extends UserSession {
 		$this->points = $this->wotPoints;
 		$this->rank = $this->wotRank;
 		
+		// process settings
+		$parts = explode(';', $this->settingsStr);
+		foreach($parts as $part) {
+			if(!empty($part)) {
+				list($hash, $value) = explode(',', $part);
+				
+				$this->settings[$hash] = $value;
+			}
+		}
 		//$this->checkPlanetChange();
 	}
+	
+	/**
+	 * Returns the setting by a given identifier.
+	 *
+	 * @param	string	identifier
+	 * @return	value
+	 */
+	public function getSetting($identifier) {
+		return unserialize($this->settings[sha1($identifier)]);
+	}
+	
+	/**
+	 * Sets a setting with an identifier and value.
+	 *
+	 * @param	string	identifier
+	 * @param	mixed	value
+	 */
+	public function setSetting($identifier, $value) {
+		$hash = sha1($identifier);
+		$svalue = serialize($value);
+		
+		$sql = "REPLACE INTO ugml_user_setting
+				(userID, hash, value)
+				VALUES
+				(".$this->userID.", '".$hash."', '".escapeString($svalue)."')";
+		WCF::getDB()->sendQuery($sql);
+		
+		$this->settings[$hash] = $svalue;
+		
+		WCF::getSession()->setUpdate(true);
+	}
+	 
 
 	/**
 	 * Initialises the user session.
