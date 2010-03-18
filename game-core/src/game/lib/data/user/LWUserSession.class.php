@@ -85,11 +85,12 @@ class LWUserSession extends UserSession {
 		// process settings
 		$parts = explode(';', $this->settingsStr);
 		foreach($parts as $part) {
-			list($hash, $value) = explode(',', $part);
-			
-			$this->settings[$hash] = $value;
+			if(!empty($part)) {
+				list($hash, $value) = explode(',', $part);
+				
+				$this->settings[$hash] = $value;
+			}
 		}
-		
 		//$this->checkPlanetChange();
 	}
 	
