@@ -69,7 +69,7 @@ class LWUserSession extends UserSession {
 								ON wot_buddy2.owner = user.userID";
 		
 		// settings
-		$this->sqlSelects .= " GROUP_CONCAT(CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR ';') AS settingsStr,";
+		$this->sqlSelects .= " GROUP_CONCAT(CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR '|') AS settingsStr,";
 		$this->sqlJoins .= " LEFT JOIN ugml_user_setting
 								AS wot_setting
 								ON user.userID = wot_setting.userID";
@@ -83,7 +83,7 @@ class LWUserSession extends UserSession {
 		$this->rank = $this->wotRank;
 		
 		// process settings
-		$parts = explode(';', $this->settingsStr);
+		$parts = explode('|', $this->settingsStr);
 		foreach($parts as $part) {
 			if(!empty($part)) {
 				list($hash, $value) = explode(',', $part);
@@ -103,7 +103,7 @@ class LWUserSession extends UserSession {
 	public function getSetting($identifier) {
 		$hash = sha1($identifier);
 		
-		if(isset($this->settings[$hash]) {		
+		if(isset($this->settings[$hash])) {		
 			return unserialize($this->settings[$hash]);
 		}
 		return null;
