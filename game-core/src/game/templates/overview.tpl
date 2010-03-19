@@ -3,7 +3,7 @@
 		<title>{lang}wot.overview.page.title{/lang}</title>		
 		<script type="text/javascript" src="js/Date.format.js"></script>
 		<script type="text/javascript" src="js/NTime.class.js"></script>
-		<script type="text/javascript" src="js/Time.class.js"></script>
+		<script type="text/javascript" src="js/Overview.class.js"></script>
 		<script type="text/javascript" src="js/Tooltip.class.js"></script>
 		<script type="text/javascript">
 			language = { };
@@ -24,6 +24,43 @@
 		{/capture}
 		{include file="topnav"}
 		<div class="main content overview">
+			{* news *}
+			{assign var='viewNews' value=0}
+			{capture assign='newsStr'}
+				{foreach from=$news key='newsID' item='newsItem'}
+					{if !$newsItem->isViewed()}
+						<div class="newsItem" id="news{@$newsID}">
+							<p class="newsItemTitle">
+								{$newsItem->title}
+							</p>
+							<p class="newsItemTime">
+								{@$newsItem->time|time}
+							</p>
+							<p class="newsItemClose">
+								<img src="{$dpath}pic/abort.gif" alt="{lang}wot.overview.news.close{/lang}" onclick="overview.closeNews({@$newsID})" />
+							</p>
+							<p class="newsItemText">
+								{$newsItem->text} <a href="{@$newsItem->link}">{lang}wot.overview.news.more{/lang}</a>
+							</p>
+						</div>
+						{assign var='viewNews' value=$viewNews+1}
+					{/if}
+				{/foreach}
+			{/capture}
+			
+			{if $viewNews}
+				<fieldset class="news" id="news">
+					<legend>
+						{lang}wot.overview.news{/lang}
+					</legend>
+					
+				{@$newsStr}
+				</fieldset>
+				<script type="text/javascript">
+					overview.setNewsCount({@$viewNews});
+				</script>
+			{/if}
+			
 			{* messages *}
 			{if $this->user->new_message}
 			<p class="newMessage lwcontainer-1">
