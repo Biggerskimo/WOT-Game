@@ -63,6 +63,9 @@ class NewsEditor extends AbstractDecorator {
 		
 		$newsID = WCF::getDB()->getInsertID();
 		
+		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
+		WCF::getCache()->clearResource('news-'.PACKAGE_ID);
+		
 		return new News($newsID);
 	}
 	
@@ -94,7 +97,10 @@ class NewsEditor extends AbstractDecorator {
 		// news itself
 		$sql = "DELETE FROM ugml_news
 				WHERE newsID = ".$this->newsID;
-		WCF::getDB()->sendQuery($sql);		
+		WCF::getDB()->sendQuery($sql);
+		
+		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
+		WCF::getCache()->clearResource('news-'.PACKAGE_ID);
 		
 		WCF::getDB()->sendQuery("COMMIT");
 	}
