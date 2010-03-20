@@ -93,7 +93,6 @@ class PlanetActionsForm extends AbstractForm {
 			LWCore::getPlanet()->getEditor()->rename($this->newName);
 		}
 		else if($this->action == 'delete') {
-			die('delete');
 			if(LWCore::getPlanet()->planetKind == 1 && LWCore::getPlanet()->getMoon() != null) {
 				LWCore::getPlanet()->getMoon()->getEditor()->delete();
 			}

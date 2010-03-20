@@ -37,13 +37,18 @@
 								{@$newsItem->time|time}
 							</p>
 							<p class="newsItemClose">
-								<img src="{$dpath}pic/abort.gif" alt="{lang}wot.overview.news.close{/lang}" onclick="overview.closeNews({@$newsID})" />
+								<a href="javascript:overview.closeNews({@$newsID})">
+									<img src="{$dpath}pic/abort.gif" alt="{lang}wot.overview.news.close{/lang}" />
+								</a>
 							</p>
 							<p class="newsItemText">
-								{$newsItem->text} <a href="{@$newsItem->link}">{lang}wot.overview.news.more{/lang}</a>
+								{$newsItem->text} <a href="{@$newsItem->link}" id="newsLink{@$newsID}">{lang}wot.overview.news.more{/lang}</a>
 							</p>
 						</div>
 						{assign var='viewNews' value=$viewNews+1}
+						<script type="text/javascript">
+							overview.registerNews({@$newsID});
+						</script>
 					{/if}
 				{/foreach}
 			{/capture}
@@ -56,9 +61,6 @@
 					
 				{@$newsStr}
 				</fieldset>
-				<script type="text/javascript">
-					overview.setNewsCount({@$viewNews});
-				</script>
 			{/if}
 			
 			{* messages *}

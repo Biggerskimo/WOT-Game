@@ -19,13 +19,13 @@
  * @copyright	2010 Lost Worlds <http://lost-worlds.net>
  */
 function Overview() {
-	this.newsCount;
+	this.newsCount = 0;
 	
 	this.closeNews = function(newsID) {
 		var ajaxRequest = new AjaxRequest();
 		
 		ajaxRequest.openGet('index.php?action=CloseNews&newsID='+newsID, function() { });
-		
+				
 		this.newsCount--;
 		
 		if(this.newsCount == 0) {
@@ -38,8 +38,10 @@ function Overview() {
 		}
 	}
 	
-	this.setNewsCount = function(newsCount) {
-		this.newsCount = newsCount;
+	this.registerNews = function(newsID) {
+		this.newsCount++;
+		
+		document.getElementById('newsLink' + newsID).setAttribute('target', '_blank');
 	}
 }
 var overview = new Overview();
