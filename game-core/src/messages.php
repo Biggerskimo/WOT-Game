@@ -138,6 +138,8 @@ if($_GET["mode"] == 'write'){ //Formulario para mandar mensajes personales (PM)
 
 //Marcamos los mensajes como leidos
 doquery("UPDATE {{table}} SET new_message=0 WHERE id={$user['id']}",'users');
+WCF::getUser()->new_message = 1;
+WCF::getSession()->setUpdate(true);
 /*
   Aqui se borran los mensajes. por medio de deletemessage y deletemarked
 */
