@@ -86,7 +86,7 @@
 								{lang}wot.ovent.ovent{/lang}
 							</th>
 							<th>
-								{lang}wot.ovent.extended{/lang}
+								{lang}wot.ovent.type{/lang}
 							</th>
 						</tr>
 					</thead>
@@ -110,7 +110,7 @@
 										{include file=$ovent->getTemplateName()}
 									</td>
 									<td>
-										<input type="checkbox"{if $ovent->checked} checked="checked"{/if} />
+										{lang}wot.ovent.type.{@$ovent->getTemplateName()}{/lang}
 									</td>
 								</tr>
 							{/if}
