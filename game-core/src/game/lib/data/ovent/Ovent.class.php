@@ -131,7 +131,7 @@ abstract class Ovent extends DatabaseObject {
 			
 			require_once(LW_DIR.$classPath);
 			
-			$rows[] = new $className(null, $row);
+			$rows[$row['oventID']] = new $className(null, $row);
 		}
 		
 		return $rows;
@@ -153,7 +153,7 @@ abstract class Ovent extends DatabaseObject {
 	 * @return	OventEditor
 	 */
 	public function getEditor() {
-		return new OventEditor($this->oventID);
+		return new OventEditor($this);
 	}
 }
 ?>

@@ -20,6 +20,7 @@
  */
 function Overview() {
 	this.newsCount = 0;
+	this.oventCount = 0;
 	
 	this.closeNews = function(newsID) {
 		var ajaxRequest = new AjaxRequest();
@@ -42,6 +43,29 @@ function Overview() {
 		this.newsCount++;
 		
 		document.getElementById('newsLink' + newsID).setAttribute('target', '_blank');
+	}
+	
+	this.registerOvent = function(oventID) {
+		this.oventCount++;
+	}
+	
+	this.hideOvent = function(oventID) {
+		if(confirm(language['hideOvent.sure'])) {
+			var ajaxRequest = new AjaxRequest();
+			
+			ajaxRequest.openGet('index.php?action=HideOvent&oventID='+oventID, function() { });
+			
+			this.oventCount--;
+			
+			if(this.oventCount == 0) {
+				// hide complete ovent box
+				document.getElementById('ovents').style.display = 'none';
+			}
+			else {
+				// hide only this ovent
+				document.getElementById('ovent' + oventID).style.display = 'none';
+			}
+		}
 	}
 }
 var overview = new Overview();

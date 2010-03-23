@@ -11,11 +11,12 @@
 			language["days"] = "{lang}wot.global.date.days{/lang}";
 			language["tomorrow"] = "{lang}wot.global.date.tomorrow{/lang}";
 			language["theDayAfterTomorrow"] = "{lang}wot.global.date.theDayAfterTomorrow{/lang}";
+			language["hideOvent.sure"] = "{lang}wot.overview.ovent.hide.sure{/lang}";
 		</script>
 		{include file="headInclude"}
 	</head>
 	<body>
-		{capture assign='additionalTopnavContent'}
+		{capture append='additionalTopnavContent'}
 			<span class="serverTimeDesc">{lang}wot.global.serverTime{/lang}: <span id="serverTime">{@TIME_NOW|time:"%d.%m.%Y, %H:%M:%S"}</span></span>
 			
 			<script type="text/javascript">
@@ -92,10 +93,10 @@
 					</thead>
 					<tbody>
 						{counter assign='c' print=false}
-						{foreach from=$ovents item='ovent'}
+						{foreach from=$ovents key='oventID' item='ovent'}
 							{if $ovent->time >= TIME_NOW}
 								{counter print=false}
-								<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+								<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}" id="ovent{@$oventID}">
 									<td>
 										<div>
 											<div id="relativeTime{@$c}" class="relativeTime">&nbsp;</div>
@@ -111,6 +112,17 @@
 									</td>
 									<td>
 										{lang}wot.ovent.type.{@$ovent->getTemplateName()}{/lang}
+										
+										{if $this->user->userID == 1}
+										<div class="extra">
+											<a href="javascript:overview.hideOvent({@$oventID})">
+												<img src="{$dpath}pic/abort.gif" alt="{lang}wot.overview.ovent.hide{/lang}" />
+											</a>
+										</div>
+										<script type="text/javascript">
+											overview.registerOvent({@$oventID});
+										</script>
+										{/if}
 									</td>
 								</tr>
 							{/if}
