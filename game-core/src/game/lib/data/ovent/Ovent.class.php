@@ -61,7 +61,7 @@ abstract class Ovent extends DatabaseObject {
 	/**
 	 * Unserializes the pool data.
 	 */
-	private function extractPool() {
+	protected function extractPool() {
 		if(!count($this->poolData)) {
 			$this->poolData = SerializeUtil::unserialize($this->data['data']);
 		}

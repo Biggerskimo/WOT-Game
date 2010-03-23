@@ -1,0 +1,370 @@
+/* LOST-WOLRDS CASCADE STYLESHEET CONFIGURATION DOCUMENT 0.8 */
+/* 28.09.07 by agent */
+/* upgradeable */
+
+
+body {
+    background-color:#000000; 
+    background-image: url(../images/stars.jpg);
+    background-repeat: repeat;
+    text-align: center; 
+    font-family:Tahoma, Helvetica, sans-serif; 
+}
+
+a {
+   color:#dcdcdc; 
+   text-decoration: none;
+}
+
+a:hover {
+    color:#ffffff;
+}
+
+img {
+  border: 0px;
+} 
+
+a img:hover {
+  border: 0px;
+} 
+
+table { 
+    text-align: right;
+    color:#cccccc;
+    font-size: 10px;
+}
+
+td .eingabe {
+    width: 120px;
+    text-align:left;
+}
+
+.image {
+    padding-bottom: 10px;
+}
+
+.formfield { 
+    border:1px solid #000000;
+    background:#ffffff url(../images/input.png) repeat-x;
+    color: #000000;
+    font-size:10px;
+}
+
+#main {
+    margin:0 auto;
+    position: relative;
+    width: 813px;
+    height: 602px;
+    background-image: url(../images/main_bg.jpg);
+    background-repeat: none;
+}
+
+#agb {
+    margin:0 auto;
+    position: relative;
+    width: 813px;
+    background-image: url(../images/agb_bg.jpg);
+    background-repeat: none;
+}
+
+#navi {
+    position: absolute;
+    left: 770px;
+    top: 366px;
+    font-size: 12px;
+    font-weight: bold; 
+    color:#b1daf2; 
+    text-align: left;
+    width: 127px;
+}
+
+.contentBox {
+    position: absolute;
+    left: 290px;
+    top: 135px;
+    width: 450px;
+    height: 205px;
+    z-index:1;
+}
+
+#downmenu {
+    position: absolute;
+    top: 110px;
+    left: 270px;
+    font-size: 10px;
+    color:#666666; 
+    text-align: right;
+    width: 169px;
+}
+
+.menu {
+    padding-top:2px;
+    padding-bottom:1px;
+    padding-left:10px;
+}
+
+#title {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 12px;
+    font-weight: bold; 
+    color: #abd8fb; 
+    text-align: left;
+}
+
+#content1 {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    
+    color:#b1daf2; 
+    text-align: left;
+    width: 300px;
+}
+
+#content2 {
+    position: absolute;
+    left: 0px;
+    top: 150px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    
+    color:#b1daf2; 
+    text-align: left;
+    width: 332px;
+    height: 56px;
+    background-image: url(../images/loginform.png);
+}
+
+#text1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    color:#b1daf2; 
+    text-align: left;
+    width: 300px;
+}
+
+#text2 {
+    position: absolute;
+    left: 0px;
+    top: 140px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    color:#b1daf2; 
+    text-align: center;
+    width: 150px;
+}
+
+#text3_left {
+    position: absolute;
+    left: 0px;
+    top: 18px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    color:#b1daf2; 
+    text-align: left;
+    width: 180px;
+}
+
+#text3_right {
+    position: absolute;
+    left: 85px;
+    top: 24px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    color:#b1daf2; 
+    text-align: right;
+    width: 195px;
+}
+
+#text4_gallery {
+    position: absolute;
+    left: 0px;
+    top: 115px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 10px;
+    color:#b7b7b7; 
+    text-align: center;
+    width: 70px;
+}
+
+#text5_copyright {
+	position: absolute;
+	left: 0px;
+	top: 110px;
+	font-family:Tahoma, Helvetica, sans-serif;
+	font-size: 10px;
+	color:#848b90;
+	text-align: left;
+	width: 317px;
+	height: 172px;
+}
+
+#text6_agb {
+    position: center;
+    top: 30px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 13px;
+    color:#b1daf2; 
+    text-align: center;
+    width: 700px;
+}
+
+#content_info1 {
+    position: absolute;
+    left: 15px;
+    top: 0px;   
+    width: 280px;
+    height: 84px;
+}
+
+#content_info2 {
+    position: absolute;
+    left: 15px;
+    top: 70px;   
+    width: 280px;
+    height: 84px;
+}
+
+#content_info3 {
+    position: absolute;
+    left: 15px;
+    top: 140px;   
+    width: 280px;
+    height: 84px;
+}
+
+#content_info4 {
+    position: absolute;
+    left: 15px;
+    top: 215px;   
+    width: 280px;
+    height: 84px;
+}
+
+#content_gallery1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;   
+    width: 312px;
+    height: 130px;
+}
+
+#content_gallery2 {
+    position: absolute;
+    left: 0px;
+    top: 135px;   
+    width: 312px;
+    height: 130px;
+}
+
+#content_agb {
+    position: center;
+    top: 0px;  
+    width: 700px;
+    height: 603px;
+}
+
+.image_left {
+float:left;
+}
+
+.image_right {
+float:right;
+}
+
+#registerbutton {
+	position: absolute;
+	left: 0px;
+	top: 120px;
+	width: 268px;
+	height: 36px;
+}
+
+#combutton {
+	position: absolute;
+	left: 0px;
+	top: 80px;
+	width: 214px;
+	height: 32px;
+}
+
+#loginBox {
+    position: absolute;
+    left: 400px;
+    top: 470px;
+    width: 450px;
+    height: 125px;
+    z-index:10;
+}
+
+#login_input {
+    position: absolute;
+    left: 10px;
+    top: 23px;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size: 10px;
+    color:#b1daf2; 
+    text-align: left;
+    width: 322px;
+}
+
+#login_text1 {
+    position: absolute;
+    top: 11px;
+    left: 0px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 9px;
+    color:#929da5; 
+    text-align: left;
+    width: 440px;
+}
+
+#login_text2 {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 9px;
+    color:#666666; 
+    text-align: left;
+    width: 440px;
+}
+
+#login_text3 {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    font-family:Tahoma, Helvetica, sans-serif; 
+    font-size: 9px;
+    color:#191a1a; 
+    text-align: left;
+    width: 440px;
+}
+
+.loginButton {
+    padding-top:2px;
+    padding-left:5px;
+}
+
+#copyright {
+    position: absolute;
+    top: 110px;
+    left: -100px;
+    font-size: 9px;
+    color:#666666; 
+    text-align: right;
+    width: 370px;
+}
+
+.registrationForm span {
+	display: inline-block;
+	width: 150px;
+}

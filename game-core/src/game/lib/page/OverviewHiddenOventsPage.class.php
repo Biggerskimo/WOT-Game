@@ -17,29 +17,18 @@
 */
 
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
-require_once(LW_DIR.'lib/data/news/News.class.php');
 require_once(LW_DIR.'lib/data/ovent/Ovent.class.php');
 
 /**
- * This page is able to show the different statistic types.
+ * This page is able to show hidden ovents.
  * 
  * @author		Biggerskimo
- * @copyright	2009 - 2010 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2010 Lost Worlds <http://lost-worlds.net>
  */
-class OverviewPage extends AbstractPage {
-	public $templateName = 'overview';
+class OverviewHiddenOventsPage extends AbstractPage {
+	public $templateName = 'overviewHiddenOvents';
 	
 	public $ovents = array();
-	public $hovents = array();
-	
-	public $news = array();
-	
-	/**
-	 * @see Page::readParameters()
-	 */
-	public function readParameters() {
-		parent::readParameters();
-	}
 	
 	/**
 	 * @see Page::readData()
@@ -47,13 +36,7 @@ class OverviewPage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 		
-		$this->ovents = Ovent::getByConditions(array('userID' => WCF::getUser()->userID, 'checked' => 0));
-		$this->hovents = Ovent::getByConditions(array('userID' => WCF::getUser()->userID, 'checked' => 1));
-		
-		// news
-		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
-		
-		$this->news = WCF::getCache()->get('news-'.PACKAGE_ID);
+		$this->ovents = Ovent::getByConditions(array('userID' => WCF::getUser()->userID, 'checked' => 1));
 	}
 
 	/**
@@ -62,7 +45,7 @@ class OverviewPage extends AbstractPage {
 	public function assignVariables() {
 		parent::assignVariables();
 
-		WCF::getTPL()->assign(array('ovents' => $this->ovents, 'hovents' => $this->hovents, 'news' => $this->news));
+		WCF::getTPL()->assign(array('ovents' => $this->ovents));
 	}
 
 	/**

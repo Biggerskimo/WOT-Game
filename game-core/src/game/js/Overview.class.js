@@ -21,6 +21,7 @@
 function Overview() {
 	this.newsCount = 0;
 	this.oventCount = 0;
+	this.setUnloadListener = false;
 	
 	this.closeNews = function(newsID) {
 		var ajaxRequest = new AjaxRequest();
@@ -49,11 +50,13 @@ function Overview() {
 		this.oventCount++;
 	}
 	
-	this.hideOvent = function(oventID) {
-		if(confirm(language['hideOvent.sure'])) {
-			var ajaxRequest = new AjaxRequest();
-			
-			ajaxRequest.openGet('index.php?action=HideOvent&oventID='+oventID, function() { });
+	this.hideOvent = function(oventID, restore) {
+		if(restore || confirm(language['hideOvent.sure'])) {
+			if(!restore) {
+				var ajaxRequest = new AjaxRequest();
+				
+				ajaxRequest.openGet('index.php?action=HideOvent&oventID='+oventID, function() { });
+			}
 			
 			this.oventCount--;
 			
@@ -64,7 +67,25 @@ function Overview() {
 			else {
 				// hide only this ovent
 				document.getElementById('ovent' + oventID).style.display = 'none';
+				
+				document.getElementById('hiddenOventsLink').style.display = 'block';
 			}
+		}
+	}
+	
+	this.restoreOvent = function(oventID) {
+		document.getElementById('ovent' + oventID).style.display = 'none';
+		
+		var ajaxRequest = new AjaxRequest();
+		
+		ajaxRequest.openGet('index.php?action=HideOvent&checked=0&oventID='+oventID, function() { });
+		
+		this.hideOvent(oventID, true);
+		
+		if(!this.setUnloadListener) {
+			window.onunload = function() { parent.location.reload(); };
+			
+			this.setUnloadListener = true;
 		}
 	}
 }

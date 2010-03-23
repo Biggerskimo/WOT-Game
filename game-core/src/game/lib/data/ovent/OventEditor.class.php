@@ -86,11 +86,11 @@ class OventEditor extends AbstractDecorator {
 	/**
 	 * Checks/hides this ovent.
 	 */
-	public function check() {
-		$this->checked = 1;
+	public function check($checked = 1) {
+		$this->checked = $checked;
 		
 		$sql = "UPDATE ugml_ovent
-				SET checked = 1
+				SET checked = ".$checked."
 				WHERE oventID = ".$this->oventID;
 		WCF::getDB()->sendQuery($sql);
 	}

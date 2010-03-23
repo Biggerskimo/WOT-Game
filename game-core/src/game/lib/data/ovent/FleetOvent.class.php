@@ -24,7 +24,7 @@ require_once(LW_DIR.'lib/data/ovent/OventEditor.class.php');
  * This class shows a fleet overview event.
  * 
  * @author		Biggerskimo
- * @copyright	2009 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2009 - 2010 Lost Worlds <http://lost-worlds.net>
  */
 class FleetOvent extends Ovent {
 	private static $registeredFleetIDs = array();
@@ -34,16 +34,29 @@ class FleetOvent extends Ovent {
 	
 	public function __construct($oventID, $row = null) {
 		parent::__construct($oventID, $row);
-				
+		
 		if(self::$fleetOverview === null) {
 			self::$fleetOverview = new FleetOverview();
 		}
 		
-		if(!in_array($this->fleetID, self::$registeredFleetIDs)) {
-			self::$fleetOverview->add($this->missionID, $this->resources['metal'], $this->resources['crystal'], $this->resources['deuterium']);
+		$resources = array('metal' => 0, 'crystal' => 0, 'deuterium' => 0);
+		$this->extractPool();
 		
-			self::$registeredFleetIDs[] = $this->fleetID;
+		$add = false;
+		foreach($this->poolData as $fleetData) {
+			if(!in_array($this->fleetID, self::$registeredFleetIDs)) {
+				$resources['metal'] += $fleetData['resources']['metal'];
+				$resources['crystal'] += $fleetData['resources']['crystal'];
+				$resources['deuterium'] += $fleetData['resources']['deuterium'];
+				
+				self::$registeredFleetIDs[] = $fleetData['fleetData'];
+				
+				$add = true;
+			}
 		}
+		
+		if($add)
+			self::$fleetOverview->add($this->poolData[0]['missionID'], $resources['metal'], $resources['crystal'], $resources['deuterium']);
 	}
 	
 	/**

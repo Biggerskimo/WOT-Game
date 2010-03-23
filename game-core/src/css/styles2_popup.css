@@ -1,0 +1,87 @@
+/* LOST-WOLRDS POP-UP CASCADE STYLESHEET CONFIGURATION DOCUMENT 0.8 */
+/* 16.10.07 by agent */
+/* upgradeable */
+
+
+body {
+    background-color:#000000; 
+    text-align: left; 
+    font-family:Arial, Helvetica, sans-serif; 
+}
+
+a {
+   color:#dcdcdc; 
+   text-decoration: none;
+}
+
+a:hover {
+    color:#ffffff;
+}
+
+img {
+  border: 0px;
+} 
+
+a img:hover {
+  border: 0px;
+} 
+
+#main {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 450px;
+    background-image: url(../images/popup_bg.jpg);
+    background-repeat: none;
+}
+
+#content {
+    position: absolute;
+    left: 0px;
+    top: 0px;   
+    width: 230px;
+    height: 270px;
+}
+
+#text_big_bold {
+    position: absolute;
+    left: 0px;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size: 14px;
+    color:#ffffff; 
+    font-weight: bold;
+    text-align: left;
+    width: 230px;
+}
+
+#text_mid_bold {
+    position: absolute;
+    left: 0px;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size: 12px;
+    color:#d9d9d9; 
+    font-weight: bold;
+    text-align: left;
+    width: 230px;
+}
+
+#text_mid {
+    position: absolute;
+    left: 0px;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size: 12px;
+    color:#ffffff; 
+    text-align: left;
+    width: 230px;
+}
+
+#text_small {
+    position: absolute;
+    left: 0px;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size: 10px;
+    color:#aaaaaa; 
+    text-align: left;
+    width: 230px;
+}

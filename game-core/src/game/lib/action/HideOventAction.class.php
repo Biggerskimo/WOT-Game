@@ -26,6 +26,7 @@ require_once(LW_DIR.'lib/data/ovent/Ovent.class.php');
  * @copyright	2010 Lost Worlds <http://lost-worlds.net>
  */
 class HideOventAction extends AbstractAction {
+	public $checked = 1;
 	public $oventID = 0;
 
 	/**
@@ -36,6 +37,10 @@ class HideOventAction extends AbstractAction {
 		
 		if(isset($_REQUEST['oventID'])) {
 			$this->oventID = LWUtil::checkInt($_REQUEST['oventID']);
+		}
+		
+		if(isset($_REQUEST['checked'])) {
+			$this->checked = LWUtil::checkInt($_REQUEST['checked'], 0, 1);
 		}
 	}
 
@@ -55,7 +60,7 @@ class HideOventAction extends AbstractAction {
 		if($ovent === null || $ovent->userID != WCF::getUser()->userID) {
 			die('invalid oventID');
 		}
-		$ovent->getEditor()->check();
+		$ovent->getEditor()->check($this->checked);
 		
 		$this->executed();
 		
