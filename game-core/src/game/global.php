@@ -27,6 +27,12 @@ require_once(dirname(__FILE__).'/config.inc.php');
 // include WCF
 require_once(RELATIVE_WCF_DIR.'global.php');
 
+// include ZF
+set_include_path(get_include_path() . PATH_SEPARATOR . LW_DIR . '../zf/library');
+require_once('Zend/Loader/Autoloader.php');
+Zend_Loader_Autoloader::getInstance();
+spl_autoload_register('__autoload');
+
 // starting wot core
 require_once(LW_DIR.'lib/system/LWCore.class.php');
 new LWCore();
