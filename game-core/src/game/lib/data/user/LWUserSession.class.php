@@ -34,6 +34,7 @@ class LWUserSession extends UserSession {
 	public $actualProduction = array();
 	
 	protected $settings = array();
+	public $stats = array();
 	
 	const STAT_TYPE_ID = 1;
 
@@ -41,11 +42,11 @@ class LWUserSession extends UserSession {
 	 * @see UserSession::__construct()
 	 */
 	public function __construct($userID = null, $row = null, $username = null) {
-		// user data		
-		$this->sqlSelects .= " lw_user.*, ";
+		// user data
+		$this->sqlSelects .= " wot_user.*, ";
 		$this->sqlJoins .= " LEFT JOIN ugml".LW_N."_users
-								AS lw_user
-								ON lw_user.id = user.userID ";
+								AS wot_user
+								ON wot_user.id = user.userID ";
 		
 		// new stats
 		$this->sqlSelects .= " wot_stat.rank AS wotRank,
@@ -54,6 +55,15 @@ class LWUserSession extends UserSession {
 								AS wot_stat
 								ON wot_stat.statTypeID = ".self::STAT_TYPE_ID."
 									AND wot_stat.relationalID = user.userID ";
+		
+		// new stats 2
+		$this->sqlSelects .= " GROUP_CONCAT(DISTINCT
+									CONCAT(wot_stat2.statTypeID, ',', wot_stat2.rank, ',', wot_stat2.points)
+									SEPARATOR ';')
+								AS statStr,";
+		$this->sqlJoins .= " LEFT JOIN ugml_stat_entry 
+								AS wot_stat2
+								ON wot_stat2.relationalID = user.userID ";
 		
 		// buddies
 		$this->sqlSelects .= " CONCAT(
@@ -69,13 +79,21 @@ class LWUserSession extends UserSession {
 								ON wot_buddy2.owner = user.userID";
 		
 		// settings
-		$this->sqlSelects .= " GROUP_CONCAT(CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR '|') AS settingsStr,";
+		$this->sqlSelects .= " GROUP_CONCAT(DISTINCT CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR '|') AS settingsStr,";
 		$this->sqlJoins .= " LEFT JOIN ugml_user_setting
 								AS wot_setting
 								ON user.userID = wot_setting.userID";
 		
+		// alliance
+		$this->sqlSelects .= " wot_alliance.ally_tag AS allianceTag,
+								wot_alliance.ally_name AS allianceName,
+								wot_alliance.id AS allianceID,";
+		$this->sqlJoins .= " LEFT JOIN ugml_alliance
+								AS wot_alliance
+								ON wot_user.ally_id = wot_alliance.id";
+		
 		// other selects
-		$this->sqlSelects .= " lw_user.id AS lwUserID, lw_user.current_planet AS actualPlanet, lw_user.banned AS wotBanned, ";
+		$this->sqlSelects .= " wot_user.id AS lwUserID, wot_user.current_planet AS actualPlanet, wot_user.banned AS wotBanned, ";
 		
 		parent::__construct($userID, $row, $username);
 		
@@ -91,6 +109,17 @@ class LWUserSession extends UserSession {
 				$this->settings[$hash] = $value;
 			}
 		}
+		
+		// process stats
+		$parts = explode(';', $this->statStr);
+		foreach($parts as $part) {
+			if(!empty($part) && strpos($part, ',')) {
+				list($statTypeID, $rank, $points) = explode(',', $part);
+				
+				$this->stats[$statTypeID] = array('rank' => $rank, 'points' => $points);
+			}
+		}
+		
 		//$this->checkPlanetChange();
 	}
 	

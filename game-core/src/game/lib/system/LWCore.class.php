@@ -175,6 +175,18 @@ class LWCore extends WCF {
 			  </html>';
 		exit;
 	}
+	
+	/**
+	 * Returns a $game_config value.
+	 *
+	 * @param	string name
+	 * @return	value
+	 */
+	public function getGameConfig($name) {
+		global $game_config;
+		
+		return $game_config[$name];
+	}
 
 	/**
 	 * @see WCF::initTPL()

@@ -151,9 +151,115 @@
 				</div>
 			</fieldset>
 			
+			{* user information *}
+			{if $this->user->userID == 1}
+			<div class="userInfo">
+				<div class="doubleList lwcontainer-1 accountInfo">
+					<div class="doubleDesc">
+						{lang}wot.overview.info.user{/lang}
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.user.name{/lang}
+						</div>
+						<div class="doublePart2">
+							{$this->user->username}
+						</div>
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.alliance.alliance{/lang}
+						</div>
+						<div class="doublePart2">
+							{if !$this->user->allianceID}
+								<span class="noAlliance">{lang}wot.overview.info.noAlliance{/lang}</span>
+							{else}
+								<a href="index.php?page=Alliance">[{$this->user->allianceTag}]</a>
+							{/if}
+						</div>
+					</div>
+					
+					{assign var='stats' value=$this->user->stats}
+					{assign var='pointStats' value=$stats.1} {* TODO statTypeID *}
+					{assign var='fleetStats' value=$stats.3}
+					{assign var='researchStats' value=$stats.5}
+					{assign var='attackStats' value=$stats.7}
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.user.points{/lang}
+						</div>
+						<div class="doublePart2">
+							{#$pointStats.points} ({lang}wot.overview.info.pointsRank{/lang})
+						</div>
+					</div>
+					
+					{if $fleetStats.points}
+						<div class="double">
+							<div class="doublePart1">
+								{lang}wot.overview.info.fleetPoints{/lang}
+							</div>
+							<div class="doublePart2">
+								{#$fleetStats.points} ({lang}wot.overview.info.fleetRank{/lang})
+							</div>
+						</div>
+					{/if}
+					
+					{if $researchStats.points}
+						<div class="double">
+							<div class="doublePart1">
+								{lang}wot.overview.info.researchPoints{/lang}
+							</div>
+							<div class="doublePart2">
+								{#$researchStats.points} ({lang}wot.overview.info.researchRank{/lang})
+							</div>
+						</div>
+					{/if}
+					
+					{if $attackStats.points != 1000}
+						<div class="double">
+							<div class="doublePart1">
+								{lang}wot.overview.info.attackPoints{/lang}
+							</div>
+							<div class="doublePart2">
+								{#$attackStats.points} ({lang}wot.overview.info.attackRank{/lang})
+							</div>
+						</div>
+					{/if}
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.global.dilizium{/lang}
+						</div>
+						<div class="doublePart2">
+							<a href="../dilizium.php">{#$this->user->dilizium}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/if}
+			{*
+			nick
+			ally
+			pkt
+			attpkt
+			fleetpkt
+			techpkt
+			dili
+			
+			name
+			felder
+			temp
+			position
+			gebäude
+			werft
+			tf	
+			*}
+			
 			{* resource overview *}
 			{if $fleetOverview !== null}
-				<!-- resource overview {@$fleetOverview->getOverallCount()} {@$fleetOverview->getOverall()|var_dump}-->
 				{assign var='resources' value=$fleetOverview->getOverall()}
 				{assign var='totalResources' value=$resources.metal + $resources.crystal + $resources.deuterium}
 				{if $fleetOverview->getOverallCount() && $totalResources > 0}
@@ -216,10 +322,10 @@
 											</td>
 											<td>
 												{#$resources.deuterium}
-											</td>							
+											</td>
 										</tr>
 									{/if}
-								{/foreach}							
+								{/foreach}
 							</tbody>
 						</table>
 					</div>
