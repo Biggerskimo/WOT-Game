@@ -120,7 +120,7 @@ class WOTEventExecute {
 				$h->execute($eventObj->eventData);
 				echo "a";
 				// protect against fatal errors in following events
-				if($this->enableSafeMode) {					
+				if($this->enableSafeMode) {
 					if(!empty($this->eventIDsStr)) {
 						WOTEventEditor::deleteEvents($this->eventIDsStr);
 					}

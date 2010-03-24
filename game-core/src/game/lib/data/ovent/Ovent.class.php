@@ -110,8 +110,11 @@ abstract class Ovent extends DatabaseObject {
 	
 	/**
 	 * Reads all rows matching the given conditions an returns an array of Ovent objects.
+	 *
+	 * @param	array	conditions
+	 * @param	bool	lock (FOR UPDATE)
 	 */
-	public static function getByConditions($conditions)
+	public static function getByConditions($conditions, $forUpdate = false)
 	{
 		self::initCache();
 		
@@ -122,7 +125,7 @@ abstract class Ovent extends DatabaseObject {
 			$sql .= "`".$key."` = ".$value." AND ";
 		}
 		
-		$result = WCF::getDB()->sendQuery(substr($sql, 0, -5)." ORDER BY `time` ASC");
+		$result = WCF::getDB()->sendQuery(substr($sql, 0, -5)." ORDER BY `time` ASC".($forUpdate ? " FOR UPDATE" : ""));
 		
 		$rows = array();
 		while($row = WCF::getDB()->fetchArray($result))	{

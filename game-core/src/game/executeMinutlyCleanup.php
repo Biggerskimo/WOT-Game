@@ -170,4 +170,13 @@ WCF::getDB()->sendQuery($sql, "");
 $sql = "DELETE FROM ugml_fleet_queue_fleet
 		WHERE (SELECT fleetQueueID FROM ugml_fleet_queue WHERE ugml_fleet_queue.fleetQueueID = ugml_fleet_queue_fleet.fleetQueueID) IS NULL";
 WCF::getDB()->sendQuery($sql);
+
+// check news
+require_once(LW_DIR.'lib/data/news/NewsFeed.class.php');
+new NewsFeed();
+
+$sql = "DELETE FROM ugml_ovent
+		WHERE `time` < UNIX_TIMESTAMP()";
+WCF::getDB()->sendQuery($sql);
+echo 'done!';
 ?>

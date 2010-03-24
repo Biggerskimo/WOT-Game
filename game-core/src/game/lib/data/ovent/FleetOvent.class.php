@@ -17,8 +17,8 @@
 */
 
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
+require_once(LW_DIR.'lib/data/ovent/FleetOventEditor.class.php');
 require_once(LW_DIR.'lib/data/ovent/FleetOverview.class.php');
-require_once(LW_DIR.'lib/data/ovent/OventEditor.class.php');
 
 /**
  * This class shows a fleet overview event.
@@ -44,12 +44,12 @@ class FleetOvent extends Ovent {
 		
 		$add = false;
 		foreach($this->poolData as $fleetData) {
-			if(!in_array($this->fleetID, self::$registeredFleetIDs)) {
+			if(!in_array($fleetData['fleetID'], self::$registeredFleetIDs)) {
 				$resources['metal'] += $fleetData['resources']['metal'];
 				$resources['crystal'] += $fleetData['resources']['crystal'];
 				$resources['deuterium'] += $fleetData['resources']['deuterium'];
 				
-				self::$registeredFleetIDs[] = $fleetData['fleetData'];
+				self::$registeredFleetIDs[] = $fleetData['fleetID'];
 				
 				$add = true;
 			}
@@ -65,6 +65,7 @@ class FleetOvent extends Ovent {
 	 * @param	Fleet	fleet
 	 * @param	bool	delete old ovents (= update)
 	 * @param	bool	wrap in transaction
+	 * @todo move this to FleetOventEditor
 	 */
 	public static function create($fleet, $deleteOld = true, $transact = false) {
 		if($transact) {
@@ -145,9 +146,20 @@ class FleetOvent extends Ovent {
 			$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->wakeUpTime, $fleet->wakeUpEventID, $fleet->fleetID, $ofiaraFields, 0, array($data));
 		}
 		
-		if($transact) {			
+		if($transact) {
 			WCF::getDB()->sendQuery("COMMIT");
 			WCF::getDB()->sendQuery("SET AUTOCOMMIT = 1");
+		}
+	}
+	
+	/**
+	 * Updates the fleet data of the return events.
+	 */
+	public static function update(Fleet $fleet) {
+		$ovents = Ovent::getByConditions(array('oventTypeID' => self::OVENT_TYPE_ID, 'relationalID' => $fleet->fleetID), true);
+		
+		foreach($ovents as $ovent) {
+			$ovent->getEditor()->update();
 		}
 	}
 	
@@ -171,9 +183,18 @@ class FleetOvent extends Ovent {
 	}
 	
 	/**
+	 * @see Ovent::getEditor()
+	 *
+	 * @return	FleetOventEditor
+	 */
+	public function getEditor() {
+		return new FleetOventEditor($this);
+	}
+	
+	/**
 	 * @see Ovent::getTemplateName()
 	 */
-	public function getTemplateName() {		
+	public function getTemplateName() {
 		return "oventFleet";
 	}
 }

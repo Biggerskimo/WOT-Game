@@ -152,7 +152,6 @@
 			</fieldset>
 			
 			{* user information *}
-			{if $this->user->userID == 1}
 			<div class="userInfo">
 				<div class="doubleList lwcontainer-1 accountInfo">
 					<div class="doubleDesc">
@@ -234,29 +233,82 @@
 							{lang}wot.global.dilizium{/lang}
 						</div>
 						<div class="doublePart2">
-							<a href="../dilizium.php">{#$this->user->dilizium}</a>
+							<a href="../dilizium.php">{#$this->user->dilizium+$this->user->additionalDilizium-$this->user->lostDilizium}</a>
 						</div>
 					</div>
 				</div>
+				
+				<div class="doubleList lwcontainer-1 planetInfo">
+					<div class="doubleDesc">
+						{lang}wot.overview.info.planet{/lang}
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.planet.name{/lang}
+						</div>
+						<div class="doublePart2">
+							{$currentPlanet->name} ({lang}wot.planet.name.change{/lang})
+						</div>
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.planet.size{/lang}
+						</div>
+						<div class="doublePart2">
+							{lang}wot.overview.info.planetSize{/lang}
+						</div>
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.planet.temperature{/lang}
+						</div>
+						<div class="doublePart2">
+							{lang}wot.overview.info.planetTemperature{/lang}
+						</div>
+					</div>
+					
+					<div class="double">
+						<div class="doublePart1">
+							{lang}wot.planet.position{/lang}
+						</div>
+						<div class="doublePart2">
+							{include file="planetLink" plPlanet=$currentPlanet noName=1 noPrefix=1}
+						</div>
+					</div>
+					
+					{if $currentPlanet->b_building_id && $currentPlanet->b_building > TIME_NOW}
+						<div class="double">
+							<div class="doublePart1">
+								{lang}wot.overview.planet.construction{/lang}
+							</div>
+							<div class="doublePart2">
+								{assign var='buildingID' value=$currentPlanet->b_building_id}
+								{lang}wot.spec.spec{@$buildingID}{/lang} {#$currentPlanet->getLevel($buildingID) + 1} (<span id="construction">&nbsp;</span>)
+							</div>
+						</div>
+						<script type="text/javascript">
+							new NTime(document.getElementById("construction").childNodes[0], new Date({@$currentPlanet->b_building - TIME_NOW} * 1000), -1, -1);
+						</script>
+					{/if}
+					
+					{if $currentPlanet->b_hangar_id != ""}
+						<div class="double">
+							<div class="doublePart1">
+								{lang}wot.overview.planet.hangar{/lang}
+							</div>
+							<div class="doublePart2">
+								{lang}wot.overview.planet.hangar.timeRemaining{/lang}: <span id="hangar">&nbsp;</span>
+							</div>
+						</div>
+						<script type="text/javascript">
+							new NTime(document.getElementById("hangar").childNodes[0], new Date({@$currentPlanet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
+						</script>
+					{/if}
+				</div>
 			</div>
-			{/if}
-			{*
-			nick
-			ally
-			pkt
-			attpkt
-			fleetpkt
-			techpkt
-			dili
-			
-			name
-			felder
-			temp
-			position
-			gebäude
-			werft
-			tf	
-			*}
 			
 			{* resource overview *}
 			{if $fleetOverview !== null}

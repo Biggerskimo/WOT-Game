@@ -63,7 +63,7 @@
 		<script type="text/javascript">
 			new NTime(document.getElementById("construction{@$id}").childNodes[0], new Date({@$planet->b_building - TIME_NOW} * 1000), -1, -1);
 		</script>
-	{/if}	
+	{/if}
 	
 	{if $planet->b_hangar_id != ""}
 		<div class="double">

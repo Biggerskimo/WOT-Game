@@ -19,6 +19,7 @@
 require_once(WCF_DIR.'lib/system/exception/SystemException.class.php');
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
 require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+require_once(LW_DIR.'lib/data/ovent/FleetOventEditor.class.php');
 require_once(LW_DIR.'lib/system/event/WOTEventHandler.class.php');
 require_once(LW_DIR.'lib/util/LockUtil.class.php');
 
@@ -26,7 +27,7 @@ require_once(LW_DIR.'lib/util/LockUtil.class.php');
  * Provides functions for a better handling of wot events of fleets.
  * 
  * @author		Biggerskimo
- * @copyright	2007 - 2008 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2007 - 2010 Lost Worlds <http://lost-worlds.net>
  */
 abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandler {
 	protected $missionID;
@@ -42,6 +43,7 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
 	 * @param	array	event data
 	 */
     public function execute($data) {
+		// TODO: remove this passage?
 	    // lock management
 	    echo "l";
     	do {
@@ -87,6 +89,9 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     	else {
     		$this->executeUnknownEvent();
     	}
+    	
+    	// TODO: integrate this in wcf event listener?
+    	if($this->ownerID == 1) FleetOvent::update($this);
 		
     	// lock management
 		LockUtil::removeLock($this->ownerID);

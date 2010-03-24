@@ -345,7 +345,7 @@ class LWCore extends WCF {
 
 		self::$planetObj->setPlanetRow();
 		
-		self::getTPL()->assign(array('actualPlanet' => self::getPlanet(),
+		self::getTPL()->assign(array('actualPlanet' => self::getPlanet(), 'currentPlanet' => self::getPlanet()
 				));
 	}
 
