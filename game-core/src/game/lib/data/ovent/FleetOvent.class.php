@@ -44,7 +44,9 @@ class FleetOvent extends Ovent {
 		
 		$add = false;
 		foreach($this->poolData as $fleetData) {
-			if(!in_array($fleetData['fleetID'], self::$registeredFleetIDs)) {
+			// TODO: modularize mission id
+			if(!in_array($fleetData['fleetID'], self::$registeredFleetIDs)
+					&& ($fleetData['ownerID'] == WCF::getUser()->userID || $fleetData['missionID'] == 3)) {
 				$resources['metal'] += $fleetData['resources']['metal'];
 				$resources['crystal'] += $fleetData['resources']['crystal'];
 				$resources['deuterium'] += $fleetData['resources']['deuterium'];
