@@ -55,6 +55,15 @@ class NewsEditor extends AbstractDecorator {
 	 * @param	int		time
 	 */
 	public static function create($title, $text, $url, $time = TIME_NOW) {
+		// check duplicate
+		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
+		$hash = sha1($title.$text.$url);
+		$byHash = WCF::getCache()->get('news-'.PACKAGE_ID, 'hash');
+		if(isset($byHash[$hash])) {
+			return WCF::getCache()->get('news-'.PACKAGE_ID, $byHash[$hash]);
+		}
+		
+		// insert
 		$sql = "INSERT INTO ugml_news
 				(title, text, link, `time`)
 				VALUES
@@ -63,7 +72,6 @@ class NewsEditor extends AbstractDecorator {
 		
 		$newsID = WCF::getDB()->getInsertID();
 		
-		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
 		WCF::getCache()->clearResource('news-'.PACKAGE_ID);
 		
 		return new News($newsID);
