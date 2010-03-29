@@ -10,6 +10,9 @@
 			<th>
 				{lang}wot.ovent.type{/lang}
 			</th>
+			<th>
+				{lang}wot.ovent.extra{/lang}
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,24 +34,37 @@
 					<td class="{$ovent->getTemplateName()}">
 						{include file=$ovent->getTemplateName()}
 					</td>
-					<td>
+					<td class="oventTypeColumn">
 						{lang}wot.ovent.type.{@$ovent->getTemplateName()}{/lang}
-						
-						<div class="extra">
-							{if $ovent->checked}
-								<a href="javascript:overview.restoreOvent({@$oventID})">
-									<img src="{$dpath}pic/key.gif" alt="{lang}wot.overview.ovent.restore{/lang}">
-								</a>
-							{else}
-								<a href="javascript:overview.hideOvent({@$oventID})">
-									<img src="{$dpath}pic/abort.gif" alt="{lang}wot.overview.ovent.hide{/lang}" />
-								</a>
-							{/if}
-						</div>
-						<script type="text/javascript">
-							overview.registerOvent({@$oventID});
-						</script>
 					</td>
+					<td class="oventExtraColumn">
+						<ul>
+							{if $ovent->checked}
+								<li>
+									<a href="javascript:overview.restoreOvent({@$oventID})">
+										<p><span>{lang}wot.overview.ovent.restore{/lang}</span></p>
+									</a>
+								</li>
+							{else}
+								<li>
+									<a href="javascript:overview.hideOvent({@$oventID})">
+										<p><span>{lang}wot.overview.ovent.hide{/lang}</span></p>
+									</a>
+								</li>
+							{/if}
+							{if !$noHighlight|isset}
+								<li>
+									<a href="javascript:alert('Nur Geduld ;)');">
+										<p><span>{lang}wot.overview.ovent.highlight{/lang}</span></p>
+									</a>
+								</li>
+							{/if}
+						</ul>
+					</td>
+					
+					<script type="text/javascript">
+						overview.registerOvent({@$oventID});
+					</script>
 				</tr>
 			{/if}
 		{/foreach}

@@ -271,8 +271,6 @@
 								<a href="index.php?page=Overview&amp;cp={@$this->planet->getMoon()->planetID}">
 									<img id="correspondImg" src="{$dpath}planeten/small/s_{$this->planet->getMoon()->image}.jpg" alt="" />
 								</a>
-								
-								{include file='overviewPlanetTooltip' planet=$this->planet->getMoon() id='correspondImg'}
 							</div>
 						{/if}
 						{if $this->planet->planetTypeID == 3 && $this->planet->getPlanet() !== null}
@@ -282,15 +280,11 @@
 								<a href="index.php?page=Overview&amp;cp={@$this->planet->getPlanet()->planetID}">
 									<img id="correspondImg" src="{$dpath}planeten/small/s_{$this->planet->getPlanet()->image}.jpg" alt="" />
 								</a>
-								
-								{include file='overviewPlanetTooltip' planet=$this->planet->getPlanet() id='correspondImg'}
 							</div>
 						{/if}
 						
 						<div class="planet{if $this->planet->hostileActivity} attackedPlanet{/if}">
 							<img id="currentPlanet" src="{$dpath}planeten/{$this->planet->image}.jpg" alt="" />
-							
-							{include file='overviewPlanetTooltip' planet=$this->planet id='currentPlanet' main=true}
 						</div>
 					</div>
 					
@@ -302,7 +296,6 @@
 									<a href="index.php?page=Overview&amp;cp={@$planetID}">
 										<img id="colony{@$planetID}" src="{$dpath}planeten/small/s_{$planet->image}.jpg" alt="" />
 									</a>
-									{include file='overviewPlanetTooltip' planet=$planet id='colony'|concat:$planetID}
 								</div>
 							{/if}
 						{/foreach}

@@ -22,7 +22,7 @@
 		<div class="main content overviewHiddenOvents">
 			{* ovents *}
 			{if $ovents|count}
-				{include file='oventList' id='ovents' ovents=$ovents}
+				{include file='oventList' id='ovents' ovents=$ovents noHighlight=true}
 			{/if}
 			{if $hovents|count}
 				<p class="hiddenOventsLink" id="hiddenOventsLink">
