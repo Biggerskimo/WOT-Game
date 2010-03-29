@@ -35,7 +35,7 @@ class FleetOventEditor extends OventEditor {
 		foreach($fleetData as &$fleetDate) {
 			$fleetObj = Fleet::getInstance($fleetDate['fleetID']);
 			
-			$fleetDate['resources'] = array('metal' => $fleet->metal, 'crystal' => $fleet->crystal, 'deuterium' => $fleet->deuterium);
+			$fleetDate['resources'] = array('metal' => $fleetObj->metal, 'crystal' => $fleetObj->crystal, 'deuterium' => $fleetObj->deuterium);
 			$fleetDate['spec'] = $fleetObj->fleet;
 		}
 		

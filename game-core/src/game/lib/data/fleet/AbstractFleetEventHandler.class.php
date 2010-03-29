@@ -91,7 +91,7 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     	}
     	
     	// TODO: integrate this in wcf event listener?
-    	if($this->ownerID == 1) FleetOvent::update($this);
+    	FleetOvent::update($this);
 		
     	// lock management
 		LockUtil::removeLock($this->ownerID);
