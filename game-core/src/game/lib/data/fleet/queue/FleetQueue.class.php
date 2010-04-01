@@ -192,7 +192,8 @@ class FleetQueue extends DatabaseObject {
 		}
 		
 		//if(WCF::getUser()->userID ==1)
-		FleetOvent::create($this->fleetEditor, false, true);
+		$fleetObj = Fleet::getInstance($this->fleetEditor->fleetID);
+		FleetOvent::create($fleetObj, false, true);
 		
 		EventHandler::fireAction($this, 'didFire');
 		

@@ -55,13 +55,13 @@ class OverviewPage extends AbstractPage {
 		
 		$this->news = WCF::getCache()->get('news-'.PACKAGE_ID);
 	}
-
+	
 	/**
 	 * @see Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();
-
+		
 		WCF::getTPL()->assign(array('ovents' => $this->ovents, 'hovents' => $this->hovents, 'news' => $this->news));
 	}
 

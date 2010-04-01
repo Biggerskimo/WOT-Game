@@ -50,8 +50,8 @@ function Overview() {
 		this.oventCount++;
 	}
 	
-	this.hideOvent = function(oventID, restore) {
-		if(restore || confirm(language['hideOvent.sure'])) {
+	this.hideOvent = function(oventID, restore, noConfirm) {
+		if(noConfirm || confirm(language['hideOvent.sure'])) {
 			if(!restore) {
 				var ajaxRequest = new AjaxRequest();
 				
@@ -80,12 +80,28 @@ function Overview() {
 		
 		ajaxRequest.openGet('index.php?action=HideOvent&checked=0&oventID='+oventID, function() { });
 		
-		this.hideOvent(oventID, true);
+		this.hideOvent(oventID, true, true);
 		
 		if(!this.setUnloadListener) {
 			window.onunload = function() { parent.location.reload(); };
 			
 			this.setUnloadListener = true;
+		}
+	}
+	
+	this.toggleHighlight = function(oventID) {
+		var wasHighlighted = document.getElementById('ovent' + oventID).className.match("highlightedOvent");
+		var ajaxRequest = new AjaxRequest();
+		
+		if(wasHighlighted) {
+			ajaxRequest.openGet('index.php?action=HighlightOvent&highlighted=0&oventID='+oventID, function() { });
+			
+			document.getElementById('ovent' + oventID).className = document.getElementById('ovent' + oventID).className.replace(/\s?highlightedOvent/g, "");
+		}
+		else {
+			ajaxRequest.openGet('index.php?action=HighlightOvent&oventID='+oventID, function() { });
+			
+			document.getElementById('ovent' + oventID).className += " highlightedOvent";
 		}
 	}
 }

@@ -20,6 +20,8 @@
 require_once(WCF_DIR.'lib/system/session/UserSession.class.php');
 require_once(WCF_DIR.'lib/system/event/EventHandler.class.php');
 
+require_once(LW_DIR.'lib/data/user/UserSettings.class.php');
+
 /**
  * Represents a user session in the game.
  *
@@ -79,7 +81,7 @@ class LWUserSession extends UserSession {
 								ON wot_buddy2.owner = user.userID";
 		
 		// settings
-		$this->sqlSelects .= " GROUP_CONCAT(DISTINCT CONCAT(wot_setting.hash, ',', wot_setting.value) SEPARATOR '|') AS settingsStr,";
+		$this->sqlSelects .= " GROUP_CONCAT(DISTINCT CONCAT(wot_setting.setting, ',', wot_setting.value) SEPARATOR '|') AS settingsStr,";
 		$this->sqlJoins .= " LEFT JOIN ugml_user_setting
 								AS wot_setting
 								ON user.userID = wot_setting.userID";
@@ -104,9 +106,9 @@ class LWUserSession extends UserSession {
 		$parts = explode('|', $this->settingsStr);
 		foreach($parts as $part) {
 			if(!empty($part) && strpos($part, ',')) {
-				list($hash, $value) = explode(',', $part);
+				list($setting, $value) = explode(',', $part);
 				
-				$this->settings[$hash] = $value;
+				$this->settings[$setting] = $value;
 			}
 		}
 		
@@ -129,11 +131,9 @@ class LWUserSession extends UserSession {
 	 * @param	string	identifier
 	 * @return	value
 	 */
-	public function getSetting($identifier) {
-		$hash = sha1($identifier);
-		
-		if(isset($this->settings[$hash])) {		
-			return unserialize($this->settings[$hash]);
+	public function getSetting($setting) {
+		if(isset($this->settings[$setting])) {
+			return unserialize($this->settings[$setting]);
 		}
 		return null;
 	}
@@ -141,20 +141,19 @@ class LWUserSession extends UserSession {
 	/**
 	 * Sets a setting with an identifier and value.
 	 *
-	 * @param	string	identifier
+	 * @param	string	setting
 	 * @param	mixed	value
 	 */
-	public function setSetting($identifier, $value) {
-		$hash = sha1($identifier);
+	public function setSetting($setting, $value, $expireTime = 0x7FFFFFFF) {
 		$svalue = serialize($value);
 		
 		$sql = "REPLACE INTO ugml_user_setting
-				(userID, hash, value)
+				(userID, setting, expireTime, value)
 				VALUES
-				(".$this->userID.", '".$hash."', '".escapeString($svalue)."')";
+				(".$this->userID.", '".escapeString($setting)."', ".$expireTime.", '".escapeString($svalue)."')";
 		WCF::getDB()->sendQuery($sql);
 		
-		$this->settings[$hash] = $svalue;
+		$this->settings[$setting] = $svalue;
 		
 		WCF::getSession()->setUpdate(true);
 	}

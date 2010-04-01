@@ -90,9 +90,12 @@ class FleetOvent extends Ovent {
 		$returnOwnerOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->returnTime, $fleet->returnEventID, $fleet->fleetID, $ownerFields, 0, array($data));
 		
 		if($fleet->ownerID != $fleet->ofiaraID && $fleet->ofiaraID > 0) {
-			$data['cssClass'] = $fleet->getClassName(false);
 			$data['passage'] = 'flight';
 			$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $fleet->impactEventID, $fleet->fleetID, $ofiaraFields, 0, array($data));
+			
+			if(stripos(get_class($fleet), "attack") !== false || stripos(get_class($fleet), "destroy") !== false) {
+				$impactOfiaraOvent->setHighlighted(true);
+			}
 		}
 		
 		// TODO: integrate this in wcf eventhandler
@@ -114,7 +117,6 @@ class FleetOvent extends Ovent {
 				}
 				
 				$data['passage'] = 'flight';
-				$data['cssClass'] =  $fleet->getClassName(true);
 				
 				$odata = array($data);
 				
@@ -135,17 +137,14 @@ class FleetOvent extends Ovent {
 				$ownerFields['userID'] = $fleet->ownerID;
 				
 				$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $fleet->impactEventID, $leaderFleetID, $ofiaraFields, 0, $odata);
+				$impactOfiaraOvent->setHighlighted(true);
 			}
 		}
 		else if($fleet->missionID == 12) {
-			$data['cssClass'] = $fleet->getClassName(true);
-			$data['passage'] = 'standBy';
+			$data['passage'] = 'restart';
 			
 			$standByOwnerOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->wakeUpTime, $fleet->wakeUpEventID, $fleet->fleetID, $ownerFields, 0, array($data));
-		
-			$data['cssClass'] = $fleet->getClassName(false);
-			
-			$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->wakeUpTime, $fleet->wakeUpEventID, $fleet->fleetID, $ofiaraFields, 0, array($data));
+			$standByOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->wakeUpTime, $fleet->wakeUpEventID, $fleet->fleetID, $ofiaraFields, 0, array($data));
 		}
 		
 		if($transact) {
@@ -176,12 +175,25 @@ class FleetOvent extends Ovent {
 			'targetPlanetID' => $fleet->targetPlanetID, 'resources' => array('metal' => $fleet->metal, 'crystal' => $fleet->crystal, 'deuterium' => $fleet->deuterium),
 			'startCoords' => array($fleet->getStartPlanet()->galaxy, $fleet->getStartPlanet()->system, $fleet->getStartPlanet()->planet, $fleet->getStartPlanet()->planetKind),
 			'targetCoords' => array($fleet->galaxy, $fleet->system, $fleet->planet, $fleet->getTargetPlanet()->planetKind),
-			'spec' => $fleet->fleet, 'cssClass' => $fleet->getClassName(true), 'missionID' => $fleet->missionID,
+			'spec' => $fleet->fleet, 'cssClass' => self::getCssClassName($fleet), 'missionID' => $fleet->missionID,
 			'startPlanetName' => $fleet->getStartPlanet()->name, 'targetPlanetName' => $fleet->getTargetPlanet()->name, 'fleetID' => $fleet->fleetID
 		);
 		$data += $additional;
 		
 		return $data;
+	}
+	
+	/**
+	 * Returns the css class for a fleet.
+	 *
+	 * @return	string	css class
+	 */
+	protected static function getCssClassName($fleet) {
+		$phpClass = get_class($fleet);
+		$cssClass = str_replace("Fleet", "", $phpClass);
+		$cssClass[0] = strtolower($cssClass[0]);
+		
+		return $cssClass;
 	}
 	
 	/**

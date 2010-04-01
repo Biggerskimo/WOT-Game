@@ -68,6 +68,27 @@ abstract class Ovent extends DatabaseObject {
 	}
 	
 	/**
+	 * Checks whether this ovent is highlighted.
+	 *
+	 * @return	bool	highlighted
+	 */
+	public function isHighlighted() {
+		return $this->highlighted != 0;
+	}
+	
+	/**
+	 * Sets this ovent highlighted (or not)
+	 */
+	public function setHighlighted($highlighted = false) {
+		$this->highlighted = intval($highlighted);
+		
+		$sql = "UPDATE ugml_ovent
+				SET highlighted = ".$this->highlighted."
+				WHERE oventID = ".$this->oventID;
+		WCF::getDB()->sendQuery($sql);		
+	}
+	
+	/**
 	 * Returns the pool data.
 	 *
 	 * @return	array	data

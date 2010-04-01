@@ -24,13 +24,6 @@
 			{if $ovents|count}
 				{include file='oventList' id='ovents' ovents=$ovents noHighlight=true}
 			{/if}
-			{if $hovents|count}
-				<p class="hiddenOventsLink" id="hiddenOventsLink">
-					<a href="index.php?page=OverviewHiddenOvents&amp;keepThis=true&amp;TB_iframe=true&amp;height=400&amp;width=500" class="thickbox">
-						{lang}wot.overview.ovent.showHidden{/lang}
-					</a>
-				</p>
-			{/if}
 		</div>
 	</body>
 </html>

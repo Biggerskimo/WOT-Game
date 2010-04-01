@@ -22,11 +22,12 @@
 		{capture append='additionalTopnavContent'}
 			<span class="serverTimeDesc">{lang}wot.global.serverTime{/lang}: <span id="serverTime">{@TIME_NOW|time:"%d.%m.%Y, %H:%M:%S"}</span></span>
 			
-			<script type="text/javascript">
-				var ovent{@$c} = new NTime(document.getElementById("serverTime").childNodes[0]);
-			</script>
+			<span class="overviewOptionsLink"><a class="thickbox" href="index.php?form=OverviewOptions&amp;keepThis=true&amp;TB_iframe=true&amp;height=300&amp;width=600">{lang}wot.overview.options{/lang}</a></span>
 		{/capture}
 		{include file="topnav"}
+		<script type="text/javascript">
+			var ovent{@$c} = new NTime(document.getElementById("serverTime").childNodes[0]);
+		</script>
 		<div class="main content overview">
 			{* news *}
 			{assign var='viewNews' value=0}
@@ -96,163 +97,165 @@
 				
 				<div class="planetThumbnails">
 					{* user information *}
-					<div class="userInfo">
-						<div class="doubleList lwcontainer-1 accountInfo">
-							<div class="doubleDesc">
-								{lang}wot.overview.info.user{/lang}
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.user.name{/lang}
+					{if !$this->user->getSetting('hideInformation')}
+						<div class="userInfo">
+							<div class="doubleList lwcontainer-1 accountInfo">
+								<div class="doubleDesc">
+									{lang}wot.overview.info.user{/lang}
 								</div>
-								<div class="doublePart2">
-									{$this->user->username}
-								</div>
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.alliance.alliance{/lang}
-								</div>
-								<div class="doublePart2">
-									{if !$this->user->allianceID}
-										<span class="noAlliance">{lang}wot.overview.info.noAlliance{/lang}</span>
-									{else}
-										<a href="index.php?page=Alliance">[{$this->user->allianceTag}]</a>
-									{/if}
-								</div>
-							</div>
-							
-							{assign var='stats' value=$this->user->stats}
-							{assign var='pointStats' value=$stats.1} {* TODO statTypeID *}
-							{assign var='fleetStats' value=$stats.3}
-							{assign var='researchStats' value=$stats.5}
-							{assign var='attackStats' value=$stats.7}
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.user.points{/lang}
-								</div>
-								<div class="doublePart2">
-									{#$pointStats.points} ({lang}wot.overview.info.pointsRank{/lang})
-								</div>
-							</div>
-							
-							{if $fleetStats.points}
+								
 								<div class="double">
 									<div class="doublePart1">
-										{lang}wot.overview.info.fleetPoints{/lang}
+										{lang}wot.user.name{/lang}
 									</div>
 									<div class="doublePart2">
-										{#$fleetStats.points} ({lang}wot.overview.info.fleetRank{/lang})
+										{$this->user->username}
 									</div>
 								</div>
-							{/if}
-							
-							{if $researchStats.points}
+								
 								<div class="double">
 									<div class="doublePart1">
-										{lang}wot.overview.info.researchPoints{/lang}
+										{lang}wot.alliance.alliance{/lang}
 									</div>
 									<div class="doublePart2">
-										{#$researchStats.points} ({lang}wot.overview.info.researchRank{/lang})
+										{if !$this->user->allianceID}
+											<span class="noAlliance">{lang}wot.overview.info.noAlliance{/lang}</span>
+										{else}
+											<a href="index.php?page=Alliance">[{$this->user->allianceTag}]</a>
+										{/if}
 									</div>
 								</div>
-							{/if}
-							
-							{if $attackStats.points != 1000}
+								
+								{assign var='stats' value=$this->user->stats}
+								{assign var='pointStats' value=$stats.1} {* TODO statTypeID *}
+								{assign var='fleetStats' value=$stats.3}
+								{assign var='researchStats' value=$stats.5}
+								{assign var='attackStats' value=$stats.7}
+								
 								<div class="double">
 									<div class="doublePart1">
-										{lang}wot.overview.info.attackPoints{/lang}
+										{lang}wot.user.points{/lang}
 									</div>
 									<div class="doublePart2">
-										{#$attackStats.points} ({lang}wot.overview.info.attackRank{/lang})
+										{#$pointStats.points} ({lang}wot.overview.info.pointsRank{/lang})
 									</div>
 								</div>
-							{/if}
+								
+								{if $fleetStats.points}
+									<div class="double">
+										<div class="doublePart1">
+											{lang}wot.overview.info.fleetPoints{/lang}
+										</div>
+										<div class="doublePart2">
+											{#$fleetStats.points} ({lang}wot.overview.info.fleetRank{/lang})
+										</div>
+									</div>
+								{/if}
+								
+								{if $researchStats.points}
+									<div class="double">
+										<div class="doublePart1">
+											{lang}wot.overview.info.researchPoints{/lang}
+										</div>
+										<div class="doublePart2">
+											{#$researchStats.points} ({lang}wot.overview.info.researchRank{/lang})
+										</div>
+									</div>
+								{/if}
+								
+								{if $attackStats.points != 1000}
+									<div class="double">
+										<div class="doublePart1">
+											{lang}wot.overview.info.attackPoints{/lang}
+										</div>
+										<div class="doublePart2">
+											{#$attackStats.points} ({lang}wot.overview.info.attackRank{/lang})
+										</div>
+									</div>
+								{/if}
+								
+								<div class="double">
+									<div class="doublePart1">
+										{lang}wot.global.dilizium{/lang}
+									</div>
+									<div class="doublePart2">
+										<a href="../dilizium.php">{#$this->user->dilizium+$this->user->additionalDilizium-$this->user->lostDilizium}</a>
+									</div>
+								</div>
+							</div>
 							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.global.dilizium{/lang}
+							<div class="doubleList lwcontainer-1 planetInfo">
+								<div class="doubleDesc">
+									{lang}wot.overview.info.planet{/lang}
 								</div>
-								<div class="doublePart2">
-									<a href="../dilizium.php">{#$this->user->dilizium+$this->user->additionalDilizium-$this->user->lostDilizium}</a>
+								
+								<div class="double">
+									<div class="doublePart1">
+										{lang}wot.planet.name{/lang}
+									</div>
+									<div class="doublePart2">
+										{$currentPlanet->name} ({lang}wot.planet.name.change{/lang})
+									</div>
 								</div>
+								
+								<div class="double">
+									<div class="doublePart1">
+										{lang}wot.planet.size{/lang}
+									</div>
+									<div class="doublePart2">
+										{lang}wot.overview.info.planetSize{/lang}
+									</div>
+								</div>
+								
+								<div class="double">
+									<div class="doublePart1">
+										{lang}wot.planet.temperature{/lang}
+									</div>
+									<div class="doublePart2">
+										{lang}wot.overview.info.planetTemperature{/lang}
+									</div>
+								</div>
+								
+								<div class="double">
+									<div class="doublePart1">
+										{lang}wot.planet.position{/lang}
+									</div>
+									<div class="doublePart2">
+										{include file="planetLink" plPlanet=$currentPlanet noName=1 noPrefix=1}
+									</div>
+								</div>
+								
+								{if $currentPlanet->b_building_id && $currentPlanet->b_building > TIME_NOW}
+									<div class="double">
+										<div class="doublePart1">
+											{lang}wot.overview.planet.construction{/lang}
+										</div>
+										<div class="doublePart2">
+											{assign var='buildingID' value=$currentPlanet->b_building_id}
+											{lang}wot.spec.spec{@$buildingID}{/lang} {#$currentPlanet->getLevel($buildingID) + 1} (<span id="construction">&nbsp;</span>)
+										</div>
+									</div>
+									<script type="text/javascript">
+										new NTime(document.getElementById("construction").childNodes[0], new Date({@$currentPlanet->b_building - TIME_NOW} * 1000), -1, -1);
+									</script>
+								{/if}
+								
+								{if $currentPlanet->b_hangar_id != ""}
+									<div class="double">
+										<div class="doublePart1">
+											{lang}wot.overview.planet.hangar{/lang}
+										</div>
+										<div class="doublePart2">
+											{lang}wot.overview.planet.hangar.timeRemaining{/lang}: <span id="hangar">&nbsp;</span>
+										</div>
+									</div>
+									<script type="text/javascript">
+										new NTime(document.getElementById("hangar").childNodes[0], new Date({@$currentPlanet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
+									</script>
+								{/if}
 							</div>
 						</div>
-						
-						<div class="doubleList lwcontainer-1 planetInfo">
-							<div class="doubleDesc">
-								{lang}wot.overview.info.planet{/lang}
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.planet.name{/lang}
-								</div>
-								<div class="doublePart2">
-									{$currentPlanet->name} ({lang}wot.planet.name.change{/lang})
-								</div>
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.planet.size{/lang}
-								</div>
-								<div class="doublePart2">
-									{lang}wot.overview.info.planetSize{/lang}
-								</div>
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.planet.temperature{/lang}
-								</div>
-								<div class="doublePart2">
-									{lang}wot.overview.info.planetTemperature{/lang}
-								</div>
-							</div>
-							
-							<div class="double">
-								<div class="doublePart1">
-									{lang}wot.planet.position{/lang}
-								</div>
-								<div class="doublePart2">
-									{include file="planetLink" plPlanet=$currentPlanet noName=1 noPrefix=1}
-								</div>
-							</div>
-							
-							{if $currentPlanet->b_building_id && $currentPlanet->b_building > TIME_NOW}
-								<div class="double">
-									<div class="doublePart1">
-										{lang}wot.overview.planet.construction{/lang}
-									</div>
-									<div class="doublePart2">
-										{assign var='buildingID' value=$currentPlanet->b_building_id}
-										{lang}wot.spec.spec{@$buildingID}{/lang} {#$currentPlanet->getLevel($buildingID) + 1} (<span id="construction">&nbsp;</span>)
-									</div>
-								</div>
-								<script type="text/javascript">
-									new NTime(document.getElementById("construction").childNodes[0], new Date({@$currentPlanet->b_building - TIME_NOW} * 1000), -1, -1);
-								</script>
-							{/if}
-							
-							{if $currentPlanet->b_hangar_id != ""}
-								<div class="double">
-									<div class="doublePart1">
-										{lang}wot.overview.planet.hangar{/lang}
-									</div>
-									<div class="doublePart2">
-										{lang}wot.overview.planet.hangar.timeRemaining{/lang}: <span id="hangar">&nbsp;</span>
-									</div>
-								</div>
-								<script type="text/javascript">
-									new NTime(document.getElementById("hangar").childNodes[0], new Date({@$currentPlanet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
-								</script>
-							{/if}
-						</div>
-					</div>
+					{/if}
 					
 					{if $this->planet->planetTypeID == 1 && $this->planet->getMoon() != null}
 						{assign var='correspondID' value=$this->planet->getMoon()->planetID}
@@ -288,19 +291,21 @@
 						</div>
 					</div>
 					
-					<div class="colonies">
-						{foreach from=$planets key='planetID' item='planet'}
-							{if $planetID != $this->planet->planetID && $planet->planetKind == 1 && $planetID != $correspondID}
-								<div class="colony{if $planet->hostileActivity} attackedPlanet{/if}">
-									<span class="planetName">{include file='planetLink' plPlanet=$planet noPrefix=1}</span>
-									<a href="index.php?page=Overview&amp;cp={@$planetID}">
-										<img id="colony{@$planetID}" src="{$dpath}planeten/small/s_{$planet->image}.jpg" alt="" />
-									</a>
-								</div>
-							{/if}
-						{/foreach}
-					</div>
-				</div>				
+					{if !$this->user->getSetting('hideColonies')}
+						<div class="colonies">
+							{foreach from=$planets key='planetID' item='planet'}
+								{if $planetID != $this->planet->planetID && $planet->planetKind == 1 && $planetID != $correspondID}
+									<div class="colony{if $planet->hostileActivity} attackedPlanet{/if}">
+										<span class="planetName">{include file='planetLink' plPlanet=$planet noPrefix=1}</span>
+										<a href="index.php?page=Overview&amp;cp={@$planetID}">
+											<img id="colony{@$planetID}" src="{$dpath}planeten/small/s_{$planet->image}.jpg" alt="" />
+										</a>
+									</div>
+								{/if}
+							{/foreach}
+						</div>
+					{/if}
+				</div>
 			</fieldset>
 			
 			

@@ -54,7 +54,14 @@ class OventEditor extends AbstractDecorator {
 		
 		$oventID = self::insert($oventTypeID, $time, $eventID, $relationalID, $additionalFields, $checked, $data);
 		
-		return Ovent::getByOventID($oventID);
+		$oventObj = Ovent::getByOventID($oventID);
+		
+		if(isset($additionalFields['userID'])
+		&& UserSettings::getSetting($additionalFields['userID'], 'hideOventType'.$oventTypeID)) {
+			$oventObj->getEditor()->check();
+		}
+		
+		return $oventObj;
 	}
 	
 	/**
