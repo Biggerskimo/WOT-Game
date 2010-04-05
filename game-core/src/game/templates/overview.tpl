@@ -35,9 +35,9 @@
 				{foreach from=$news key='newsID' item='newsItem'}
 					{if $newsItem|is_object && !$newsItem->isViewed() && !$newsItem->disabled}
 						<div class="newsItem" id="news{@$newsID}">
-							<p class="newsItemTitle">
+							<h3 class="newsItemTitle">
 								{$newsItem->title}
-							</p>
+							</h3>
 							<p class="newsItemTime">
 								{@$newsItem->time|time}
 							</p>
@@ -47,7 +47,7 @@
 								</a>
 							</p>
 							<p class="newsItemText">
-								{$newsItem->text} <a href="{@$newsItem->link}" id="newsLink{@$newsID}">{lang}wot.overview.news.more{/lang}</a>
+								{@$newsItem->text} <a href="{@$newsItem->link}" id="newsLink{@$newsID}">{lang}wot.overview.news.more{/lang}</a>
 							</p>
 						</div>
 						{assign var='viewNews' value=$viewNews+1}
