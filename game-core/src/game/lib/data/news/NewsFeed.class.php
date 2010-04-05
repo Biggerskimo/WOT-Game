@@ -43,9 +43,34 @@ class NewsFeed {
 			$feed = Zend_Feed_Reader::import($uri);
 			
 			foreach($feed as $entry) {
-				NewsEditor::create($entry->getTitle(), $entry->getContent(), $entry->getLink());
+				$content = $this->getFixedContent($entry);
+				NewsEditor::create($entry->getTitle(), $content, $entry->getLink());
 			}
 		}
+	}
+	
+	/**
+	 * Zend_Feed_Reader seems to produce utf8 outputs when there should be a iso-8859-x output.
+	 * This method returns the corrent encoded output.
+	 *
+	 * @param	Zend_Feed_Reader_Entry
+	 * @return	string	content
+	 */
+	protected function getFixedContent($entry) {
+		$saidEncoding = $entry->getEncoding();
+		$saidContent = $entry->getContent();
+		
+		if(strpos($saidEncoding, 'ISO-8859-') === false) {
+			// nothing to fix
+			return $saidContent;
+		}
+		
+		if(StringUtil::isUtf8($saidContent)) {
+			// use mb_convert_encoding here?
+			return utf8_decode($saidContent);
+		}
+		// correct iso-8859 encoding
+		return $saidContent;
 	}
 	
 	/**
