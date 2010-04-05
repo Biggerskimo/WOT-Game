@@ -34,7 +34,7 @@ class CacheBuilderNews implements CacheBuilder {
 				FROM ugml_news";
 		$result = WCF::getDB()->sendQuery($sql);
 		
-		$data = array();
+		$data = array('hash' => array());
 		while($row = WCF::getDB()->fetchArray($result)) {
 			$data[$row['newsID']] = new News(null, $row);
 			$data['hash'][sha1($row['title'].$row['text'].$row['link'])] = $row['newsID'];
