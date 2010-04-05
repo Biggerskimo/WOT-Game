@@ -32,7 +32,7 @@ function Tooltip(source, destination, fixed) {
 	/**
 	 * Adds the tooltip.
 	 */
-	this.init = function() {		
+	this.init = function() {
 		this.prepareSource();
 		
 		this.destination.tooltipInstance = this;
@@ -41,7 +41,7 @@ function Tooltip(source, destination, fixed) {
 		window.onkeydown = function(e) { for(var no in tooltips) tooltips[no].onkeydown(e); };
 		
 		this.source.parentNode.removeChild(this.source);
-		document.getElementsByTagName("body")[0].appendChild(this.source);
+		document.getElementById("tooltipContainer").appendChild(this.source);
 		
 		this.source.tooltipInstance = this;
 		this.source.onmouseover = function() { this.tooltipInstance.show(); };
@@ -65,6 +65,8 @@ function Tooltip(source, destination, fixed) {
 	 * Shows the tooltip.
 	 */
 	this.show = function(e) {
+		if(!e) e = window.event;
+		
 		this.overCount++;
 		// run-in doesnt work with most browsers ...
 		this.source.style.display = "block";
@@ -104,6 +106,8 @@ function Tooltip(source, destination, fixed) {
 	 * Sets a new position.
 	 */
 	this.reposition = function(e) {
+		if(!e) e = window.event;
+		
 		if(!this.tFixed) {
 			this.source.style.left = e.clientX + "px";
 			this.source.style.top = e.clientY + "px";
@@ -121,6 +125,8 @@ function Tooltip(source, destination, fixed) {
 	 * Fixes when the Ctrl-Button is pressed.
 	 */
 	this.onkeydown = function(e) {
+		if(!e) e = window.event;
+		
 		if(this.overCount && e.keyCode == 17) {
 			this.fix();
 		}

@@ -19,6 +19,7 @@
 		<link href="../css/thickbox.css" type="text/css" rel="stylesheet">
 	</head>
 	<body>
+		<div id="tooltipContainer" class="tooltipContainer"></div>
 		{capture append='additionalTopnavContent'}
 			<span class="serverTimeDesc">{lang}wot.global.serverTime{/lang}: <span id="serverTime">{@TIME_NOW|time:"%d.%m.%Y, %H:%M:%S"}</span></span>
 			
@@ -26,7 +27,7 @@
 		{/capture}
 		{include file="topnav"}
 		<script type="text/javascript">
-			var ovent{@$c} = new NTime(document.getElementById("serverTime").childNodes[0]);
+			var ovent{@$c} = new NTime(document.getElementById("serverTime").childNodes[0], new Date({@TIME_NOW} * 1000));
 		</script>
 		<div class="main content overview">
 			{* news *}
@@ -234,10 +235,10 @@
 											{assign var='buildingID' value=$currentPlanet->b_building_id}
 											{lang}wot.spec.spec{@$buildingID}{/lang} {#$currentPlanet->getLevel($buildingID) + 1} (<span id="construction">&nbsp;</span>)
 										</div>
+										<script type="text/javascript">
+											new NTime(document.getElementById("construction").childNodes[0], new Date({@$currentPlanet->b_building - TIME_NOW} * 1000), -1, -1);
+										</script>
 									</div>
-									<script type="text/javascript">
-										new NTime(document.getElementById("construction").childNodes[0], new Date({@$currentPlanet->b_building - TIME_NOW} * 1000), -1, -1);
-									</script>
 								{/if}
 								
 								{if $currentPlanet->b_hangar_id != ""}
@@ -248,10 +249,10 @@
 										<div class="doublePart2">
 											{lang}wot.overview.planet.hangar.timeRemaining{/lang}: <span id="hangar">&nbsp;</span>
 										</div>
+										<script type="text/javascript">
+											new NTime(document.getElementById("hangar").childNodes[0], new Date({@$currentPlanet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
+										</script>
 									</div>
-									<script type="text/javascript">
-										new NTime(document.getElementById("hangar").childNodes[0], new Date({@$currentPlanet->getProductionHandler()->getProductorObject('hangar')->getOverallTime()} * 1000), -1, -1);
-									</script>
 								{/if}
 							</div>
 						</div>
