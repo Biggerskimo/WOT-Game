@@ -102,7 +102,8 @@ class FleetOvent extends Ovent {
 		if($fleet->missionID == 11) {
 			$formation = $fleet->getNavalFormation();
 			$fleets = $formation->fleets;
-			$leaderFleetID = $formation->leaderFleetID;
+			$leaderFleet = $formation->getLeaderFleet();
+			$leaderFleetID = $leaderFleet->fleetID;
 			
 			if(count($fleets) > 1) {
 				$impactOwnerOvent->getEditor()->delete();
@@ -126,17 +127,17 @@ class FleetOvent extends Ovent {
 					}
 				}
 				
-				$impactOwnerOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $fleet->impactEventID, $leaderFleetID, $ownerFields, 0, $odata);
+				$impactOwnerOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $leaderFleet->impactEventID, $leaderFleetID, $ownerFields, 0, $odata);
 				
 				foreach($formation->users as $userID => $user) {
 					if($userID != $fleet->ownerID) {
 						$ownerFields['userID'] = $userID;
-						OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $fleet->impactEventID, $leaderFleetID, $ownerFields, 0, $odata);
+						OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $leaderFleet->impactEventID, $leaderFleetID, $ownerFields, 0, $odata);
 					}
 				}
 				$ownerFields['userID'] = $fleet->ownerID;
 				
-				$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $fleet->impactEventID, $leaderFleetID, $ofiaraFields, 0, $odata);
+				$impactOfiaraOvent = OventEditor::create(self::OVENT_TYPE_ID, $fleet->impactTime, $leaderFleet->impactEventID, $leaderFleetID, $ofiaraFields, 0, $odata);
 				$impactOfiaraOvent->setHighlighted(true);
 			}
 		}
