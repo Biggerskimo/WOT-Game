@@ -40,7 +40,7 @@ for($i = 0; $userID > 0; $i++) {
 // global defines
 define('VERSION','1.3');
 define('DEFAULT_LANG','de');
-define('DEFAULT_SKINPATH',"http://lw.kippeln.org/skins/Q8/");
+define('DEFAULT_SKINPATH',"Eigener Skinpfad");
 if(!defined('INSIDE')) define('INSIDE', true);
 define('TEMPLATE_DIR',"templates/");
 define('TEMPLATE_NAME',"OpenGame");
