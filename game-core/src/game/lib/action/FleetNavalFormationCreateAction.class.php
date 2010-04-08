@@ -20,18 +20,19 @@ require_once(WCF_DIR.'lib/action/AbstractAction.class.php');
 
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
 require_once(LW_DIR.'lib/data/fleet/NavalFormationEditor.class.php');
+require_once(LW_DIR.'lib/data/ovent/FleetOvent.class.php');
 
 /**
  * Creates a new naval formation for a naval formation.
  * 
  * @author		Biggerskimo
- * @copyright 	2008 Lost Worlds <http://lost-worlds.net>
+ * @copyright 	2008 - 2010 Lost Worlds <http://lost-worlds.net>
  */
 class FleetNavalFormationCreateAction extends AbstractAction {
 	protected $fleetID = 0;
 	protected $fleet = null;
 	protected $navalFormation = null;
-
+	
 	/**
 	 * @see Action::readParameters()
 	 */
@@ -50,7 +51,7 @@ class FleetNavalFormationCreateAction extends AbstractAction {
 	 */
 	public function execute() {
 		parent::execute();
-
+		
 		// check permission
 		if (!WCF::getUser()->userID) {
 			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
@@ -67,8 +68,10 @@ class FleetNavalFormationCreateAction extends AbstractAction {
 		
 		$this->navalFormation = NavalFormationEditor::create($this->fleetID, $this->fleet->ownerID);
 		
+		FleetOvent::update($this->fleet);
+		
 		$this->executed();
-
+		
 		header('Location: index.php?page=FleetStartShips');
 		exit;
 	}

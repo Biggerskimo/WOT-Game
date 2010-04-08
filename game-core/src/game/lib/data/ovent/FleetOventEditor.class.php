@@ -37,6 +37,7 @@ class FleetOventEditor extends OventEditor {
 			
 			$fleetDate['resources'] = array('metal' => $fleetObj->metal, 'crystal' => $fleetObj->crystal, 'deuterium' => $fleetObj->deuterium);
 			$fleetDate['spec'] = $fleetObj->fleet;
+			$fleetDate['missionID'] = $fleetObj->missionID;
 		}
 		
 		$sql = "UPDATE ugml_ovent
