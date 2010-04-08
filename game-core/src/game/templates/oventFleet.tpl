@@ -1,5 +1,6 @@
 {assign var='ovents' value=$ovent->getPoolData()}
 {foreach from=$ovents key='no' item='ovent'}
+	{counter print=false}
 	{assign var='time' value=$ovent.time}
 	<div class="{@$ovent.passage} {@$ovent.cssClass} {if $this->user->userID != $ovent.ofiaraID || $this->user->userID == $ovent.ownerID}own{else}foreign{/if}">
 		{* ships tooltip *}

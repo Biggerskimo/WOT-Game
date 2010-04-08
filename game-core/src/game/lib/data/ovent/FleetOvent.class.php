@@ -122,7 +122,7 @@ class FleetOvent extends Ovent {
 				
 				foreach($fleets as $fleetID => $fleetObj) {
 					if($fleetID != $fleet->fleetID) {
-						$odata[] = self::getData($fleet, array('passage' => 'flight'));
+						$odata[] = self::getData($fleetObj, array('passage' => 'flight'));
 					}
 				}
 				
