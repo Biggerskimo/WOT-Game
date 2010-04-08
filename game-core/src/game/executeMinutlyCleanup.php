@@ -171,6 +171,12 @@ $sql = "DELETE FROM ugml_fleet_queue_fleet
 		WHERE (SELECT fleetQueueID FROM ugml_fleet_queue WHERE ugml_fleet_queue.fleetQueueID = ugml_fleet_queue_fleet.fleetQueueID) IS NULL";
 WCF::getDB()->sendQuery($sql);
 
+// delete old naval formations
+$sql = "DELETE FROM ugml_naval_formation
+		WHERE impactTime < ".TIME_NOW;
+WCF::getDB()->sendQuery($sql);
+
+
 // check news
 require_once(LW_DIR.'lib/data/news/NewsFeed.class.php');
 new NewsFeed();
