@@ -99,6 +99,7 @@ class OverviewOptionsForm extends AbstractForm {
 		foreach($this->hideOventTypes as $oventTypeID => $hide) {
 			WCF::getUser()->setSetting('hideOventType'.$oventTypeID, $hide);
 		}
+		WCF::getUser()->setSetting('dontAskOnOventHiding', $this->dontAskOnHiding);
 		WCF::getUser()->setSetting('hideInformation', $this->hideInformation);
 		WCF::getUser()->setSetting('hideColonies', $this->hideColonies);
 	}
