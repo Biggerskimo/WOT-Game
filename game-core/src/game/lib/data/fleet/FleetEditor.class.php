@@ -26,7 +26,7 @@ require_once(LW_DIR.'lib/system/event/WOTEventEditor.class.php');
  * This class provides some functions for creating, modifying and deleting fleets.
  * 
  * @author		Biggerskimo
- * @copyright	2008 - 2009 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2008 - 2010 Lost Worlds <http://lost-worlds.net>
  */
 class FleetEditor extends AbstractDecorator {
 	protected $fleetID = 0;
@@ -338,7 +338,7 @@ class FleetEditor extends AbstractDecorator {
 		EventHandler::fireAction($this, 'cancel');
 		// TODO: integrate this in wcf eventhandler cancel@FleetEditor
 		if($this->missionID == 11) {
-			NavalFormation::getByFleetID($this->fleetID)->cancelFleet($this->fleetID);
+			$this->getNavalFormation()->cancelFleet($this->fleetID);
 		}
 		// TODO: integrate this in wcf eventhandler cancel@FleetEditor
 		if($this->missionID == 12) {

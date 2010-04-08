@@ -40,6 +40,19 @@ class FleetOventEditor extends OventEditor {
 			$fleetDate['missionID'] = $fleetObj->missionID;
 		}
 		
+		if(isset($fleetData[0])) {
+			$fleet0 = Fleet::getInstance($fleetData[0]['fleetID']);
+			if($fleet0->missionID == 11 && $fleetData[0]['passage'] == "flight") {
+				$formation = $fleet0->getNavalFormation();
+				
+				foreach($fleetData as $key => &$fleetDate) {
+					if(!isset($formation->fleets[$fleetDate['fleetID']])) {
+						unset($fleetData[$key]);
+					}
+				}
+			}
+		}
+		
 		$sql = "UPDATE ugml_ovent
 				SET data = '".SerializeUtil::serialize($fleetData)."'
 				WHERE oventID = ".$this->oventID;

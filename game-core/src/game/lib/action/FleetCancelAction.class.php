@@ -18,6 +18,7 @@
 
 require_once(WCF_DIR.'lib/action/AbstractAction.class.php');
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
+require_once(LW_DIR.'lib/data/ovent/FleetOvent.class.php');
 
 /**
  * Cancels the flight of a fleet.
@@ -61,13 +62,21 @@ class FleetCancelAction extends AbstractAction {
 		
 		if(!$this->fleet->getCancelDuration()) {
 			require_once(WCF_DIR.'lib/system/exception/IllegalLinkException.class.php');
-			throw new IllegalLinkException();			
+			throw new IllegalLinkException();
+		}
+		
+		if($this->fleet->missionID == 11) {
+			$formation = $this->fleet->getNavalFormation();
 		}
 		
 		$this->fleet->getEditor()->cancel();
 		
+		if($this->fleet->missionID == 11) {
+			FleetOvent::update($formation->getLeaderFleet());
+		}
+		
 		$this->executed();
-
+		
 		header('Location: index.php?page=FleetStartShips');
 		exit;
 	}

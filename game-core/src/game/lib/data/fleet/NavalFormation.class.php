@@ -286,11 +286,13 @@ class NavalFormation extends DatabaseObject {
 	public function cancelFleet($fleetID) {
 		Fleet::getInstance($fleetID)->getEditor()->update('formationID', 0);
 		
+		unset($this->fleets[$fleetID]);
+		
 		if($fleetID != $this->leaderFleetID) {
 			return;
 		}
 		
-		if(count($this->fleets) == 1) {
+		if(!count($this->fleets)) {
 			$this->getEditor()->delete();
 		}
 		else {
