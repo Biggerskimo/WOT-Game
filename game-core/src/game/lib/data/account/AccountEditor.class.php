@@ -106,6 +106,15 @@ class AccountEditor extends Account {
 		
 		$accountEditor = new AccountEditor($userID);
 		
+		// TODO: event listener
+		require_once(LW_DIR.'lib/data/news/News.class.php');
+		require_once(LW_DIR.'lib/data/user/UserSettings.class.php');
+		WCF::getCache()->addResource('news-'.PACKAGE_ID, WCF_DIR.'cache/cache.news-'.PACKAGE_ID.'.php', LW_DIR.'lib/system/cache/CacheBuilderNews.class.php');
+		$news = WCF::getCache()->get('news-'.PACKAGE_ID);
+		foreach($news as $key => $newsItem)
+			if($key != "hash")
+				UserSettings::setSetting($userID, $newsItem->getIdentifier(), TIME_NOW);
+		
 		return $accountEditor;
 	}
 	

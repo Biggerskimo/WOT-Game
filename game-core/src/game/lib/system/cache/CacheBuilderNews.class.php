@@ -31,7 +31,11 @@ class CacheBuilderNews implements CacheBuilder {
 	 */
 	public function getData($cacheResource) {
 		$sql = "SELECT *
-				FROM ugml_news";
+				FROM ugml_news
+				WHERE disabled = 0
+					AND `time` > ".(TIME_NOW - 60 * 60 * 24 * 30)."
+				ORDER BY `time` DESC
+				LIMIT 3";
 		$result = WCF::getDB()->sendQuery($sql);
 		
 		$data = array('hash' => array());
