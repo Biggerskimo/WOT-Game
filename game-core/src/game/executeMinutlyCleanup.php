@@ -180,7 +180,9 @@ WCF::getDB()->sendQuery($sql);
 // check news
 require_once(LW_DIR.'lib/data/news/NewsFeed.class.php');
 new NewsFeed();
+WCF::getCache()->clearResource('news-'.PACKAGE_ID);
 
+// delete orphaned ovents
 $sql = "DELETE FROM ugml_ovent
 		WHERE `time` < UNIX_TIMESTAMP()";
 WCF::getDB()->sendQuery($sql);
