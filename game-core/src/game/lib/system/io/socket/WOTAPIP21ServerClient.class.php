@@ -161,7 +161,7 @@ class WOTAPIP21ServerClient implements WOTAPIPServerClient {
 	public function write($buffer) {
 		$this->socket->write($buffer);
 		
-		var_dump($this->socket->writeBuffer, $this->connection);
+		//var_dump($this->socket->writeBuffer, $this->connection);
 		if(empty($this->socket->writeBuffer) && $this->connection != "Keep-Alive") {
 			$this->disconnect();
 		}
@@ -177,12 +177,14 @@ class WOTAPIP21ServerClient implements WOTAPIPServerClient {
 	public function send($message = 'OK', $state = 100, $data = array()) {
 		$output = "";
 		
-		foreach($data as $name => $date) {
-			$output .= $this->crypter->encryptToText("DATA_".StringUtil::toUpperCase($name).":".WOTAPIUtil::escape($date))."\n";
-		}
-		
 		$output .= $this->crypter->encryptToText("STATE: ".WOTAPIUtil::escape($state))."\n";
 		$output .= $this->crypter->encryptToText("MESSAGE: ".WOTAPIUtil::escape($message))."\n";
+		
+		foreach($data as $name => $date) {
+			$output .= $this->crypter->encryptToText("DATA_".StringUtil::toUpperCase($name).":".WOTAPIUtil::escape($date))."\n";
+			echo $this->crypter->encryptToText("DATA_".StringUtil::toUpperCase($name).":".WOTAPIUtil::escape($date))."\n";
+		}
+		
 		$output .= "\n";
 		
 		$this->write($output);
