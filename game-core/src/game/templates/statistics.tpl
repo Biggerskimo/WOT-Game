@@ -66,5 +66,7 @@
 				</tbody>
 			</table>
 		</div>
+		
+		{include file="footer"}
 	</body>
 </html>

@@ -384,5 +384,7 @@
 				{/if}
 			{/if}
 		</div>
+		
+		{include file='footer'}
 	</body>
 </html>

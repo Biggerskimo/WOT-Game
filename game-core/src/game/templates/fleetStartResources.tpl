@@ -5,6 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="style/fleet.css" />
 		<script type="text/javascript" src="js/Fleet.class.js"></script>
 		<script type="text/javascript">
+			var pageNo = 2;
 			var fleet = new Fleet({@$actualPlanet->galaxy}, {@$actualPlanet->system}, {@$actualPlanet->planet});
 			
 			var capacity = {@$capacity};
@@ -16,7 +17,7 @@
 	<body>
 		{include file="topnav"}
 		<div class="main content">
-			<form action="index.php?action=FleetStartFire" method="post">
+			<form action="index.php?action=FleetStartFire" name="fireForm" id="fireForm" method="post">
 				<fieldset>
 					<legend>
 						{lang}wot.fleet.start.resourcesMenu{/lang}
@@ -122,5 +123,7 @@
 				</div>
 			</form>
 		</div>
+		
+		{include file="footer"}
 	</body>
 </html>
