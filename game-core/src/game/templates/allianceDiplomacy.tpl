@@ -320,5 +320,7 @@
 				</fieldset>
 			</div>
 		</div>
+		
+		{include file="footer"}
 	</body>
 </html>

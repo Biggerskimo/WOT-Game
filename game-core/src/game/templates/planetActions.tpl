@@ -91,5 +91,7 @@
 		<script type="text/javascript">			
 			var planetActions = new PlanetActions();
 		</script>
+		
+		{include file="footer"}
 	</body>
 </html>

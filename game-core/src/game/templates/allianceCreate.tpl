@@ -48,5 +48,7 @@
 				</div>
 			</form>
 		</div>
+		
+		{include file="footer"}
 	</body>
 </html>

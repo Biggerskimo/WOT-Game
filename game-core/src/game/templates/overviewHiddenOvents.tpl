@@ -25,5 +25,7 @@
 				{include file='oventList' id='ovents' ovents=$ovents noHighlight=true}
 			{/if}
 		</div>
+		
+		{include file="footer"}
 	</body>
 </html>
