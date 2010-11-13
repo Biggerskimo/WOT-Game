@@ -37,7 +37,9 @@ function Galaxy(galaxyN, system, probesCount) {
 
 		this.planet = planet;
 
-		this.ajaxRequest.openGet('game/index.php?action=GalaxyEspionage&galaxy='+this.galaxyN+'&system='+this.system+'&planet='+planet+'&planetKind='+planetType, this.ajaxResponseWrapper);
+		var url = 'game/index.php?action=GalaxyEspionage&galaxy='+this.galaxyN+'&system='+this.system+'&planet='+planet+'&planetKind='+planetType;
+		this.ajaxRequest.openGet(url, this.ajaxResponseWrapper);
+		this.logRequest(url);
 	}
 
 	this.ajaxResponseWrapper = function() {
@@ -83,6 +85,17 @@ function Galaxy(galaxyN, system, probesCount) {
 		row.appendChild(statusRow);
 	}
 
+	this.logRequest = function(file)
+	{
+		url = /([^\?]+\/)[^\/\?]*\??/.exec(location.href)[1] + file;
+		
+		try {
+			piwikTracker.setCustomUrl(url);
+			//piwikTracker.setDocumentTitle(title);
+			piwikTracker.trackPageView();
+			piwikTracker.enableLinkTracking();
+		} catch(err) { }
+	}
 }
 
 var galaxy = new Galaxy();
