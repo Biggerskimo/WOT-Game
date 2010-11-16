@@ -201,6 +201,10 @@ class AccountEditor extends Account {
 			$createTableSyntax = str_replace("CREATE TABLE", "CREATE TEMPORARY TABLE", $createTableSyntax);
 			$sql = str_replace($tableName, $tmpTableName, $createTableSyntax);
 			
+			// remove foreign keys (sql error 1005: can't create table, error no 150)
+			$regex = "/,\s*(?:CONSTRAINT.+?)?FOREIGN KEY\s*\(.+?\)\s*REFERENCES[^\(]+\(.+?\)[^\),]*(?=[,\)])/";
+			$sql = preg_replace($regex, "$1", $sql);
+			
 			WCF::getDB()->sendQuery($sql);
 			$str .= "\n".$sql;
 		}
