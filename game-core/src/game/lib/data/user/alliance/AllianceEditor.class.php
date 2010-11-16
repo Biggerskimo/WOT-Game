@@ -81,22 +81,6 @@ class AllianceEditor extends Alliance {
 		$result = WCF::getDB()->getFirstRow($sql);
 		
 		Session::resetSessions($result['userIDsStr']);
-	
-		$sql = "UPDATE ugml_users
-				SET ally_id = 0,
-					ally_rank_id = 0
-				WHERE ally_id IN(".$this->allianceID.")";
-		WCF::getDB()->sendQuery($sql);
-		
-		$sql = "UPDATE ugml_users
-				SET ally_request = 0
-				WHERE ally_request = ".$this->allianceID;
-		WCF::getDB()->sendQuery($sql);
-		
-		$sql = "DELETE FROM ugml_alliance_to_alliances
-				WHERE allianceID1 = ".$this->allianceID."
-					OR allianceID2 = ".$this->allianceID;
-		WCF::getDB()->sendQuery($sql);
 		
 		$sql = "DELETE FROM ugml_alliance
 				WHERE id = ".$this->allianceID;
@@ -112,7 +96,7 @@ class AllianceEditor extends Alliance {
 		$sql = "UPDATE ugml_users
 				SET ally_id = ".$this->allianceID.",
 					ally_rank_id = 0,
-					ally_request = 0,
+					ally_request = NULL,
 					ally_register_time = ".TIME_NOW."
 				WHERE id = ".$userID;
 		WCF::getDB()->sendQuery($sql);
@@ -172,7 +156,7 @@ class AllianceEditor extends Alliance {
 	 */
 	public function deleteUser($userID) {
 		$sql = "UPDATE ugml_users
-				SET ally_id = 0,
+				SET ally_id = NULL,
 					ally_rank_id = 0
 				WHERE id = ".$userID;
 		WCF::getDB()->sendQuery($sql);
