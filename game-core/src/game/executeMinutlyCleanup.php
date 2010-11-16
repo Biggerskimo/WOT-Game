@@ -89,7 +89,7 @@ if(!empty($row['eventIDs'])) {
 $sql = "SELECT id FROM ugml_planets
 		LEFT JOIN ugml_fleet
 			ON ugml_fleet.targetPlanetID = ugml_planets.id
-		WHERE ugml_planets.last_update < CURRENT_TIMESTAMP
+		WHERE ugml_planets.deletionTime < UNIX_TIMESTAMP()
 			AND ugml_planets.metal <= 0
 			AND ugml_planets.crystal <= 0
 			AND ugml_planets.planet_type = 2
