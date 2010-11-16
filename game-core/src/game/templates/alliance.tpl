@@ -98,7 +98,7 @@
 								{lang}wot.alliance.diplomacy.confederations{/lang}
 							</div>
 							<div class="informationValue">
-								{foreach from=$alliance->getInterrelation(null, 1, 3) key='allianceID2' item='alliance2'}
+								{foreach from=$alliance->getInterrelation(-1, 1, 3) key='allianceID2' item='alliance2'}
 									{if $moreConfederations|isset}, {/if}{@$alliance2}
 									{assign var='moreConfederations' value=true}
 								{/foreach}
@@ -111,7 +111,7 @@
 								{lang}wot.alliance.diplomacy.nonAgressionPacts{/lang}
 							</div>
 							<div class="informationValue">
-								{foreach from=$alliance->getInterrelation(null, 2, 3) key='allianceID2' item='alliance2'}
+								{foreach from=$alliance->getInterrelation(-1, 2, 3) key='allianceID2' item='alliance2'}
 									{if $moreNonAgressionPacts|isset}, {/if}{@$alliance2}
 									{assign var='moreNonAgressionPacts' value=true}
 								{/foreach}
@@ -124,7 +124,7 @@
 								{lang}wot.alliance.diplomacy.wars{/lang}
 							</div>
 							<div class="informationValue">
-								{foreach from=$alliance->getInterrelation(null, 3, 3) key='allianceID2' item='alliance2'}
+								{foreach from=$alliance->getInterrelation(-1, 3, 3) key='allianceID2' item='alliance2'}
 									{if $moreWars|isset}, {/if}{@$alliance2}
 									{assign var='moreWars' value=true}
 								{/foreach}
