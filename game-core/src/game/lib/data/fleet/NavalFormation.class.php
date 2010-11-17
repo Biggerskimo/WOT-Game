@@ -25,7 +25,7 @@ require_once(LW_DIR.'lib/data/user/LWUser.class.php');
  * Handles functions for handling naval formation fleets.
  * 
  * @author		Biggerskimo
- * @copyright	2008-2009 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2008-2010 Lost Worlds <http://lost-worlds.net>
  */
 class NavalFormation extends DatabaseObject {
 	const MAX_TIME_MOVEMENT = 30;
@@ -59,7 +59,7 @@ class NavalFormation extends DatabaseObject {
 						ON ugml_naval_formation.formationID = ugml_naval_formation_to_users.formationID
 					LEFT JOIN ugml_fleet
 						ON ugml_naval_formation.formationID = ugml_fleet.formationID
-					WHERE ugml_naval_formation.formationID = ".$navalFormationID."
+					WHERE ugml_naval_formation.formationID = ".intval($navalFormationID)."
 					GROUP BY ugml_naval_formation.formationID";
 		    $row = WCF::getDB()->getFirstRow($sql);
 		}
