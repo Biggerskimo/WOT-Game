@@ -70,6 +70,7 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 			return;
 		}
 		
+		WCF::getDB()->sendQuery("START TRANSACTION");
 		if($this->delete) {
 			$sqlCondition = "";
 			if($this->userIDsStr !== null) {
@@ -132,6 +133,7 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 				WCF::getDB()->sendQuery($sql);
 			}
 		}
+		WCF::getDB()->sendQuery("COMMIT");
 		
 		parent::execute();
 	}
