@@ -38,6 +38,7 @@ class WOTAPIGetgalaxydataAction extends AbstractWOTAPIAction {
 					id_owner,
 					id
 				FROM ugml_planets
+				WHERE planetKind = 1
 				ORDER BY galaxy,
 					system,
 					planet";

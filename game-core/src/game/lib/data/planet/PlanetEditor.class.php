@@ -118,6 +118,9 @@ class PlanetEditor extends AbstractDecorator {
 	 * @return	int		planet id
 	 */
 	public static function insert($galaxy, $system, $planet, $planetKind, $planetTypeID, $className, $planetName, $userID, $fields, $diameter, $minTemp, $maxTemp, $image, $time = TIME_NOW, $packageID = PACKAGE_ID) {
+		if(!$userID)
+			$userID = "NULL";
+		
 		$sql = "INSERT INTO ugml_planets
 				(galaxy, system, planet,
 				 planet_type, planetKind, planetTypeID,
