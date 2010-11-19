@@ -284,7 +284,7 @@ class NavalFormation extends DatabaseObject {
 	 * @param	int		fleet id
 	 */
 	public function cancelFleet($fleetID) {
-		Fleet::getInstance($fleetID)->getEditor()->update('formationID', 0);
+		Fleet::getInstance($fleetID)->getEditor()->update('formationID', 'NULL');
 		
 		unset($this->fleets[$fleetID]);
 		

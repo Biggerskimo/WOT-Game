@@ -227,7 +227,10 @@ class FleetEditor extends AbstractDecorator {
 			if(!empty($updates)) {
 				$updates .= ",";
 			}
-			$updates .= " `".$key."` = '".escapeString($value)."' ";
+			if(is_int($value) || $value == "NULL")
+				$updates .= " `".$key."` = ".$value." ";
+			else
+				$updates .= " `".$key."` = '".escapeString($value)."' ";
 			
 			$this->$key = $value;
 		}
