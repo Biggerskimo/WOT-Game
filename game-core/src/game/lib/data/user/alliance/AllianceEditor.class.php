@@ -41,9 +41,9 @@ class AllianceEditor extends Alliance {
 		
 		// create
 		$sql = "INSERT INTO ugml_alliance
-				(ally_register_time, ally_ranks)
+				(ally_register_time, ally_ranks, ally_owner, ally_owner_range)
 				VALUES
-				(".TIME_NOW.", 'a:0:{}')";
+				(".TIME_NOW.", 'a:0:{}', ".$userID.", '".escapeString($leaderRankName)."')";
 		WCF::getDB()->sendQuery($sql);
 		$insertID = WCF::getDB()->getInsertID();
 		
@@ -52,7 +52,6 @@ class AllianceEditor extends Alliance {
 		
 		// add the first user
 		$editor->addUser($userID);
-		$editor->changeLeader($userID, $leaderRankName);
 		
 		return $editor;
 	}
