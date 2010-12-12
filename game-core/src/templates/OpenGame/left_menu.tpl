@@ -51,7 +51,7 @@ function f(target_url,win_name) {
 <tr><td><div align="center"><font color="#FFFFFF"><a href="options.php" accesskey="o" target="{mf}">{Options}</a></font></div></td></tr>{ADMIN_LINK}
 <tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php" accesskey="1" target="_blank"style="color: limegreen;">{Board}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php?page=Thread&amp;threadID=9" target="_blank" accesskey="o" style="color: limegreen;">Regeln</a></font></div></td></tr>
-<tr><td><div align="center"><font color="#FFFFFF"><a href="irc-nick.htm" accesskey="1" target="_blank">Chat</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="irc.php?userName={user_name}" accesskey="1" target="_blank">Chat</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?form=Simulator" target="{mf}">Kampfsimulator</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="javascript:top.location.href='logout.php'" accesskey="s" style="color: red;">Logout</a></font></div></td></tr>
 </table>

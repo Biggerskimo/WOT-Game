@@ -41,6 +41,7 @@ $parse['VERSION'] = VERSION;
 if($user['authlevel'] > 0) $rank = 1;
 else $rank = doquery("SELECT COUNT(*) FROM {{table}} WHERE points_points>={$user['points_points']}","users",true);
 $parse['user_rank'] = $rank[0];
+$parse['user_name'] = WCF::getUser()->username;
 
 if(@$features['imperium'] > time()) $parse['IMPERIUM_LINK'] = '<tr><td><div align="center"><a href="imperium.php" target="'.$mf.'">Imperium</a></div></td></tr>';
 else $parse['IMPERIUM_LINK'] = '';
