@@ -69,7 +69,7 @@ class FleetOvent extends Ovent {
 	 * @param	bool	wrap in transaction
 	 * @todo move this to FleetOventEditor
 	 */
-	public static function create($fleet, $deleteOld = true, $transact = false) {
+	public static function create($fleet, $deleteOld = true, $transact = false, $forceNfsUpdate = false) {
 		if($transact) {
 			WCF::getDB()->sendQuery("SET AUTOCOMMIT = 0");
 			WCF::getDB()->sendQuery("START TRANSACTION");
@@ -105,7 +105,7 @@ class FleetOvent extends Ovent {
 			$leaderFleet = $formation->getLeaderFleet();
 			$leaderFleetID = $leaderFleet->fleetID;
 			
-			if(count($fleets) > 1) {
+			if(count($fleets) > 1 || $forceNfsUpdate) {
 				$impactOwnerOvent->getEditor()->delete();
 				$impactOfiaraOvent->getEditor()->delete();
 				
