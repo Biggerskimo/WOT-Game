@@ -338,7 +338,11 @@ class FleetEditor extends AbstractDecorator {
 		EventHandler::fireAction($this, 'cancel');
 		// TODO: integrate this in wcf eventhandler cancel@FleetEditor
 		if($this->missionID == 11) {
-			$this->getNavalFormation()->cancelFleet($this->fleetID);
+			$leaderFleet = $this->getNavalFormation()->cancelFleet($this->fleetID);
+			
+			// update ovents
+			if($leaderFleet !== null)
+				FleetOvent::create($leaderFleet, true, false, true);
 		}
 		// TODO: integrate this in wcf eventhandler cancel@FleetEditor
 		if($this->missionID == 12) {

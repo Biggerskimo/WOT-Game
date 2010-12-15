@@ -101,7 +101,7 @@ class NavalFormation extends DatabaseObject {
 	public static function getByFleetID($fleetID, $editor = false) {
 		$sub = "SELECT formationID
 				FROM ugml_fleet
-				WHERE fleetID = ".$fleetID;
+				WHERE fleetID = ".intval($fleetID);
 		
 		
 	    $sql = "SELECT ugml_naval_formation.*,
@@ -282,6 +282,7 @@ class NavalFormation extends DatabaseObject {
 	 *  or search a new leader fleet if the cancel was this.
 	 *  
 	 * @param	int		fleet id
+	 * @param	int		new leader fleet id
 	 */
 	public function cancelFleet($fleetID) {
 		Fleet::getInstance($fleetID)->getEditor()->update('formationID', 0);
@@ -289,11 +290,12 @@ class NavalFormation extends DatabaseObject {
 		unset($this->fleets[$fleetID]);
 		
 		if($fleetID != $this->leaderFleetID) {
-			return;
+			return Fleet::getInstance($this->leaderFleetID);
 		}
 		
 		if(!count($this->fleets)) {
 			$this->getEditor()->delete();
+			return null;
 		}
 		else {
 			$sql = "SELECT fleetID
@@ -302,8 +304,11 @@ class NavalFormation extends DatabaseObject {
 					ORDER BY fleetID ASC";
 			$row = WCF::getDB()->getFirstRow($sql);
 			
-			$this->getEditor()->setLeaderFleetID($row['fleetID']);
+			$leaderFleetID = $row['fleetID'];
+			$this->getEditor()->setLeaderFleetID($leaderFleetID);
 		}
+		
+		return Fleet::getInstance($leaderFleetID);
 	}
 }
 ?>
