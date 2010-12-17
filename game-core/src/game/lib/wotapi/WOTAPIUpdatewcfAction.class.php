@@ -71,19 +71,6 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 		}
 		
 		WCF::getDB()->sendQuery("START TRANSACTION");
-		if($this->delete) {
-			$sqlCondition = "";
-			if($this->userIDsStr !== null) {
-				$sqlCondition = " WHERE userID IN (".$this->userIDsStr.")";
-			}
-			
-			foreach(self::$tables as $table) {
-				$sql = "DELETE FROM wcf".WCF_N."_".$table.$sqlCondition;
-			
-				WCF::getDB()->sendQuery($sql);
-				//echo $sql;
-			}
-		}
 		
 		foreach(self::$tables as $table) {
 			// get own table columns
@@ -97,7 +84,9 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 			
 			// build and execute sql
 			$sqlInserts = "";
+			$sqlInserts2 = array();
 			$rowNameString = "";
+			$i = 0;
 			foreach($this->$table as $row) {
 				foreach($row as $key => $value) {
 					// ignore fields that we have not
@@ -112,25 +101,46 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 					}
 					
 					// build columns string
-					if(empty($sqlInserts)) {
+					if(empty($sqlInserts) && !count($sqlInserts2)) {
 						$rowNameString .= ",`".$key."`";
 					}
 				}
 				
 				$sqlInserts .= ",(".implode(",", $row).")";
+				$i++;
+				
+				if($i > 500)
+				{
+					$sqlInserts2[] = $sqlInserts;
+					$sqlInserts = "";
+					$i = 0;
+				}
 			}
+			if($i != 0)
+				$sqlInserts2[] = $sqlInserts;
 			
-			if(!empty($sqlInserts)) {
+			// enough preparing for now, go!
+			if(count($sqlInserts2)) {
 				if($this->delete) {
-					$sql = "INSERT";
+					$sqlCondition = "";
+					if($this->userIDsStr !== null)
+						$sqlCondition = " WHERE userID IN (".$this->userIDsStr.")";
+					$sql = "DELETE FROM wcf".WCF_N."_".$table.$sqlCondition;
+					WCF::getDB()->sendQuery($sql);
+					
+					$sqlC = "INSERT";
 				}
 				else {
-					$sql = "REPLACE";
+					$sqlC = "REPLACE";
 				}
-				$sql .= " INTO `wcf".WCF_N."_".$table."`
-						(".substr($rowNameString, 1).")
-						 VALUES ".substr($sqlInserts, 1);
-				WCF::getDB()->sendQuery($sql);
+				foreach($sqlInserts2 as $sqlInserts)
+				{
+					$sql = $sqlC." INTO `wcf".WCF_N."_".$table."`
+							(".substr($rowNameString, 1).")
+							VALUES ".substr($sqlInserts, 1);
+					echo $sql;
+					WCF::getDB()->sendQuery($sql);
+				}
 			}
 		}
 		WCF::getDB()->sendQuery("COMMIT");
@@ -144,7 +154,7 @@ class WOTAPIUpdatewcfAction extends AbstractWOTAPIAction {
 	public function answer() {
 		parent::answer();		
 		
-		$this->wotAPIServerClient->send('wcf user tables successfully updated!,'/*.print_r($this, true)*/, 100);
+		$this->wotAPIServerClient->send('wcf user tables successfully updated!,', 100);
 	}
 }
 ?>
