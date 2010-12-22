@@ -130,7 +130,7 @@ class AllianceApplicationViewForm extends AbstractForm {
 		} else {
 			// update user
 			$sql = "UPDATE ugml_users
-					SET ally_request = 0,
+					SET ally_request = NULL,
 						ally_request_text = '',
 						ally_register_time = 0
 					WHERE id = ".$this->userID;
