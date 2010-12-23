@@ -43,6 +43,8 @@ class MessageEditor extends Message {
 			$sender = new LWUser($senderID);
 			$senderName = $sender->getLinkedUsername();
 		}
+		if($senderID == 0)
+			$senderID = "NULL";
 		
 		// insert
 		$sql = "INSERT INTO ugml_messages

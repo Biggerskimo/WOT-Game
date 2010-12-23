@@ -111,6 +111,7 @@ if($_GET['mode'] == "change"){ //Array ( [db_character]
 		$settings_rep = "0";
 	}
 	//Modo vacaciones
+	$umod_meldung = '';
 	if(isset($_POST["urlaubs_modus"]) && $_POST["urlaubs_modus"] == 'on'){
 		// check fleets
 		$sql = "SELECT ownerID
@@ -129,7 +130,15 @@ if($_GET['mode'] == "change"){ //Array ( [db_character]
 		$planet = WCF::getDB()->getFirstRow($sql);
 		if($planet) message('Du hast auf dem '.Planet::getInstance(null, $planet).' noch etwas in Bau!');
 
-		if(!$fleet && !$planet && !$user['urlaubs_modus']) $urlaubs_modus = (time() + 60 * 60 * 24 * 2/* / $game_config['resource_multiplier']*/);
+		if(!$fleet && !$planet && !$user['urlaubs_modus'])
+		{
+			$urlaubs_modus = (time() + 60 * 60 * 24 * 2/* / $game_config['resource_multiplier']*/);
+			$umod_meldung =
+'<p style="color: green;"><br>Du hast deinen Account in den Urlaubsmodus versetzt.<br>'.
+'Falls du laenger als 30 Tage inaktiv bleibst, kann es sein, dass wir deinen '.
+'Account loeschen oder an andere Interessenten weitergeben werden. Falls du das '.
+'nicht willst, solltest du dich bei einem Game Operator melden.</p>';
+		}
 		else $urlaubs_modus = $user['urlaubs_modus'];
 	}else{
 		if($user['urlaubs_modus']) {
@@ -195,7 +204,7 @@ if($_GET['mode'] == "change"){ //Array ( [db_character]
 			message($lang['succeful_changename'],$lang['changue_name']);
 		}
 	}*/
-	message($lang['succeful_save'],$lang['Options']);
+	message($lang['succeful_save'].$umod_meldung,$lang['Options']);
 }
 else
 {

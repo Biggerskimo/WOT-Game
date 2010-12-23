@@ -89,7 +89,7 @@ class Debris extends Planet {
     	$time = self::getDeletionTime();
 
     	$sql = "INSERT INTO ugml".LW_N."_planets
-				SET name = 'Trümmerfeld',
+				SET name = 'Trï¿½mmerfeld',
 					id_owner = '0',
 					galaxy = '".$galaxy."',
 					system = '".$system."',
@@ -107,7 +107,7 @@ class Debris extends Planet {
 		WCF::getDB()->sendQuery($sql);
 
 		$row = array('id' => WCF::getDB()->getInsertID(),
-				'name' => 'Trümmerfeld',
+				'name' => 'Trï¿½mmerfeld',
 				'id_owner' => 0,
 				'galaxy' => $galaxy,
 				'system' => $system,
@@ -159,12 +159,7 @@ class Debris extends Planet {
     
 	public function calculateResources($time = null) {
 		if(is_numeric($this->planetID)) {
-			$time = self::getDeletionTime($time);
-		
-			$sql = "UPDATE ugml".LW_N."_planets
-					SET last_update = ".$time."
-					WHERE id = ".$this->planetID;
-			WCF::getDB()->sendQuery($sql);
+			$this->getEditor()->update(array('deletionTime' => self::getDeletionTime($time)));
 		}
 	}
     
@@ -176,7 +171,7 @@ class Debris extends Planet {
     public static function getDeletionTime($time = null) {
     	if($time === null) $time = time();
     
-    	$hours = rand((12 * 60 * 60), (48 * 60 * 60));
+    	$hours = rand((24 * 60 * 60), (48 * 60 * 60));
     	$time += $hours;
     	
     	return $time;

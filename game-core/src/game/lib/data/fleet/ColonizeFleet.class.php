@@ -81,7 +81,7 @@ class ColonizeFleet extends AbstractFleetEventHandler implements Mission {
 	 * @see Mission::check()
 	 */
 	public static function check(FleetQueue $fleetQueue) {
-		if(isset($fleetQueue->ships[self::COLONY_SHIP])) {
+		if(isset($fleetQueue->ships[self::COLONY_SHIP]) && $fleetQueue->planetType == 1) {
 			return true;			
 		}
 		return false;

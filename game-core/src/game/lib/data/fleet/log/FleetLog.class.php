@@ -50,6 +50,9 @@ class FleetLog {
 		
 		$string = LWUtil::serialize(serialize($array), 1);
 		
+		if(!$data['targetPlanetID'])
+			$data['targetPlanetID'] = "NULL";
+		
 		$sql = "INSERT INTO ugml_archive_fleet
 				(fleetID, impactTime, returnTime,
 				 startPlanetID, targetPlanetID, missionID,

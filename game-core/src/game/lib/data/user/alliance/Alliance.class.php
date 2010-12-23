@@ -182,7 +182,7 @@ class Alliance extends DatabaseObject {
 	 * @param	int		state
 	 * @return	mixed	array or boolen (if type & state are given); null when none has been found
 	 */
-	public function getInterrelation($allianceID2 = null, $interrelationType = null, $interrelationState = null) {
+	public function getInterrelation($allianceID2 = -1, $interrelationType = null, $interrelationState = null) {
 		if(!count($this->interrelations)) {
 			$sql = "	SELECT ugml_alliance.*,
 							ugml_alliance_to_alliances.interrelationType,
@@ -218,7 +218,7 @@ class Alliance extends DatabaseObject {
 		}
 		
 		// return
-		if($allianceID2 === null) {
+		if($allianceID2 == -1) {
 			if($interrelationType !== null) {
 				$interrelations = array();
 				foreach($this->interrelations as $allianceID3 => $alliance) {

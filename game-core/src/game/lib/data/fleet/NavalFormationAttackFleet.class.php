@@ -1261,6 +1261,10 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 				$fleetObj->addData(array('fleetObj' => print_r($this, true)));
 			}
 			$fleetObj->getEditor()->updateShips($specArray);
+			
+    		// TODO: integrate this in wcf event listener?
+    		if($fleetObj !== $this)
+    			FleetOvent::update($fleetObj);
 		}
 	}
 	
