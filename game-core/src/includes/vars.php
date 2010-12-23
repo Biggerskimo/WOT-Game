@@ -190,7 +190,7 @@ $resource = array(
 211 => array('metal'=>50000,'crystal'=>25000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>1000,'speed'=>4000,'capacity'=>500, 'shield'=>500,'attack'=>1000, 'sd'=>array(210=>5,212=>5,401=>20,402=>20,403=>10,405=>10)),
 212 => array('metal'=>0,'crystal'=>2000,'deuterium'=>500,'energy'=>0,'factor'=>1,'shield'=>10,'attack'=>5, 'attack'=>1, 'sd'=>array()),
 213 => array('metal'=>60000,'crystal'=>50000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>1000,'speed'=>5000,'capacity'=>2000, 'shield'=>500,'attack'=>2000, 'sd'=>array(210=>5,212=>5,402=>10,215=>2)),
-214 => array('metal'=>5000000,'crystal'=>4000000,'deuterium'=>1000000,'energy'=>0,'factor'=>1,'consumption'=>100,'speed'=>100,'capacity'=>1000000, 'shield'=>50000,'attack'=>200000, 'sd'=>array(210=>1250,212=>1250,202=>250,203=>250,204=>200,205=>100,206=>33,207=>30,208=>250,209=>250,211=>25,215=>15,401=>200,402=>200,403=>100,404=>50,405=>100,213=>5)),
+214 => array('metal'=>5000000,'crystal'=>4000000,'deuterium'=>1000000,'energy'=>0,'factor'=>1,'consumption'=>100,'speed'=>100,'capacity'=>1000000, 'shield'=>50000,'attack'=>200000, 'sd'=>array(210=>625,212=>625,202=>125,203=>125,204=>100,205=>50,206=>16,207=>15,208=>125,209=>125,211=>12,215=>7,401=>100,402=>100,403=>50,404=>25,405=>50,213=>5)),
 215 => array('metal'=>30000,'crystal'=>40000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>250,'speed'=>10000,'capacity'=>750, 'shield'=>400,'attack'=>700, 'sd'=>array(210=>5,212=>5,202=>3,203=>3,205=>4,206=>4,207=>7)),
 //Sistemas de defensa
 401 => array('metal'=>2000,'crystal'=>0,'deuterium'=>0,'energy'=>0,'factor'=>1, 'shield'=>20, 'attack'=>80, 'sd'=>array()),
