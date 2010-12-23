@@ -114,6 +114,14 @@ class FleetEditor extends AbstractDecorator {
 	 * @return	int		fleet id
 	 */
 	public static function insert($startPlanetID, $endPlanetID, $ownerID, $ofiaraID, $galaxy, $system, $planet, $metal, $crystal, $deuterium, $startTime, $impactTime, $returnTime, $missionID, $packageID = PACKAGE_ID) {
+		if(!$ofiaraID)
+		{
+			$ofiaraID = "NULL";
+			
+			if(!$endPlanetID)
+				$endPlanetID = "NULL";
+		}
+		
 		$sql = "INSERT INTO ugml_fleet
 				(startPlanetID, targetPlanetID, packageID,
 				 ownerID, ofiaraID, missionID,
@@ -122,7 +130,7 @@ class FleetEditor extends AbstractDecorator {
 				 returnTime, impactTime, startTime)
 				VALUES
 				(".$startPlanetID.", ".$endPlanetID.", ".$packageID.",
-				 ".$ownerID.", ".intval($ofiaraID).", ".$missionID.",
+				 ".$ownerID.", ".$ofiaraID.", ".$missionID.",
 				 ".intval($galaxy).", ".intval($system).", ".intval($planet).",
 				 ".$metal.", ".$crystal.", ".$deuterium.",
 				 ".$returnTime.", ".$impactTime.", ".$startTime.")";
@@ -219,7 +227,10 @@ class FleetEditor extends AbstractDecorator {
 			if(!empty($updates)) {
 				$updates .= ",";
 			}
-			$updates .= " `".$key."` = '".escapeString($value)."' ";
+			if(is_int($value) || $value == "NULL")
+				$updates .= " `".$key."` = ".$value." ";
+			else
+				$updates .= " `".$key."` = '".escapeString($value)."' ";
 			
 			$this->$key = $value;
 		}

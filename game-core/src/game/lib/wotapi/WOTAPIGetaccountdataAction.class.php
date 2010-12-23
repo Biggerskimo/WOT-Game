@@ -19,29 +19,32 @@
 require_once(LW_DIR.'lib/wotapi/AbstractWOTAPIAction.class.php');
 
 /**
- * Collects the galaxy data.
+ * Sends the essential account information.
  * 
  * @author		Biggerskimo
- * @copyright	2008 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2010 Lost Worlds <http://lost-worlds.net>
  * @package		game.wot.wotapipserver.action.user
  */
-class WOTAPIGetgalaxydataAction extends AbstractWOTAPIAction {
-	public $galaxy = array();
+class WOTAPIGetaccountdataAction extends AbstractWOTAPIAction {
+	public $accounts = array();
+	
+	const STAT_TYPE_ID = 1;
 	
 	/**
 	 * @see WOTAPIAction::execute()
 	 */
 	public function execute() {
-		$sql = "SELECT galaxy,
-					system,
-					planet,
-					id_owner,
-					id
-				FROM ugml_planets
-				WHERE planetKind = 1
-				ORDER BY galaxy,
-					system,
-					planet";
+		$sql = "SELECT id, urlaubs_modus, onlinetime, ugml_stat_entry.rank, ugml_stat_entry.points,
+					(fleet1.fleetID IS NULL AND fleet2.fleetID IS NULL) AS deletable
+				FROM ugml_users
+				LEFT JOIN ugml_stat_entry
+					ON ugml_stat_entry.statTypeID = ".self::STAT_TYPE_ID."
+						AND ugml_stat_entry.relationalID = ugml_users.id
+				LEFT JOIN ugml_fleet AS fleet1
+					ON fleet1.ownerID = ugml_users.id
+				LEFT JOIN ugml_fleet AS fleet2
+					ON fleet2.ofiaraID = ugml_users.id
+				GROUP BY ugml_users.id";
 		$result = WCF::getDB()->sendQuery($sql);
 		
 		while($row = WCF::getDB()->fetchArray($result)) {
@@ -57,6 +60,13 @@ class WOTAPIGetgalaxydataAction extends AbstractWOTAPIAction {
 				$array = array('userID' => $row['id_owner'], 'planetID' => $row['id']);
 				$this->galaxy[$row['galaxy']][$row['system']][$row['planet']] = $array;
 			}
+			$this->accounts[$row['id']] = array(
+				'userID' => $row['id'],
+				'umodeSetting' => $row['urlaubs_modus'],
+				'onlineTime' => $row['onlinetime'],
+				'rank' => $row['rank'],
+				'points' => $row['points'],
+				'deletable' => $row['deletable']);
 		}
 		
 		parent::execute();
@@ -69,12 +79,12 @@ class WOTAPIGetgalaxydataAction extends AbstractWOTAPIAction {
 		parent::answer();
 		
 		$data = array();
-		$data['galaxy'] = gzcompress(serialize($this->galaxy));
+		$data['accounts'] = gzcompress(serialize($this->accounts));
 		
 		
-		$this->wotAPIServerClient->send('appending galaxy data', 100, $data);
+		$this->wotAPIServerClient->send('appending account data', 100, $data);
 		
-		echo '~~',strlen($data['galaxy']);
+		echo '~~~',strlen($data['accounts']);
 	}
 }
 ?>

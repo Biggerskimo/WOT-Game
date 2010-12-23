@@ -53,7 +53,7 @@ class AllianceApplicationDeleteAction extends AbstractAction {
 		
 
 		$sql = "UPDATE ugml_users
-				SET ally_request = 0,
+				SET ally_request = NULL,
 					ally_request_text = ''
 				WHERE id = ".WCF::getUser()->userID;
 		WCF::getDB()->sendQuery($sql);

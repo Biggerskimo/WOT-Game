@@ -260,11 +260,14 @@ class FleetQueue extends DatabaseObject {
 				require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
 				throw new NamedUserException(WCF::getLanguage()->get('wot.fleet.start.samePlanet'));
 			}
-		
-			$sql = "SELECT urlaubs_modus
-					FROM ugml_users
-					WHERE id = ".$this->getTargetPlanet()->id_owner;
-			$row = WCF::getDB()->getFirstRow($sql);
+			
+			if($this->getTargetPlanet()->id_owner)
+			{
+				$sql = "SELECT urlaubs_modus
+						FROM ugml_users
+						WHERE id = ".$this->getTargetPlanet()->id_owner;
+				$row = WCF::getDB()->getFirstRow($sql);
+			}
 			
 			if($row['urlaubs_modus'] && $this->getTargetPlanet()->planetKind != 2) {
 				require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
