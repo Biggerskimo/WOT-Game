@@ -29,7 +29,7 @@ require_once(LW_DIR.'lib/data/user/LWUser.class.php');
  */
 class NavalFormation extends DatabaseObject {
 	const MAX_TIME_MOVEMENT = 30;
-	const MAX_USERS = 20;
+	const MAX_USERS = 2;
 	
 	protected $usersWithFleets = array();
 	
