@@ -35,4 +35,8 @@ DELETE FROM ugml_spec WHERE specID = 34;
 ALTER TABLE ugml_planets DROP ally_deposit;
 
 --- 15% ditf
-UPDATE ugml_config SET config_value = 5 WHERE config_name = 'obrona_na_zlom';
+UPDATE ugml_config SET config_value = 15 WHERE config_name = 'obrona_na_zlom';
+
+--- remove 'destroy' mission
+DELETE FROM ugml_mission WHERE missionID = 5;
+DELETE FROM ugml_mission_route WHERE missionID = 5;
