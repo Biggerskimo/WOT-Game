@@ -104,57 +104,17 @@ class WOTAPIRegisterAction extends AbstractWOTAPIAction {
 	 */
 	protected function findCoordinates() {
 		global $game_config;
+		$galaxies = $game_config['galaxies'];
+		$o = $galaxies * ($galaxies + 1) / 2; // Gaussian formula
 		
-		$id_g =& $game_config['id_g'];
-		$id_s =& $game_config['id_s'];
-		$id_p =& $game_config['id_p'];
 		do {
-			$newGalaxy = false;
-			do {
-				$newSystem = false;
-				// create planet
-				do {
-					$newPlanet = false;
-					switch($id_p) {
-						case 0:
-						case 1:
-						case 2:
-							$id_p++;
-							break;
-						case 3:
-							$newSystem = $newPlanet = true;
-					}
-					if(!$newPlanet) {
-						// make planet
-						$planet = rand(4, 12);
-						$newPlanet = !$this->isFree($id_g, $id_s, $planet);
-						if(!$newPlanet) break 3;
-					} else $newPlanet = false;
-				} while($newPlanet);
-				if($newSystem) {
-					// change system
-					if($id_s == 499) {
-						$newGalaxy = true;
-						$newSystem = false;
-					} else {
-						$id_s++;
-						$id_p = 0;
-						WCF::getDB()->sendQuery("UPDATE ugml_config SET config_value = '".$id_s."' WHERE config_name = 'id_s'");
-					}
-				}
-			} while($newSystem);
-			if($newGalaxy) {
-				// change galaxy
-				$id_g++;
-				$id_p = $id_s = 1;
-				WCF::getDB()->sendQuery("UPDATE ugml_config SET config_value = '".$id_g."' WHERE config_name = 'id_g'");
-				WCF::getDB()->sendQuery("UPDATE ugml_config SET config_value = '".$id_s."' WHERE config_name = 'id_s'");
-			}
-		} while($newGalaxy);
+			$r = rand(1, $o);
+			$galaxy = $galaxies - ceil((-1 + sqrt(1 + 8 * $r)) / 2); // derived from the Gaussian formula
+			$system = mt_rand(1, 499);
+			$planet = mt_rand(4, 12);
+		} while(!$this->isFree($galaxy, $system, $planet));
 		
-		WCF::getDB()->sendQuery("UPDATE ugml_config SET config_value = '".$id_p."' WHERE config_name = 'id_p'");
-		
-		return array($id_g, $id_s, $planet);
+		return array($galaxy, $system, $planet);
 	}
 	
 	/**
