@@ -71,6 +71,11 @@ class FleetNavalFormationUserAddAction extends AbstractAction {
 			throw new PermissionDeniedException();
 		}
 		
+		if($this->navalFormation->usersLimitReached()) {
+			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
+			throw new PermissionDeniedException();
+		}
+		
 		$user = new LWUser(null, null, $this->username);
 		
 		if(!$user->userID) {
