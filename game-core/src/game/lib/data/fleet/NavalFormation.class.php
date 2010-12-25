@@ -29,6 +29,7 @@ require_once(LW_DIR.'lib/data/user/LWUser.class.php');
  */
 class NavalFormation extends DatabaseObject {
 	const MAX_TIME_MOVEMENT = 30;
+	const MAX_USERS = 20;
 	
 	protected $usersWithFleets = array();
 	
@@ -216,7 +217,15 @@ class NavalFormation extends DatabaseObject {
 		return Fleet::getInstance($this->leaderFleetID);
 	}
 	
-	
+	/**
+	 * Checks whether new users may be added or not.
+	 * 
+	 * @return	bool
+	 */
+	public function usersLimitReached()
+	{
+		return (count($this->users) >= self::MAX_USERS);
+	}
 	
 	/**
 	 * Checks user if they have fleets in the formation.
