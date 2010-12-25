@@ -11,7 +11,7 @@ UPDATE ugml_spec_rapidfire SET shots = 625 WHERE specID = 214 AND target = 210;
 UPDATE ugml_spec_rapidfire SET shots = 12 WHERE specID = 214 AND target = 211;
 UPDATE ugml_spec_rapidfire SET shots = 625 WHERE specID = 214 AND target = 212;
 UPDATE ugml_spec_rapidfire SET shots = 2 WHERE specID = 214 AND target = 213;
-UPDATE ugml_spec_rapidfire SET shots = 12 WHERE specID = 214 AND target = 214;
+UPDATE ugml_spec_rapidfire SET shots = 12 WHERE specID = 214 AND target = 215;
 UPDATE ugml_spec_rapidfire SET shots = 100 WHERE specID = 214 AND target = 401;
 UPDATE ugml_spec_rapidfire SET shots = 100 WHERE specID = 214 AND target = 402;
 UPDATE ugml_spec_rapidfire SET shots = 50 WHERE specID = 214 AND target = 403;
