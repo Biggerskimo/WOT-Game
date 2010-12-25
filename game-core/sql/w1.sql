@@ -28,3 +28,8 @@ ALTER TABLE ugml_planets DROP battleship;
 DELETE FROM ugml_spec_requirement WHERE specID = 13 OR requirement = 13;
 DELETE FROM ugml_spec WHERE specID = 13;
 ALTER TABLE ugml_planets DROP refinery;
+
+--- remove alliance deposit
+DELETE FROM ugml_spec_requirement WHERE specID = 34 OR requirement = 34;
+DELETE FROM ugml_spec WHERE specID = 34;
+ALTER TABLE ugml_planets DROP ally_deposit;

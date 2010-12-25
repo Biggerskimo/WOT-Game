@@ -38,7 +38,6 @@ $resource = array(
 24 => "deuterium_store",
 31 => "laboratory",
 33 => "terraformer",
-34 => "ally_deposit",
 44 => "silo",
 
 106 => "spy_tech",
@@ -154,7 +153,6 @@ $resource = array(
 24 => array('metal'=>2000,'crystal'=>2000,'deuterium'=>0,'energy'=>0,'factor'=>2),
 31 => array('metal'=>200,'crystal'=>400,'deuterium'=>200,'energy'=>0,'factor'=>2),
 33 => array('metal'=>0,'crystal'=>50000,'deuterium'=>100000,'energy'=>1000,'factor'=>2),
-34 => array('metal'=>20000,'crystal'=>40000,'deuterium'=>0,'energy'=>0,'factor'=>2),
 44 => array('metal'=>20000,'crystal'=>20000,'deuterium'=>1000,'energy'=>0,'factor'=>2),
 //Tecnologias
 106 => array('metal'=>200,'crystal'=>1000,'deuterium'=>200,'energy'=>0,'factor'=>2),
@@ -272,7 +270,7 @@ $bonus = '(pow(pow(1.03, $planetrow[$resource[13]]) * (1 / (15 * pow(1.01, ('.$u
 ),
 );}
 
-$reslist['build'] = array(1,2,3,4,12,14,15,21,22,23,24,31,33,34,44,41,42,43);
+$reslist['build'] = array(1,2,3,4,12,14,15,21,22,23,24,31,33,44,41,42,43);
 $reslist['tech'] = array(106,108,109,110,111,113,114,115,117,118,120,121,122,123,199);
 $reslist['fleet'] = array(202,203,204,205,206,207,208,209,210,211,212,213,214);
 $reslist['defense'] = array(401,402,403,404,405,406,407,408,502,503);

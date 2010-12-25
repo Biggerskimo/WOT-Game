@@ -24,7 +24,6 @@ $lang['level'] = 'Stufe';
 24 => "Deuteriumtank",
 31 => "Forschungslabor",
 33 => "Terraformer",
-34 => "Allianzdepot",
 44 => "Raketensilo",
 //Tecnologias
 100 => "Forschungen",
@@ -93,7 +92,6 @@ $lang['level'] = 'Stufe';
 24 => "Deuteriumtanks sind spezielle Vorrichtungen, welche es erm&ouml;glichen das fl&uuml;ssige Gold sicher aufzubewahren.",
 31 => "Das Forschungslabor wird errichtet um an neuartige Technologien zu gelangen und sich somit einen Vorteil im Kampf um die Spitze zu sichern. Durch jede weitere Stufe wird mehr Platz gewonnen um immer mehr Arbeitskr&auml;fte besch&auml;ftigen zu k&ouml;nnen, welche somit schnellere Forschungszeiten erzielen.",
 33 => "Der Terraformer erm&ouml;glicht es immer mehr nutzbarer Fl&auml;che zu Gewinnen, welche zum Ausbau von Geb&auml;uden dienen soll, wenn die vorhandenen Baufl&auml;chen ausgebaut werden.",
-34 => "Bietet die M&ouml;glichkeit verb&uuml;ndetete Flotten, die bei euch im Orbit stationiert werden, mit Treibstoff zu versorgen.",
 44 => "Das Raketensilo dient zum Einlagern von Raketen. Jede weitere Stufe erm&ouml;glicht es euch eine bestimmte Anzahl an Raketen mehr zu lagern und auch die Reichweite der Raketen zu vergr&ouml;&szlig;ern.",
 //Tecnologias
 106 => "die Spionagetechnik dient dazu, die Planeten anderer Imperien auszuspionieren und somit Daten &uuml;ber diese Planeten zu erlangen.",
