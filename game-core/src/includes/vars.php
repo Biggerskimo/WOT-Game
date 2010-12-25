@@ -30,7 +30,6 @@ $resource = array(
 3 => "deuterium_sintetizer",
 4 => "solar_plant",
 12 => "fusion_plant",
-13 => "refinery",
 14 => "robot_factory",
 15 => "nano_factory",
 21 => "hangar",
@@ -91,7 +90,6 @@ $resource = array(
 {$requeriments = array(
 //Edificios
 12 => array(3=>5,113=>3),
-13 => array(14=>6,113=>5),
 15 => array(14=>10,108=>10),
 21 => array(14=>2),
 33 => array(15=>1,113=>12),
@@ -148,7 +146,6 @@ $resource = array(
 3 => array('metal'=>225,'crystal'=>75,'deuterium'=>0,'energy'=>0,'factor'=>3/2),
 4 => array('metal'=>75,'crystal'=>30,'deuterium'=>0,'energy'=>0,'factor'=>3/2),
 12 => array('metal'=>900,'crystal'=>360,'deuterium'=>180,'energy'=>0,'factor'=>1.8),
-13 => array('metal'=>75000,'crystal'=>50000,'deuterium'=>30000,'energy'=>0,'factor'=>1.7),
 14 => array('metal'=>400,'crystal'=>120,'deuterium'=>200,'energy'=>0,'factor'=>2),
 15 => array('metal'=>1000000,'crystal'=>500000,'deuterium'=>100000,'energy'=>0,'factor'=>2),
 21 => array('metal'=>400,'crystal'=>200,'deuterium'=>100,'energy'=>0,'factor'=>2),
@@ -273,17 +270,9 @@ $bonus = '(pow(pow(1.03, $planetrow[$resource[13]]) * (1 / (15 * pow(1.01, ('.$u
 		'deuterium'=>'return 0;',
 		'energy'=>'return (($planetrow["temp_max"]/4)+20)*$planetrow[$resource[212]]* 0.1*$planetrow["{$resource[212]}_porcent"];')
 ),
-13 => array('metal'=>75000,'crystal'=>50000,'deuterium'=>30000,'factor'=>1.7,
-	'formular'=> array(
-		'metal'=> 'return $planetrow["refineryProduction"] == "metal" ? ('.$bonus.' * 0.01 * $planetrow["metal_perhour"] * 0.1 * $planetrow[$resource[13]."_porcent"] / $game_config["resource_multiplier"]) : 0;',
-		'crystal'=> 'return $planetrow["refineryProduction"] == "crystal" ? ('.$bonus.' * 0.01 * $planetrow["crystal_perhour"] * 0.1 * $planetrow[$resource[13]."_porcent"] / $game_config["resource_multiplier"]) : 0;',
-		//'crystal'=> 'return '.$bonus.' * 0.1;',
-		'deuterium'=> 'return $planetrow["refineryProduction"] == "deuterium" ? ('.$bonus.' * 0.01 * $planetrow["deuterium_perhour"] * 0.1 * $planetrow[$resource[13]."_porcent"] / $game_config["resource_multiplier"]) : 0;',
-		//'deuterium' => 'return '.$unusedEnergy.' * 0.1;'
-)),
 );}
 
-$reslist['build'] = array(1,2,3,4,12,13,14,15,21,22,23,24,31,33,34,44,41,42,43);
+$reslist['build'] = array(1,2,3,4,12,14,15,21,22,23,24,31,33,34,44,41,42,43);
 $reslist['tech'] = array(106,108,109,110,111,113,114,115,117,118,120,121,122,123,199);
 $reslist['fleet'] = array(202,203,204,205,206,207,208,209,210,211,212,213,214);
 $reslist['defense'] = array(401,402,403,404,405,406,407,408,502,503);

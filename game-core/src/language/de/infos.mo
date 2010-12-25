@@ -59,10 +59,6 @@ $lang['info'][12]['name'] = 'Fusionskraftwerk';
 $lang['info'][12]['description'] = 'Hierbei wird versucht durch Spaltung der Atomkerne des Deuteriums so viel Energie wie m&ouml;glich zu gewinnen. Da dieser Prozess sehr viel Deuterim verbraucht um Energie zu gewinnen, ist es erst im sp&auml;terem Spielverlauf, wenn das Solarkraftwerk nicht mehr rentabel ist, sinnvoll dieses auszubauen, da das Deuterium am Anfang eine wichtige Rolle spielt. Die gewonnene Energie wird dann ebenfalls in riesigen, unterirdischen Akkumulatoren gespeichert.';
 $lang['info'][12]['dodatek'] = '<table align=center><td class="c">Stufe</td><td class="c">Produktion/Std.</td><td class="c">Ben&ouml;tigt Deuteru.</td>'; $lang['info'][14]['name'] = 'Roboterfabrik';
 
-$lang['info'][13]['name'] = 'Raffinerie';
-$lang['info'][13]['description'] = 'Die Raffiniere dient dazu die Produktion eines Rohstoffes um einen gewissen Prozentsatz zu steigern. Es kann immer nur die Produktion eines Rohstoffes pro Planet gef�rdert werden. Der Rohstoff, der gef�rdert wird, kann nur alle 48h ge�ndert werden. Als Grundwert dient die Produktion des Rohstoffes auf den Planeten, auf dem die Raffiniere steht.';
-$lang['info'][13]['dodatek'] = '<b><i>bla</i></b>';
-
 $lang['info'][14]['name'] = 'Roboterfabrik';
 $lang['info'][14]['description'] = 'Die Arbeitskr&auml;fte die hier produziert werden, sollen einen schnelleren Aufbau der Infrastruktur erm&ouml;glichen und gew&auml;hrleisten somit einen einfacheren Aufstieg an die Spitze. Sie dienen zu Beginn dem Bau der Schiffswerft und im sp&auml;terem Verlauf auch dem Bau der Nanitenfabrik welche die Kr&ouml;nung der Robotertechnik darstellt.';
 

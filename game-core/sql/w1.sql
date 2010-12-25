@@ -23,3 +23,8 @@ DELETE FROM ugml_spec_requirement WHERE specID = 215 OR requirement = 215;
 DELETE FROM ugml_spec_rapidfire WHERE specID = 215 OR target = 215;
 DELETE FROM ugml_spec WHERE specID = 215;
 ALTER TABLE ugml_planets DROP battleship;
+
+--- remove refinery
+DELETE FROM ugml_spec_requirement WHERE specID = 13 OR requirement = 13;
+DELETE FROM ugml_spec WHERE specID = 13;
+ALTER TABLE ugml_planets DROP refinery;

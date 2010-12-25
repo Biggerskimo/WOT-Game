@@ -105,7 +105,7 @@ if(in_array($gid, $array)) {
 				<td class="c">Level</td>
 				<td class="c">Produktion/Stunde</td>
 				<td class="c">Differenz</td>
-				<td class="c">Benötigt Deut.</td>
+				<td class="c">Benï¿½tigt Deut.</td>
 				<td class="c">Differenz</td></tr>';
 			break;
 		default:
@@ -172,27 +172,6 @@ if($gid < 100 && LWCore::getPlanet()->{$resource[$gid]} >= 1 && $gid != 33 && $g
 			<input name="interceptorMissiles" type="text" size="2" /><input type="submit" value="Abfangraketen abrei&szlig;en" />
 			</form>';
 } else $parse['knockDown'] = '';
-
-// refinery
-if($gid == 13) {
-	$page .= '<fieldset>
-		<legend>
-			Produktion
-		</legend><form name="refineryProductionForm" action="game/index.php?action=SetRefineryProduction" method="post">';
-	if(LWCore::getPlanet()->refineryProductionChange > time() - 60 * 60 * 48) {
-		$page .= '<p class="error">Wechsel erst am '.DateUtil::formatTime(null, LWCore::getPlanet()->refineryProductionChange + 60 * 60 * 48).' möglich!</p>';
-	}
-	else {
-		$select = '<select name="production" onchange="if(confirm(\'Willst du wirklich die Raffinerie-Produktion festsetzen? Sie lässt sich danach für 48 Stunden nicht mehr verändern!\')) document.forms.refineryProductionForm.submit()">';
-		$select .= '<option value="metal"'.((LWCore::getPlanet()->refineryProduction == 'metal') ? ' selected = "selected"' : '').'>Metall</option>';
-		$select .= '<option value="crystal"'.((LWCore::getPlanet()->refineryProduction == 'crystal') ? ' selected = "selected"' : '').'>Kristall</option>';
-		$select .= '<option value="deuterium"'.((LWCore::getPlanet()->refineryProduction == 'deuterium') ? ' selected = "selected"' : '').'>Deuterium</option>';
-		$select .= '</select>';
-		$page .= 'Ich möchte mit Hilfe der Raffinerie die '.$select.'-Produktion steigern.';
-	}
-	
-	$page .= '</form></fieldset>';
-}
 
 $parse['datas'] = $page;
 $page = parsetemplate(gettemplate('infos_body'), $parse);
