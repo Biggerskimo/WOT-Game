@@ -71,7 +71,6 @@ $resource = array(
 212 => "solar_satelit",
 213 => "destructor",
 214 => "dearth_star",
-215 => "battleship",
 
 401 => "misil_launcher",
 402 => "small_laser",
@@ -126,7 +125,6 @@ $resource = array(
 212 => array(21=>1),
 213 => array(21=>9,118=>6,114=>5),
 214 => array(21=>12,118=>7,114=>6,199=>1),
-215 => array(114=>5,120=>12,118=>5,21=>8),
 //Sistemas de defensa
 401 => array(21=>1),
 402 => array(113=>1,21=>2,120=>3),
@@ -189,9 +187,8 @@ $resource = array(
 210 => array('metal'=>0,'crystal'=>1000,'deuterium'=>0,'energy'=>0,'factor'=>1,'consumption'=>1,'speed'=>100000000,'capacity'=>5, 'shield'=>0,'attack'=>0, 'sd'=>array()),
 211 => array('metal'=>50000,'crystal'=>25000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>1000,'speed'=>4000,'capacity'=>500, 'shield'=>500,'attack'=>1000, 'sd'=>array(210=>5,212=>5,401=>20,402=>20,403=>10,405=>10)),
 212 => array('metal'=>0,'crystal'=>2000,'deuterium'=>500,'energy'=>0,'factor'=>1,'shield'=>10,'attack'=>5, 'attack'=>1, 'sd'=>array()),
-213 => array('metal'=>60000,'crystal'=>50000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>1000,'speed'=>5000,'capacity'=>2000, 'shield'=>500,'attack'=>2000, 'sd'=>array(210=>5,212=>5,402=>10,215=>2)),
-214 => array('metal'=>5000000,'crystal'=>4000000,'deuterium'=>1000000,'energy'=>0,'factor'=>1,'consumption'=>100,'speed'=>100,'capacity'=>1000000, 'shield'=>50000,'attack'=>200000, 'sd'=>array(210=>625,212=>625,202=>125,203=>125,204=>100,205=>50,206=>16,207=>15,208=>125,209=>125,211=>12,215=>7,401=>100,402=>100,403=>50,404=>25,405=>50,213=>5)),
-215 => array('metal'=>30000,'crystal'=>40000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>250,'speed'=>10000,'capacity'=>750, 'shield'=>400,'attack'=>700, 'sd'=>array(210=>5,212=>5,202=>3,203=>3,205=>4,206=>4,207=>7)),
+213 => array('metal'=>60000,'crystal'=>50000,'deuterium'=>15000,'energy'=>0,'factor'=>1,'consumption'=>1000,'speed'=>5000,'capacity'=>2000, 'shield'=>500,'attack'=>2000, 'sd'=>array(210=>5,212=>5,402=>10)),
+214 => array('metal'=>5000000,'crystal'=>4000000,'deuterium'=>1000000,'energy'=>0,'factor'=>1,'consumption'=>100,'speed'=>100,'capacity'=>1000000, 'shield'=>50000,'attack'=>200000, 'sd'=>array(210=>625,212=>625,202=>125,203=>125,204=>100,205=>50,206=>16,207=>15,208=>125,209=>125,211=>12,401=>100,402=>100,403=>50,404=>25,405=>50,213=>5)),
 //Sistemas de defensa
 401 => array('metal'=>2000,'crystal'=>0,'deuterium'=>0,'energy'=>0,'factor'=>1, 'shield'=>20, 'attack'=>80, 'sd'=>array()),
 402 => array('metal'=>1500,'crystal'=>500,'deuterium'=>0,'energy'=>0,'factor'=>1, 'shield'=>25, 'attack'=>100, 'sd'=>array()),
@@ -288,7 +285,7 @@ $bonus = '(pow(pow(1.03, $planetrow[$resource[13]]) * (1 / (15 * pow(1.01, ('.$u
 
 $reslist['build'] = array(1,2,3,4,12,13,14,15,21,22,23,24,31,33,34,44,41,42,43);
 $reslist['tech'] = array(106,108,109,110,111,113,114,115,117,118,120,121,122,123,199);
-$reslist['fleet'] = array(202,203,204,205,206,207,208,209,210,211,212,213,214,215);
+$reslist['fleet'] = array(202,203,204,205,206,207,208,209,210,211,212,213,214);
 $reslist['defense'] = array(401,402,403,404,405,406,407,408,502,503);
 
 // Created by Perberos. All rights reversed (C) 2006

@@ -60,7 +60,7 @@ $lang['info'][12]['description'] = 'Hierbei wird versucht durch Spaltung der Ato
 $lang['info'][12]['dodatek'] = '<table align=center><td class="c">Stufe</td><td class="c">Produktion/Std.</td><td class="c">Ben&ouml;tigt Deuteru.</td>'; $lang['info'][14]['name'] = 'Roboterfabrik';
 
 $lang['info'][13]['name'] = 'Raffinerie';
-$lang['info'][13]['description'] = 'Die Raffiniere dient dazu die Produktion eines Rohstoffes um einen gewissen Prozentsatz zu steigern. Es kann immer nur die Produktion eines Rohstoffes pro Planet gefördert werden. Der Rohstoff, der gefördert wird, kann nur alle 48h geändert werden. Als Grundwert dient die Produktion des Rohstoffes auf den Planeten, auf dem die Raffiniere steht.';
+$lang['info'][13]['description'] = 'Die Raffiniere dient dazu die Produktion eines Rohstoffes um einen gewissen Prozentsatz zu steigern. Es kann immer nur die Produktion eines Rohstoffes pro Planet gefï¿½rdert werden. Der Rohstoff, der gefï¿½rdert wird, kann nur alle 48h geï¿½ndert werden. Als Grundwert dient die Produktion des Rohstoffes auf den Planeten, auf dem die Raffiniere steht.';
 $lang['info'][13]['dodatek'] = '<b><i>bla</i></b>';
 
 $lang['info'][14]['name'] = 'Roboterfabrik';
@@ -224,19 +224,6 @@ Rapidfire gegen <font color="lime">Schweres Lasergesch&uuml;tz: - 100</font>
 Rapidfire gegen <font color="lime">Gau&szlig;kanone: - 50</font>
 Rapidfire gegen <font color="lime">Ionengesch&uuml;tz: - 100</font>
 Rapidfire gegen <font color="lime">Schlachtkreuzer: - 15</font>';
-
-$lang['info'][215]['name'] = 'Schlachtkreuzer';
-$lang['info'][215]['description'] = 'Der Schlachtkreuzer ist geeignet f&uuml;r schnelle und billige Fl&uuml;ge. Er ist spezialisiert auf das Abfangen von Flotten. Dieses relativ g&uuml;nstige Schiff wird in fast jeder Flotte dabei sein. Wegen seines hohen rapidfires wird es mei&szlig;t dazu benutzt, gro&szlig;e Schlachtschiffflotten zu zerst&ouml;ren.
-
-Rapidfire von <font color="red">Zerst&ouml;rer: - 2</font>
-Rapidfire von <font color="red">Todesstern: - 15</font>
-Rapidfire gegen  <font color="lime">Spionagesonde: - 5</font>
-Rapidfire gegen  <font color="lime">Solarsatellit: - 5</font>
-Rapidfire gegen  <font color="lime">Kleiner Transporter: - 3</font>
-Rapidfire gegen  <font color="lime">Gro&szlig;er Transporter: - 3</font>
-Rapidfire gegen  <font color="lime">Schwerer J&auml;ger: - 4</font>
-Rapidfire gegen  <font color="lime">Kreuzer: - 4</font>
-Rapidfire gegen  <font color="lime">Schlachtschiff: - 7</font>';
 
 $lang['info'][22]['name'] = 'Metallspeicher';
 $lang['info'][22]['description'] = 'Durch die unterirdische Bauweise sind fast keine Grenzen gesetzt, was die gr&ouml;&szlig;e der Speicher angeht. Somit k&ouml;nnen enorme Mengen aufgenommen werden und es wird somit ein abprupter Produktionsstop vermieden, wenn die alternativen Lagerungspl&auml;tze an ihre Grenzen sto&szlig;en.';

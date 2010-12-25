@@ -1,3 +1,4 @@
+--- lower rf of rips
 UPDATE ugml_spec_rapidfire SET shots = 125 WHERE specID = 214 AND target = 202;
 UPDATE ugml_spec_rapidfire SET shots = 125 WHERE specID = 214 AND target = 203;
 UPDATE ugml_spec_rapidfire SET shots = 125 WHERE specID = 214 AND target = 204;
@@ -16,3 +17,9 @@ UPDATE ugml_spec_rapidfire SET shots = 100 WHERE specID = 214 AND target = 402;
 UPDATE ugml_spec_rapidfire SET shots = 50 WHERE specID = 214 AND target = 403;
 UPDATE ugml_spec_rapidfire SET shots = 25 WHERE specID = 214 AND target = 404;
 UPDATE ugml_spec_rapidfire SET shots = 50 WHERE specID = 214 AND target = 405;
+
+--- remove battleship
+DELETE FROM ugml_spec_requirement WHERE specID = 215 OR requirement = 215;
+DELETE FROM ugml_spec_rapidfire WHERE specID = 215 OR target = 215;
+DELETE FROM ugml_spec WHERE specID = 215;
+ALTER TABLE ugml_planets DROP battleship;

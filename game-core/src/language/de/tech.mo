@@ -59,7 +59,6 @@ $lang['level'] = 'Stufe';
 212 => "Solarsatellit",
 213 => "Zerst&ouml;rer",
 214 => "Todesstern",
-215 => "Schlachtkreuzer",
 //Naves
 400 => "Verteidigungsanlagen",
 401 => "Raketenwerfer",
@@ -87,7 +86,7 @@ $lang['level'] = 'Stufe';
 3 => "Deuterium ist schwerer Wasserstoff. Er dient haupts&auml;chlich als Treibstoff f&uuml;r jegliche Art von Schiffen, wird aber auch zum Forschen und zum Bau gewisser Geb&auml;ude ben&ouml;tigt.",
 4 => "Das Solarkraftwerk liefert den Gro&szlig;teil der Energie, die auf einem Planeten ben&ouml;tigt wird. Riesige Solarzellen sammeln das einfallende Sonnenlicht, welches mittels Transformatoren zu elektrischer Energie umgewandelt wird.",
 12 => "Das Fusionskraftwerk dient als zus&auml;tzliche Quelle um Energie zu gewinnen. Jedoch werden bei diesem Prozess hohe Mengen an Energie und Deuterium gebraucht, aus welchem dann der elektrische Strom entsteht.",
-13 => "Die Raffiniere dient dazu die Produktion eines Rohstoffes um einen gewissen Prozentsatz zu steigern. Es kann immer nur die Produktion eines Rohstoffes pro Planet gefördert werden. Der Rohstoff, der gefördert wird, kann nur alle 48h geändert werden. Als Grundwert dient die Produktion des Rohstoffes auf den Planeten, auf dem die Raffiniere steht.",
+13 => "Die Raffiniere dient dazu die Produktion eines Rohstoffes um einen gewissen Prozentsatz zu steigern. Es kann immer nur die Produktion eines Rohstoffes pro Planet gefï¿½rdert werden. Der Rohstoff, der gefï¿½rdert wird, kann nur alle 48h geï¿½ndert werden. Als Grundwert dient die Produktion des Rohstoffes auf den Planeten, auf dem die Raffiniere steht.",
 14 => "In der Roboterfabrik werden die ersten Arbeitskr&auml;fte zur Verf&uuml;gung gestellt, welche einen schnelleren Ausbau der Geb&auml;ude sichern sollen. Sie sind eine kosteng&uuml;nstige allternative um einen schnelleren Aufbau zu erm&ouml;glichen.",
 15 => "Die Nanitenfabrik ist die Kr&ouml;nung der Robotertechnik. Durch Vernetzung der nanometergro&szlig;en Roboter sind sie im Stande au&szlig;erordentliche Leistungen zu vollbringen. Sie halbiert in so ziemlich allen Bereichen die Bauzeiten bis auf die Forschungen.",
 21 => "Die Raumschiffswerft ist eine planetare Station, welche es erm&ouml;glicht Schiffe und Verteidigungsanlagen zu errichten. Durch den Ausbau werden die Produktionszeiten von Schiffen und Verteidigungsanlagen gesenkt.",
@@ -105,7 +104,7 @@ $lang['level'] = 'Stufe';
 110 => "Durch die Erforschung dieser Technnik wird die Leistungsf&auml;higkeit und Pr&auml;zision von Schildgeneratoren erh&ouml;ht und somit die Schildst&auml;rke erh&ouml;ht.",
 111 => "Die Best&auml;ndigkeit des Materials war schon immer ein heikles Thema in der Kriegsf&uuml;hrung. Jede Stufe entwickelt eine Erneuerung der Legierung an den Schiffen und erh&ouml;ht die Standhaftigkeit solcher.",
 113 => "Die Energietechnik besch&auml;ftigt sich mit allen Formen von Energie. Sie wird dazu gebraucht um aufwendigere und zerst&ouml;rerische Formen der Energie zu syntethisieren und zu nutzen.",
-114 => "Die Hyperraumtechnik besch&auml;ftigt sich mit der Einbindung der vierten, fünften und sechsten Dimension.",
+114 => "Die Hyperraumtechnik besch&auml;ftigt sich mit der Einbindung der vierten, fï¿½nften und sechsten Dimension.",
 115 => "Die Verbrennungstriebwerke sind recht primitive und langsame Triebwerke. Mit jeder erforschten Stufe werden die Schiffe, die mit diesem Motor betrieben werden, schneller.",
 117 => "Die Impulstriebwerke sind schnelle und zuverl&auml;ssige Triebwerke die auf dem Impulserhaltungssatz basieren und das R&uuml;cksto&szlig;prinzip nutzen. Je weiter geforschte Stufe werden die damit betriebenen Schiffe schneller",
 118 => "Der Hyperraumantrieb stellt eine neue Generation von Antriebsgenaratoren dar. Durch ihn wird der Raum gekr&uuml;mmt. Erst dadurch ist es m&ouml;glich, gro&szlig;e Kampfschiffe schnell und effizient im Raum zu bewegen. Die weitere Erforschung des Antriebes steigert die Geschwindigkeit um 30% des Grundwertes.",
@@ -129,7 +128,6 @@ $lang['level'] = 'Stufe';
 212 => "Orbitale Energiegeneratoren, welche die Energie der Sonne in nutzbarer Form umwandeln.",
 213 => "Der Zerst&ouml;rer ist der K&ouml;nig unter den Kriegsschiffen. Seine unglaubliche Angriffst&auml;rke stellt jedes bis dahin erforschte Schiff in den Schatten. Der einzige Nachteil ist, dass er durch seine gewaltige Kampfkraft relativ langsam ist.",
 214 => "Todessterne sind Allm&auml;chtig. wie der Name schon sagt, gleichen sie keinem Schiff. Sie sind Kampfsterne",
-215 => "Der Schlachtkreuzer ist der Allrounder unter den Schiffen. Er wird besonders oft gebaut wegen seinen geringen Deutkosten",
 
 //Naves
 401 => "Der Raketenwerfer ist die schw&auml;chste Verteidigungsanlage, jedoch aufgrund des billigen Preises eine h&auml;ufig vorzufindene Anlage",
