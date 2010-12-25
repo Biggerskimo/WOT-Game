@@ -69,7 +69,6 @@ var galaxy = new Galaxy({galaxy}, {system}, {spio_anz});
 	  <td class="c planetNo">{Pos}</td>
 	  <td class="c planetImg">{Planet}</td>
 	  <td class="c planetName">{Name}</td>
-	  <td class="c moonImg">{Moon}</td>
 	  <td class="c debrisImg">{Debris}</td>
 	  <td class="c playerName">{Player} ({State})</td>
 	  <td class="c allianceName">{Alliance}</td>

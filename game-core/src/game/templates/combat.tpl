@@ -224,13 +224,6 @@
 				<br />
 				{*recreatedDefense}
 				<br>*}
-				{if $moon.chance !== 0}
-					Die Chance einer Mondentstehung beträgt {$moon.chance}%.
-					{if $moon.size !== null}
-						<br />
-						Die enormen Mengen an freiem Metall und Kristall ziehen sich an und formen einen Trabanten um den Planeten.
-					{/if}
-				{/if}
 			</td>
 		</tr>
 	</table>

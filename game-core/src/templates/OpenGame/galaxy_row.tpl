@@ -3,7 +3,6 @@
 	  <th width="30"><a href="#"{tab}{i}</a></th>
 	  <th width="30">{row_planet}</th>
 	  <th style="white-space: nowrap;" width="130">{planet_name}</th>
-	  <th style="white-space: nowrap;" width="30">{luna_name}</th>
 	  <th style="white-space: nowrap;" width="30">{row_debris}</th>
 	  <th width="150">{row_user}</th>
 	  <th width="80">{row_ally}</th>

@@ -103,30 +103,6 @@ class ViewableSystem extends System {
 	}
 
 	/**
-	 * View moon
-	 *
-	 * @param	int		position
-	 */
-	protected function viewMoon($position) {
-		global $user;
-
-		$planet = $this->getPlanet($position, 'moon');
-		if($planet === null) return '';
-
-		$lang = array('T_TEMP' => $user["settings_tooltiptime"]*1000,
-				'luna_name' => $planet->name,
-				'g' => $planet->galaxy,
-				's' => $planet->system,
-				'i' => $planet->planet,
-				'image' => $planet->image,
-				'temp' => $planet->temp_max,
-				'spio_anz' => $user['spio_anz'],
-				'diameter' => $planet->diameter);
-
-		return parsetemplate(gettemplate('galaxy_row_luna'), $lang);
-	}
-
-	/**
 	 * View debris
 	 *
 	 * @param	int		position
@@ -334,9 +310,6 @@ class ViewableSystem extends System {
 
 		// planet name
 		$lang['planet_name'] = $this->viewPlanet($position);
-
-		// moon
-		$lang['luna_name'] = $this->viewMoon($position);
 
 		// debris
 		$lang['row_debris'] = $this->viewDebris($position);

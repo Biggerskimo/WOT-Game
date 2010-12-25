@@ -55,7 +55,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 	
 	const DEBRIS_OWNER = 0;
 	const DEBRIS_PLANET_TYPE_ID = 2;
-	const MOON_PLANET_TYPE_ID = 3;
 	
 	protected $navalFormation = null;
 	
@@ -88,7 +87,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 	public $capacity = 0;
 	public $totalCapacity = 0;
 	public $winner = null;
-	public $moon = null;
 	public $roundNo = 0;
 	public $booty = array('metal' => 0, 'crystal' => 0, 'deuterium' => 0);
 	public $debris = array('metal' => 0, 'crystal' => 0, 'deuterium' => 0);
@@ -841,7 +839,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 
 		WCF::getTPL()->assign(array('roundData' => $this->roundData,
 						'winner' => $this->winner,
-						'moon' => $this->moon,
 						'debris' => $this->debris,
 						'booty' => $this->booty,
 						'units' => $this->units,
@@ -891,7 +888,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		$this->calculateUnits();
 		//$this->calculateFleetUnits(); // <-- new
 		$this->calculateDefenseRecreation();
-		$this->checkMoon();
 		
 		$this->fight = true;
 	}
@@ -1071,70 +1067,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 	}
 	
 	/**
-	 * Checks if a moon is created
-	 */
-	protected function checkMoon() {
-		global $game_config;
-
-		// register new biggest debris
-		if(($this->debris['metal'] + $this->debris['crystal']) > $game_config['biggest_debris'] && $this->attackerObj->auth_level == 0 && $this->defenderObj->auth_level == 0) {
-			$sql = "UPDATE ugml".LW_N."_config
-					SET config_value = '".($this->debris['metal'] + $this->debris['crystal'])."'
-					WHERE config_name = 'biggest_debris'";
-			WCF::getDB()->registerShutdownUpdate($sql);
-		}
-
-		$system = new System($this->galaxy, $this->system);
-		$moon = $system->getPlanet($this->planet, 3);
-		
-		// moon
-		if(($this->debris['metal'] + $this->debris['crystal']) == 0 || $moon !== null || $this->getTargetPlanet()->planet_type != 1) {
-			$this->moon = array('size' => null,
-					'temp' => null,
-					'chance' => 0);
-
-			return null;
-		}
-
-		$chanceByBiggest = 0;
-		$chanceByUnits = 0;
-
-		if(round((500 - (1 / ($this->debris['metal'] + $this->debris['crystal']) * $game_config['biggest_debris'] * 250)) / 25) < 0) {
-			$chanceByBiggest = 0;
-		}
-		else {
-			$chanceByBiggest = round((500 - (1 / ($this->debris['metal'] + $this->debris['crystal']) * $game_config['biggest_debris'] * 250)) / 25);
-		}
-
-		if(round((350 - (0.6 / ($this->debris['metal'] + $this->debris['crystal']) * 150000 * 2500)) / 12) < 0) {
-			$chanceByUnits = 0;
-		}
-		else {
-			$chanceByUnits = round((350 - (0.6 / ($this->debris['metal'] + $this->debris['crystal']) * 150000 * 2500)) / 12);
-		}
-
-		$moonChance = ($chanceByBiggest + $chanceByUnits);
-
-		$rand = rand(0, 99);
-
-		if($moonChance > $rand) {
-			$rand = rand(0, 500);
-			$size = round(4750 + ($chanceByUnits * 115) + $rand);
-
-			$rand = rand(20, 60);
-			$temp = $this->getEndPlanet()->temp_max - $rand;
-
-			$this->moon = array('size' => $size,
-					'temp' => $temp,
-					'chance' => $moonChance);
-		} else {
-			$this->moon = array('size' => null,
-					'temp' => null,
-					'chance' => $moonChance);
-		}
-	}
-		
-	/**
 	 * Checks if the stand by fleet survived or not
 	 *
 	 * @param	int		fleet id
@@ -1152,8 +1084,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		return false;
 	}
 
-	
-	
 	/**
 	 * Writes the combat data to the database
 	 * 
@@ -1164,7 +1094,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		$this->saveDataStandByFleets();
 		$this->saveDataAttackFleets();
 		$this->saveDataDebris();
-		$this->saveDataMoon();
 		$this->saveDataDeleteNavalFormation();
 		$this->saveDataPoints();
 		if($saveReport) {
@@ -1280,19 +1209,6 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		}
 		else {
 			$existingDebris->getEditor()->changeResources($this->debris['metal'], $this->debris['crystal']);
-		}
-	}
-	
-	/**
-	 * Save Data: Saves a moon if created
-	 */
-	protected function saveDataMoon() {
-		if($this->moon['size'] !== null) {
-			$fields = floor(pow(($this->moon['size'] / 1000), 2));
-			
-			$name = WCF::getLanguage()->get('wot.global.moon.defaultName');
-			
-			PlanetEditor::create($this->galaxy, $this->system, $this->planet, $name, $this->ofiaraID, 0, 0, 0, self::MOON_PLANET_TYPE_ID, $this->impactTime, $fields, $this->moon['temp']);
 		}
 	}
 	
