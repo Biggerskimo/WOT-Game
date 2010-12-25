@@ -33,3 +33,6 @@ ALTER TABLE ugml_planets DROP refinery;
 DELETE FROM ugml_spec_requirement WHERE specID = 34 OR requirement = 34;
 DELETE FROM ugml_spec WHERE specID = 34;
 ALTER TABLE ugml_planets DROP ally_deposit;
+
+--- 15% ditf
+UPDATE ugml_config SET config_value = 5 WHERE config_name = 'obrona_na_zlom';
