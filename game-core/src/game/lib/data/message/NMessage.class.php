@@ -17,6 +17,7 @@
 */
 
 require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
+require_once(LW_DIR.'lib/data/message/sender/MessageSender.class.php');
 
 /**
  * Holds all functions to view a message.
@@ -27,6 +28,8 @@ require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
  */
 class NMessage extends DatabaseObject
 {
+	private $sender = null;
+	
 	/**
 	 * Creates a new Message object.
 	 * @param	int		$messageID
@@ -42,6 +45,8 @@ class NMessage extends DatabaseObject
 			$row = WCF::getDB()->getFirstRow($sql);
 		}
 		parent::__construct($row);
+		
+		$this->initSender();
 	}
 	
 	/**
@@ -62,6 +67,40 @@ class NMessage extends DatabaseObject
 			$messages[$row['messageID']] = new self(null, $row);
 		}
 		return $messages;
+	}
+	
+	/**
+	 * Searches for the correct sender class and loads an instance of it.
+	 */
+	protected function initSender()
+	{
+		// TODO: create factory with cache; remember ugml_message_sender!
+		switch($this->senderGroup)
+		{
+			case 1:
+				require_once(LW_DIR.'lib/data/message/sender/UserMessageSender.class.php');
+				$this->sender = new UserMessageSender();
+				break;
+			case 2:
+				require_once(LW_DIR.'lib/data/message/sender/AllianceMessageSender.class.php');
+				$this->sender = new AllianceMessageSender();
+				break;
+			case 3:
+			default: // throw exception?
+				require_once(LW_DIR.'lib/data/message/sender/SystemMessageSender.class.php');
+				$this->sender = new SystemMessageSender();
+		}
+		$this->sender->setSenderID($this->senderID, $this->messageID, $this->extra);
+	}
+	
+	/**
+	 * Returns the MessageSender-object for this message.
+	 * 
+	 * @return		MessageSender
+	 */
+	public function getSender()
+	{
+		return $this->sender;
 	}
 }
 ?>

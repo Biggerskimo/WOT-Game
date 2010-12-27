@@ -35,26 +35,27 @@ CREATE TABLE IF NOT EXISTS `ugml_message_system` (
 
 DELIMITER //
 
-DROP FUNCTION IF EXISTS MESSAGE_SENDER//
-CREATE FUNCTION MESSAGE_SENDER(senderGroup INT UNSIGNED, senderID INT UNSIGNED)
+DROP FUNCTION IF EXISTS MESSAGE_EXTRA//
+CREATE FUNCTION MESSAGE_EXTRA(senderGroup INT UNSIGNED, senderID INT UNSIGNED, messageID INT UNSIGNED)
 	RETURNS VARCHAR(255)
 BEGIN
-	DECLARE _sender VARCHAR(255);
+	DECLARE _extra VARCHAR(255);
 	CASE senderGroup
 		WHEN 1 THEN
-			SELECT username INTO _sender
+			SELECT username INTO _extra
 			FROM ugml_users
 			WHERE id = senderID;
 		WHEN 2 THEN
-			SELECT ally_tag INTO _sender
-			FROM ugml_alliance
-			WHERE id = senderID;
+			SELECT CONCAT(ally_tag, ',', userID) INTO _extra
+			FROM ugml_alliance, ugml_message_circular
+			WHERE id = senderID
+				AND ugml_message_circular.messageID = messageID;
 		WHEN 3 THEN
-			SELECT sender INTO _sender
+			SELECT sender INTO _extra
 			FROM ugml_message_system
 			WHERE ugml_message_system.senderID = senderID;
 	END CASE;
-	RETURN _sender;
+	RETURN _extra;
 END
 
 
@@ -64,5 +65,5 @@ CREATE OR REPLACE ALGORITHM = MERGE VIEW ugml_v_message AS
 SELECT messageID, `time`, senderGroup,
 	senderID, recipentID, subject,
 	text, viewed,
-	MESSAGE_SENDER(senderGroup, senderID) AS sender
+	MESSAGE_EXTRA(senderGroup, senderID, messageID) AS extra
 FROM ugml_message
