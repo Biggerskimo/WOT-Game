@@ -34,7 +34,11 @@
 				</ul>
 			</div>
 			<div class="messageText">
-				{@$message->text}
+				{if $message->getSender()->escape()}
+					{@$message->text}
+				{else}
+					{$message->text}
+				{/if}
 			</div>
 			<div class="messageExtra">
 				<ul>

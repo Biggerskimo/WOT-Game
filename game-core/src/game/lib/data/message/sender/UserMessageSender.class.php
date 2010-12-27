@@ -53,5 +53,13 @@ class UserMessageSender implements MessageSender
 				'javascript:messages.blacklist('.$this->userID.')')
 		);
 	}
+	
+	/**
+	 * @see MessageSender::escape()
+	 */
+	public function escape()
+	{
+		return true;
+	}
 }
 ?>

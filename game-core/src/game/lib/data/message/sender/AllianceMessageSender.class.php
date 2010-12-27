@@ -52,5 +52,13 @@ class AllianceMessageSender implements MessageSender
 				'index.php?form=MessageUser&amp;messageID='.$this->messageID)
 		);
 	}
+	
+	/**
+	 * @see MessageSender::escape()
+	 */
+	public function escape()
+	{
+		return true;
+	}
 }
 ?>

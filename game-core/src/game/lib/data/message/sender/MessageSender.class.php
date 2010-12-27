@@ -40,5 +40,12 @@ interface MessageSender
 	 * )
 	 */
 	public function getActions();
+	
+	/**
+	 * Returns whether the message has to be escaped or not.
+	 * 
+	 * @return bool
+	 */
+	public function escape();
 }
 ?>

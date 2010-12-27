@@ -44,5 +44,13 @@ class SystemMessageSender implements MessageSender
 	{
 		return array();
 	}
+	
+	/**
+	 * @see MessageSender::escape()
+	 */
+	public function escape()
+	{
+		return true;
+	}
 }
 ?>
