@@ -63,6 +63,6 @@ DELIMITER ;
 CREATE OR REPLACE ALGORITHM = MERGE VIEW ugml_v_message AS
 SELECT messageID, `time`, senderGroup,
 	senderID, recipentID, subject,
-	viewed,
+	text, viewed,
 	MESSAGE_SENDER(senderGroup, senderID) AS sender
 FROM ugml_message

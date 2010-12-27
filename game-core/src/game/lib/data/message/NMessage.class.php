@@ -59,7 +59,7 @@ class NMessage extends DatabaseObject
 		$messages = array();
 		while($row = WCF::getDB()->fetchArray($result))
 		{
-			$messages[] = new self(null, $row);
+			$messages[$row['messageID']] = new self(null, $row);
 		}
 		return $messages;
 	}
