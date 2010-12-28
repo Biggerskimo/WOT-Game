@@ -49,6 +49,7 @@ class EspionageFleet extends NavalFormationAttackFleet {
     public function executeImpact() {
     	$this->initStandByFleets();
     	
+    	$this->ereport .= '<!-- [planetID#'.$this->targetPlanetID.'] -->';
     	$this->ereport .= '<a id="ereport'.$this->fleetID.'"></a>';
     	$this->create();
     	$this->ereport .= '<div class="ereportbottom" style="text-align: center;">';		

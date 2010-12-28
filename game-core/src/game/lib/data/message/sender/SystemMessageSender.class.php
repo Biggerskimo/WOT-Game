@@ -9,6 +9,8 @@ require_once(LW_DIR.'lib/data/message/sender/MessageSender.class.php');
  */
 class SystemMessageSender implements MessageSender
 {
+	private $senderID;
+	private $messageID;
 	private $name;
 	
 	/**
@@ -16,8 +18,8 @@ class SystemMessageSender implements MessageSender
 	 */
 	public function setSenderID($senderID, $messageID, $extra)
 	{
-		// ignore senderID
-		// ignore messageID
+		$this->senderID = $senderID;
+		$this->messageID = $messageID;
 		$this->name = $extra;
 	}
 	
@@ -34,6 +36,15 @@ class SystemMessageSender implements MessageSender
 	 */
 	public function getActions()
 	{
+		if($this->senderID == 3) // spionage
+		{
+			return array(
+				array('wot.messages.message.attack',
+					'index.php?action=AfterEspionage&amp;action=attack&amp;messageID='.$this->messageID),
+				array('wot.messages.message.simulate',
+					'index.php?action=AfterEspionage&amp;action=simulate&amp;messageID='.$this->messageID),
+			);
+		}
 		return array();
 	}
 	
