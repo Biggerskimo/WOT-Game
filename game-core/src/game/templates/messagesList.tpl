@@ -20,24 +20,19 @@
 					</li>
 					<li class="messageFrom">
 						<span class="tupleFirst">{lang}wot.messages.message.from{/lang}</span>
-						<span class="tupleSecond">
-						{assign var='link' value=$message->getSender()->getLink()}
-						{if !$link|empty}<a href="{@$link}">{/if}
-						{$message->getSender()->getSenderName()}
-						{if !$link|empty}</a>{/if}
-						</span>
+						<span class="tupleSecond">{@$message->getSender()->getSenderName()}</span>
 					</li>
 					<li class="messageTime">
 						<span class="tupleFirst">{lang}wot.messages.message.time{/lang}</span>
-						<span class="tupleSecond">{$message->time|time}</span>
+						<span class="tupleSecond">{@$message->time|time}</span>
 					</li>
 				</ul>
 			</div>
 			<div class="messageText">
 				{if $message->getSender()->escape()}
-					{@$message->text}
-				{else}
 					{$message->text}
+				{else}
+					{@$message->text}
 				{/if}
 			</div>
 			<div class="messageExtra">

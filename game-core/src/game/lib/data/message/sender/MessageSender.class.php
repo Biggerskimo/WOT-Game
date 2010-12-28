@@ -25,13 +25,6 @@ interface MessageSender
 	public function getSenderName();
 	
 	/**
-	 * Returns a url as a link or null/empty string when no link available.
-	 * 
-	 * @return	String	sender link
-	 */
-	public function getLink();
-	
-	/**
 	 * Returns an array with extra links/actions. Has to be like this:
 	 * array(
 	 * [0] => array(<name>, <url>),

@@ -13,6 +13,7 @@ class AllianceMessageSender implements MessageSender
 	private $messageID;
 	private $allianceTag;
 	private $userID;
+	private $username;
 	
 	/**
 	 * @see MessageSender::setSenderID()
@@ -21,7 +22,7 @@ class AllianceMessageSender implements MessageSender
 	{
 		$this->allianceID = $senderID;
 		$this->messageID = $messageID;
-		list($this->allianceTag, $this->userID) = explode(',', $extra);
+		list($this->allianceTag, $this->userID, $this->username) = explode(',', $extra, 3);
 	}
 	
 	/**
@@ -29,15 +30,9 @@ class AllianceMessageSender implements MessageSender
 	 */
 	public function getSenderName()
 	{
-		return '['.$this->allianceTag.']';
-	}
-	
-	/**
-	 * @see MessageSender::getLink()
-	 */
-	public function getLink()
-	{
-		return 'index.php?page=Alliance';
+		return htmlspecialchars($this->username).
+			' aus <a href="index.php?page=Alliance&amp;allianceID='.$this->allianceID.'">['.
+			htmlspecialchars($this->allianceTag).']</a> (Rundmail)';
 	}
 	
 	/**

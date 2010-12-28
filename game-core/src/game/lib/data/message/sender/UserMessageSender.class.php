@@ -30,15 +30,7 @@ class UserMessageSender implements MessageSender
 	{
 		return $this->username;
 	}
-	
-	/**
-	 * @see MessageSender::getLink()
-	 */
-	public function getLink()
-	{
-		return null;
-	}
-	
+		
 	/**
 	 * @see MessageSender::getActions()
 	 */

@@ -30,14 +30,6 @@ class SystemMessageSender implements MessageSender
 	}
 	
 	/**
-	 * @see MessageSender::getLink()
-	 */
-	public function getLink()
-	{
-		return null;
-	}
-	
-	/**
 	 * @see MessageSender::getActions()
 	 */
 	public function getActions()
@@ -50,7 +42,7 @@ class SystemMessageSender implements MessageSender
 	 */
 	public function escape()
 	{
-		return true;
+		return false;
 	}
 }
 ?>
