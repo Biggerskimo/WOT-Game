@@ -40,9 +40,9 @@ class SystemMessageSender implements MessageSender
 		{
 			return array(
 				array('wot.messages.message.attack',
-					'index.php?action=AfterEspionage&amp;action=attack&amp;messageID='.$this->messageID),
+					'index.php?action=AfterEspionage&amp;command=attack&amp;messageID='.$this->messageID),
 				array('wot.messages.message.simulate',
-					'index.php?action=AfterEspionage&amp;action=simulate&amp;messageID='.$this->messageID),
+					'index.php?action=AfterEspionage&amp;command=simulate&amp;messageID='.$this->messageID),
 			);
 		}
 		return array();
