@@ -18,6 +18,7 @@
 
 require_once(WCF_DIR.'lib/data/DatabaseObject.class.php');
 require_once(LW_DIR.'lib/data/message/sender/MessageSender.class.php');
+require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 
 /**
  * Holds all functions to view a message.
@@ -67,6 +68,16 @@ class NMessage extends DatabaseObject
 			$messages[$row['messageID']] = new self(null, $row);
 		}
 		return $messages;
+	}
+	
+	/**
+	 * Returns the editor for this message.
+	 * 
+	 * @return NMessageEditor
+	 */
+	public function getEditor()
+	{
+		return new NMessageEditor($this);
 	}
 	
 	/**

@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	{foreach from=$messages key='messageID' item='message'}
-		<div class="lwcontainer-{cycle values='1,2' name='contcyc'} message" id="message{@$messageID}">
+		<div class="lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
 			<div class="messageInfo">
 				<ul>
 					<li class="messageSubject">
