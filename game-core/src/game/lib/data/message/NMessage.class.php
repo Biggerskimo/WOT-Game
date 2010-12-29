@@ -113,5 +113,17 @@ class NMessage extends DatabaseObject
 	{
 		return $this->sender;
 	}
+	
+	/**
+	 * Sends a notification to the game operators.
+	 */
+	public function notify()
+	{
+		$sql = "INSERT INTO ugml_message_notification
+				(messageID, notificationTime)
+				VALUES
+				(".$this->messageID.", ".time().")";
+		WCF::getDB()->sendQuery($sql);
+	}
 }
 ?>

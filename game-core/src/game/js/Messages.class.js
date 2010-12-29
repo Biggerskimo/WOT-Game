@@ -34,5 +34,15 @@ function Messages()
 		$("#message" + messageID).toggleClass("messageRemembered");
 		$.get("index.php?action=MessageManipulation&command=remember&messageID=" + messageID);
 	}
+	
+	this.notify = function(messageID)
+	{
+		if(confirm(language['message.notify.sure']))
+		{
+			$.get("index.php?action=MessageManipulation&command=notify&messageID=" + messageID,
+				function() { alert(language['message.notify.done']); } );
+		}
+	}
+	
 }
 var messages = new Messages();
