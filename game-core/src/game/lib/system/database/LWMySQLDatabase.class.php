@@ -71,5 +71,29 @@ class LWMySQLDatabase extends MySQLDatabase {
 		
 		return $result;
 	}
+	
+	/**
+	 * Starts a transaction.
+	 */
+	public function startTransaction()
+	{
+		WCF::getDB()->sendQuery("START TRANSACTION");
+	}
+	
+	/**
+	 * Commits a transaction.
+	 */
+	public function commit()
+	{
+		WCF::getDB()->sendQuery("COMMIT");
+	}
+	
+	/**
+	 * Rolls a transaction back.
+	 */
+	public function rollback()
+	{
+		WCF::getDB()->sendQuery("ROLLBACK");
+	}
 }
 ?>
