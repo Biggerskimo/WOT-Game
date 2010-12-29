@@ -9,7 +9,7 @@ require_once(LW_DIR.'lib/data/message/sender/MessageSender.class.php');
  */
 class UserMessageSender implements MessageSender
 {
-	private $userID;
+	protected $userID;
 	private $messageID;
 	private $username;
 	
@@ -52,6 +52,14 @@ class UserMessageSender implements MessageSender
 	public function escape()
 	{
 		return true;
+	}
+	
+	/**
+	 * Returns the user represented by this object.
+	 */
+	public function getUser()
+	{
+		return new LWUser($this->userID);
 	}
 }
 ?>

@@ -46,12 +46,13 @@ BEGIN
 			FROM ugml_users
 			WHERE id = senderID;
 		WHEN 2 THEN
-			SELECT CONCAT(ally_tag, ',', userID, ',', username) INTO _extra
-			FROM ugml_alliance, ugml_message_circular
+			SELECT CONCAT(ally_tag, ',', COALESCE(userID, ''), ',', COALESCE(username, '')) INTO _extra
+			FROM ugml_alliance
+			LEFT JOIN ugml_message_circular
+				ON ugml_message_circular.messageID = messageID
 			LEFT JOIN ugml_users
 				ON ugml_users.id = ugml_message_circular.userID
-			WHERE ugml_alliance.id = senderID
-				AND ugml_message_circular.messageID = messageID;
+			WHERE ugml_alliance.id = senderID;
 		WHEN 3 THEN
 			SELECT sender INTO _extra
 			FROM ugml_message_system
