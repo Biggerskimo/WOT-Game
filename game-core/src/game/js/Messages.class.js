@@ -22,11 +22,8 @@ function Messages()
 {
 	this.delete = function(messageID)
 	{
-		if(confirm(language['message.delete.sure']))
-		{
-			$.get("index.php?action=MessageManipulation&command=delete&messageID=" + messageID);
-			$("#message" + messageID).slideUp("fast");
-		}
+		$.get("index.php?action=MessageManipulation&command=delete&messageID=" + messageID);
+		$("#message" + messageID).slideUp("fast");
 	}
 	
 	this.remember = function(messageID)
