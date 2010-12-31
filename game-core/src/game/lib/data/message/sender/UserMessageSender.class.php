@@ -51,7 +51,7 @@ class UserMessageSender implements MessageSender
 	 */
 	public function escape()
 	{
-		return true;
+		return false;
 	}
 	
 	/**
