@@ -157,8 +157,7 @@ class LWUserSession extends UserSession {
 		
 		WCF::getSession()->setUpdate(true);
 	}
-	 
-
+	
 	/**
 	 * Initialises the user session.
 	 */

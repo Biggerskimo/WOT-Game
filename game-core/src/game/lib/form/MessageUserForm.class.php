@@ -93,6 +93,16 @@ class MessageUserForm extends AbstractForm
 			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
 			throw new NamedUserException(WCF::getLanguage()->get('wot.messages.create.invalidUser'));
 		}
+		
+		$sql = "SELECT *
+				FROM ugml_user_ignore
+				WHERE senderID = ".WCF::getUser()->userID."
+					AND recipentID = ".$this->user->userID;
+		if(WCF::getDB()->getFirstRow($sql))
+		{
+			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
+			throw new NamedUserException(WCF::getLanguage()->get('wot.messages.create.ignored'));
+		}
 	}
 
 	/**

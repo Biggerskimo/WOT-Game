@@ -43,6 +43,14 @@ function Messages()
 				function() { alert(language['message.notify.done']); } );
 		}
 	}
-	
+
+	this.ignore = function(userID)
+	{
+		if(confirm(language['message.ignore.sure']))
+		{
+			$.get("index.php?action=UserIgnore&doIgnore=1&userID=" + userID,
+				function() { alert(language['message.ignore.done']); } );
+		}
+	}
 }
 var messages = new Messages();

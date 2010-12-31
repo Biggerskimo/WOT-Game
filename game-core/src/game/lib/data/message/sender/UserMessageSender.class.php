@@ -42,7 +42,7 @@ class UserMessageSender implements MessageSender
 			array('wot.messages.message.notify',
 				'javascript:messages.notify('.$this->messageID.')'),
 			array('wot.messages.message.blacklist',
-				'javascript:messages.blacklist('.$this->userID.')')
+				'javascript:messages.ignore('.$this->userID.')')
 		);
 	}
 	

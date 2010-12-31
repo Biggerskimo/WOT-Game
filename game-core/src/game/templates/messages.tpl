@@ -7,7 +7,10 @@
 		<link href="../css/thickbox.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript">
 			language = { };
-			language['message.delete.sure'] = "{lang}wot.messages.message.delete.sure{/lang}";
+			language['message.notify.sure'] = "{lang}wot.messages.message.notify.sure{/lang}";
+			language['message.notify.done'] = "{lang}wot.messages.message.notify.done{/lang}";
+			language['message.ignore.sure'] = "{lang}wot.messages.message.ignore.sure{/lang}";
+			language['message.ignore.done'] = "{lang}wot.messages.message.ignore.done{/lang}";
 		</script>
 	</head>
 	<body>
