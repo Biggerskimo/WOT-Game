@@ -173,9 +173,9 @@ class Alliance extends DatabaseObject {
 				
 				MessageEditor::create($row['id'], $subject, $message, 0, $alliance, 2);
 				// TODO: new message subject
-				$message = NMessageEditor::create($row['id'], array(2, $this->allianceID),
+				$messageObj = NMessageEditor::create($row['id'], array(2, $this->allianceID),
 					"Rundmail", $message);
-				$messageBits .= "(".$message->messageID.", ".WCF::getUser()->userID."),"; // abstract user id?
+				$messageBits .= "(".$messageObj->messageID.", ".WCF::getUser()->userID."),"; // abstract user id?
 			}
 		}
 		
