@@ -51,6 +51,8 @@ class AllianceMessageSender extends UserMessageSender implements MessageSender
 			return array();
 		}
 		return array(
+			array('wot.messages.message.notify',
+				'javascript:messages.notify('.$this->messageID.')'),
 			array('wot.messages.message.answerCircular',
 				'index.php?form=AllianceCircularCreate'),
 			array('wot.messages.message.answerDirect',

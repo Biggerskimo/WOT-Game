@@ -17,6 +17,7 @@
 */
 
 require_once(WCF_DIR.'lib/action/AbstractAction.class.php');
+require_once(LW_DIR.'lib/data/message/sender/UserMessageSender.class.php');
 require_once(LW_DIR.'lib/data/message/NMessage.class.php');
 
 /**
@@ -66,6 +67,9 @@ class MessageManipulationAction extends AbstractAction {
 		{
 			die('invalid messageID');
 		}
+		if($this->command == 'notify' && !($message->getSender() instanceof UserMessageSender))
+			die('invalid messageID');
+		
 		$editor = $message->getEditor();
 		
 		if($this->command == 'delete')
