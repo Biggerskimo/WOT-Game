@@ -11,7 +11,10 @@
 		</div>
 	</div>
 	{foreach from=$messages key='messageID' item='message'}
-		<div class="lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
+		<div class="{if $message->remembered || $message->viewed == 0}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
+			<div class="messageToggle">
+				<a href="javascript:messages.toggle({@$messageID})">&nbsp;</a>
+			</div>
 			<div class="messageInfo">
 				<ul>
 					<li class="messageSubject">
@@ -28,36 +31,38 @@
 					</li>
 				</ul>
 			</div>
-			<div class="messageText">
-				{if $message->getSender()->escape()}
-					{$message->text}
-				{else}
-					{@$message->text}
-				{/if}
-			</div>
-			<div class="messageExtra">
-				<ul>
-					<li>
-						<a href="javascript:messages.delete({@$messageID});">
-							{lang}wot.messages.message.delete{/lang}
-						</a>
-					</li>
-					<li>
-						<a href="javascript:messages.remember({@$messageID});">
-							{lang}wot.messages.message.remember{/lang}
-						</a>
-					</li>
-				</ul>
-				
-				<ul>
-					{foreach from=$message->getSender()->getActions() item='action'}
-					<li>
-						<a href="{@$action.1}">
-							{lang}{@$action.0}{/lang}
-						</a>
-					</li>
-					{/foreach}
-				</ul>
+			<div class="messageMore">
+				<div class="messageText">
+					{if $message->getSender()->escape()}
+						{$message->text}
+					{else}
+						{@$message->text}
+					{/if}
+				</div>
+				<div class="messageExtra">
+					<ul>
+						<li>
+							<a href="javascript:messages.delete({@$messageID});">
+								{lang}wot.messages.message.delete{/lang}
+							</a>
+						</li>
+						<li>
+							<a href="javascript:messages.remember({@$messageID});">
+								{lang}wot.messages.message.remember{/lang}
+							</a>
+						</li>
+					</ul>
+					
+					<ul>
+						{foreach from=$message->getSender()->getActions() item='action'}
+						<li>
+							<a href="{@$action.1}">
+								{lang}{@$action.0}{/lang}
+							</a>
+						</li>
+						{/foreach}
+					</ul>
+				</div>
 			</div>
 		</div>
 	{/foreach}

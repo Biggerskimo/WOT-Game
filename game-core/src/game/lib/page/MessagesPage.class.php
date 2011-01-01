@@ -18,6 +18,7 @@
 
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
 require_once(LW_DIR.'lib/data/message/NMessage.class.php');
+require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 
 /**
  * This page views all the messages in a users' inbox.
@@ -44,6 +45,16 @@ class MessagesPage extends AbstractPage {
 		parent::readData();
 		
 		$this->messages = NMessage::getByUserID(WCF::getUser()->userID);
+		
+		// update data
+		$messageUpdates = array();
+		foreach($this->messages as $message)
+		{
+			if(!$message->viewed)
+				$messageUpdates[] = $message->messageID;
+		}
+		if(count($messageUpdates))
+			NMessageEditor::view($messageUpdates);
 	}
 	
 	/**

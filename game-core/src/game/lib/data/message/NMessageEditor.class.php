@@ -23,7 +23,7 @@ require_once(LW_DIR.'lib/data/message/NMessage.class.php');
  * Holds all functions to view a message.
  * 
  * @author		Biggerskimo
- * @copyright	2010 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2010 - 2011 Lost Worlds <http://lost-worlds.net>
  * @package	game.wot.message
  */
 class NMessageEditor extends DatabaseObject
@@ -84,6 +84,23 @@ class NMessageEditor extends DatabaseObject
 		WCF::getDB()->sendQuery($sql);
 		
 		WCF::getDB()->commit();
+	}
+	
+	/**
+	 * Sets the 'viewed'-flag for some messages.
+	 * 
+	 * @param	str		messageIDs
+	 * @param	int		viewed
+	 */
+	public static function view($messageIDs, $viewed = 1)
+	{
+		if(!is_array($messageIDs))
+			$messageIDs = array($messageIDs);
+		
+		$sql = "UPDATE ugml_message
+				SET viewed = 1
+				WHERE messageID IN (".implode(',', $messageIDs).")";
+		WCF::getDB()->sendQuery($sql);
 	}
 	
 	/**

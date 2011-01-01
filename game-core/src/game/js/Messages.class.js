@@ -49,5 +49,12 @@ function Messages()
 				function() { alert(language['message.ignore.done']); } );
 		}
 	}
+	
+	this.toggle = function(messageID)
+	{
+		$("#message" + messageID + " .messageMore").slideToggle("fast", function() {
+			$("#message" + messageID).toggleClass("showMessage").toggleClass("hideMessage");
+		});
+	}
 }
 var messages = new Messages();
