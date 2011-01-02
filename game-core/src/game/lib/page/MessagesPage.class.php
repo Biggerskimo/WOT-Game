@@ -29,6 +29,7 @@ require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 class MessagesPage extends AbstractPage {
 	public $templateName = 'messages';
 	
+	public $remembered = null;
 	public $messages = array();
 	
 	/**
@@ -36,6 +37,8 @@ class MessagesPage extends AbstractPage {
 	 */
 	public function readParameters() {
 		parent::readParameters();
+		
+		if(isset($_REQUEST['remembered'])) $this->remembered = 1;
 	}
 	
 	/**
@@ -44,7 +47,7 @@ class MessagesPage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 		
-		$this->messages = NMessage::getByUserID(WCF::getUser()->userID);
+		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->remembered);
 		
 		// update data
 		$messageUpdates = array();
@@ -63,7 +66,10 @@ class MessagesPage extends AbstractPage {
 	public function assignVariables() {
 		parent::assignVariables();
 		
-		WCF::getTPL()->assign(array('messages' => $this->messages));
+		WCF::getTPL()->assign(array(
+			'messages' => $this->messages,
+			'remembered' => $this->remembered
+		));
 	}
 
 	/**

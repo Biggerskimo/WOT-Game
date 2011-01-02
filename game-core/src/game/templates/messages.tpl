@@ -14,6 +14,13 @@
 		</script>
 	</head>
 	<body>
+		{capture append='additionalTopnavContent'}
+			{if $remembered === null}
+				<span class="showRememberedMessages"><a href="index.php?page=Messages&amp;remembered=1">{lang}wot.messages.showRemembered{/lang}</a></span>
+			{else}
+				<span class="showAllMessages"><a href="index.php?page=Messages">{lang}wot.messages.showAll{/lang}</a></span>
+			{/if}
+		{/capture}
 		{include file="topnav"}
 		<div class="main content messages">
 			{* messages *}

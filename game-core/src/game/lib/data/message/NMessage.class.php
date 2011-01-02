@@ -52,14 +52,25 @@ class NMessage extends DatabaseObject
 	
 	/**
 	 * Searches for all messages in a users' inbox.
+	 * 
 	 * @param	int		$userid
+	 * @param	int 	$remembered
+	 * @param	int		$limit
+	 * @param	int		$offset
 	 * @return	array	$messages
 	 */
-	public static function getByUserID($userID)
+	public static function getByUserID($userID, $remembered = null, $limit = null, $offset = null)
 	{
 		$sql = "SELECT *
 				FROM ugml_v_message
 				WHERE recipentID = ".$userID;
+		if($remembered)
+			$sql .= " AND remembered = ".$remembered;
+		if($limit)
+			$sql .= " LIMIT ".$limit;
+		if($offset)
+			$sql .= " OFFSET ".$offset;
+		
 		$result = WCF::getDB()->sendQuery($sql);
 		
 		$messages = array();

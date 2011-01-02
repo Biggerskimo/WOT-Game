@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	{foreach from=$messages key='messageID' item='message'}
-		<div class="{if $message->remembered || $message->viewed == 0}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
+		<div class="{if $message->remembered || !$message->viewed}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
 			<div class="messageToggle">
 				<a href="javascript:messages.toggle({@$messageID})">&nbsp;</a>
 			</div>
