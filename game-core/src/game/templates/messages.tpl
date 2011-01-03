@@ -6,20 +6,89 @@
 		{include file="headInclude"}
 		<link href="../css/thickbox.css" type="text/css" rel="stylesheet">
 		<script type="text/javascript">
+			{assign var='checkedCount' value=$this->user->getSetting('checkedMessages')}
+			
 			language = { };
 			language['message.notify.sure'] = "{lang}wot.messages.message.notify.sure{/lang}";
 			language['message.notify.done'] = "{lang}wot.messages.message.notify.done{/lang}";
 			language['message.ignore.sure'] = "{lang}wot.messages.message.ignore.sure{/lang}";
 			language['message.ignore.done'] = "{lang}wot.messages.message.ignore.done{/lang}";
+
+			messages.dblClickHref = "index.php?page=Messages{if $checked === null}&checked=1{/if}";
+			messages.checkedCount = {@$checkedCount}; 
 		</script>
 	</head>
 	<body>
 		{capture append='additionalTopnavContent'}
-			{if $checked === null}
-				<span class="showCheckedMessages"><a href="index.php?page=Messages&amp;checked=1">{lang}wot.messages.showChecked{/lang}</a></span>
-			{else}
-				<span class="showAllMessages"><a href="index.php?page=Messages">{lang}wot.messages.showAll{/lang}</a></span>
-			{/if}
+			<div class="checkedMessages" id="checkedMessages">
+				<span class="checkedMessagesTitle" id="checkedMessagesTitleNone"{if $checkedCount} style="display: none;"{/if}>
+					{lang}wot.messages.message.check.none{/lang}
+				</span>
+				<span class="checkedMessagesTitle" id="checkedMessagesTitleOne"{if $checkedCount != 1} style="display: none;"{/if}>
+					{lang}wot.messages.message.check.one{/lang}
+				</span>
+				<span class="checkedMessagesTitle" id="checkedMessagesTitleMore"{if $checkedCount <= 1} style="display: none;"{/if}>
+					{lang}wot.messages.message.check.more{/lang}
+				</span>
+				<ul class="checkedMessagesActions" id="checkedMessagesActionsSome">
+					<li class="uncheckChecked">
+						<a href="index.php?action=MessageManipulation&command=uncheckChecked">
+							{lang}wot.messages.message.check.uncheck{/lang}
+						</a>
+					</li>
+					<li class="checkAll">
+						<a href="index.php?action=MessageManipulation&command=checkAll">
+							{lang}wot.messages.message.check.all{/lang}
+						</a>
+					</li>
+					{if $active !== null && $active|count}
+						<li class="checkVisible">
+							<a href="index.php?action=MessageManipulation&command=checkVisible&amp;folderIDs={@','|implode:$active}">
+								{lang}wot.messages.message.check.visible{/lang}
+							</a>
+						</li>
+						<li class="uncheckVisible">
+							<a href="index.php?action=MessageManipulation&command=uncheckVisible&amp;folderIDs={@','|implode:$active}">
+								{lang}wot.messages.message.check.uncheckVisible{/lang}
+							</a>
+						</li>
+					{/if}
+					<li class="deleteChecked">
+						<a href="index.php?action=MessageManipulation&command=deleteChecked">
+							{lang}wot.messages.message.check.delete{/lang}
+						</a>
+					</li>
+					<li class="deleteUnchecked">
+						<a href="index.php?action=MessageManipulation&command=deleteUnchecked">
+							{lang}wot.messages.message.check.deleteOthers{/lang}
+						</a>
+					</li>
+					<li class="deleteAll">
+						<a href="index.php?action=MessageManipulation&command=deleteAll">
+							{lang}wot.messages.message.check.deleteAll{/lang}
+						</a>
+					</li>
+				</ul>
+				<ul class="checkedMessagesActions" id="checkedMessagesActionsNone">
+					<li class="checkAll">
+						<a href="index.php?action=MessageManipulation&command=checkAll">
+							{lang}wot.messages.message.check.all{/lang}
+						</a>
+					</li>
+					{if $active !== null && $active|count}
+						<li class="checkVisible">
+							<a href="index.php?action=MessageManipulation&command=checkVisible&amp;folderIDs={@','|implode:$active}">
+								{lang}wot.messages.message.check.visible{/lang}
+							</a>
+						</li>
+					{/if}
+					<li class="deleteAll">
+						<a href="index.php?action=MessageManipulation&command=deleteAll">
+							{lang}wot.messages.message.check.deleteAll{/lang}
+						</a>
+					</li>
+				</ul>
+			</div>
 		{/capture}
 		{include file="topnav"}
 		<div class="main content messages">
@@ -68,7 +137,7 @@
 								<span><a href="{@$link}">&nbsp;</a></span>
 							</div>
 							<div class="name">
-								{if $active !== null && $folderID|in_array:$active}
+								{if $active !== null && $folderID|in_array:$active && $active|count == 1}
 									<a href="index.php?page=Messages">{lang}{$folder->name}{/lang}</a>
 								{else}
 									<a href="index.php?page=Messages&amp;active={@$folderID}">{lang}{$folder->name}{/lang}</a>

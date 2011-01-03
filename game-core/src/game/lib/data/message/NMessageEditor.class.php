@@ -18,6 +18,7 @@
 
 require_once(LW_DIR.'lib/data/AbstractDecorator.class.php');
 require_once(LW_DIR.'lib/data/message/NMessage.class.php');
+require_once(LW_DIR.'lib/data/user/UserSettings.class.php');
 
 /**
  * Holds all functions to view a message.
@@ -90,6 +91,25 @@ class NMessageEditor extends DatabaseObject
 	}
 	
 	/**
+	 * Deletes some messages.
+	 * 
+	 * @param	int		userID
+	 * @param	int		checked
+	 */
+	public function deleteAll($userID, $checked = null)
+	{
+		$sql = "DELETE FROM ugml_message
+				WHERE recipentID = ".$userID;
+		if($checked !== null)
+			$sql .= " AND checked = ".$checked;
+		WCF::getDB()->sendQuery($sql);
+		
+		if($checked === null || $checked)
+			UserSettings::setSetting($userID, 'checkedMessages', 0);
+		return;
+	}
+	
+	/**
 	 * Sets the 'viewed'-flag for some messages.
 	 * 
 	 * @param	str		messageIDs
@@ -107,6 +127,31 @@ class NMessageEditor extends DatabaseObject
 	}
 	
 	/**
+	 * Sets the 'checked'-flag for the messages of a given user.
+	 * 
+	 * @param	int		userID
+	 * @param	int		checked
+	 * @param	array	folderIDs
+	 */
+	public function checkAll($userID, $checked = 1, $folderIDs = null)
+	{
+		$sql = "UPDATE ugml_message
+				SET checked = ".$checked."
+				WHERE recipentID = ".$userID;
+		if($folderIDs !== null && count($folderIDs))
+			$sql .= " AND folderID IN (".implode(',', $folderIDs).")";
+		WCF::getDB()->sendQuery($sql);
+		
+		$sql = "SELECT COUNT(*) AS count
+				FROM ugml_message
+				WHERE checked = 1
+					AND recipentID = ".$userID;
+		$row = WCF::getDB()->getFirstRow($sql);
+		
+		UserSettings::setSetting($userID, 'checkedMessages', intval($row['count']));
+	}
+	
+	/**
 	 * Sets the 'checked'-flag on this message.
 	 */
 	public function check()
@@ -116,6 +161,10 @@ class NMessageEditor extends DatabaseObject
 				SET checked = ".$this->getObject()->checked." 
 				WHERE messageID = ".$this->getObject()->messageID;
 		WCF::getDB()->sendQuery($sql);
+		
+		WCF::getUser()->setSetting('checkedMessages',
+			intval(WCF::getUser()->getSetting('checkedMessages'))
+			+ ($this->getObject()->checked ? 1 : -1));
 	}
 	
 	/**

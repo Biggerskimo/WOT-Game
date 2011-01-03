@@ -29,6 +29,7 @@ require_once(LW_DIR.'lib/data/message/NMessage.class.php');
 class MessageManipulationAction extends AbstractAction {
 	public $command = '';
 	public $messageID = 0;
+	public $folderIDs = array();
 
 	/**
 	 * @see Action::readParameters()
@@ -36,13 +37,14 @@ class MessageManipulationAction extends AbstractAction {
 	public function readParameters() {
 		parent::readParameters();
 		
-		if(isset($_REQUEST['messageID'])) {
+		if(isset($_REQUEST['messageID']))
 			$this->messageID = intval($_REQUEST['messageID']);
-		}
 		
-		if(isset($_REQUEST['command'])) {
+		if(isset($_REQUEST['command']))
 			$this->command = StringUtil::trim($_REQUEST['command']);
-		}
+		
+		if(isset($_REQUEST['folderIDs']))
+			$this->folderIDs = ArrayUtil::toIntegerArray(explode(',', $_REQUEST['folderIDs']));
 	}
 
 	/**
@@ -56,32 +58,66 @@ class MessageManipulationAction extends AbstractAction {
 			die('invalid userID');
 		}
 		
-		if($this->command != 'delete' && $this->command != 'check'
-			&& $this->command != 'notify')
+		if(!preg_match('/^(?:check(?:|All|Visible)|delete(?:|All|(?:Unc|C)hecked)|notify|uncheck(?:Checked|Visible))$/', $this->command))
 		{
 			die('invalid command');
 		}
 		
-		$message = new NMessage($this->messageID);
-		if(!$message->messageID || $message->recipentID != WCF::getUser()->userID)
+		// message-related commands
+		if(preg_match('/^(?:check|delete|notify)$/', $this->command))
 		{
-			die('invalid messageID');
+			$message = new NMessage($this->messageID);
+			if(!$message->messageID || $message->recipentID != WCF::getUser()->userID)
+			{
+				die('invalid messageID');
+			}
+			if($this->command == 'notify' && !($message->getSender() instanceof UserMessageSender))
+				die('invalid messageID');
+			
+			$editor = $message->getEditor();
 		}
-		if($this->command == 'notify' && !($message->getSender() instanceof UserMessageSender))
-			die('invalid messageID');
 		
-		$editor = $message->getEditor();
-		
-		if($this->command == 'delete')
-			$editor->delete();
 		if($this->command == 'check')
 			$editor->check();
+		if($this->command == 'checkAll')
+			NMessageEditor::checkAll(WCF::getUser()->userID);
+		if($this->command == 'checkVisible')
+			NMessageEditor::checkAll(WCF::getUser()->userID, 1, $this->folderIDs);
+		if($this->command == 'delete')
+			$editor->delete();
+		if($this->command == 'deleteAll')
+			NMessageEditor::deleteAll(WCF::getUser()->userID);
+		if($this->command == 'deleteChecked')
+			NMessageEditor::deleteAll(WCF::getUser()->userID, 1);
+		if($this->command == 'deleteUnchecked')
+			NMessageEditor::deleteAll(WCF::getUser()->userID, 0);
 		if($this->command == 'notify')
 			$message->notify();
-		
+		if($this->command == 'uncheckChecked')
+			NMessageEditor::checkAll(WCF::getUser()->userID, 0);
+		if($this->command == 'uncheckVisible')
+			NMessageEditor::checkAll(WCF::getUser()->userID, 0, $this->folderIDs);
+			
 		$this->executed();
 		
-		die('done');
+		// message-related commands
+		if(preg_match('/^(?:check|delete|notify)$/', $this->command))
+			die('done');
+
+		$matches = array();
+		$referrer = $_SERVER["HTTP_REFERER"];
+		$url = "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		preg_match('/^https?:(\/\/[^\/]*)\/[^\?]*\??[^\?]*$/', $url, $matches);
+		$base = $matches[1];
+		preg_match('/^https?:(\/\/[^\/]*)\/[^\?]*\??[^\?]*$/', $referrer, $matches);
+		$base2 = $matches[1];
+		
+		if($base == $base2)
+			header('Location: '.$referrer);
+		else
+			header('Location: index.php?page=Messages');
+		
+		exit;
 	}
 }
 ?>

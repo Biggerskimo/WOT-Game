@@ -11,12 +11,15 @@
 		</div>
 	</div>
 	{foreach from=$messages key='messageID' item='message'}
-		<div class="{if $message->checked || !$message->viewed}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->checked && !$hideChecked} messageChecked{/if}" id="message{@$messageID}">
+		<div class="{if !$message->viewed}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->checked && !$hideChecked} messageChecked{/if}" id="message{@$messageID}">
 			<div class="messageToggle">
 				<a href="javascript:messages.toggle({@$messageID})">&nbsp;</a>
 			</div>
 			<div class="messageCheck">
-				<input type="checkbox" id="checkMessage{@$messageID}" name="checkMessage{@$messageID}" {if $message->checked}checked="checked"{/if}/>
+				<input type="checkbox" id="checkMessage{@$messageID}" name="checkMessage{@$messageID}"
+				 {if $message->checked}checked="checked"{/if}
+				 onchange="messages.check({@$messageID}, true)"
+				 />
 			</div>
 			<div class="messageInfo">
 				<ul>
@@ -50,7 +53,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="javascript:messages.check({@$messageID});">
+							<a href="javascript:messages.check({@$messageID}, false);">
 								{lang}wot.messages.message.check{/lang}
 							</a>
 						</li>
