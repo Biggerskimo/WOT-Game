@@ -30,7 +30,7 @@ require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 class MessagesPage extends AbstractPage {
 	public $templateName = 'messages';
 	
-	public $remembered = null;
+	public $checked = null;
 	public $messages = array();
 	public $folders = array();
 	public $active = null; // array()
@@ -41,7 +41,7 @@ class MessagesPage extends AbstractPage {
 	public function readParameters() {
 		parent::readParameters();
 		
-		if(isset($_REQUEST['remembered'])) $this->remembered = 1;
+		if(isset($_REQUEST['checked'])) $this->checked = 1;
 		if(isset($_REQUEST['active'])) $this->active = ArrayUtil::toIntegerArray(explode(',', $_REQUEST['active']));
 	}
 	
@@ -51,10 +51,10 @@ class MessagesPage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 		
-		if(/*WCF::getUser()->hasDiliziumFeature("messageFolders") && */$this->active === null)
+		if(/*WCF::getUser()->hasDiliziumFeature("messageFolders") && */$this->active === null && !$this->checked)
 			$this->active = array();
 		
-		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->remembered, $this->active);
+		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active);
 		$this->folders = MessageFolder::getByUserID(WCF::getUser()->userID);
 		
 		// update data
@@ -78,7 +78,7 @@ class MessagesPage extends AbstractPage {
 			'active' => $this->active,
 			'folders' => $this->folders,
 			'messages' => $this->messages,
-			'remembered' => $this->remembered
+			'checked' => $this->checked
 		));
 	}
 

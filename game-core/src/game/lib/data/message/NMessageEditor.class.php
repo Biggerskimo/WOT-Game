@@ -107,13 +107,13 @@ class NMessageEditor extends DatabaseObject
 	}
 	
 	/**
-	 * Sets the 'remembered'-flag on this message.
+	 * Sets the 'checked'-flag on this message.
 	 */
-	public function remember()
+	public function check()
 	{
-		$this->getObject()->remembered = $this->getObject()->remembered ? 0 : 1;
+		$this->getObject()->checked = $this->getObject()->checked ? 0 : 1;
 		$sql = "UPDATE ugml_message
-				SET remembered = ".$this->getObject()->remembered." 
+				SET checked = ".$this->getObject()->checked." 
 				WHERE messageID = ".$this->getObject()->messageID;
 		WCF::getDB()->sendQuery($sql);
 	}

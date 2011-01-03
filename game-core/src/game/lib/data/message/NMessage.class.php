@@ -54,13 +54,13 @@ class NMessage extends DatabaseObject
 	 * Searches for all messages in a users' inbox.
 	 * 
 	 * @param	int		$userid
-	 * @param	int 	$remembered
+	 * @param	int 	$checked
 	 * @param	array	$folders
 	 * @param	int		$limit
 	 * @param	int		$offset
 	 * @return	array	$messages
 	 */
-	public static function getByUserID($userID, $remembered = null, $folders = null, $limit = null, $offset = null)
+	public static function getByUserID($userID, $checked = null, $folders = null, $limit = null, $offset = null)
 	{
 		if($folders !== null && !count($folders))
 			return array();
@@ -68,8 +68,8 @@ class NMessage extends DatabaseObject
 		$sql = "SELECT *
 				FROM ugml_v_message
 				WHERE recipentID = ".$userID;
-		if($remembered !== null)
-			$sql .= " AND remembered = ".$remembered;
+		if($checked !== null)
+			$sql .= " AND checked = ".$checked;
 		if($folders !== null)
 			$sql .= " AND folderID IN(".implode(',', $folders).")";
 		if($limit !== null)

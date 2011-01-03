@@ -11,9 +11,12 @@
 		</div>
 	</div>
 	{foreach from=$messages key='messageID' item='message'}
-		<div class="{if $message->remembered || !$message->viewed}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->remembered && !$hideRemembered} messageRemembered{/if}" id="message{@$messageID}">
+		<div class="{if $message->checked || !$message->viewed}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->checked && !$hideChecked} messageChecked{/if}" id="message{@$messageID}">
 			<div class="messageToggle">
 				<a href="javascript:messages.toggle({@$messageID})">&nbsp;</a>
+			</div>
+			<div class="messageCheck">
+				<input type="checkbox" id="checkMessage{@$messageID}" name="checkMessage{@$messageID}" {if $message->checked}checked="checked"{/if}/>
 			</div>
 			<div class="messageInfo">
 				<ul>
@@ -42,13 +45,13 @@
 				<div class="messageExtra">
 					<ul>
 						<li>
-							<a href="javascript:messages.delete({@$messageID});">
+							<a href="javascript:messages.deleteMsg({@$messageID});">
 								{lang}wot.messages.message.delete{/lang}
 							</a>
 						</li>
 						<li>
-							<a href="javascript:messages.remember({@$messageID});">
-								{lang}wot.messages.message.remember{/lang}
+							<a href="javascript:messages.check({@$messageID});">
+								{lang}wot.messages.message.check{/lang}
 							</a>
 						</li>
 					</ul>

@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS `ugml_message` (
   `subject` varchar(255) NOT NULL,
   `text` text NOT NULL,
   `viewed` tinyint(1) NOT NULL,
-  `remembered` tinyint(1) NOT NULL,
+  `checked` tinyint(1) NOT NULL,
   PRIMARY KEY  (`messageID`),
   KEY `time` (`time`),
   KEY `recipentID` (`recipentID`),
@@ -105,7 +105,7 @@ DELIMITER ;
 CREATE OR REPLACE ALGORITHM = MERGE VIEW ugml_v_message AS
 SELECT messageID, `time`, senderGroup,
 	senderID, recipentID, folderID, subject,
-	text, viewed, remembered,
+	text, viewed, checked,
 	MESSAGE_EXTRA(senderGroup, senderID, messageID) AS extra
 FROM ugml_message
 ORDER BY `time` DESC;

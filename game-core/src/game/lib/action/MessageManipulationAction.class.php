@@ -56,7 +56,7 @@ class MessageManipulationAction extends AbstractAction {
 			die('invalid userID');
 		}
 		
-		if($this->command != 'delete' && $this->command != 'remember'
+		if($this->command != 'delete' && $this->command != 'check'
 			&& $this->command != 'notify')
 		{
 			die('invalid command');
@@ -74,8 +74,8 @@ class MessageManipulationAction extends AbstractAction {
 		
 		if($this->command == 'delete')
 			$editor->delete();
-		if($this->command == 'remember')
-			$editor->remember();
+		if($this->command == 'check')
+			$editor->check();
 		if($this->command == 'notify')
 			$message->notify();
 		

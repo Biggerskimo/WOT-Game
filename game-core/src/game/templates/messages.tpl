@@ -15,8 +15,8 @@
 	</head>
 	<body>
 		{capture append='additionalTopnavContent'}
-			{if $remembered === null}
-				<span class="showRememberedMessages"><a href="index.php?page=Messages&amp;remembered=1">{lang}wot.messages.showRemembered{/lang}</a></span>
+			{if $checked === null}
+				<span class="showCheckedMessages"><a href="index.php?page=Messages&amp;checked=1">{lang}wot.messages.showChecked{/lang}</a></span>
 			{else}
 				<span class="showAllMessages"><a href="index.php?page=Messages">{lang}wot.messages.showAll{/lang}</a></span>
 			{/if}
@@ -24,7 +24,7 @@
 		{include file="topnav"}
 		<div class="main content messages">
 			{* folders *}
-			{if $remembered === null}
+			{if $checked === null}
 				<div class="messageFolders">
 					<div class="contentDescriptor">
 						<div class="check">

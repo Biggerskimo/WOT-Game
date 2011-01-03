@@ -20,16 +20,16 @@
  */
 function Messages()
 {
-	this.delete = function(messageID)
+	this.deleteMsg = function(messageID)
 	{
 		$.get("index.php?action=MessageManipulation&command=delete&messageID=" + messageID);
 		$("#message" + messageID).slideUp("fast");
 	}
 	
-	this.remember = function(messageID)
+	this.check = function(messageID)
 	{
-		$("#message" + messageID).toggleClass("messageRemembered");
-		$.get("index.php?action=MessageManipulation&command=remember&messageID=" + messageID);
+		$("#message" + messageID).toggleClass("messageChecked");
+		$.get("index.php?action=MessageManipulation&command=check&messageID=" + messageID);
 	}
 	
 	this.notify = function(messageID)
