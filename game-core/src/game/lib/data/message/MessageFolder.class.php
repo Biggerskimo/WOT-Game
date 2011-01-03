@@ -64,8 +64,8 @@ class MessageFolder extends DatabaseObject
 	public static function getByUserID($userID)
 	{
 		$sql = "SELECT ugml_message_folder.*,
-					COUNT(all.messageID) AS messageCount,
-					COUNT(unviewed.messageID) AS unviewedCount
+					COUNT(DISTINCT all.messageID) AS messageCount,
+					COUNT(DISTINCT unviewed.messageID) AS unviewedCount
 				FROM ugml_message_folder
 				LEFT JOIN ugml_message
 					AS `all`
