@@ -136,11 +136,36 @@ class NMessage extends DatabaseObject
 	 */
 	public function notify()
 	{
-		$sql = "INSERT INTO ugml_message_notification
+		$sql = "INSERT IGNORE INTO ugml_message_notification
 				(messageID, notificationTime)
 				VALUES
 				(".$this->messageID.", ".time().")";
 		WCF::getDB()->sendQuery($sql);
+		
+		$subject = WCF::getLanguage()->get('wot.messages.notification.subject');
+		$text = WCF::getLanguage()->get('wot.messages.notification.introduction');
+		
+		$text .= "\n<br />\n";
+		$text .= "\n<br />\n";
+		$text .= "messageID: ".$this->messageID."\n<br />\n";
+		$text .= "subject: \"".$this->subject."\"\n<br />\n";
+		$text .= "sender/userID: ".$this->senderID."\n<br />\n";
+		$text .= "sender/name: \"".$this->getSender()->getSenderName()."\"\n<br />\n";
+		$text .= "time: ".date('r', $this->time)." (".$this->time.")\n<br />\n";
+		$text .= "text: \n<br />\n";
+		$text .= "\"".$this->text."\"";
+		
+		$sql = "SELECT id
+				FROM ugml_users
+				WHERE notifiee = 1";
+		$result = WCF::getDB()->sendQuery($sql);
+		
+		while($row = WCF::getDB()->fetchArray($result))
+		{
+			NMessageEditor::create(
+				$row['id'], array(1, $this->recipentID), $subject, $text, 4
+			);
+		}
 	}
 }
 ?>
