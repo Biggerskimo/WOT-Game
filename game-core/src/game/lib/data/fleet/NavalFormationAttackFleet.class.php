@@ -1355,7 +1355,7 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			
 			MessageEditor::create($userID, $subject, $message, 0, $sender, 3);
 			NMessageEditor::create($userID, array(3, $senderID),
-				$subject, $message);		
+				$subject, $message, 2);		
 		}
 	}
 	

@@ -293,5 +293,20 @@ class LWUserSession extends UserSession {
 	public function getConfig() {
 		return WOTUserConfig::getInstance($this->userID);
 	}
+	
+	/**
+	 * Checks whether this user has access to a dilizium feature or not.
+	 * 
+	 * @param	str		feature
+	 * @return	bool
+	 */
+	public function hasDiliziumFeature($feature)
+	{
+		$features = unserialize($this->diliziumFeatures);
+		
+		if(isset($features[$feature]) && $features[$feature] >= time())
+			return true;
+		return false;
+	}
 }
 ?>

@@ -128,7 +128,7 @@ class MessageUserForm extends AbstractForm
 		
 		NMessageEditor::create(
 			$this->user->userID, array(1, WCF::getUser()->userID),
-			$this->subject, $this->text);
+			$this->subject, $this->text, 4);
 	}
 
 	/**

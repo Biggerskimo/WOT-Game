@@ -62,7 +62,7 @@ class EspionageFleet extends NavalFormationAttackFleet {
 		$subject = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.impact.owner.subject'));
 		MessageEditor::create($this->ownerID, $subject, $this->ereport, 0, $senderName, 4);
 		NMessageEditor::create($this->ownerID, array(3, 3),
-			$subject, $this->ereport);
+			$subject, $this->ereport, 1);
 		
 		$this->saveData($this->fight);
     }

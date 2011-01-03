@@ -46,19 +46,22 @@ class NMessageEditor extends DatabaseObject
 	 * @param	array	$sender (array($senderGroup, $senderID))
 	 * @param	string	$subject
 	 * @param	string	$text
+	 * @param	int		$preset (1 = espionage, 2 = combat, 3 = alliance, 4 = direct, 5 = other)
 	 * @param	int		$time
 	 */
-	public static function create($recipentID, $sender, $subject, $text, $time = null)
+	public static function create($recipentID, $sender, $subject, $text, $preset = 5, $time = null)
 	{
 		if($time === null)
 			$time = time();
 			
 		$sql = "INSERT INTO ugml_message
 				(`time`, senderGroup, senderID,
-				 recipentID, subject, text)
+				 recipentID, folderID,
+				 subject, text)
 				VALUES
 				(".$time.", ".$sender[0].", ".$sender[1].",
-				 ".$recipentID.", '".escapeString($subject)."', '".escapeString($text)."')";
+				 ".$recipentID.", MESSAGE_FOLDER_PRESET(".$recipentID.", ".$preset."),
+				 '".escapeString($subject)."', '".escapeString($text)."')";
 		WCF::getDB()->sendQuery($sql);
 		
 		$messageID = WCF::getDB()->getInsertID();

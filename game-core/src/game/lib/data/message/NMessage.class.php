@@ -55,20 +55,26 @@ class NMessage extends DatabaseObject
 	 * 
 	 * @param	int		$userid
 	 * @param	int 	$remembered
+	 * @param	array	$folders
 	 * @param	int		$limit
 	 * @param	int		$offset
 	 * @return	array	$messages
 	 */
-	public static function getByUserID($userID, $remembered = null, $limit = null, $offset = null)
+	public static function getByUserID($userID, $remembered = null, $folders = null, $limit = null, $offset = null)
 	{
+		if($folders !== null && !count($folders))
+			return array();
+		
 		$sql = "SELECT *
 				FROM ugml_v_message
 				WHERE recipentID = ".$userID;
-		if($remembered)
+		if($remembered !== null)
 			$sql .= " AND remembered = ".$remembered;
-		if($limit)
+		if($folders !== null)
+			$sql .= " AND folderID IN(".implode(',', $folders).")";
+		if($limit !== null)
 			$sql .= " LIMIT ".$limit;
-		if($offset)
+		if($offset !== null)
 			$sql .= " OFFSET ".$offset;
 		
 		$result = WCF::getDB()->sendQuery($sql);

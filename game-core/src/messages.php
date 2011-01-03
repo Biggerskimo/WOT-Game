@@ -106,7 +106,7 @@ if($_GET["mode"] == 'write'){ //Formulario para mandar mensajes personales (PM)
 			$subject = escapeString(StringUtil::encodeHTML($_POST['subject']));
 			MessageEditor::create($recipentID, $subject, $message);
 			NMessageEditor::create($recipentID, array(1, WCF::getUser()->userID),
-				$subject, $message);
+				$subject, $message, 4);
 			
 			/*doquery("INSERT INTO {{table}} SET
 				`message_owner`='".intval($_GET['id'])."',

@@ -129,7 +129,7 @@ class AllianceApplicationViewForm extends AbstractForm {
 			
 			MessageEditor::create($this->userID, WCF::getLanguage()->get('wot.alliance.application'), $message, 0, $this->alliance, 0);
 			NMessageEditor::create($this->userID, array(2, $this->alliance->allianceID),
-				WCF::getLanguage()->get('wot.alliance.application'), $message);
+				WCF::getLanguage()->get('wot.alliance.application'), $message, 3);
 		} else {
 			// update user
 			$sql = "UPDATE ugml_users

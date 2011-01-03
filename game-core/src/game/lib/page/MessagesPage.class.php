@@ -17,6 +17,7 @@
 */
 
 require_once(WCF_DIR.'lib/page/AbstractPage.class.php');
+require_once(LW_DIR.'lib/data/message/MessageFolder.class.php');
 require_once(LW_DIR.'lib/data/message/NMessage.class.php');
 require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 
@@ -31,6 +32,8 @@ class MessagesPage extends AbstractPage {
 	
 	public $remembered = null;
 	public $messages = array();
+	public $folders = array();
+	public $active = null; // array()
 	
 	/**
 	 * @see Page::readParameters()
@@ -39,6 +42,7 @@ class MessagesPage extends AbstractPage {
 		parent::readParameters();
 		
 		if(isset($_REQUEST['remembered'])) $this->remembered = 1;
+		if(isset($_REQUEST['active'])) $this->active = ArrayUtil::toIntegerArray(explode(',', $_REQUEST['active']));
 	}
 	
 	/**
@@ -47,7 +51,11 @@ class MessagesPage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 		
-		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->remembered);
+		if(/*WCF::getUser()->hasDiliziumFeature("messageFolders") && */$this->active === null)
+			$this->active = array();
+		
+		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->remembered, $this->active);
+		$this->folders = MessageFolder::getByUserID(WCF::getUser()->userID);
 		
 		// update data
 		$messageUpdates = array();
@@ -67,6 +75,8 @@ class MessagesPage extends AbstractPage {
 		parent::assignVariables();
 		
 		WCF::getTPL()->assign(array(
+			'active' => $this->active,
+			'folders' => $this->folders,
 			'messages' => $this->messages,
 			'remembered' => $this->remembered
 		));
