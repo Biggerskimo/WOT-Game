@@ -102,9 +102,6 @@
 						<div class="name">
 							{lang}wot.messages.folders.name{/lang}
 						</div>
-						<div class="holdBackTime">
-							{lang}wot.messages.folders.holdBackTime{/lang}
-						</div>
 						<div class="unviewed">
 							{lang}wot.messages.folders.unviewed{/lang}
 						</div>
@@ -142,9 +139,6 @@
 								{else}
 									<a href="index.php?page=Messages&amp;active={@$folderID}">{lang}{$folder->name}{/lang}</a>
 								{/if}
-							</div>
-							<div class="holdBackTime" title="{#$folder->holdBackTime} {lang}wot.global.time.seconds{/lang}">
-								{@$folder->holdBackTime/86400|floor} {lang}wot.global.time.days{/lang}
 							</div>
 							<div class="unviewed">
 								{#$folder->unviewedCount}

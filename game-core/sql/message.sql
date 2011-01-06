@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS `ugml_message_folder` (
   `folderID` int(10) unsigned NOT NULL auto_increment,
   `userID` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `holdBackTime` int(11) NOT NULL,
   `preset` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY  (`folderID`),
   KEY `userID` (`userID`)

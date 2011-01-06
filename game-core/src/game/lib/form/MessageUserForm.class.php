@@ -25,7 +25,7 @@ require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
  * Shows a form that allows a user to write a message to another user.
  * 
  * @author		Biggerskimo
- * @copyright	2010 Lost Worlds <http://lost-worlds.net>
+ * @copyright	2010 - 2011 Lost Worlds <http://lost-worlds.net>
  */
 class MessageUserForm extends AbstractForm
 {
@@ -72,10 +72,10 @@ class MessageUserForm extends AbstractForm
 			$sender = $message->getSender();
 			if($sender instanceof UserMessageSender)
 			{
-				$this->username = $sender->getUser()->username;
+				$this->user = $sender->getUser();
+				$this->username = $this->user->username;
 				$this->subject = 'Re: '.$message->subject;
 			}
-			
 		}
 		
 		parent::readData();
@@ -86,8 +86,6 @@ class MessageUserForm extends AbstractForm
 	 */
 	public function validate()
 	{
-		$this->user = new LWUser(null, null, $this->username);
-		
 		if(!$this->user->userID)
 		{
 			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
@@ -115,7 +113,8 @@ class MessageUserForm extends AbstractForm
 		WCF::getTPL()->assign(array(
 			'username' => $this->username,
 			'subject' => $this->subject,
-			'text' => $this->text
+			'text' => $this->text,
+			'user' => $this->user
 		));
 	}
 	
