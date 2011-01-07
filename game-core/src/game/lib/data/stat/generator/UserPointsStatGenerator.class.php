@@ -60,6 +60,7 @@ class UserPointsStatGenerator extends AbstractStatGenerator {
 				SELECT ".$this->statTypeID.", id
 				FROM ugml_users";
 		WCF::getDB()->sendQuery($sql);
+		WCF::getDB()->sendQuery("COMMIT");
 	}
 	
 	/**
@@ -142,7 +143,7 @@ class UserPointsStatGenerator extends AbstractStatGenerator {
 						AND ugml_stat_entry.statTypeID = 1
 						AND checkUser.banned != 1
 						AND checkUser.authlevel = 0";
-			//echo $sql;
+			echo $sql;
 			// lets go!
 			WCF::getDB()->sendQuery($sql);
 			
@@ -154,7 +155,7 @@ class UserPointsStatGenerator extends AbstractStatGenerator {
 			WCF::getDB()->sendQuery("SET AUTOCOMMIT = 1");
 			
 			if($tryAgainOnError) {
-				generateEntries(false);
+				$this->generateEntries(false);
 			}
 		}		
 	}
