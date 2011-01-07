@@ -20,7 +20,7 @@ function f(target_url,win_name) {
 <!-- Game -->
 
 <table cellspacing="0" cellpadding="0"><tr><td><img src="{dpath}gfx/ogame-produktion.jpg"/></td></tr>
-<tr><td><div align="center"><font color="#FFFFFF"><a href="overview.php" accesskey="v" target="{mf}">{Overview}</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?page=Overview" accesskey="v" target="{mf}">{Overview}</a></font></div></td></tr>
 {IMPERIUM_LINK}
 <tr><td><div align="center"><font color="#FFFFFF"><a href="buildings.php" accesskey="e" target="{mf}">{Buildings}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="buildings.php?mode=research" accesskey="h" target="{mf}">{Research}</a></font></div></td></tr>
@@ -50,12 +50,11 @@ function f(target_url,win_name) {
 {DILIZIUM_LINK}
 <tr><td><div align="center"><font color="#FFFFFF"><a href="options.php" accesskey="o" target="{mf}">{Options}</a></font></div></td></tr>{ADMIN_LINK}
 <tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php" accesskey="1" target="_blank"style="color: limegreen;">{Board}</a></font></div></td></tr>
-<tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php?page=Thread&amp;threadID=9" target="_blank" accesskey="o" style="color: limegreen;">Regeln</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="http://lost-worlds.net/forum/board1-neues/board2-game/834-lost-worlds-spielregeln/" target="_blank" accesskey="o" style="color: limegreen;">Regeln</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="irc.php?userName={user_name}" accesskey="1" target="_blank">Chat</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?form=Simulator" target="{mf}">Kampfsimulator</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="javascript:top.location.href='logout.php'" accesskey="s" style="color: red;">Logout</a></font></div></td></tr>
 </table>
-<div style="background-image:url(images/radio.png); height:22px; cursor:pointer; margin-top:10px; background-repeat:no-repeat; background-position:center" onClick="window.open('http://85.25.136.224:8888/listen.pls')"></div>
 </form>
 
 </div>

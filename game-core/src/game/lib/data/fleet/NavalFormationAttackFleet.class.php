@@ -411,6 +411,8 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			}
 		}
 
+		$this->log .= "\n<br>\nplanet\n<br>\n";
+		$this->log .= print_r($this->getTargetPlanet(), true);
 		// defender (planet)
 		Spec::storeData($this->getTargetPlanet());		
 		$specs = Spec::getBySpecType(array(3, 4), false);
@@ -420,6 +422,9 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			
 			$this->defenderShipTypes[$specID.'0'] = self::createShipTypeArray($specObj, $userObj);
 		}
+		
+		$this->log .= "\n<br>\nspecs\n<br>\n";
+		$this->log .= var_dump($specs);
 		
 		// defender (stand-by)
 		foreach($this->standByFleets as $fleetID => $fleet) {			
@@ -432,6 +437,8 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 				$this->defenderShipTypes[$specID.$fleetID] = self::createShipTypeArray($specObj, $userObj);
 			}
 		}
+		$this->log .= "\n<br>\nshipTypes\n<br>\n";
+		$this->log .= print_r($this->defenderShipTypes, true);
 	}
 	
 	/**
@@ -1329,12 +1336,12 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			$generator->changePoints($userID, $change);
 		}
 		// *angst*
-		/*$objStr = escapeString(print_r((array)$this, true));
+		//$objStr = escapeString(print_r((array)$this, true));
 		$sql = "REPLACE INTO ugml_log_biggerattack
 				(fleetID, obj)
 				VALUES
-				(".$this->fleetID.", '".$objStr."')";
-		WCF::getDB()->sendQuery($sql);*/
+				(".$this->fleetID.", '".escapeString($this->log)."')";
+		WCF::getDB()->sendQuery($sql);
 	}
 	
 	/**
