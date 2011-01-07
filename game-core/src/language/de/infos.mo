@@ -78,16 +78,14 @@ $lang['info'][202]['description'] = 'Der kleine Transporter wurde als eines der 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
 Rapidfire von <font color="red">Schwerer J&auml;ger: - 3</font>
-Rapidfire von <font color="red">Todesstern: - 250</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 3</font>';
+Rapidfire von <font color="red">Todesstern: - 125</font>';
 
 $lang['info'][203]['name'] = 'Gro&szlig;er Transporter';
 $lang['info'][203]['description'] = 'Nach geraumer Zeit h&auml;uften sich immer mehr und mehr Ressourcen auf den Planeten. Der kleine Transporter wurde damit &uuml;berfordert und es musste ein neues Transportschiff her. Sofort machten sich die Entwickler an die Arbeit und schufen den gro&szlig;en Transporter. Durch sein hohes Ladevolumen und die besseren Schilde verdr&auml;ngte er sofort den kleinen Transporter. Das Schiff ben&ouml;tigt jedoch eine etwas weiter entwickelte Forschung und ist langsamer als der kleine Transporter, wenn dieser mit Impulstriebwerk 5 ausgestattet ist, weswegen der kleine Transporter &ouml;fters zum Einsatz kommt bei Raidern und der gro&szlig;e bei H&auml;ndlern.
 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 250</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 3</font>';
+Rapidfire von <font color="red">Todesstern: - 125</font>';
 
 $lang['info'][204]['name'] = 'Leichter J&auml;ger';
 $lang['info'][204]['description'] = 'Der leichte J&auml;ger ist das erste Schiff das &uuml;berhaupt gebaut werden kann. Es ist sehr schnell, wendig und in gr&ouml;&szlig;eren Mengen auch sehr effektiv gegen gr&ouml;&szlig;ere Schiffe. Weiter hat es ein sehr gute Preis-Leistungs-Verh&auml;ltnis. Sie finden in so ziemlich jeder Flotte ihren Platz, da sie ein sehr guter Schussfang sind und die Schnelligkeit der Flotte nicht beeintr&auml;chtigen. Der leichte J&auml;ger hat einen sehr geringen Laderaum, was den Flug &uuml;ber gr&ouml;&szlig;ere Distanzen nur mit Koppelung eines kleinen oder gro&szlig;en Transporters m&ouml;glich macht.
@@ -95,7 +93,7 @@ $lang['info'][204]['description'] = 'Der leichte J&auml;ger ist das erste Schiff
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
 Rapidfire von <font color="red">Kreuzer: - 6</font>
-Rapidfire von <font color="red">Todesstern: - 200</font>';
+Rapidfire von <font color="red">Todesstern: - 100</font>';
 
 $lang['info'][205]['name'] = 'Schwerer J&auml;ger';
 $lang['info'][205]['description'] = 'Der schwere J&auml;ger sollte so schnell wie m&ouml;glich erforscht und gebaut werden, um am Anfang m&ouml;glichst Verlustfrei durch Abwehranlagen zu gelangen. Der schwere J&auml;ger ist trotz seiner schweren Gesch&uuml;tze nicht viel langsamer als der leichte J&auml;ger, jedoch ist dieses Schiff sehr teuer im Vergleich zum leichten J&auml;ger. Er wird sehr oft zum eskortieren von Transportern verwendet, da er einen geringen Deuteriumverbrauch hat. Vor allem gegen Kreuzer ist der schwere J&auml;ger dem leichten J&auml;ger &uuml;berlegen.
@@ -103,8 +101,7 @@ $lang['info'][205]['description'] = 'Der schwere J&auml;ger sollte so schnell wi
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
 Rapidfire gegen <font color="lime">Kleiner Transporter: - 3</font>
-Rapidfire von <font color="red">Todesstern: - 100</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 4</font>';
+Rapidfire von <font color="red">Todesstern: - 50</font>';
 
 $lang['info'][206]['name'] = 'Kreuzer';
 $lang['info'][206]['description'] = 'Nachdem die Entwickler nunmehr die Konstruktion der Jagdflieger nahezu perfektioniert hatten und die Gro&szlig;kampfschiffe in ihrer Planung gro&szlig;e Innovationen mit sich brachten, war die Nachfrage nach einer kompromisslosen Auswahl der herausragenden F&auml;higkeiten der schon bestehenden Schiffstypen aufgekommen.
@@ -117,30 +114,28 @@ Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
 Rapidfire gegen <font color="lime">Leichter J&auml;ger: - 6</font>
 Rapidfire gegen <font color="lime">Raketenwerfer: - 10</font>
-Rapidfire von <font color="red">Todesstern: - 33</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 4</font>';
+Rapidfire von <font color="red">Todesstern: - 16</font>';
 
 $lang['info'][207]['name'] = 'Schlachtschiff';
 $lang['info'][207]['description'] = 'Schlachtschiffe werden auch Allrounderschiffe genannt. Sie sind in jeder starken Flotte vertreten, da sie ein gutes Preis-Leistungsverh&auml;ltnis haben, und vielseitig einsetzbar sind. Man benutzt sie f&uuml;r Farmraids, da sie eine hohe Widerstandskraft besitzen, und einen hohen Laderaum vorweisen. Dazu haben sie schwere Gesch&uuml;tze, weshalb sie auch bei jedem gr&ouml;&szlig;eren Att vertreten sind. Durch den Hyperraumantrieb haben sie ihre hohe Geschwindigkeit, allerdings ist dieser sehr teuer.
 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 30</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 7</font>';
+Rapidfire von <font color="red">Todesstern: - 15</font>';
 
 $lang['info'][208]['name'] = 'Kolonieschiff';
 $lang['info'][208]['description'] = 'Dieses Schiff ben&ouml;tigt jeder Kommandant um neue Planeten zu besiedeln und sein Imperium weiter auszubauen. Durch die Lagerung von gro&szlig;en Vorr&auml;ten f&uuml;r die Siedler ist es jedoch relativ langsam.
 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 250</font>';
+Rapidfire von <font color="red">Todesstern: - 125</font>';
 
 $lang['info'][209]['name'] = 'Recycler';
 $lang['info'][209]['description'] = 'Ein praktisches Schiff das die &uuml;berreste aus Raumschlachten wieder einsammelt und man sie somit wieder benutzen kann um neue Schiffe herzustellen .
 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 250</font>';
+Rapidfire von <font color="red">Todesstern: - 125</font>';
 
 $lang['info'][21]['name'] = 'Raumschiffwerft';
 $lang['info'][21]['description'] = 'Die Raumschiffswerft dient dazu, jede Art von Schiffen herzustellen. Durch den Ausbau der Werft wird es erm&ouml;glicht immer gr&ouml;&szlig;ere Schiffe und Abwehranlagen zu errichten und dadurch wird auch mehr Platz geschaffen um immer mehr Arbeitskr&auml;fte einzusetzen, welche den Bau der Schiffe und Verteidigungsanlagen vorantreiben.';
@@ -158,8 +153,7 @@ Rapidfire von <font color="red">Kolonieschiff: - 5</font>
 Rapidfire von <font color="red">Recycler: - 5</font>
 Rapidfire von <font color="red">Bomber: - 5</font>
 Rapidfire von <font color="red">Zerst&ouml;rer: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 1250</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 5</font>';
+Rapidfire von <font color="red">Todesstern: - 625</font>';
 
 $lang['info'][211]['name'] = 'Bomber';
 $lang['info'][211]['description'] = 'Der Bomber ist eines der Schiffe, die speziell daf&uuml;r eingesetzt werden eine gro&szlig;e Anzahl von feindlichen Gesch&uuml;tzstellungen anzugreifen. Ihre wendige, flache Bauart erm&ouml;glicht es ihm, zwischen Geb&auml;uden entlangzufliegen und den mei&szlig;ten Feuerstellen auszuweichen. Andere Schiffe k&ouml;nnen dem Bomber nur schwerlich folgen.
@@ -172,7 +166,7 @@ Rapidfire gegen <font color="lime">Raketenwerfer: - 20</font>
 Rapidfire gegen <font color="lime">Leichtes Lasergesch&uuml;tz: - 20</font>
 Rapidfire gegen <font color="lime">Schweres Lasergesch&uuml;tz: - 10</font>
 Rapidfire gegen <font color="lime">Ionengesch&uuml;tz: - 10</font>
-Rapidfire von <font color="red">Todesstern: - 25</font>';
+Rapidfire von <font color="red">Todesstern: - 12</font>';
 
 $lang['info'][212]['name'] = 'Solarsatellit';
 $lang['info'][212]['description'] = 'Nach Versuchen der neuzeitlichen Wissenschaft regenerative Energien zu nutzen wurden, experimentelle Versuche gestartet, welche die Energie der Sonne einfangen, speisen und f&uuml;r die Industrie nutzbar machen sollten. Doch Experimente wie zum Beispiel Sonnenwindkraftwerke schlugen fehl, da der Kosten/Nutzenfaktor kein befriedigendes Ergebnis liefern konnte. Letztendlich besann man sich auf die schon betagte, daf&uuml;r aber kosteng&uuml;nstigere Alternative der Solarzellennutzung. Diese Form der regenerativen Umwandlung der Energie lies genug Spielraum f&uuml;r Weiterentwicklungen zu und aufgrund merklich gestiegener Ausbeute wurde diese Technik wieder der Industrie zugef&uuml;hrt und ist heute wieder erwerbbar.
@@ -187,8 +181,7 @@ Rapidfire von <font color="red">Kolonieschiff: - 5</font>
 Rapidfire von <font color="red">Recycler: - 5</font>
 Rapidfire von <font color="red">Bomber: - 5</font>
 Rapidfire von <font color="red">Zerst&ouml;rer: - 5</font>
-Rapidfire von <font color="red">Todesstern: - 1250</font>
-Rapidfire von <font color="red">Schlachtkreuzer: - 5</font>';
+Rapidfire von <font color="red">Todesstern: - 625</font>';
 
 $lang['info'][213]['name'] = 'Zerst&ouml;rer';
 $lang['info'][213]['description'] = 'Der Zerst&ouml;rer ist das Schiff, welches in jeder Flotte unersetzbar ist. Das Schiff bietet hervorragende Feuerkraft und ein hervorragendes Schild. Jeder Kommandant wartet auf die Fertgstellung dieses Schiffes.
@@ -196,30 +189,28 @@ $lang['info'][213]['description'] = 'Der Zerst&ouml;rer ist das Schiff, welches 
 Rapidfire gegen <font color="lime">Spionagesonde: - 5</font>
 Rapidfire gegen <font color="lime">Solarsatellit: - 5</font>
 Rapidfire gegen <font color="lime">Leichtes Lasergesch&uuml;tz: - 10</font>
-Rapidfire gegen <font color="lime">Schlachtkreuzer: - 2</font>
-Rapidfire von <font color="red">Todesstern: - 5</font>';
+Rapidfire von <font color="red">Todesstern: - 2</font>';
 
 $lang['info'][214]['name'] = 'Todesstern.';
 $lang['info'][214]['description'] = 'Todessterne sind Giganten, und keine einfachen Schiffe mehr. Sie sind enorm gro&szlig;, was wiederum die riesigen Mengen an Material erkl&auml;rt, und die Bauzeit auch dementsprechend hoch h&auml;lt. Die Schusskraft besteht haupts&auml;chlich aus der Gravitonkanone, in dieser ein Energiefeld aus angeh&auml;uften Gravitonen gesammelt wird und dann auf feindliche Schiffe und sogar auf Monde gerichtet wird. Die auftreffenden Gravitonen erzeugen ein Gravitationsfeld, welches die Schiffe oder den Mond des Feindes, in sich verschlingt und somit vernichtet. Es ist sehr schwer die Masse in Gang zu setzen und auch wieder zu stoppen, deshalb k&ouml;nnen sie nur sehr langsam fliegen.
 
-Rapidfire gegen <font color="lime">Spionagesonde: - 1250</font>
-Rapidfire gegen <font color="lime">Solarsatellit: - 1250</font>
-Rapidfire gegen <font color="lime">Kleiner Transporter: - 250</font>
-Rapidfire gegen <font color="lime">Gro&szlig;er Transporter: - 250</font>
-Rapidfire gegen <font color="lime">Leichter J&auml;ger: - 200</font>
-Rapidfire gegen <font color="lime">Schwerer J&auml;ger: - 100</font>
-Rapidfire gegen <font color="lime">Kreuzer: - 33</font>
-Rapidfire gegen <font color="lime">Schlachtschiff: - 30</font>
-Rapidfire gegen <font color="lime">Kolonieschiff: - 250</font>
-Rapidfire gegen <font color="lime">Recycler: - 250</font>
-Rapidfire gegen <font color="lime">Bomber: - 25</font>
-Rapidfire gegen <font color="lime">Zerst&ouml;rer: - 5</font>
-Rapidfire gegen <font color="lime">Raketenwerfer: - 200</font>
-Rapidfire gegen <font color="lime">Leichtes Lasergesch&uuml;tz: - 200</font>
-Rapidfire gegen <font color="lime">Schweres Lasergesch&uuml;tz: - 100</font>
-Rapidfire gegen <font color="lime">Gau&szlig;kanone: - 50</font>
-Rapidfire gegen <font color="lime">Ionengesch&uuml;tz: - 100</font>
-Rapidfire gegen <font color="lime">Schlachtkreuzer: - 15</font>';
+Rapidfire gegen <font color="lime">Spionagesonde: - 625</font>
+Rapidfire gegen <font color="lime">Solarsatellit: - 625</font>
+Rapidfire gegen <font color="lime">Kleiner Transporter: - 125</font>
+Rapidfire gegen <font color="lime">Gro&szlig;er Transporter: - 125</font>
+Rapidfire gegen <font color="lime">Leichter J&auml;ger: - 100</font>
+Rapidfire gegen <font color="lime">Schwerer J&auml;ger: - 50</font>
+Rapidfire gegen <font color="lime">Kreuzer: - 16</font>
+Rapidfire gegen <font color="lime">Schlachtschiff: - 15</font>
+Rapidfire gegen <font color="lime">Kolonieschiff: - 125</font>
+Rapidfire gegen <font color="lime">Recycler: - 125</font>
+Rapidfire gegen <font color="lime">Bomber: - 12</font>
+Rapidfire gegen <font color="lime">Zerst&ouml;rer: - 2</font>
+Rapidfire gegen <font color="lime">Raketenwerfer: - 100</font>
+Rapidfire gegen <font color="lime">Leichtes Lasergesch&uuml;tz: - 100</font>
+Rapidfire gegen <font color="lime">Schweres Lasergesch&uuml;tz: - 50</font>
+Rapidfire gegen <font color="lime">Gau&szlig;kanone: - 25</font>
+Rapidfire gegen <font color="lime">Ionengesch&uuml;tz: - 50</font>';
 
 $lang['info'][22]['name'] = 'Metallspeicher';
 $lang['info'][22]['description'] = 'Durch die unterirdische Bauweise sind fast keine Grenzen gesetzt, was die gr&ouml;&szlig;e der Speicher angeht. Somit k&ouml;nnen enorme Mengen aufgenommen werden und es wird somit ein abprupter Produktionsstop vermieden, wenn die alternativen Lagerungspl&auml;tze an ihre Grenzen sto&szlig;en.';
@@ -259,24 +250,24 @@ $lang['info'][402]['description'] = 'Das leichte Lasergesch&uuml;tz ist eine kle
 
 Rapidfire von Bomber: <font color="red">20</font>
 Rapidfire von Zerstoerer: <font color="red">10</font>
-Rapidfire von Todesstern: <font color="red">200</font>';
+Rapidfire von Todesstern: <font color="red">100</font>';
 
 $lang['info'][403]['name'] = 'Schweres Lasergesch&uuml;tz';
 $lang['info'][403]['description'] = 'Die schweren Lasergesch&uuml;tze sind die weiterentwickelte Form der leichen Lasergesch&uuml;tze. Durch die Verwendung noch pr&auml;ziserer Linsen und noch feiner geschliffeneren Diamanten und Prismen ist es m&ouml;glich die Konzentration des Lasers noch um einiges zu erh&ouml;hen.
 
 Rapidfire von Bomber: <font color="red">10</font>
-Rapidfire von Todesstern: <font color="red">100</font>';
+Rapidfire von Todesstern: <font color="red">50</font>';
 
 $lang['info'][404]['name'] = 'Gau&szlig;kanone';
 $lang['info'][404]['description'] = 'Die Gau&szlig;kanone ist eine der st&auml;rksten Verteidigungsanlagen, und wegen ihrem guten Preis-Leistungsverh&auml;ltnis nicht zu verachten. Sie wird neben den Plasmawerfern als zerst&ouml;rende Kraft hinter dem Schussfang verwendet. Sie basieren auf die Technik, die einst von dem Physiker Friedrich Gau&szlig; entwickelt wurde, welcher die Partikelbeschleunigung erfand. Diese Technik erm&ouml;glicht es, einen Neutronenbeschuss auf die feindlichen Schiffe zu richten, der verheerenden Schaden anrichtet. Aufgrund ihrer Kraft sind sie f&uuml;r Jedes Schiffe eine Bedrohung.
 
-Rapidfire von Todesstern: <font color="red">50</font>';
+Rapidfire von Todesstern: <font color="red">25</font>';
 
 $lang['info'][405]['name'] = 'Ionengesch&uuml;tz';
 $lang['info'][405]['description'] = 'Das Ionengesch&uuml;tz ist eine &auml;u&szlig;erst effektive Waffe in der Bek&auml;mpfung der gegnerischen Schiffe. Die Negativ geladenen Ionen der gel&ouml;sten Substanz reagieren mit der &auml;u&szlig;eren H&uuml;lle des Schiffes und lassen es sich langsam selbst aufl&ouml;sen. Die positiv geladenen Ionen dagegen absorbieren die Kraft der Schilde in Form von Elektronen und zerst&ouml;ren somit pr&auml;zise die Schilde der feinlichen Schiffe. Diese durchaus effektive Verdeidigungsanlage, wird allerdings nur selten auf Planeten vorgefunden, da ihr Preis-Leistungsverh&auml;ltnis nicht sehr lohnenswert ist.
 
 Rapidfire von Bomber: <font color="red">10</font>
-Rapidfire von Todesstern: <font color="red">100</font>';
+Rapidfire von Todesstern: <font color="red">50</font>';
 
 $lang['info'][406]['name'] = 'Plasmawerfer';
 $lang['info'][406]['description'] = 'Plamsawerfer sind die m&auml;chtigsten Verteidigungsanlagen die je entwickelt wurden. Ihre Kraft hat einen Recht einfachen Ursprung. Wasserstoff wird unter hohem Druck zur Fusion angeregt, wodurch gewaltige Hitze entsteht. Hochkonzentrierte Schwefels&auml;ure verhindert das verfl&uuml;chtigen der Hitze. da diese gestaut wird. Diese hitze wird durch einen gewaltigen Blitz abgegeben, den man durch Magnetfelder kontrolliert und auf feindliche Schiffe richtet.
