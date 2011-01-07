@@ -1121,7 +1121,7 @@ elseif(in_array($_GET["unbau"],$reslist['build'])&&$planetrow['b_building_id'] =
 if($planetrow["b_building_id"] != 0){
 
 	if($planetrow["b_building"] <= time()){
-		$features = unserialize($user['features']);
+		$features = unserialize($user['diliziumFeatures']);
 
 		// old
 		/*
@@ -1143,6 +1143,7 @@ if($planetrow["b_building_id"] != 0){
 		BuildingOvent::check(LWCore::getPlanet()->planetID); 
 
 		$moreBuildings = unserialize($planetrow['moreBuildings']);
+		
 		while(@isset($moreBuildings[0])) {
 			if(is_tech_available($user,$planetrow, $moreBuildings[0]) && is_buyable($user,$planetrow,$moreBuildings[0])) {
 				if(!check_building_progress($planetrow)) {
@@ -1214,6 +1215,8 @@ if($planetrow["b_building_id"] != 0){
 	
 					BuildingOvent::check(LWCore::getPlanet()->planetID); 
 				}
+				else
+					break;
 			} else {
 				$planetrow['moreBuildings'] = serialize(array());
 				$sql = "UPDATE ugml".LW_N."_planets SET
@@ -1310,6 +1313,7 @@ foreach($buildableBuildings as $i) {
 			//Comprobacion si es posible comprarlo
 			$is_buyeable = is_buyeable($user,$planetrow,$i);
 			$parse['click'] = '';
+			
 			if(!$planetrow["b_building_id"] || $features['buildList'] < time()) {
 				if(!$building){
 					if($user["b_tech_planet"] != 0 && $i == 31 && $game_config['allow_invetigate_while_lab_is_update'] != 1){
