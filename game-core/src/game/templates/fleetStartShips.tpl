@@ -320,21 +320,23 @@
 															</td>
 														</tr>
 													{/foreach}
-													<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
-														<td class="column">
-															<input type="text" name="username" id="nfsUserAdd{@$navalFormation->formationID}" class="inputText" size="15" maxlength="25" />
-															<script type="text/javascript">
-																//<![CDATA[
-																	suggestion.enableMultiple(false);
-																	suggestion.setSource('index.php?page=PublicUserSuggest'+SID_ARG_2ND);
-																	suggestion.init('nfsUserAdd{@$navalFormation->formationID}');
-																//]]>
-															</script>
-														</td>
-														<td class="column" colspan="2">
-															<input type="submit" value="{lang}wot.fleet.navalFormation.addUser{/lang}" />
-														</td>
-													</tr>
+													{if !$navalFormation->usersLimitReached()}
+														<tr class="lwcontainer-{cycle values='1,2' name='contcyc'}">
+															<td class="column">
+																<input type="text" name="username" id="nfsUserAdd{@$navalFormation->formationID}" class="inputText" size="15" maxlength="25" />
+																<script type="text/javascript">
+																	//<![CDATA[
+																		suggestion.enableMultiple(false);
+																		suggestion.setSource('index.php?page=PublicUserSuggest'+SID_ARG_2ND);
+																		suggestion.init('nfsUserAdd{@$navalFormation->formationID}');
+																	//]]>
+																</script>
+															</td>
+															<td class="column" colspan="2">
+																<input type="submit" value="{lang}wot.fleet.navalFormation.addUser{/lang}" />
+															</td>
+														</tr>
+													{/if}
 												</tbody>
 											</table>
 										</form>

@@ -34,7 +34,7 @@ class MissileFleetQueue extends FleetQueue {
 		$maxSystems = WCF::getUser()->impulse_motor_tech * 4;
 		$systemsDistance = abs($this->getStartPlanet()->system - $this->getTargetPlanet()->system);
 		
-		if($maxSystems < $systemsDistance) {
+		if($maxSystems < $systemsDistance || $this->getStartPlanet()->galaxy != $this->getTargetPlanet()->galaxy) {
 			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
 			throw new NamedUserException(WCF::getLanguage()->get('wot.fleet.tooFarAway'));			
 		}		

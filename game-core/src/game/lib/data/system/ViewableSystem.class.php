@@ -315,7 +315,17 @@ class ViewableSystem extends System {
 		if(@$features['galaxyScans'] > TIME_NOW && count(EspionageFleet::searchReports(WCF::getUser()->userID, $planet->planetID))) {
 			$lang['reportLink'] = '<a onclick="f(\'game/index.php?page=viewScan&amp;planetID='.$planet->planetID.'\');"><img src="{dpath}img/s.gif" alt="Spionagebericht anzeigen" title="Spionagebericht anzeigen" border="0"></a>';
 		} else $lang['reportLink'] = '';
-
+		
+		// interplanetaries
+		$maxSystems = WCF::getUser()->impulse_motor_tech * 4;
+		$systemsDistance = abs(LWCore::getPlanet()->system - $planet->system);
+		if($systemsDistance <= $maxSystems
+			&& LWCore::getPlanet()->galaxy == $planet->galaxy
+			&& LWCore::getPlanet()->interplanetary_misil)
+				$lang['interplanetaryBit'] = "<a style=\"cursor: pointer;\" onclick=\"document.getElementById('interplanetaryrmissilestable').style.display = ''; document.getElementById('ipmplanet').value = '".$planet->planet."';\"><img src=\"{dpath}img/r.gif\" alt=\"Interplanetarraketen-Angriff\" title=\"Interplanetarraketen-Angriff\" border=\"0\"></a>";
+		else 
+			$lang['interplanetaryBit'] = "";
+				
 		return parsetemplate(gettemplate('galaxy_row_action'), $lang);
 	}
 
