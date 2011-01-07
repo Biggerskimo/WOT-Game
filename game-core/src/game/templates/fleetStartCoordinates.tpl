@@ -46,7 +46,6 @@
 								<select id="planetType" name="planetType" onmouseup="fleet.shortInfo()" onkeyup="fleet.shortInfo()">
 									<option value="1"{if $fleetQueue->planetType != 2 && $fleetQueue->planetType != 3} selected="selected"{/if}>{lang}wot.global.planet{/lang}</option>
 									<option value="2"{if $fleetQueue->planetType == 2} selected="selected"{/if}>{lang}wot.global.debris{/lang}</option>
-									<option value="3"{if $fleetQueue->planetType == 3} selected="selected"{/if}>{lang}wot.global.moon{/lang}</option>
 								</select>
 							</div>
 						</div>
