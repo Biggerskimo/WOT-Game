@@ -68,6 +68,18 @@ if(array_search('usersOnline', $argv))
 	echo "15m:".$row['15m']." 60m:".$row['60m']." 24h:".$row['24h']." 30d:".$row['30d']." 90d:".$row['90d'];
 	exit;
 }
+if(array_search('requestsMin', $argv))
+{
+	$sql = "SELECT
+			(SELECT COUNT(*) / 15 FROM ugml_request WHERE `time` > UNIX_TIMESTAMP() - 60 * 15) AS 15m,
+			(SELECT COUNT(*) / 60 FROM ugml_request WHERE `time` > UNIX_TIMESTAMP() - 60 * 60) AS 60m,
+			(SELECT COUNT(*) / (60 * 24) FROM ugml_request WHERE `time` > UNIX_TIMESTAMP() - 60 * 60 * 24) AS 24h";
+	$row = WCF::getDB()->getFirstRow($sql);
+	
+	echo "15m:".$row['15m']." 60m:".$row['60m']." 24h:".$row['24h'];
+	exit;
+}
+
 if(array_search('fleetState', $argv))
 {
 	$sql = "SELECT
