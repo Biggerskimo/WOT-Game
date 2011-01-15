@@ -68,12 +68,12 @@ $lang['level'] = 'Stufe';
 407 => "Kleine Schildkuppel",
 408 => "Gro&szlig;e Schildkuppel",
 502 => "Abfangrakete",
-503 => "Interplanetarrakete",
+503 => "Interplanetarrakete"/*,
 //Construcciones especiales
 40 => "Spezialgeb&auml;ude",
 41 => "Mondbasis",
 42 => "Sensorphalanx",
-43 => "Sprungtor"
+43 => "Sprungtor"*/
 );}
 
 
@@ -135,11 +135,11 @@ $lang['level'] = 'Stufe';
 407 => "Die kleine Schildkuppel ist die vorhergehende Form der gro&szlig;en Schildkuppel. Ihre relativ gute Leistung ist wohl der Grund warum sie sich auf jedem Planeten vorfinden l&auml;sst.",
 408 => "Die Gro&szlig;e Schildkuppel ist die verbesserte Form der kleinen Schildkuppel. Ihre Leistung ist wohl der Grund warum sie sich auf jedem Planeten vorfinden l&auml;sst.",
 502 => "Als Gegenma&szlig;nahme gegen die Interplanetarraketen wurden die Abfangraketen entwickelt, mit welchen man ankommene Interplanetarraketen zerst&ouml;ren kann.",
-503 => "Interplanetarraketen sind Raketen, die dazu dienen die benachbarte Verteidigung au&szlig;er Gefecht zu setzen.",
+503 => "Interplanetarraketen sind Raketen, die dazu dienen die benachbarte Verteidigung au&szlig;er Gefecht zu setzen."/*,
 //Construcciones especiales
 41 => "Ein Mond verf&uuml;gt &uuml;ber keinerlei Atmosph&auml;re, deshalb muss vor der Besiedlung eine Mondbasis errichtet werden.",
 42 => "Die Sensorphalanx erlaubt es, Flottenbewegungen zu beobachten. Je h&ouml;her die Ausbaustufe, desto gr&ouml;&szlig;er die Reichweite der Phalanx.",
-43 => "Sprungtore sind riesige Transmitter, die in der Lage sind, selbst gro&szlig;e Flotten ohne Zeitverlust durch das Universum zu versenden."
+43 => "Sprungtore sind riesige Transmitter, die in der Lage sind, selbst gro&szlig;e Flotten ohne Zeitverlust durch das Universum zu versenden."*/
 );}
 
 // Created by Perberos. All rights reversed (C) 2006 
