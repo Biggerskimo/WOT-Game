@@ -20,7 +20,7 @@
 if(!defined('LW_DIR')) define('LW_DIR', $ugamela_root_path.'game/');
 require_once(LW_DIR.'lib/util/LockUtil.class.php');
 
-$userID = isset($_COOKIE['wcf_userID']) ? intval($_COOKIE['wcf_userID']) : 0;
+$userID = isset($_COOKIE['wcfw1_userID']) ? intval($_COOKIE['wcfw1_userID']) : 0;
 for($i = 0; $userID > 0; $i++) {
 	try {
 		LockUtil::checkLock('global_'.$userID);
