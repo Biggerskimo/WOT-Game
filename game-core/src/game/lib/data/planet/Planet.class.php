@@ -267,11 +267,11 @@ class Planet extends DatabaseObject {
 	 * @return	float	limit
 	 */
 	public function noobProtectionLimit() {
-		// LIMIT = POINTS * ((POINTS / 2500) ^ 3 + 2)
+		// LIMIT = POINTS * ((POINTS / 2500) ^ 3 + 2) * 5
 		if(intval($this->id_owner)) {
 			$owner = new LWUser($this->id_owner);
 			
-			return $owner->points * (pow($owner->points / 2500, 3) + 2);
+			return 5* $owner->points * (pow($owner->points / 2500, 3) + 2);
 		}
 		
 		return 0;
