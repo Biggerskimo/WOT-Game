@@ -28,12 +28,18 @@ require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
  * @copyright	2010 - 2011 Lost Worlds <http://lost-worlds.net>
  */
 class MessagesPage extends AbstractPage {
+	const MESSAGES = 10;
+	const MESSAGES_FOLDERS = 10;
+	
 	public $templateName = 'messages';
 	
 	public $checked = null;
+	public $active = null;
+	public $pageNo = 1;
+	
 	public $messages = array();
 	public $folders = array();
-	public $active = null; // array()
+	public $nextPage = false;
 	
 	/**
 	 * @see Page::readParameters()
@@ -43,6 +49,7 @@ class MessagesPage extends AbstractPage {
 		
 		if(isset($_REQUEST['checked'])) $this->checked = 1;
 		if(isset($_REQUEST['active'])) $this->active = ArrayUtil::toIntegerArray(explode(',', $_REQUEST['active']));
+		if(isset($_REQUEST['pageNo'])) $this->pageNo = intval($_REQUEST['pageNo']);
 	}
 	
 	/**
@@ -51,11 +58,24 @@ class MessagesPage extends AbstractPage {
 	public function readData() {
 		parent::readData();
 		
-		if(/*WCF::getUser()->hasDiliziumFeature("messageFolders") && */$this->active === null && !$this->checked)
-			$this->active = array();
-		
-		$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active);
-		$this->folders = MessageFolder::getByUserID(WCF::getUser()->userID);
+		if(WCF::getUser()->hasDiliziumFeature("messageFolders"))
+		{
+			if($this->active === null && !$this->checked)
+				$this->active = array();
+			
+			$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, self::MESSAGES_FOLDERS + 1, ($this->pageNo - 1) * self::MESSAGES_FOLDERS);
+			$this->folders = MessageFolder::getByUserID(WCF::getUser()->userID);
+			
+			$this->nextPage = count($this->messages) > self::MESSAGES_FOLDERS;
+			
+			if($this->nextPage)
+				array_pop($this->messages);
+		}
+		else
+		{
+			$this->pageNo = 1;
+			$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, self::MESSAGES);
+		}
 		
 		// update data
 		$messageUpdates = array();
@@ -78,7 +98,9 @@ class MessagesPage extends AbstractPage {
 			'active' => $this->active,
 			'folders' => $this->folders,
 			'messages' => $this->messages,
-			'checked' => $this->checked
+			'checked' => $this->checked,
+			'pageNo' => $this->pageNo,
+			'nextPage' => $this->nextPage
 		));
 	}
 

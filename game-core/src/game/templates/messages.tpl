@@ -93,11 +93,25 @@
 		{include file="topnav"}
 		<div class="main content messages">
 			{* folders *}
-			{if $checked === null}
+			{if $checked === null && $folders|count}
 				<div class="messageFolders">
 					<div class="contentDescriptor">
 						<div class="check">
-							{lang}wot.messages.folders.check{/lang}
+							<span class="checkDescription">
+								{lang}wot.messages.folders.check{/lang}
+							</span>
+							<span class="checkAll">
+								{assign var='folderKeys' value=$folders|array_keys}
+								{if $folders|count != $active|count}
+									<a href="index.php?page=Messages&amp;active={@','|implode:$folderKeys}">
+										{lang}wot.messages.folders.checkAll{/lang}
+									</a>
+								{else}
+									<a href="index.php?page=Messages">
+										{lang}wot.messages.folders.uncheckAll{/lang}
+									</a>
+								{/if}
+							</span>
 						</div>
 						<div class="name">
 							{lang}wot.messages.folders.name{/lang}
@@ -151,10 +165,40 @@
 				</div>
 			{/if}
 			
+			{if $nextPage || $pageNo > 1}
+				<div class="messageNavigation">
+					{if $nextPage}
+						<a class="olderMessages" href="index.php?page=Messages&amp;active={@','|implode:$active}&amp;pageNo={@$pageNo+1}">
+							{lang}wot.messages.older{/lang}
+						</a>
+					{/if}
+					{if $pageNo > 1}
+						<a class="newerMessages" href="index.php?page=Messages&amp;active={@','|implode:$active}&amp;pageNo={@$pageNo-1}">
+							{lang}wot.messages.newer{/lang}
+						</a>
+					{/if}
+				</div>
+			{/if}
+			
 			{* messages *}
 			{if $messages|count}
 				<a name="unread"></a>
 				{include file='messagesList' id='messages' messages=$messages}
+			{/if}
+			
+			{if $nextPage || $pageNo > 1}
+				<div class="messageNavigation">
+					{if $nextPage}
+						<a class="olderMessages" href="index.php?page=Messages&amp;active={@','|implode:$active}&amp;pageNo={@$pageNo+1}">
+							{lang}wot.messages.older{/lang}
+						</a>
+					{/if}
+					{if $pageNo > 1}
+						<a class="newerMessages" href="index.php?page=Messages&amp;active={@','|implode:$active}&amp;pageNo={@$pageNo-1}">
+							{lang}wot.messages.newer{/lang}
+						</a>
+					{/if}
+				</div>
 			{/if}
 		</div>
 		{include file='footer'}
