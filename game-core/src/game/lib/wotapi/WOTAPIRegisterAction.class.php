@@ -103,13 +103,14 @@ class WOTAPIRegisterAction extends AbstractWOTAPIAction {
 	 * @return	array	galaxy, system, planet
 	 */
 	protected function findCoordinates() {
-		global $game_config;
+		/*global $game_config;
 		$galaxies = $game_config['galaxies'];
-		$o = $galaxies * ($galaxies + 1) / 2; // Gaussian formula
+		$o = $galaxies * ($galaxies + 1) / 2; // Gaussian formula*/
 		
 		do {
-			$r = rand(1, $o);
-			$galaxy = $galaxies - ceil((-1 + sqrt(1 + 8 * $r)) / 2); // derived from the Gaussian formula
+			//$r = rand(1, $o);
+			//$galaxy = $galaxies - ceil((-1 + sqrt(1 + 8 * $r)) / 2); // derived from the Gaussian formula
+			$galaxy = 1;
 			$system = mt_rand(1, 499);
 			$planet = mt_rand(4, 12);
 		} while(!$this->isFree($galaxy, $system, $planet));
