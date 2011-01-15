@@ -21,7 +21,7 @@
 				 onchange="messages.check({@$messageID}, true)"
 				 />
 			</div>
-			<div class="messageInfo">
+			<div class="messageInfo" data-messageID="{@$messageID}">
 				<ul>
 					<li class="messageSubject">
 						<span class="tupleFirst">{lang}wot.messages.message.subject{/lang}</span>

@@ -26,18 +26,24 @@ function Messages()
 	this.init = function()
 	{
 		$(document).ready(function() {
-			messages.initMenu();
+			messages.ready();
 		});
 	}
 	
-	this.initMenu = function()
+	this.ready = function()
 	{
+		// init menu
 		$("#checkedMessages").click(function() {
 			messages.toggleMenu("fast");
 		});
 		$(".checkedMessagesTitle").dblclick(function() {
 			if(messages.dblClickHref)
 				location.href = messages.dblClickHref;
+		});
+		
+		// init message toggles
+		$(".messageInfo").click(function() {
+			messages.toggle($(this).attr('data-messageID'));
 		});
 	}
 	
