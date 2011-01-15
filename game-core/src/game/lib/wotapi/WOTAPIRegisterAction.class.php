@@ -124,7 +124,7 @@ class WOTAPIRegisterAction extends AbstractWOTAPIAction {
 	protected function createPlanet() {
 		list($galaxy, $system, $planet) = $this->findCoordinates();
 		
-		$planetObj = PlanetEditor::create($galaxy, $system, $planet, 'Heimatplanet', $this->data['userid'], 500, 500, 0, 1, time(), 400);
+		$planetObj = PlanetEditor::create($galaxy, $system, $planet, 'Heimatplanet', $this->data['userid'], 500, 500, 500, 1, time(), 400);
 		
 		$sql = "UPDATE ugml_users
 				SET current_planet = ".$planetObj->planetID.",
