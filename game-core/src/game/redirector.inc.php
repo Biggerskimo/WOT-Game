@@ -23,7 +23,7 @@ foreach($_GET as $argName => $argValue) {
 }
 if(!empty($newQueryStr)) $newQueryStr = '?'.substr($newQueryStr, 1);
 
-$fileName = substr($_SERVER['PHP_SELF'], 5);
+$fileName = preg_replace('/(.*)\/game(\/[^\/]+)/', '$1$2', $_SERVER['PHP_SELF']);
 
 $newURL = (defined('SITE_PREFIX') ? SITE_PREFIX : '').$fileName.$newQueryStr;
 //echo $newUrl;
