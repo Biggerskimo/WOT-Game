@@ -49,6 +49,7 @@ class EspionageFleet extends NavalFormationAttackFleet {
     public function executeImpact() {
     	$this->initStandByFleets();
     	
+    	$this->ereport .= '<!-- [planetID#'.$this->targetPlanetID.'] -->';
     	$this->ereport .= '<a id="ereport'.$this->fleetID.'"></a>';
     	$this->create();
     	$this->ereport .= '<div class="ereportbottom" style="text-align: center;">';		
@@ -60,6 +61,8 @@ class EspionageFleet extends NavalFormationAttackFleet {
     	$senderName = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.sender.owner'));
 		$subject = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.impact.owner.subject'));
 		MessageEditor::create($this->ownerID, $subject, $this->ereport, 0, $senderName, 4);
+		NMessageEditor::create($this->ownerID, array(3, 3),
+			$subject, $this->ereport, 1);
 		
 		$this->saveData($this->fight);
     }

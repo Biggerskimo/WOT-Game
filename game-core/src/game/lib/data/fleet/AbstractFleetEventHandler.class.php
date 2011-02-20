@@ -19,6 +19,7 @@
 require_once(WCF_DIR.'lib/system/exception/SystemException.class.php');
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
 require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 require_once(LW_DIR.'lib/data/ovent/FleetOventEditor.class.php');
 require_once(LW_DIR.'lib/system/event/WOTEventHandler.class.php');
 require_once(LW_DIR.'lib/util/LockUtil.class.php');
@@ -231,6 +232,8 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     		$messageData = $this->parse($messageData);
     		
     		MessageEditor::create($this->ownerID, $messageData['subject'], $messageData['text'], 0, $messageData['sender'], 0);
+    		NMessageEditor::create($this->ownerID, array(3, 2),
+    			$messageData['subject'], $messageData['text']);
     	}
     }
     
@@ -244,6 +247,8 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     		$messageData = $this->parse($messageData);
     		
     		MessageEditor::create($this->ofiaraID, $messageData['subject'], $messageData['text'], 0, $messageData['sender'], 0);
+    		NMessageEditor::create($this->ofiaraID, array(3, 1),
+    			$messageData['subject'], $messageData['text']);
     	}
     }
     
@@ -257,6 +262,8 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     		$messageData = $this->parse($messageData);
     		
     		MessageEditor::create($this->ownerID, $messageData['subject'], $messageData['text'], 0, $messageData['sender'], 0);
+    		NMessageEditor::create($this->ownerID, array(3, 2),
+    			$messageData['subject'], $messageData['text']);
     	}
     }
 }

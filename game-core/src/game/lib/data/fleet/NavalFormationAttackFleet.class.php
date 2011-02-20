@@ -1352,13 +1352,17 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			}
 			if(isset($this->navalFormationUsers[$userID])) {
 				$class = 'combatReport_attacker_'.$this->winner;
+				$senderID = 2;
 			}
 			else {
-				$class = 'combatReport_defender_'.$this->winner;				
+				$class = 'combatReport_defender_'.$this->winner;	
+				$senderID = 1;			
 			}
 			$message = $messagePre.$class.$messageAfter;
 			
-			MessageEditor::create($userID, $subject, $message, 0, $sender, 3);			
+			MessageEditor::create($userID, $subject, $message, 0, $sender, 3);
+			NMessageEditor::create($userID, array(3, $senderID),
+				$subject, $message, 2);		
 		}
 	}
 	
