@@ -29,7 +29,12 @@
 		<script type="text/javascript">
 			var ovent{@$c} = new NTime(document.getElementById("serverTime").childNodes[0], new Date({@TIME_NOW} * 1000));
 		</script>
+{if $this->user->userID == 1}
+		<div class="main ads">
+			<div class="content overview">
+{else}
 		<div class="main content overview">
+{/if}
 			{* news *}
 			{assign var='viewNews' value=0}
 			{capture assign='newsStr'}
@@ -383,7 +388,15 @@
 					</div>
 				{/if}
 			{/if}
+{if $this->user->userID == 1}
+			</div>
+			<div class="ad_left_skyscraper">
+				<script type="text/javascript" src="http://www1.belboon.de/tracking/000126428.js"> </script> <noscript> <iframe src="http://www1.belboon.de/tracking/000126428.html" width="120" height="600" frameborder="0" scrolling="no"> <a href="http://www1.belboon.de/tracking/000126428/0.html" target="_blank"> <img src="http://www1.belboon.de/tracking/000126428.img" border=0 width="120" height="600" alt="" /> </a> </iframe> </noscript>
+			</div>
 		</div>
+{else}
+		</div>
+{/if}
 		
 		{include file='footer'}
 	</body>
