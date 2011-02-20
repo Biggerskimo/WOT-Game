@@ -425,5 +425,12 @@ class LWCore extends WCF {
 	public function __call($func, $args) {
 		call_user_func_array(array('Spec', $func), $args);
 	}
+	
+	public function getConfig($var)
+	{
+		global $game_config;
+		
+		return $game_config[$var];
+	}
 }
 ?>
