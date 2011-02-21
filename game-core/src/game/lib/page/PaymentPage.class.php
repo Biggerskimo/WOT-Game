@@ -21,14 +21,14 @@ require_once(LW_DIR.'lib/data/news/News.class.php');
 require_once(LW_DIR.'lib/data/ovent/Ovent.class.php');
 
 /**
- * This page shows just a template.
+ * This page shows the payment options.
  * 
  * @author		Biggerskimo
  * @copyright	2011 Lost Worlds <http://lost-worlds.net>
  */
-class PaypalPage extends AbstractPage
+class PaymentPage extends AbstractPage
 {
-	public $templateName = 'paypal';
+	public $templateName = 'payment';
 	
 	public $success = 0;
 

@@ -53,8 +53,8 @@
 						
 						<input type="hidden" name="notify_url" value="{@$url}?action=PaypalIPN" />
 						<input type="hidden" name="custom" value="userID={@$this->user->userID}|time={@TIME_NOW}|type=1" />
-						<input type="hidden" name="return" value="{@$url}?page=Paypal&success=1" />
-						<input type="hidden" name="cancel_return" value="{@$url}?page=Paypal" />
+						<input type="hidden" name="return" value="{@$url}?page=Payment&success=1" />
+						<input type="hidden" name="cancel_return" value="{@$url}?page=Payment" />
 						
 						<input type="hidden" name="currency_code" value="EUR" />
 						<input type="hidden" name="a3" value="5.00" />
@@ -91,8 +91,8 @@
 							
 							<input type="hidden" name="notify_url" value="{@$url}?action=PaypalIPN" />
 							<input type="hidden" name="custom" value="userID={@$this->user->userID}|time={@TIME_NOW}|type=2" />
-							<input type="hidden" name="return" value="{@$url}?page=Paypal&success=1" />
-							<input type="hidden" name="cancel_return" value="{@$url}?page=Paypal" />
+							<input type="hidden" name="return" value="{@$url}?page=Payment&success=1" />
+							<input type="hidden" name="cancel_return" value="{@$url}?page=Payment" />
 							
 							<input type="hidden" name="currency_code" value="EUR" />
 							<input type="hidden" name="amount" value="1.50" />
@@ -127,8 +127,8 @@
 							
 							<input type="hidden" name="notify_url" value="{@$url}?action=PaypalIPN" />
 							<input type="hidden" name="custom" value="userID={@$this->user->userID}|time={@TIME_NOW}|type=3" />
-							<input type="hidden" name="return" value="{@$url}?page=Paypal&success=1" />
-							<input type="hidden" name="cancel_return" value="{@$url}?page=Paypal" />
+							<input type="hidden" name="return" value="{@$url}?page=Payment&success=1" />
+							<input type="hidden" name="cancel_return" value="{@$url}?page=Payment" />
 							
 							<input type="hidden" name="currency_code" value="EUR" />
 							<input type="hidden" name="amount" value="4.00" />
@@ -163,8 +163,8 @@
 							
 							<input type="hidden" name="notify_url" value="{@$url}?action=PaypalIPN" />
 							<input type="hidden" name="custom" value="userID={@$this->user->userID}|time={@TIME_NOW}|type=4" />
-							<input type="hidden" name="return" value="{@$url}?page=Paypal&success=1" />
-							<input type="hidden" name="cancel_return" value="{@$url}?page=Paypal" />
+							<input type="hidden" name="return" value="{@$url}?page=Payment&success=1" />
+							<input type="hidden" name="cancel_return" value="{@$url}?page=Payment" />
 							
 							<input type="hidden" name="currency_code" value="EUR" />
 							<input type="hidden" name="amount" value="10.00" />
