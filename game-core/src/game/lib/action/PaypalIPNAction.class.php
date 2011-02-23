@@ -18,6 +18,8 @@
 
 require_once(WCF_DIR.'lib/action/AbstractAction.class.php');
 require_once(LW_DIR.'../lib/payment/Paypal.php');
+require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 
 /**
  * Handles a instant payment notification request from paypal.
@@ -73,15 +75,15 @@ class PaypalIPNAction extends AbstractAction {
 		{
 			$ipnData = $paypal->ipnData;
 			$payed = (float)$ipnData['mc_gross'] * 100;
-			$item = StringUtil::trim($paypal->item_name);
+			$item = StringUtil::trim($ipnData['item_name']);
 			
-			if($item == '30000 Dilizium' && $payed >= 900 && $ipnData['txn_type'] == 'subscr_payment')
+			if($this->custom['type'] == 1 && $payed >= 900 && $ipnData['txn_type'] == 'subscr_payment')
 				$diliPerCent = 30000 / 900;
-			else if($item == '2500 Dilizium' && $payed >= 150)
+			else if($this->custom['type'] == 2 && $payed >= 150)
 				$diliPerCent = 2500 / 150;
-			else if($item == '10000 Dilizium' && $payed >= 400)
+			else if($this->custom['type'] == 3 && $payed >= 400)
 				$diliPerCent = 10000 / 400;
-			else if($item == '30000 Dilizium' && $payed >= 1000)
+			else if($this->custom['type'] == 4 && $payed >= 1000)
 				$diliPerCent = 30000 / 1000;
 			else
 				$diliPerCent = 2500 / 150;
@@ -89,6 +91,11 @@ class PaypalIPNAction extends AbstractAction {
 			$ipnData['lw_diliPercent'] = $diliPerCent;
 			$dilizium = $diliPerCent * $payed;
 			$ipnData['lw_dilizium'] = $dilizium;
+			$ipnData['lw_item'] = $item;
+			$ipnData['lw_payed'] = $payed;
+			$ipnData['lw_custom'] = $this->custom;
+			
+			$userID = intval($this->custom['userID']);
 				
 			$sql = "INSERT INTO ugml_paypal
 					(tx, `time`, userID, dilizium, ip, ipnData)
@@ -97,6 +104,19 @@ class PaypalIPNAction extends AbstractAction {
 					 ".intval($dilizium).", INET_ATON('".$_SERVER['REMOTE_ADDR']."'),
 					 '".escapeString(print_r($ipnData, true))."')";
 			WCF::getDB()->sendQuery($sql);
+			
+			$sql = "UPDATE ugml_users
+					SET dilizium = dilizium + ".$dilizium."
+					WHERE id = ".$userID;
+			WCF::getDB()->sendQuery($sql);
+			
+			$subject = "Erfolgreiche Bestätigung des Diliziumkaufs";
+			$text = "Der Kauf wurde best&auml;tigt und du hast ".$dilizium
+				." Dilizium gutgeschrieben bekommen. Wir w&uuml;nschen dir noch"
+				." viel Spa&szlig; und bedanken uns f&uuml;r deine"
+				." Unterst&uuml;tzung!";
+			NMessageEditor::create($userID, array(3, 4), $subject, $text, 5);
+			MessageEditor::create($userID, $subject, $text, 0, "Diliziumkauf", 0);
 		}
 		
 		$this->executed();
