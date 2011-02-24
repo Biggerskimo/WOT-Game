@@ -6,7 +6,7 @@
 		{* ships tooltip *}
 		{assign var='shipCount' value=0}
 		{capture assign='shipStr'}
-			{if $this->user->spy_tech >= 8 || $this->user->userID == $ovent.userID}
+			{if $this->user->spy_tech >= 8 || $this->user->userID == $ovent.ownerID}
 				{assign var='showShipStr' value=1}
 				{foreach from=$ovent.spec key=$specID item=$count}
 					<li>{lang}wot.spec.spec{@$specID}{/lang}: {#$count}</li>

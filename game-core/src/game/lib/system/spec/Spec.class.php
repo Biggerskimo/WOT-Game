@@ -37,8 +37,9 @@ class Spec extends DatabaseObject {
 	 * 
 	 * @param	spec id
 	 */
-	public function __construct($specID) {
-		$row = self::$cache['bySpecID'][$specID];
+	public function __construct($specID, $row = null) {
+		if($row === null)
+			$row = self::$cache['bySpecID'][$specID];
 		
 		parent::__construct($row);
 	}
@@ -132,6 +133,29 @@ class Spec extends DatabaseObject {
 	}
 	
 	/**
+	 * Returns all specs that have an attribute set.
+	 * 
+	 * @param	str		attribute/field
+	 * @return	array
+	 */
+	public static function getByAttr($attr)
+	{
+		$sql = "SELECT *
+				FROM ugml_spec
+				WHERE `".escapeString($attr)."` = 1";
+		$result = WCF::getDB()->sendQuery($sql);
+		
+		$return = array();
+		
+		while($row = WCF::getDB()->fetchArray($result))
+		{
+			$return[$row['specID']] = self::createSpecObj($row);
+		}
+		
+		return $return;
+	}
+	
+	/**
 	 * Checks all specs for their flags.
 	 * 
 	 * @param	int		checkflag
@@ -147,7 +171,6 @@ class Spec extends DatabaseObject {
 				$return[$specID] = self::getSpecObj($specID);
 			}
 		}
-		
 		return $return;
 	}
 	
@@ -197,15 +220,26 @@ class Spec extends DatabaseObject {
 	public static function getSpecObj($specID) {
 		self::readCache();
 		
-		if(!isset(self::$specObjs[$specID])) {
-			$className = self::$cache['bySpecID'][$specID]['specClass'];
+		$data = self::$cache['bySpecID'][$specID];
+		
+		return self::createSpecObj($data);
+	}
+	
+	/**
+	 * Creates a specification object with the given data.
+	 * 
+	 * @param	int		specification id
+	 * @return	Spec
+	 */
+	public static function createSpecObj($data) {
+		$className = $data['specClass'];
 			
-			if(empty($className)) {
-				return null;
-			}
-			require_once(LW_DIR.'lib/system/spec/'.$className.'.class.php');
-			self::$specObjs[$specID] = new $className($specID);
+		if(empty($className)) {
+			return null;
 		}
+		
+		require_once(LW_DIR.'lib/system/spec/'.$className.'.class.php');
+		self::$specObjs[$specID] = new $className(null, $data);
 		
 		$cachedObj = self::$specObjs[$specID];
 		

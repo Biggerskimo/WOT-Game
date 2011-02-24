@@ -312,6 +312,8 @@ class FleetQueue extends DatabaseObject {
 			$this->planet = $planet->planet;
 			$this->planetType = $planet->planetKind;		
 		}
+		else
+			$this->endPlanetID = 0;
 	}
 
 	/**

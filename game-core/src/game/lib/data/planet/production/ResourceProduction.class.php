@@ -189,9 +189,7 @@ class ResourceProduction implements PlanetProduction {
 	 *  The result will be saved to $producingSpecs.
 	 */
 	protected function searchProducingSpecs() {
-		$flag = ProductionSpec::SPEC_FLAG;
-		
-		$this->producingSpecs = Spec::getByFlag($flag);
+		$this->producingSpecs = Spec::getByAttr('producing');
 	}
 	
 	/**

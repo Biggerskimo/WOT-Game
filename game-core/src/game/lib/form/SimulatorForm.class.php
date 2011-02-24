@@ -101,7 +101,7 @@ class SimulatorForm extends AbstractForm {
 	 * @see Form::validate()
 	 */
 	public function validate() {
-		if(WCF::getUser()->sim_uses < 100) {
+		if(WCF::getUser()->sim_uses < 500) {
 			$sql = "UPDATE ugml_users
 					SET sim_uses = sim_uses +1
 					WHERE id = ".WCF::getUser()->userID."";
@@ -114,7 +114,7 @@ class SimulatorForm extends AbstractForm {
 		}
 		else {
 			require_once(WCF_DIR.'lib/system/exception/NamedUserException.class.php');
-			throw new NamedUserException("Du hast die erlaubte Simulationsanzahl überschritten.");
+			throw new NamedUserException("Du hast die erlaubte Simulationsanzahl ï¿½berschritten.");
 		}
 	}
 	
@@ -152,7 +152,7 @@ class SimulatorForm extends AbstractForm {
 		
 		$report = end($reports);
 		$report = $report['report'];
-		$report = str_replace(array('&auml;', '&ouml;', '&uuml;', '&szlig;', 'ß', '&'), array('ae', 'oe', 'ue', 'ss', 'ss', '&amp;'), $report);
+		$report = str_replace(array('&auml;', '&ouml;', '&uuml;', '&szlig;', 'ï¿½', '&'), array('ae', 'oe', 'ue', 'ss', 'ss', '&amp;'), $report);
 		$report = "<?xml version=\"1.0\" encoding=\"iso-8859-1\" ?>\n<div>".$report.'</div>';
 		
 		$fileName = FileUtil::getTemporaryFilename('report_');

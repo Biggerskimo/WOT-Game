@@ -36,7 +36,7 @@ check_field_current($planetrow);
 
 
 /*
-  Pequeña comprovacion para los almacenes `metal_max`,`crystal_max`,`deuterium_max`
+  Pequeï¿½a comprovacion para los almacenes `metal_max`,`crystal_max`,`deuterium_max`
 */
 /*$u = 1000000;//Balor basico
 $planetrow['metal_max'] = floor($u* pow(1.5,$planetrow[$resource[22]]));
@@ -86,14 +86,14 @@ if($post_porcent>100){$post_porcent=100;}
 $planetrow["metal_perhour"]=$planetrow["crystal_perhour"]=$planetrow["deuterium_perhour"]=$planetrow["energy_max"]=0;
 
 if(LWCore::getPlanet()->planet_type == 1) {
-	$parse['metal_basic_income'] = $game_config['metal_basic_income']* $game_config['resource_multiplier'];
-	$parse['crystal_basic_income'] = $game_config['crystal_basic_income']* $game_config['resource_multiplier'];
-	$parse['deuterium_basic_income'] = $game_config['deuterium_basic_income']* $game_config['resource_multiplier'];
-	$parse['energy_basic_income'] = $game_config['energy_basic_income']* $game_config['resource_multiplier'];
+	$parse['metal_basic_income'] = $game_config['metal_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['crystal_basic_income'] = $game_config['crystal_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['deuterium_basic_income'] = $game_config['deuterium_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['energy_basic_income'] = $game_config['energy_basic_income']/** $game_config['resource_multiplier']*/;
 } else $parse['metal_basic_income'] = $parse['crystal_basic_income'] = $parse['deuterium_basic_income'] = $parse['energy_basic_income'] = 0;
 //reset de algunos datos
 $planetrow["energy_used"]=0;
-$parse['resource_row']='';//un pequeño fix ;P
+$parse['resource_row']='';//un pequeï¿½o fix ;P
 foreach($res_ab as $a){
 	if($planetrow[$resource[$a]]>0&&isset($production[$a])){
 		/*
@@ -126,7 +126,7 @@ foreach($res_ab as $a){
 		$planetrow["deuterium_perhour"] += $deuterium;
 		if($energy>0){$planetrow["energy_max"] += $energy;}
 		else{$planetrow["energy_used"] -= $energy;}
-		//es una pequeña suma de porcentajes
+		//es una pequeï¿½a suma de porcentajes
 		$metal=$metal* 0.01 * $post_porcent;
 		$crystal = $crystal* 0.01 * $post_porcent;
 		$deuterium = $deuterium* 0.01 * $post_porcent;
@@ -181,10 +181,10 @@ if($parse['production_level']>100){$parse['production_level']=100;}
 
 //Datos basicos.
 if(LWCore::getPlanet()->planet_type == 1) {
-	$parse['metal_basic_income'] = $game_config['metal_basic_income']* $game_config['resource_multiplier'];
-	$parse['crystal_basic_income'] = $game_config['crystal_basic_income']* $game_config['resource_multiplier'];
-	$parse['deuterium_basic_income'] = $game_config['deuterium_basic_income']* $game_config['resource_multiplier'];
-	$parse['energy_basic_income'] = $game_config['energy_basic_income']* $game_config['resource_multiplier'];
+	$parse['metal_basic_income'] = $game_config['metal_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['crystal_basic_income'] = $game_config['crystal_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['deuterium_basic_income'] = $game_config['deuterium_basic_income']/** $game_config['resource_multiplier']*/;
+	$parse['energy_basic_income'] = $game_config['energy_basic_income']/** $game_config['resource_multiplier']*/;
 } else $parse['metal_basic_income'] = $parse['crystal_basic_income'] = $parse['deuterium_basic_income'] = $parse['energy_basic_income'] = 0;
 }
 

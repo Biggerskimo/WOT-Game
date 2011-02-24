@@ -58,7 +58,7 @@ foreach ($planet as $p) {
 
 
 //{file_images}
-$data['text'] = '<a href="overview.php?cp='.$p['id'].'&amp;re=0">
+$data['text'] = '<a href="game/index.php?page=Overview&amp;cp='.$p['id'].'&amp;re=0">
 <img src="'.$dpath.'planeten/small/s_'.$p['image'].'.jpg" border="0" height="71" width="75">
 </a>';
 $parse['file_images'] .=  parsetemplate($row, $data);

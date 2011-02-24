@@ -76,9 +76,7 @@ class FleetStartResourcesForm extends AbstractForm {
 			$system = new System($this->galaxy, $this->system);
 			$this->planetObj = $system->getPlanet($this->planet, $this->planetType);
 			
-			if($this->planetObj !== null) {	
-				$this->fleetQueue->storePlanet($this->planetObj);
-			}
+			$this->fleetQueue->storePlanet($this->planetObj);
 			$this->fleetQueue->galaxy = $this->galaxy;
 			$this->fleetQueue->system = $this->system;
 			$this->fleetQueue->planet = $this->planet;
