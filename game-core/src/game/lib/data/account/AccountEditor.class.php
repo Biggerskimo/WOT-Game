@@ -32,6 +32,8 @@ class AccountEditor extends Account {
 			array('ugml_alliance', 'ally_owner'),
 			array('ugml_buddy', 'sender'),
 			array('ugml_buddy', 'owner'),
+			array('ugml_fleet', 'ownerID'),
+			array('ugml_fleet', 'ofiaraID'),
 			array('ugml_fleets', 'fleet_owner'),
 			array('ugml_fleets', 'fleet_ofiara'),
 			array('ugml_fleet_queue', 'userID'),
@@ -40,6 +42,7 @@ class AccountEditor extends Account {
 			array('ugml_messages', 'message_sender'),
 			array('ugml_naval_formation_to_users', 'userID'),
 			array('ugml_notes', 'owner'),
+			array('ugml_ovent', 'userID'),
 			array('ugml_planets', 'id_owner'),
 			array('ugml_stat', 'userID')
 			// do NOT delete account row
@@ -165,6 +168,9 @@ class AccountEditor extends Account {
 	public function doSwitch($userID2) {
 		global $resource;
 		
+		WCF::getDB()->sendQuery("BEGIN");
+		WCF::getDB()->sendQuery("SET foreign_key_checks = 0");
+		
 		$str = '';
 		// switch tables	
 		foreach(self::$switchTables as $tableArray) {
@@ -277,6 +283,9 @@ class AccountEditor extends Account {
 			WCF::getDB()->sendQuery($sql);
 			$str .= "\n".$sql;
 		}
+		
+		WCF::getDB()->sendQuery("SET foreign_key_checks = 1");
+		WCF::getDB()->sendQuery("COMMIT");
 	}
 }
 ?>
