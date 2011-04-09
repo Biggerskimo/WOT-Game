@@ -33,11 +33,11 @@ $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
 if(!defined('ALL')) define('ALL', 320);
 $allList = array('all', 'buildList', 'messageFolders', 'imperium', 'galaxyScans', 'noAds');
 
-if(!defined('BUILDLIST')) define('BUILDLIST', 50);
-if(!defined('MESSAGEFOLDERS')) define('MESSAGEFOLDERS', 40);
-if(!defined('IMPERIUM')) define('IMPERIUM', 20);
-if(!defined('GALAXY_SCANS')) define('GALAXY_SCANS', 30);
-if(!defined('NO_ADS')) define('NO_ADS', 55);
+if(!defined('BUILDLIST')) define('BUILDLIST', 130);
+if(!defined('MESSAGEFOLDERS')) define('MESSAGEFOLDERS', 110);
+if(!defined('IMPERIUM')) define('IMPERIUM', 50);
+if(!defined('GALAXY_SCANS')) define('GALAXY_SCANS', 80);
+if(!defined('NO_ADS')) define('NO_ADS', 150);
 
 $features = unserialize($user['diliziumFeatures']);
 
@@ -191,7 +191,6 @@ $page .= '<tr>';
 $page .= '<td class="l" colspan="2">Aktueller Dilizium-Vorrat:</td>';
 $page .= '<td class="l" colspan="2"><span id="dilizium">'.$user['dilizium'].'</span></td>';
 $page .= '</tr>';
-if(WCF::getUser()->userID == 1) {
 $page .= '<tr>';
 $page .= '<td class="c" colspan="4">Bekommen</td>';
 $page .= '</tr>';
@@ -200,9 +199,7 @@ $page .= '<td colspan="4" style="text-align: center;"><a href="game/index.php?pa
 $page .= '</tr>';
 $page .= '<tr>';
 $page .= '<td colspan="4" style="text-align: center;">Andere  M&ouml;glichkeiten: Forum und (das ist zur Zeit leider nur geplant) im Chat.</td>';
-$page .= '</tr>';
-}
-/*
+$page .= '</tr>';/*
 $page .= '<tr>';
 $page .= '<td class="l" colspan="2">Dein Werbe-Link:</td>';
 $page .= '<td class="l" colspan="2"><input name="linktext" type="text" style="width: 96%;" value="http://lost-worlds.net/ref.php?u='.WCF::getUser()->userID.'" onClick="this.form.linktext.select(); this.form.linktext.focus();" /></td>';
@@ -216,16 +213,13 @@ $page .= '<td class="c">Kosten/Tag</td>';
 $page .= '<td class="c">Tage</td>';
 $page .= '<td class="c">Effektive Kosten</td>';
 $page .= '</tr>';
-if(WCF::getUser()->userID == 1) {
 $page .= '<tr>';
 if($features['buildList'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['buildList'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Komplett-Paket (ca. 40% billiger!)</span></td>';
 else $page .= '<td class="l"><span title="Nicht aktiviert">Komplett-Paket (ca. 40% billiger!)</span></td>';
 $page .= '<td class="l"><span id="allD">'.ALL.'</span></td>';
 $page .= '<td class="l"><input id="allV" name="all" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'all\');" /></td>';
 $page .= '<td class="l"><span id="allC">0</span></td>';
-$page .= '</tr>';
-}
-$page .= '<tr class="notAll">';
+$page .= '</tr>';$page .= '<tr class="notAll">';
 if($features['buildList'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['buildList'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Bauliste</span></td>';
 else $page .= '<td class="l"><span title="Nicht aktiviert">Bauliste</span></td>';
 $page .= '<td class="l"><span id="buildListD">'.BUILDLIST.'</span></td>';
@@ -253,14 +247,13 @@ $page .= '<td class="l"><span id="galaxyScansD">'.GALAXY_SCANS.'</span></td>';
 $page .= '<td class="l"><input id="galaxyScansV" name="galaxyScans" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'galaxyScans\');" /></td>';
 $page .= '<td class="l"><span id="galaxyScansC">0</span></td>';
 $page .= '</tr>';
-/*
-$page .= '<tr>';
+$page .= '<tr class="notAll">';
 if($features['noAds'] > time()) $page .= '<td class="l"><span title="Noch ca. '.round(($features['noAds'] - time()) / (24 * 60 * 60)).' Tag(e) aktiviert">Werbefreiheit</span></td>';
 else $page .= '<td class="l"><span title="Nicht aktiviert">Werbefreiheit</span></td>';
 $page .= '<td class="l"><span id="noAdsD">'.NO_ADS.'</span></td>';
 $page .= '<td class="l"><input id="noAdsV" name="noAds" type="text" size="3" maxlength="2" onKeyUp="calculateCosts(\'noAds\');" /></td>';
 $page .= '<td class="l"><span id="noAdsC">0</span></td>';
-$page .= '</tr>';*/
+$page .= '</tr>';
 $page .= '<tr>';
 $page .= '<td class="l" colspan="3">Gesamt</td>';
 $page .= '<td class="l"><span id="costs">0</span></td>';

@@ -47,13 +47,15 @@ function f(target_url,win_name) {
 
 <tr><td><div align="center"><font color="#FFFFFF"><a href="techtree.php" accesskey="g" target="{mf}">{Technology}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="banned.php" accesskey="3" target="{mf}">Pranger</a></font></div></td></tr>
-{DILIZIUM_LINK}
-<tr><td><div align="center"><font color="#FFFFFF"><a href="options.php" accesskey="o" target="{mf}">{Options}</a></font></div></td></tr>{ADMIN_LINK}
-<tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php" accesskey="1" target="_blank"style="color: limegreen;">{Board}</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="dilizium.php" accesskey="d" target="{mf}" style="color: gold;">Dilizium-Vorrat</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="options.php" accesskey="o" target="{mf}">{Options}</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="http://lw.kippeln.org/forum/index.php" accesskey="1" target="_blank" style="color: limegreen;">{Board}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="http://lost-worlds.net/forum/board1-neues/board2-game/834-lost-worlds-spielregeln/" target="_blank" accesskey="o" style="color: limegreen;">Regeln</a></font></div></td></tr>
-<tr><td><div align="center"><font color="#FFFFFF"><a href="irc.php?userName={user_name}" accesskey="1" target="_blank">Chat</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="irc-nick.htm" accesskey="1" target="_blank">Chat</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?form=Simulator" target="{mf}">Kampfsimulator</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="javascript:top.location.href='logout.php'" accesskey="s" style="color: red;">Logout</a></font></div></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?page=Messages" target="{mf}">Nachrichten (Beta)</a></font></div></td></tr>
 </table>
 </form>
 

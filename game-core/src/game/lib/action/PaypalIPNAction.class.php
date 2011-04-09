@@ -67,7 +67,6 @@ class PaypalIPNAction extends AbstractAction {
 		
 		// check ipn
 		$paypal = new Paypal();
-		$paypal->enableTestMode();
 		$paypal->ipnLog = true;
 		$paypal->validateIpn();
 		
@@ -110,7 +109,7 @@ class PaypalIPNAction extends AbstractAction {
 					WHERE id = ".$userID;
 			WCF::getDB()->sendQuery($sql);
 			
-			$subject = "Erfolgreiche Bestätigung des Diliziumkaufs";
+			$subject = "Erfolgreiche Bestaetigung des Diliziumkaufs";
 			$text = "Der Kauf wurde best&auml;tigt und du hast ".$dilizium
 				." Dilizium gutgeschrieben bekommen. Wir w&uuml;nschen dir noch"
 				." viel Spa&szlig; und bedanken uns f&uuml;r deine"

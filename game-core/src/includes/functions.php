@@ -184,20 +184,43 @@ function message($mes,$title='Error',$dest = "",$time = "3"){
 
 }
 
-function display($page,$title = '',$topnav = true,$metatags=''){
+function display($page,$title = '',$topnav = true,$metatags='', $ad = false){
 	global $link,$game_config,$debug,$user;
 
-	//die('---~|~---');
+	
+	// prepare ads
+	if(!WCF::getUser()->hasDiliziumFeature('noAds'))
+	{
+		$ads = array(
+			'{ad_skyscraper}' => '<script type="text/javascript" src="http://www1.belboon.de/tracking/000126428.js"> </script> <noscript> <iframe src="http://www1.belboon.de/tracking/000126428.html" width="120" height="600" frameborder="0" scrolling="no"> <a href="http://www1.belboon.de/tracking/000126428/0.html" target="_blank"> <img src="http://www1.belboon.de/tracking/000126428.img" border=0 width="120" height="600" alt="" /> </a> </iframe> </noscript>',
+			'{ad_fullbanner}' => '<script type="text/javascript" src="http://www1.belboon.de/tracking/000126431.js"> </script> <noscript> <iframe src="http://www1.belboon.de/tracking/000126431.html" width="468" height="60" frameborder="0" scrolling="no"> <a href="http://www1.belboon.de/tracking/000126431/0.html" target="_blank"> <img src="http://www1.belboon.de/tracking/000126431.img" border=0 width="468" height="60" alt="" /> </a> </iframe> </noscript>'
+			);
+	}
+	else
+	{
+		$ads = array(
+			'{ad_skyscaper}' => '',
+			'{ad_fullbanner}' => ''
+			);
+	}
+
+	if(WCF::getUser()->userID == 1)
+		$page = str_replace(array_keys($ads), array_values($ads), $page);
 
 	echo_head($title,$metatags);
 
+
 	if($topnav){ echo_topnav();}
-	echo '<div id="content">';
-	echo "<center>\n$page\n</center>\n";
+	echo '<div id="content"'.($ad ? ' class="extra">' :'>');
+	if($ad)
+		echo $page;
+	else
+		echo "<center>\n$page\n</center>\n";
 	//Muestra los datos del debuger.
 	if($user['authlevel']==1||$user['authlevel']==3){
 		if($game_config['debug']==1) $debug->echo_log();
 	}
+	
 
 	echo echo_foot();
 	if(isset($link)) mysql_close();

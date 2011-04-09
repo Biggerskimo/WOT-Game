@@ -43,9 +43,9 @@
 						<p>Betrag: <span>9,00 EUR</span></p>
 					</div>
 					<div class="paypal">
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 						<input type="hidden" name="cmd" value="_xclick-subscriptions" />
-						<input type="hidden" name="business" value="bigmac_1297458714_biz@gmx.de" />
+						<input type="hidden" name="business" value="paypal@lost-worlds.net" />
 						
 						<input type="hidden" name="item_name" value="30.000 Dilizium" />
 						<input type="hidden" name="no_note" value="1" />
@@ -57,14 +57,14 @@
 						<input type="hidden" name="cancel_return" value="{@$url}?page=Payment" />
 						
 						<input type="hidden" name="currency_code" value="EUR" />
-						<input type="hidden" name="a3" value="5.00" />
-						<input type="hidden" name="p3" value="1" />
-						<input type="hidden" name="t3" value="D" />
+						<input type="hidden" name="a3" value="9.00" />
+						<input type="hidden" name="p3" value="3" />
+						<input type="hidden" name="t3" value="M" />
 						<input type="hidden" name="src" value="1" />
 						<input type="hidden" name="srt" value="0" />
 						
-						<input type="image" src="https://www.sandbox.paypal.com/de_DE/DE/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
-						<img alt="" border="0" src="https://www.sandbox.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
+						<input type="image" src="https://www.paypal.com/de_DE/DE/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
+						<img alt="" border="0" src="https://www.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
 						</form>
 					</div>
 				</div>
@@ -81,9 +81,9 @@
 						<p>Betrag: <span>1,50 EUR</span></p>
 					</div>
 					<div class="paypal">
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 							<input type="hidden" name="cmd" value="_xclick" />
-							<input type="hidden" name="business" value="bigmac_1297458714_biz@gmx.de" />
+							<input type="hidden" name="business" value="paypal@lost-worlds.net" />
 							
 							<input type="hidden" name="item_name" value="2.500 Dilizium" />
 							<input type="hidden" name="no_note" value="1" />
@@ -99,8 +99,8 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="hidden" name="undefined_quantity" value="1" />
 							
-							<input type="image" src="https://www.sandbox.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
-							<img alt="" border="0" src="https://www.sandbox.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
+							<input type="image" src="https://www.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
+							<img alt="" border="0" src="https://www.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
 						</form>
 					</div>
 				</div>
@@ -117,9 +117,9 @@
 						<p>Betrag: <span>4,00 EUR</span></p>
 					</div>
 					<div class="paypal">
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 							<input type="hidden" name="cmd" value="_xclick" />
-							<input type="hidden" name="business" value="bigmac_1297458714_biz@gmx.de" />
+							<input type="hidden" name="business" value="paypal@lost-worlds.net" />
 							
 							<input type="hidden" name="item_name" value="10.000 Dilizium" />
 							<input type="hidden" name="no_note" value="1" />
@@ -135,8 +135,8 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="hidden" name="undefined_quantity" value="1" />
 							
-							<input type="image" src="https://www.sandbox.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
-							<img alt="" border="0" src="https://www.sandbox.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
+							<input type="image" src="https://www.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
+							<img alt="" border="0" src="https://www.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
 						</form>
 					</div>
 				</div>
@@ -153,9 +153,9 @@
 						<p>Betrag: <span>10,00 EUR</span></p>
 					</div>
 					<div class="paypal">
-						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 							<input type="hidden" name="cmd" value="_xclick" />
-							<input type="hidden" name="business" value="bigmac_1297458714_biz@gmx.de" />
+							<input type="hidden" name="business" value="paypal@lost-worlds.net" />
 							
 							<input type="hidden" name="item_name" value="30.000 Dilizium" />
 							<input type="hidden" name="no_note" value="1" />
@@ -171,10 +171,22 @@
 							<input type="hidden" name="quantity" value="1" />
 							<input type="hidden" name="undefined_quantity" value="1" />
 							
-							<input type="image" src="https://www.sandbox.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
-							<img alt="" border="0" src="https://www.sandbox.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
+							<input type="image" src="https://www.paypal.com/de_DE/DE/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal." />
+							<img alt="" border="0" src="https://www.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
 						</form>
 					</div>
+				</div>
+				
+				{* information *}
+				<div class="informationRow">
+					<div class="contentDescriptor"></div>
+					<div class="prepayment">
+						<p>Kontonummer: 11148913</p>
+						<p>Bankleitzahl: 76050101</p>
+						<p>Kontoinhaber: David W&auml;gner</p>
+						<p>Bankinstitut: Sparkasse N&uuml;rnberg</p>
+					</div>
+					<div class="paypal"></div>
 				</div>
 			</div>
 		</div>

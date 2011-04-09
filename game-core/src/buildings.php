@@ -1365,7 +1365,7 @@ foreach($buildableBuildings as $i) {
 	//fragmento de template
 	$page .= parsetemplate(gettemplate('buildings_builds'), $parse);
 
-	display($page,$lang['Builds']);
+	display($page,$lang['Builds'], true, '', true);
 
 die();}
 
