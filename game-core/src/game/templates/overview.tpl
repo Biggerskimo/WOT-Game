@@ -105,7 +105,7 @@
 									{lang}wot.overview.info.user{/lang}
 								</div>
 								
-								<div class="double">
+								<div class="double" id="usernameDiv">
 									<div class="doublePart1">
 										{lang}wot.user.name{/lang}
 									</div>
@@ -114,7 +114,7 @@
 									</div>
 								</div>
 								
-								<div class="double">
+								<div class="double" id="allianceDiv">
 									<div class="doublePart1">
 										{lang}wot.alliance.alliance{/lang}
 									</div>
@@ -133,7 +133,7 @@
 								{assign var='researchStats' value=$stats.5}
 								{assign var='attackStats' value=$stats.7}
 								
-								<div class="double">
+								<div class="double" id="pointStatDiv">
 									<div class="doublePart1">
 										{lang}wot.user.points{/lang}
 									</div>
@@ -143,7 +143,7 @@
 								</div>
 								
 								{if $fleetStats.points}
-									<div class="double">
+									<div class="double" id="fleetStatDiv">
 										<div class="doublePart1">
 											{lang}wot.overview.info.fleetPoints{/lang}
 										</div>
@@ -154,7 +154,7 @@
 								{/if}
 								
 								{if $researchStats.points}
-									<div class="double">
+									<div class="double" id="researchStatDiv">
 										<div class="doublePart1">
 											{lang}wot.overview.info.researchPoints{/lang}
 										</div>
@@ -165,7 +165,7 @@
 								{/if}
 								
 								{if $attackStats.points != 1000}
-									<div class="double">
+									<div class="double" id="attackStatDiv">
 										<div class="doublePart1">
 											{lang}wot.overview.info.attackPoints{/lang}
 										</div>
@@ -175,7 +175,7 @@
 									</div>
 								{/if}
 								
-								<div class="double">
+								<div class="double" id="diliziumDiv">
 									<div class="doublePart1">
 										{lang}wot.global.dilizium{/lang}
 									</div>
@@ -190,7 +190,7 @@
 									{lang}wot.overview.info.planet{/lang}
 								</div>
 								
-								<div class="double">
+								<div class="double" id="planetNameDiv">
 									<div class="doublePart1">
 										{lang}wot.planet.name{/lang}
 									</div>
@@ -199,7 +199,7 @@
 									</div>
 								</div>
 								
-								<div class="double">
+								<div class="double" id="planetSizeDiv">
 									<div class="doublePart1">
 										{lang}wot.planet.size{/lang}
 									</div>
@@ -208,7 +208,7 @@
 									</div>
 								</div>
 								
-								<div class="double">
+								<div class="double" id="planetTemperatureDiv">
 									<div class="doublePart1">
 										{lang}wot.planet.temperature{/lang}
 									</div>
@@ -217,7 +217,7 @@
 									</div>
 								</div>
 								
-								<div class="double">
+								<div class="double" id="planetPositionDiv">
 									<div class="doublePart1">
 										{lang}wot.planet.position{/lang}
 									</div>
@@ -227,7 +227,7 @@
 								</div>
 								
 								{if $currentPlanet->b_building_id && $currentPlanet->b_building > TIME_NOW}
-									<div class="double">
+									<div class="double" id="planetConstructionDiv">
 										<div class="doublePart1">
 											{lang}wot.overview.planet.construction{/lang}
 										</div>
@@ -242,7 +242,7 @@
 								{/if}
 								
 								{if $currentPlanet->b_hangar_id != ""}
-									<div class="double">
+									<div class="double" id="planetHangarDiv">
 										<div class="doublePart1">
 											{lang}wot.overview.planet.hangar{/lang}
 										</div>

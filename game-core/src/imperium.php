@@ -29,7 +29,7 @@ includeLang('tech');
 
 include($ugamela_root_path . 'includes/planet_toggle.'.$phpEx);//Esta funcion permite cambiar el planeta actual.
 
-$planetsrow = doquery("SELECT * FROM {{table}} WHERE id_owner={$user['id']}",'planets');
+$planetsrow = doquery("SELECT * FROM {{table}} WHERE id_owner={$user['id']} ORDER BY sortID",'planets');
 //$galaxyrow = doquery("SELECT * FROM {{table}} WHERE id_planet={$planetrow['id']}",'galaxy');
 $dpath = (!$user["dpath"]) ? DEFAULT_SKINPATH : $user["dpath"];
 check_field_current($planetrow);
