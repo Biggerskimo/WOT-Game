@@ -232,7 +232,10 @@ class Planet extends DatabaseObject {
 		}
 	}
 
-	public function __toString() {
+	public function __toString($notStatic = false) {
+		if($notStatic) {
+			return $this->name.' <a href="galaxy.php?g='.$this->galaxy.'&amp;s='.$this->system.'" target="Mainframe">['.$this->galaxy.':'.$this->system.':'.$this->planet.']</a>';
+		}
 		if($this->id_owner == WCF::getUser()->userID) {
 			return '<a href="overview.php?cp='.$this->planetID.'" target="Mainframe">Planeten '.$this->name.'</a> <a href="galaxy.php?g='.$this->galaxy.'&amp;s='.$this->system.'" target="Mainframe">['.$this->galaxy.':'.$this->system.':'.$this->planet.']</a>';
 		} else {

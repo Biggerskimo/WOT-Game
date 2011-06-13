@@ -115,15 +115,25 @@ class NMessageEditor extends DatabaseObject
 	 * @param	str		messageIDs
 	 * @param	int		viewed
 	 */
-	public static function view($messageIDs, $viewed = 1)
+	public static function view($messageIDs, $userID = null, $viewed = 1)
 	{
 		if(!is_array($messageIDs))
 			$messageIDs = array($messageIDs);
 		
 		$sql = "UPDATE ugml_message
-				SET viewed = 1
+				SET viewed = ".intval($viewed)."
 				WHERE messageID IN (".implode(',', $messageIDs).")";
 		WCF::getDB()->sendQuery($sql);
+
+		if($userID !== null)
+		{
+			$sql = "UPDATE ugml_users
+					SET new_message = 0
+					WHERE id = ".$userID;
+			WCF::getDB()->sendQuery($sql);
+			
+			WCF::getSession()->setUpdate(true);
+		}
 	}
 	
 	/**

@@ -41,7 +41,7 @@
 							<input type="text" id="username" name="username" value="{$username}" size="12" maxlength="20" />
 						</div>
 						<div class="messagePlanet">
-							<span id="messagePlanet">{if $user !== null}{@$user->getPlanet()}{/if}</span>
+							<span id="messagePlanet">{if $user !== null}{@$user->getPlanet()->__toString(true)}{/if}</span>
 						</div>
 					</div>
 				</div>

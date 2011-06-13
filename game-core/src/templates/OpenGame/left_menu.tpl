@@ -28,7 +28,7 @@ function f(target_url,win_name) {
 <tr><td><div align="center"><font color="#FFFFFF"><a href="buildings.php?mode=defense" accesskey="d" target="{mf}">{Defense}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?page=FleetStartShips" accesskey="t" target="{mf}">{Fleet}</a></font></div></td></tr>
 <tr><td><div align="center"><font color="#FFFFFF"><a href="galaxy.php" accesskey="s" target="{mf}">{Galaxy}</a></font></div></td></tr>
-<tr><td><div align="center"><font color="#FFFFFF"><a href="messages.php" accesskey="c" target="{mf}">{Messages}</a></font></div></td></tr>
+<tr><td><div align="center"><font color="#FFFFFF"><a href="game/index.php?page=Messages" accesskey="c" target="{mf}">{Messages}</a>&nbsp;<a href="messages.php" target="{mf}">(alt)</a></font></div></td></tr>
 
 <!-- Game 2 -->
 

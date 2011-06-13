@@ -85,7 +85,7 @@ class MessagesPage extends AbstractPage {
 				$messageUpdates[] = $message->messageID;
 		}
 		if(count($messageUpdates))
-			NMessageEditor::view($messageUpdates);
+			NMessageEditor::view($messageUpdates, WCF::getUser()->userID);
 	}
 	
 	/**

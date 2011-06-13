@@ -93,7 +93,7 @@ elseif($_POST["s"]==3 && $_POST["a"]==1 && $_POST["e"]==1 && isset($_POST["u"]))
 $page = "<center><br>";
 
 /*
-  Formulario para enviar mensajes de solicitud de compañeros
+  Formulario para enviar mensajes de solicitud de compaï¿½eros
 */
 if($_GET['a'] == 2 && isset($_GET['u']))
 {//formulario de solicitud
@@ -131,7 +131,7 @@ if($_GET['a'] ==1) $page .= ($_GET['e'] == 1) ? $lang['My_requests']:$lang['Anot
 
 $page .= "</td></tr>";
 
-//Solo se muestra en la lista de compañeros.
+//Solo se muestra en la lista de compaï¿½eros.
 if(!isset($_GET['a'])){
 	$page .= "<tr><th colspan=6><a href=?a=1>{$lang['Requests']}</a></th></tr>";
 	$page .= "<tr><th colspan=6><a href=?a=1&e=1>{$lang['My_requests']}</a></th></tr>";
@@ -168,7 +168,7 @@ if(!isset($_GET['a'])){
 
 		$page .= "<tr>
 		<th width=20>".$i."</th>
-		<th><a href=messages.php?mode=write&id=".$u["id"].">".$u["username"]."</a></th>
+		<th><a href=game/index.php?form=MessageUser&userID=".$u["id"].">".$u["username"]."</a></th>
 		<th>";
 
 		if($u["ally_tag"] != ''){//Alianza

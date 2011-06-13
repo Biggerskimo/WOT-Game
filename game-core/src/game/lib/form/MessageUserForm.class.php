@@ -32,6 +32,7 @@ class MessageUserForm extends AbstractForm
 	public $templateName = 'messageUser';
 	
 	public $messageID = 0;
+	public $userID = 0;
 	
 	public $username = '';
 	public $subject = '';
@@ -47,6 +48,7 @@ class MessageUserForm extends AbstractForm
 		parent::readParameters();
 		
 		if(isset($_REQUEST['messageID'])) $this->messageID = intval($_REQUEST['messageID']);
+		if(isset($_REQUEST['userID'])) $this->userID = intval($_REQUEST['userID']);
 	}
 	
 	/**
@@ -76,6 +78,10 @@ class MessageUserForm extends AbstractForm
 				$this->username = $this->user->username;
 				$this->subject = 'Re: '.$message->subject;
 			}
+		}
+		else if($this->userID) {
+			$this->user = new LWUser($this->userID);
+			$this->username = $this->user->username;
 		}
 		
 		parent::readData();
