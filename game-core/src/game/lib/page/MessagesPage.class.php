@@ -35,7 +35,9 @@ class MessagesPage extends AbstractPage {
 	
 	public $checked = null;
 	public $active = null;
+	public $spare = array();
 	public $pageNo = 1;
+	public $messageID = 0;
 	
 	public $messages = array();
 	public $folders = array();
@@ -50,6 +52,7 @@ class MessagesPage extends AbstractPage {
 		if(isset($_REQUEST['checked'])) $this->checked = 1;
 		if(isset($_REQUEST['active'])) $this->active = ArrayUtil::toIntegerArray(explode(',', $_REQUEST['active']));
 		if(isset($_REQUEST['pageNo'])) $this->pageNo = intval($_REQUEST['pageNo']);
+		if(isset($_REQUEST['messageID'])) $this->messageID = intval($_REQUEST['messageID']);
 	}
 	
 	/**
@@ -60,12 +63,25 @@ class MessagesPage extends AbstractPage {
 		
 		if(WCF::getUser()->hasDiliziumFeature("messageFolders"))
 		{
-			if($this->active === null && !$this->checked)
-				$this->active = array();
-			
-			$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, self::MESSAGES_FOLDERS + 1, ($this->pageNo - 1) * self::MESSAGES_FOLDERS);
 			$this->folders = MessageFolder::getByUserID(WCF::getUser()->userID);
 			
+			if(WCF::getUser()->new_message && $this->active === null && !$this->checked) {
+				// show new messages
+				$this->messages = NMessage::getByUserID(WCF::getUser()->userID, null, null, true, self::MESSAGES_FOLDERS + 1, ($this->pageNo - 1) * self::MESSAGES_FOLDERS);
+			
+				foreach($this->messages as $message) {
+					if(!isset($this->spare[$message->folderID])) {
+						$this->spare[$message->folderID] = $message->folderID;
+					}
+				}
+			}
+			else {
+				// show requested messages
+				if($this->active === null && !$this->checked) {
+					$this->active = array();
+				}
+				$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, false, self::MESSAGES_FOLDERS + 1, ($this->pageNo - 1) * self::MESSAGES_FOLDERS);
+			}
 			$this->nextPage = count($this->messages) > self::MESSAGES_FOLDERS;
 			
 			if($this->nextPage)
@@ -96,11 +112,13 @@ class MessagesPage extends AbstractPage {
 		
 		WCF::getTPL()->assign(array(
 			'active' => $this->active,
+			'spare' => $this->spare,
 			'folders' => $this->folders,
 			'messages' => $this->messages,
 			'checked' => $this->checked,
 			'pageNo' => $this->pageNo,
-			'nextPage' => $this->nextPage
+			'nextPage' => $this->nextPage,
+			'messageID' => $this->messageID
 		));
 	}
 

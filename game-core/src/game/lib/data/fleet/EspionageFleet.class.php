@@ -54,8 +54,6 @@ class EspionageFleet extends NavalFormationAttackFleet {
     	$this->create();
     	$this->ereport .= '<div class="ereportbottom" style="text-align: center;">';		
 		$this->destroy();
-		$this->ereport .= '<a style="display: block;" href="game/index.php?page=FleetStartShips&amp;targetPlanetID='.$this->targetPlanetID.'&amp;backlink=../messages.php%3Ffolder=4%23ereport'.$this->fleetID.'">'.WCF::getLanguage()->get('wot.mission.mission'.$this->missionID.'.impact.owner.attack').'</a>';
-		$this->ereport .= '<a style="display: block;" href="game/index.php?form=Simulator&amp;planetID='.$this->targetPlanetID.'">'.WCF::getLanguage()->get('wot.mission.mission'.$this->missionID.'.impact.owner.simulate').'</a>';
 		$this->ereport .= '</div>';
 		
     	$senderName = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.sender.owner'));

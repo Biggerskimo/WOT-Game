@@ -1339,7 +1339,7 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		$subject = WCF::getLanguage()->get('wot.fleet.combat.subject');
 		//$message = '<a class="thickbox" href="game/index.php?page=CombatReportView&reportID='.$reportID.'&keepThis=true&TB_iframe=true&height=400&width=500"><font color="red">'.$subject.' ['.$this->galaxy.':'.$this->system.':'.$this->planet.'] (V:'.number_format($this->units['defender'], 0, ',', '.').', A:'.number_format($this->units['attacker'], 0, ',', '.').')</font></a>';
 		$messagePre = '<a class="thickbox ';
-		$messageAfter = '" href="game/index.php?page=CombatReportView&reportID='.$reportID.'&keepThis=true&TB_iframe=true&height=400&width=500">'.$subject.' ['.$this->galaxy.':'.$this->system.':'.$this->planet.'] (V:'.number_format($this->units['defender'], 0, ',', '.').', A:'.number_format($this->units['attacker'], 0, ',', '.').')</a>';
+		$messageAfter = '" href="index.php?page=CombatReportView&reportID='.$reportID.'&keepThis=true&TB_iframe=true&height=400&width=500">'.$subject.' ['.$this->galaxy.':'.$this->system.':'.$this->planet.'] (V:'.number_format($this->units['defender'], 0, ',', '.').', A:'.number_format($this->units['attacker'], 0, ',', '.').')</a>';
 		
 		$senderOwner = WCF::getLanguage()->get('wot.fleet.combat.sender.owner');
 		$senderOfiara = WCF::getLanguage()->get('wot.fleet.combat.sender.ofiara');

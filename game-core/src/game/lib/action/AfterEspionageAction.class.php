@@ -28,6 +28,8 @@ require_once(LW_DIR.'lib/data/message/NMessage.class.php');
 class AfterEspionageAction extends AbstractAction {
 	public $command = '';
 	public $messageID = 0;
+	public $active = '';
+	public $pageNo = 0;
 
 	/**
 	 * @see Action::readParameters()
@@ -35,13 +37,10 @@ class AfterEspionageAction extends AbstractAction {
 	public function readParameters() {
 		parent::readParameters();
 		
-		if(isset($_REQUEST['messageID'])) {
-			$this->messageID = intval($_REQUEST['messageID']);
-		}
-		
-		if(isset($_REQUEST['command'])) {
-			$this->command = StringUtil::trim($_REQUEST['command']);
-		}
+		if(isset($_REQUEST['messageID'])) $this->messageID = intval($_REQUEST['messageID']);
+		if(isset($_REQUEST['command'])) $this->command = StringUtil::trim($_REQUEST['command']);
+		if(isset($_REQUEST['active'])) $this->active = StringUtil::trim($_REQUEST['active']);
+		if(isset($_REQUEST['pageNo'])) $this->pageNo = intval($_REQUEST['pageNo']);
 	}
 
 	/**
@@ -74,7 +73,14 @@ class AfterEspionageAction extends AbstractAction {
 		if($this->command == 'attack')
 		{
 			$link = "index.php?page=FleetStartShips&targetPlanetID=".$planetID."&".
-				"backlink=index.php%3Fpage=Messages%23message".$this->messageID;
+				"backlink=index.php%3Fpage%3DMessages%26messageID%3D".$this->messageID;
+			if(!empty($this->active)) {
+				$link .= "%26active%3D".$this->active;
+			}
+			if($this->pageNo) {
+				$link .= "%26pageNo%3D".$this->pageNo;
+			}
+			$link .= "%23message".$this->messageID;
 		}
 		if($this->command == 'simulate')
 		{

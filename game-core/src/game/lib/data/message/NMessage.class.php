@@ -60,7 +60,7 @@ class NMessage extends DatabaseObject
 	 * @param	int		$offset
 	 * @return	array	$messages
 	 */
-	public static function getByUserID($userID, $checked = null, $folders = null, $limit = null, $offset = null)
+	public static function getByUserID($userID, $checked = null, $folders = null, $onlyNew = false, $limit = null, $offset = null)
 	{
 		if($folders !== null && !count($folders))
 			return array();
@@ -72,6 +72,8 @@ class NMessage extends DatabaseObject
 			$sql .= " AND checked = ".$checked;
 		if($folders !== null)
 			$sql .= " AND folderID IN(".implode(',', $folders).")";
+		if($onlyNew)
+			$sql .= " AND viewed = 0";
 		if($limit !== null)
 			$sql .= " LIMIT ".$limit;
 		if($offset !== null)

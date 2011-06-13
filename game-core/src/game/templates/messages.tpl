@@ -124,7 +124,7 @@
 						</div>
 					</div>
 					{foreach from=$folders key='folderID' item='folder'}
-						<div class="messageFolder {if $folderID|in_array:$active}active{else}inactive{/if}" id="messageFolder{@$folderID}">
+						<div class="messageFolder {if $folderID|in_array:$active}active{else}{if $folderID|in_array:$spare}spare{else}inactive{/if}{/if}" id="messageFolder{@$folderID}">
 							{if $active !== null && $folderID|in_array:$active}
 								{if $active|count == 1}
 									{assign var='link' value='index.php?page=Messages'}
@@ -183,7 +183,7 @@
 			{* messages *}
 			{if $messages|count}
 				<a name="unread"></a>
-				{include file='messagesList' id='messages' messages=$messages}
+				{include file='messagesList' id='messages' messages=$messages showMessageID=$messageID}
 			{/if}
 			
 			{if $nextPage || $pageNo > 1}

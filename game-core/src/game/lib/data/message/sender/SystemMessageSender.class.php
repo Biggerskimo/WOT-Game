@@ -36,11 +36,18 @@ class SystemMessageSender implements MessageSender
 	 */
 	public function getActions()
 	{
-		if($this->senderID == 3) // spionage
+		if($this->senderID == 3) // espionage
 		{
+			$extraUrl = '';
+			if(isset($_GET['active'])) {
+				$extraUrl .= '&amp;active='.StringUtil::trim($_GET['active']);
+			}
+			if(isset($_GET['pageNo'])) {
+				$extraUrl .= '&amp;pageNo='.intval($_GET['pageNo']);
+			}
 			return array(
 				array('wot.messages.message.attack',
-					'index.php?action=AfterEspionage&amp;command=attack&amp;messageID='.$this->messageID),
+					'index.php?action=AfterEspionage&amp;command=attack&amp;messageID='.$this->messageID.$extraUrl),
 				array('wot.messages.message.simulate',
 					'index.php?action=AfterEspionage&amp;command=simulate&amp;messageID='.$this->messageID),
 			);
