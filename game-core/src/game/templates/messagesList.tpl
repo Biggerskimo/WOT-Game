@@ -13,7 +13,7 @@
 	{foreach from=$messages key='messageID' item='message'}
 		<div class="{if !$message->viewed || $showMessageID == $messageID}showMessage{else}hideMessage{/if} lwcontainer-{cycle values='1,2' name='contcyc'} message{if $message->checked && !$hideChecked} messageChecked{/if}" id="message{@$messageID}">
 			<div class="messageToggle">
-				<a href="javascript:messages.toggle({@$messageID})">&nbsp;</a>
+				<a href="javascript:messages.toggle({@$messageID})" onmouseover="messages.toggle({@$messageID});">&nbsp;</a>
 			</div>
 			<div class="messageCheck">
 				<input type="checkbox" id="checkMessage{@$messageID}" name="checkMessage{@$messageID}"

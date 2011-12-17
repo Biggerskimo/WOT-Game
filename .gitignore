@@ -1,2 +1,6 @@
+.buildpath
+.project
+.settings/
+.swp..project
 game-core/.project
 game-core/.settings/

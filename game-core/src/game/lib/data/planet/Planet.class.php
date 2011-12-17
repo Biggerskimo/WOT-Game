@@ -263,6 +263,13 @@ class Planet extends DatabaseObject {
 		
 		return $linkBefore.$prefix.$name.$linkAfter.'<a href="galaxy.php?g='.$this->galaxy.'&amp;s='.$this->system.'" target="Mainframe">['.$this->galaxy.':'.$this->system.':'.$this->planet.']</a>';
 	}
+
+	/**
+	 * Returns the coordinates, without links or prefixes.
+	 */
+	public function getCoordinates() {
+		return '['.$this->galaxy.':'.$this->system.':'.$this->planet.']';
+	}
 	
 	/**
 	 * Returns the upper limit by the noob protection

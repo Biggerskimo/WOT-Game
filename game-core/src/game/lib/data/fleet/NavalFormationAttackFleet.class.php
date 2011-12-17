@@ -95,7 +95,8 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 	public $units = array('attacker' => 0, 'defender' => 0);
 	public $entireUnits = 0;
 	public $recreatedDefense = array();
-	
+
+	public $summary = null;
 	public $report = null;
 	protected $log = "";
 		
@@ -828,10 +829,17 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 	 */
 	public function generateReport() {
 		$this->prepareData();
-
 		$this->assignVariables();
-
 		$this->report = WCF::getTPL()->fetch($this->templateName);
+
+		$this->generateSummary();
+	}
+
+	/**
+	 * Generates the summary, shown later in the message.
+	 */
+	public function generateSummary() {
+		$this->summary = WCF::getTPL()->fetch('combatSummary');
 	}
 
 	/**
@@ -1336,13 +1344,23 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 		$reportID = $report->reportID;
 		
 		// sending message
-		$subject = WCF::getLanguage()->get('wot.fleet.combat.subject');
-		//$message = '<a class="thickbox" href="game/index.php?page=CombatReportView&reportID='.$reportID.'&keepThis=true&TB_iframe=true&height=400&width=500"><font color="red">'.$subject.' ['.$this->galaxy.':'.$this->system.':'.$this->planet.'] (V:'.number_format($this->units['defender'], 0, ',', '.').', A:'.number_format($this->units['attacker'], 0, ',', '.').')</font></a>';
-		$messagePre = '<a class="thickbox ';
-		$messageAfter = '" href="index.php?page=CombatReportView&reportID='.$reportID.'&keepThis=true&TB_iframe=true&height=400&width=500">'.$subject.' ['.$this->galaxy.':'.$this->system.':'.$this->planet.'] (V:'.number_format($this->units['defender'], 0, ',', '.').', A:'.number_format($this->units['attacker'], 0, ',', '.').')</a>';
+		$subject = $this->parse(WCF::getLanguage()->get('wot.fleet.combat.subject'));
+
+		$message = $this->summary;
+		$message .= '<a class="thickbox" href="index.php?page=CombatReportView&reportID='.$reportID;
+		$message .= '&keepThis=true&TB_iframe=true&height=80%&width=80%">';
+		$message .= WCF::getLanguage()->get('wot.fleet.combat.showReport').'</a>';
 		
 		$senderOwner = WCF::getLanguage()->get('wot.fleet.combat.sender.owner');
 		$senderOfiara = WCF::getLanguage()->get('wot.fleet.combat.sender.ofiara');
+
+		foreach($this->navalFormationUsers as $userID => $userObj) {
+			NMessageEditor::create($userID, array(3, 2), $subject, '<div class="combatSummary attacker">'.$message.'</div>', 2);
+ 		}
+		foreach($this->standByUsers as $userID => $userObj) {
+			NMessageEditor::create($userID, array(3, 1), $subject, '<div class="combatSummary defender">'.$message.'</div>', 2);
+ 		}
+
 		foreach($users as $userID) {
 			if($userID == $this->ofiaraID) {
 				$sender = $senderOfiara;
@@ -1350,6 +1368,7 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 			else {
 				$sender = $senderOwner;
 			}
+			/*
 			if(isset($this->navalFormationUsers[$userID])) {
 				$class = 'combatReport_attacker_'.$this->winner;
 				$senderID = 2;
@@ -1358,11 +1377,11 @@ class NavalFormationAttackFleet extends AbstractFleetEventHandler implements Mis
 				$class = 'combatReport_defender_'.$this->winner;	
 				$senderID = 1;			
 			}
-			$message = $messagePre.$class.$messageAfter;
-			
+			$message = $this->summary.'<br /><br />'.$message;
+			*/
 			MessageEditor::create($userID, $subject, $message, 0, $sender, 3);
-			NMessageEditor::create($userID, array(3, $senderID),
-				$subject, $message, 2);		
+			//NMessageEditor::create($userID, array(3, $senderID),
+			//	$subject, $message, 2);
 		}
 	}
 	

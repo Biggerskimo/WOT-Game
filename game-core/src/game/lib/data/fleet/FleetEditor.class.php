@@ -279,6 +279,18 @@ class FleetEditor extends AbstractDecorator {
 	}
 	
 	/**
+	 * Tries to restore the return event.
+	 */
+	public function tryRestore() {
+		try {
+			$returnEvent = WOTEventEditor::create(1, $this->fleetID, array('state' => 1), $returnTime);
+			$this->update(array('returnEventID' => $returnEvent->eventID));
+		} catch(Exception $e) {
+			$this->delete();
+		}
+	}
+	
+	/**
 	 * Deletes this fleet.
 	 */
 	public function delete() {

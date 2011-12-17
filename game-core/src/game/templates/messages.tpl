@@ -5,6 +5,7 @@
 		<script type="text/javascript" src="js/Messages.class.js"></script>
 		{include file="headInclude"}
 		<link href="../css/thickbox.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../js/thickbox.js"></script>
 		<script type="text/javascript">
 			{assign var='checkedCount' value=$this->user->getSetting('checkedMessages')}
 			

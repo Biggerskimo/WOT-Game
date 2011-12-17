@@ -180,32 +180,36 @@ abstract class AbstractFleetEventHandler extends Fleet implements WOTEventHandle
     		return;
     	}
     	$this->searches = array(
-    		'{sPName}', // 1
-    		'{sPKoords}', // 2
-    		'{ePName}', // 3
-    		'{ePKoords}', // 4
-    		'{ressources}', // 5
+    		'{sPName}', // 0
+    		'{sPKoords}', // 1
+    		'{ePName}', // 2
+    		'{ePKoords}', // 3
+    		'{ressources}', // 4
     		// the replaces above are depricated. use better the replaces below
-    		'{$startPlanet}', // 6
-    		'{$startPlanetCoordinates}', // 7
-    		'{$targetPlanet}', // 8
-    		'{$targetPlanetCoordinates}', // 9
-    		'{$resources}', // 10
-    		'{$shipsList}' // 11
+    		'{$startPlanet}', // 5
+    		'{$startPlanetCoordinates}', // 6
+    		'{$targetPlanet}', // 7
+    		'{$targetPlanetCoordinates}', // 8
+    		'{$resources}', // 9
+    		'{$shipsList}', // 10
+    		'{$startPlanetCoordinatesNoLink}', // 11
+    		'{$targetPlanetCoordinatesNoLink}', // 12
     	);
     	$this->replaces = array(
-    		$this->getStartPlanet(), // 1
-    		$this->getStartPlanet()->getLinkedCoordinates(), // 2
-    		$this->getTargetPlanet(), // 3
-    		$this->getTargetPlanet()->getLinkedCoordinates(), // 4
-    		$this->getRessources('strWBR'), // 5
+    		$this->getStartPlanet(), // 0
+    		$this->getStartPlanet()->getLinkedCoordinates(), // 1
+    		$this->getTargetPlanet(), // 2
+    		$this->getTargetPlanet()->getLinkedCoordinates(), // 3
+    		$this->getRessources('strWBR'), // 4
     		
-    		$this->getStartPlanet(), // 6
-    		$this->getStartPlanet()->getLinkedCoordinates(), // 7
-    		$this->getTargetPlanet(), // 8
-    		$this->getTargetPlanet()->getLinkedCoordinates(), // 9
-    		$this->getRessources('strWBR'), // 10
-    		$this->getShips('strWBR') // 11    		
+    		$this->getStartPlanet(), // 5
+    		$this->getStartPlanet()->getLinkedCoordinates(), // 6
+    		$this->getTargetPlanet(), // 7
+    		$this->getTargetPlanet()->getLinkedCoordinates(), // 8
+    		$this->getRessources('strWBR'), // 9
+    		$this->getShips('strWBR'), // 10
+    		$this->getStartPlanet()->getCoordinates(), // 11
+    		$this->getTargetPlanet()->getCoordinates() // 12
     	);
     }
     

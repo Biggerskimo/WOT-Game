@@ -90,7 +90,7 @@ class MessagesPage extends AbstractPage {
 		else
 		{
 			$this->pageNo = 1;
-			$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, self::MESSAGES);
+			$this->messages = NMessage::getByUserID(WCF::getUser()->userID, $this->checked, $this->active, false, self::MESSAGES);
 		}
 		
 		// update data

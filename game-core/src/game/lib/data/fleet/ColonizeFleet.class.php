@@ -71,7 +71,8 @@ class ColonizeFleet extends AbstractFleetEventHandler implements Mission {
 		
 		$name = WCF::getLanguage()->get('wot.planet.colony');
 		$planet = PlanetEditor::create($this->galaxy, $this->system, $this->planet, $name, $this->ownerID, self::DEFAULT_METAL, self::DEFAULT_CRYSTAL, self::DEFAULT_DEUTERIUM, 1, time(), self::DEFAULT_FIELDS, null);
-				
+		$this->targetPlanetID = $this->endPlanetID = $planet->planetID;
+
 		$planet->getEditor()->changeResources($this->metal, $this->crystal, $this->deuterium);
 		$planet->getEditor()->changeLevel($this->fleet);
 		$this->getEditor()->delete();
@@ -107,5 +108,13 @@ class ColonizeFleet extends AbstractFleetEventHandler implements Mission {
     protected function getImpactOfiaraMessageData() {
     	return null;
     }
+
+	protected function initArrays() {
+		parent::initArrays();
+
+		$this->replaces[7] = 'unbesiedelten Planeten '.$this->name.' <a href="galaxy.php?g='.$this->galaxy.'&amp;s='.$this->system.'" target="Mainframe">['.$this->galaxy.':'.$this->system.':'.$this->planet.']</a>';
+		$this->replaces[8] = '<a href="galaxy.php?g='.$this->galaxy.'&amp;s='.$this->system.'" target="Mainframe">['.$this->galaxy.':'.$this->system.':'.$this->planet.']</a>';
+		$this->replaces[12] = '['.$this->galaxy.':'.$this->system.':'.$this->planet.']';
+	}
 }
 ?>
