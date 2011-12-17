@@ -49,17 +49,18 @@ class EspionageFleet extends NavalFormationAttackFleet {
     public function executeImpact() {
     	$this->initStandByFleets();
     	
+    	$this->ereport .= '<!-- [planetID#'.$this->targetPlanetID.'] -->';
     	$this->ereport .= '<a id="ereport'.$this->fleetID.'"></a>';
     	$this->create();
     	$this->ereport .= '<div class="ereportbottom" style="text-align: center;">';		
 		$this->destroy();
-		$this->ereport .= '<a style="display: block;" href="game/index.php?page=FleetStartShips&amp;targetPlanetID='.$this->targetPlanetID.'&amp;backlink=../messages.php%3Ffolder=4%23ereport'.$this->fleetID.'">'.WCF::getLanguage()->get('wot.mission.mission'.$this->missionID.'.impact.owner.attack').'</a>';
-		$this->ereport .= '<a style="display: block;" href="game/index.php?form=Simulator&amp;planetID='.$this->targetPlanetID.'">'.WCF::getLanguage()->get('wot.mission.mission'.$this->missionID.'.impact.owner.simulate').'</a>';
 		$this->ereport .= '</div>';
 		
     	$senderName = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.sender.owner'));
 		$subject = $this->parse(WCF::getLanguage()->get('wot.mission.mission6.impact.owner.subject'));
 		MessageEditor::create($this->ownerID, $subject, $this->ereport, 0, $senderName, 4);
+		NMessageEditor::create($this->ownerID, array(3, 3),
+			$subject, $this->ereport, 1);
 		
 		$this->saveData($this->fight);
     }

@@ -101,9 +101,12 @@ if($_GET["mode"] == 'write'){ //Formulario para mandar mensajes personales (PM)
 
 			//query para agregar un mensaje
 			require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+			require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 			$recipentID = intval($_GET['id']);
 			$subject = escapeString(StringUtil::encodeHTML($_POST['subject']));
 			MessageEditor::create($recipentID, $subject, $message);
+			NMessageEditor::create($recipentID, array(1, WCF::getUser()->userID),
+				$subject, $message, 4);
 			
 			/*doquery("INSERT INTO {{table}} SET
 				`message_owner`='".intval($_GET['id'])."',
@@ -115,7 +118,7 @@ if($_GET["mode"] == 'write'){ //Formulario para mandar mensajes personales (PM)
 				`message_text`='".WCF::getDB()->escapeString($message)."'"
 				,'messages');
 			$text = '';
-			//query para agregar un contador al dueño de ese mensaje
+			//query para agregar un contador al dueï¿½o de ese mensaje
 			doquery("UPDATE {{table}} SET new_message = new_message + 1 WHERE id = '".$_GET['id']."'",'users');
 */
 		}

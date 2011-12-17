@@ -66,7 +66,7 @@ $result = WCF::getDB()->sendQuery($sql);
 
 require_once(LW_DIR.'lib/data/fleet/Fleet.class.php');
 while($row = WCF::getDB()->fetchArray($result)) {
-	Fleet::getInstance($row['fleetID'])->getEditor()->delete();
+	Fleet::getInstance($row['fleetID'])->getEditor()->tryRestore();
 }
 
 // events without fleets

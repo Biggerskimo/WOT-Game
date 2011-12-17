@@ -18,6 +18,7 @@
 
 require_once(WCF_DIR.'lib/form/AbstractForm.class.php');
 require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 require_once(LW_DIR.'lib/data/user/alliance/Alliance.class.php');
 
 /**
@@ -127,6 +128,8 @@ class AllianceApplicationViewForm extends AbstractForm {
 			else $message = WCF::getLanguage()->get('wot.alliance.newMember.user.noAnswer', array( 'alliance' => $this->alliance));
 			
 			MessageEditor::create($this->userID, WCF::getLanguage()->get('wot.alliance.application'), $message, 0, $this->alliance, 0);
+			NMessageEditor::create($this->userID, array(2, $this->alliance->allianceID),
+				WCF::getLanguage()->get('wot.alliance.application'), $message, 3);
 		} else {
 			// update user
 			$sql = "UPDATE ugml_users
@@ -144,7 +147,9 @@ class AllianceApplicationViewForm extends AbstractForm {
 			if(!empty($this->answerText)) $message = WCF::getLanguage()->get('wot.alliance.application.disagreed', array('answer' => $this->answerText, 'alliance' => $this->alliance));
 			else $message = WCF::getLanguage()->get('wot.alliance.application.disagreed.noAnswer', array('alliance' => $this->alliance));
 			
-			MessageEditor::create($this->userID, WCF::getLanguage()->get('wot.alliance.applicationView.application'), $message, 0, $this->alliance, 0);
+			MessageEditor::create($this->userID, WCF::getLanguage()->get('wot.alliance.application'), $message, 0, $this->alliance, 0);
+			NMessageEditor::create($this->userID, array(2, $this->alliance->allianceID),
+				WCF::getLanguage()->get('wot.alliance.application'), $message);
 		}
 		
 		

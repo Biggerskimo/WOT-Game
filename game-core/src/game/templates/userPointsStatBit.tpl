@@ -44,7 +44,7 @@
 		</span>
 	</td>
 	<td>
-		<a href="../messages.php?mode=write&amp;id={@$entry.userID}"><img src="{$dpath}img/m.gif" alt="{lang}wot.message.write{/lang}" /></a>
+		<a href="index.php?form=MessageUser&userID={@$entry.userID}"><img src="{$dpath}img/m.gif" alt="{lang}wot.message.write{/lang}" /></a>
 	</td>
 	<td>
 		{if $entry.allianceID !== null}

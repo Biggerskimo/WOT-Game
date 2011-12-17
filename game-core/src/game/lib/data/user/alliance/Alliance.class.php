@@ -160,7 +160,9 @@ class Alliance extends DatabaseObject {
 		$result = WCF::getDB()->sendQuery($sql);
 		
 		// send
+		$messageBits = "";
 		require_once(LW_DIR.'lib/data/message/MessageEditor.class.php');
+		require_once(LW_DIR.'lib/data/message/NMessageEditor.class.php');
 		while($row = WCF::getDB()->fetchArray($result)) {
 			if( // send to all
 				$rankID == -1
@@ -170,8 +172,18 @@ class Alliance extends DatabaseObject {
 				|| ($rankID == 0 && $row['id'] == $this->ally_owner)) {
 				
 				MessageEditor::create($row['id'], $subject, $message, 0, $alliance, 2);
+				// TODO: new message subject
+				$messageObj = NMessageEditor::create($row['id'], array(2, $this->allianceID),
+					"Rundmail", $message, 3);
+				$messageBits .= "(".$messageObj->messageID.", ".WCF::getUser()->userID."),"; // abstract user id?
 			}
 		}
+		
+		$sql = "INSERT INTO ugml_message_circular
+				(messageID, userID)
+				VALUES
+				".substr($messageBits, 0, -1);
+		WCF::getDB()->sendQuery($sql);
 	}
 	
 	/**

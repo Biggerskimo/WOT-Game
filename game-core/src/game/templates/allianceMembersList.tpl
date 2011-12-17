@@ -99,7 +99,7 @@
 								{$user->username}
 							</td>
 							<td class="column">
-								<a href="../messages.php?mode=write&amp;id={@$user->userID}">
+								<a href="index.php?form=MessageUser&amp;userID={@$user->userID}">
 									<img src="{$dpath}img/m.gif" alt="{lang}wot.global.write{/lang}" />
 								</a>
 							</td>
